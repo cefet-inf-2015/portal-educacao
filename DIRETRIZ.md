@@ -12,6 +12,8 @@ e atualizá-los *conforme necessário*.
   - __*Cabe aos líderes das equipes exigir o cumprimento da padronização!!*__
   - Todos os arquivos devem estar separados. Nada de misturar javascript com HTML (e.g.: `onclick= [...]`), etc.
  
+- ###Flow do github:
+  - Utilizar o [_Centralized Workflow_][gitflow]
 
 - Códigos HTML e CSS:
   - Seguir o [**codeGuide**][codeGuide].
@@ -101,3 +103,4 @@ no conceitos do [Material Design][material-design] da Google.
   [materialize]: http://materializecss.com/
   [material-design]: https://material.google.com
   [projects]: https://github.com/cefet-inf-2015/portal-educacao/projects
+  [gitflow]: https://www.atlassian.com/git/tutorials/comparing-workflows/centralized-workflow
