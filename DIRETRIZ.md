@@ -9,7 +9,9 @@ cartões para indicar o andamento de fluxos e processos no projeto (chamado *Kan
 e atualizá-los *conforme necessário*.
 
 ##Padronização
- __*Cabe aos líderes das equipes exigir o cumprimento da padronização!!*__
+  - __*Cabe aos líderes das equipes exigir o cumprimento da padronização!!*__
+  - Todos os arquivos devem estar separados. Nada de misturar javascript com HTML (e.g.: `onclick= [...]`), etc.
+ 
 
 - Códigos HTML e CSS:
   - Seguir o [**codeGuide**][codeGuide].
@@ -59,8 +61,7 @@ e atualizá-los *conforme necessário*.
         elementoTroco.value = quantiaPaga - preco;
         ```
         
-    - Não trabalhar com _`getElementById()`_ nem _`getElementsByClassName()`_. Utilize [_`querySelector()`_]
-[query-selector] e [_`querySelectorAll()`_][query-all], que aceita [_seletores CSS_][seletores] (!!!) como argumento:
+    - Não trabalhar com _`getElementById()`_ nem _`getElementsByClassName()`_. Utilize [_`querySelector()`_][query-selector] e [_`querySelectorAll()`_][query-all], que aceita [_seletores CSS_][seletores] (!!!) como argumento:
         ```js
         // Mais decepcionante que No Man's Sky:
         let lista = document.getElementById('principal'),
