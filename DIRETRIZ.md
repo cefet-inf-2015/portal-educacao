@@ -12,8 +12,14 @@ e atualizá-los *conforme necessário*.
   - __*Cabe aos líderes das equipes exigir o cumprimento da padronização!!*__
   - Todos os arquivos devem estar separados. Nada de misturar javascript com HTML (e.g.: `onclick= [...]`), etc.
  
-- ###Flow do github:
-  - Utilizar o [_Centralized Workflow_][gitflow]
+- ###Flow do git:
+  - Ler sobre o [_Centralized Workflow_][gitflow]
+  - Comandos básicos:
+    - `git add <nome do arquivo>`: adiciona o modificação à pilha
+    - `git commit -m <nome do commit> -m <descricao>`: cria commit local
+    - `git push origin master` : envia commit mais atual para o github
+    - `git pull --rebase origin master`: atualiza repositorio em relacao ao github
+    
 
 - Códigos HTML e CSS:
   - Seguir o [**codeGuide**][codeGuide].
