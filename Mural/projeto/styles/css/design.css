@@ -1,6 +1,5 @@
 #post {
-  resize: none;
-  height: 120px;
+  height: 90%;
 }
 
 .col.s2 > .btn {
@@ -11,3 +10,9 @@
 #nameProf{
 	text-align: left;
 }
+
+#center { margin-left: auto;
+          margin-right: auto;
+          margin-top: 3px;
+          margin-bottom: 3px;
+          text-align: center; }
