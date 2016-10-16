@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prova>
+<questao tipo="ME">
+	<enunciado>
+	O resultado de 5+5+5 é:
+	</enunciado>
+	<alternativa correta="false">Cinco</alternativa>
+	<alternativa correta="false">Zero</alternativa>
+	<alternativa correta="false">Dez</alternativa>
+	<alternativa correta="true">Quinze</alternativa>
+</questao>
+<questao tipo="ME">
+	<enunciado>
+	O resultado de 8² é:
+	</enunciado>
+	<alternativa correta="true">Sessenta e quatro</alternativa>
+	<alternativa correta="false">Dezesseis</alternativa>
+	<alternativa correta="false">Oitenta e oito</alternativa>
+	<alternativa correta="false">Seis</alternativa>
+</questao>
+</prova>
