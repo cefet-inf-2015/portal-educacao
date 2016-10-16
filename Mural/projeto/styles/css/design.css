@@ -1,0 +1,13 @@
+#post {
+  resize: none;
+  height: 120px;
+}
+
+.col.s2 > .btn {
+  width: 100%;
+  text-align: right;
+}
+
+#nameProf{
+	text-align: left;
+}
