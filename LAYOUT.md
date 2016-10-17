@@ -21,7 +21,7 @@ O código index.html na pasta principal do projeto serve como um fundo base para
 - Também é possível (e recomendado) que se altere o subtítulo
 
 ##Mudanças
-Eventualmente ocorrerão mudanças no layout, que esperamos não ser frequentes, por exemplo para a inserção da Logo, do banner, do menu
+Eventualmente ocorrerão mudanças no layout, que esperamos não serem frequentes, por exemplo para a inserção da Logo, do banner, do menu
 e dos botões de Sign In. Por isso, será necessário que todas as páginas sejam atualizadas de tempos em tempos.
 
 #File Path
@@ -46,7 +46,7 @@ diferente.
 ```
 - A solução que utilizaremos será ``../``. Cada ``../`` dado volta uma pasta para trás.
 ![Imagem exemplificando file path][file path]  
-  - Portanto, no exemplo acima ao dar ``../`` uma vez, você estará acessando o conteúdo da pasta "projeto". Com mais um ``..\`` você
+  - Portanto, no exemplo acima ao dar ``../`` uma vez, você estará acessando o conteúdo da pasta "projeto". Com mais um ``../`` você
 acessará o conteúdo de "Mural". Mais um ``../`` te permitirá acessar todo conteúdo de "portal-educacao", e consequentemente a pasta styles.  
   - O código final então será:
 ```html
@@ -83,8 +83,8 @@ Para fazê-lo executar algo, basta criar em um arquivo .js um action listener
     }
 ```
 
-**_OBS:_** O # antes de btn indica que o querySelector deve procurar um elemento cuja id seja btn. De outra forma ele procuraria
-um elemento cuja classe fosse btn.
+**_OBS:_** O # antes de btn indica que o querySelector deve procurar um elemento cuja id seja #btn#. De outra forma ele procuraria
+um elemento cuja classe fosse #btn#.
 
 
 [layout]: https://github.com/paula-mr/Aplica-es-para-Web/blob/master/apresent/1.PNG
