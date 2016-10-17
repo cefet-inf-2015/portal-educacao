@@ -5,15 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Portal Educação</title>
 
+
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="../../styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../../styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="../../styles/css/design.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="icon" href="https://s3.amazonaws.com/designmantic-logos/logos/2016/Oct/small-2933-5804a0eb3b1d5.png" >
 </head>
 <body>
   <nav class="light-blue darken-4" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">
+    	<img id="logo" src="logo2.png" class="center-block square responsive-img">
+    </a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
       </ul>
@@ -21,13 +25,13 @@
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Navbar Link</a></li>
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a
+ >   </div>
   </nav>
   
   <!-- ESPAÇO PARA MARQUEE -->
   <div>
-    
+
   </div>
 
   <div class="section no-pad-bot" id="index-banner">
@@ -42,24 +46,25 @@
     </div>
   </div>
 
-
+  <!-- CONTEUDO AQUI --> 
   <div class="container">
     <div class="section">
       <!-- Postar -->
       <div class="col s1 m8 offset-m2 l6 offset-l3" >
         <div class="card-panel grey lighten-5 z-depth-1">
           <div class="row valign-wrapper">
-            <div class="col s2">
+            <div class="col s6 m2 l2">
               <img src="https://yt3.ggpht.com/-ZtBlVYCvXOg/AAAAAAAAAAI/AAAAAAAAAAA/-5eDEfuCFlA/s900-c-k-no-rj-c0xffffff/photo.jpg" alt="" class="square responsive-img">
             </div>
             <div class="col s10">
               <textarea id="post" placeholder="Poste algo aqui!" class="materialize-textarea"></textarea>
+              <label for="post">Poste algo aqui!</label>
             </div>
           </div>
           <div class="row valign-wrapper">
             <div class="col s10"></div>
             <div class="col s4 m3 l2">
-              <a class="waves-effect waves-light btn light-blue darken-4" style="">Publicar</a>
+              <a class="waves-effect waves-light btn light-blue darken-4 right" >Publicar</a>
             </div>
           </div>
         </div>
@@ -79,12 +84,14 @@
             </div>
             <div class="row">
               <div class="col s12">
-                <center><a class="black-text">TEXTO EXEMPLO DA POSTAGEM</a><br><br></center>
-                <center><img src="https://scontent.fplu3-1.fna.fbcdn.net/v/t1.0-0/q84/s526x395/14494637_1761260080798489_4491825794709950861_n.jpg?oh=b7226ef563bb52abb997c29959265643&oe=585F61BF" alt="" class="square responsive-img"><br><br></center>
+                <p class="black-text center">TEXTO EXEMPLO DA POSTAGEM</p><br><br>
+                <img class="center-block" src="https://scontent.fplu3-1.fna.fbcdn.net/v/t1.0-0/q84/s526x395/14494637_1761260080798489_4491825794709950861_n.jpg?oh=b7226ef563bb52abb997c29959265643&oe=585F61BF" alt="" class="square responsive-img"><br><br>
+                
+              </div>
+              <div class="col s6">
                 <a class="waves-effect waves-light btn light-blue darken-4" id="pub">
                   <i class="medium material-icons white-text text-darken-1">thumb_up</i>
-                </a>
-                
+                </a>              	
               </div>
             </div>            
           </div>
@@ -131,8 +138,8 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="template/js/materialize.js"></script>
-  <script src="template/js/init.js"></script>
+  <script src="../../template/js/materialize.js"></script>
+  <script src="../../template/js/init.js"></script>
 
   </body>
 </html>
