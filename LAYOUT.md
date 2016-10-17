@@ -4,7 +4,7 @@ O código index.html na pasta principal do projeto serve como um fundo base para
 ![Imagem do layout][layout]
 
 ##Como mudar o título e o subtítulo
-* O código referente a essa parte do site é o seguinte:  
+- O código referente a essa parte do site é o seguinte:  
 ```html
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -19,6 +19,19 @@ O código index.html na pasta principal do projeto serve como um fundo base para
 ```
 - Logo, para adicionar o título referente a sua parte do trabalho, basta substituir o "Portal Educação"
 - Também é possível (e recomendado) que se altere o subtítulo
+
+##Onde inserir o conteúdo
+- O conteúdo deve ser inserido abaixo do comentário "conteúdo aqui".
+```html
+  <div class="container">
+    <div class="section">
+      <!-- CONTEÚDO AQUI -->
+
+      
+
+    </div>
+  </div>
+ ```
 
 ##Mudanças
 Eventualmente ocorrerão mudanças no layout, que esperamos não serem frequentes, por exemplo para a inserção da Logo, do banner, do menu
