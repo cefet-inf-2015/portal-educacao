@@ -1,0 +1,13 @@
+#historico {
+	height: 250px;
+	overflow-y: scroll;
+
+}
+#historico > div > div {
+	display: inline-block;
+	border-radius: 4px;
+	padding: 4px 10px;
+	background-color: blue;
+	color: white;
+	margin: 4px;
+}
