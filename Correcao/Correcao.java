@@ -1,7 +1,12 @@
 package correcao;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
@@ -9,25 +14,57 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
-
-/**
- *
- * @author Aluno
- */
 public class Correcao {
-    
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         JFileChooser seletor = new JFileChooser();
+        String respostasConcatenadas = null;
+        String respostas[] = null;
+        FileNameExtensionFilter filtroXML = 
+                new FileNameExtensionFilter("Extensible Markup Language", "xml");
+        seletor.setFileFilter(filtroXML);
         seletor.showOpenDialog(seletor);
-        File inputFile = 
+        File arquivoProva = 
         seletor.getSelectedFile();
-        System.out.println(seletor.getSelectedFile().getName());
+        FileNameExtensionFilter filtroTXT = 
+                new FileNameExtensionFilter("Arquivo de texto", "txt");
+        seletor.setFileFilter(filtroTXT);
+        seletor.showOpenDialog(seletor);
+        File arquivoGabarito = seletor.getSelectedFile();
+        try {
+            respostasConcatenadas = readFile(arquivoGabarito);
+            respostas = respostasConcatenadas.split("\n");
+            for (int i=0; i<respostas.length; i++) {
+                respostas[i]=respostas[i].substring(3);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Correcao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(corrigirProva(arquivoProva, respostas));
     }
 
+    public static String readFile(File gabarito) throws IOException {
+        String content = null;
+        File file = gabarito;
+        FileReader reader = null;
+        try {
+            reader = new FileReader(file);
+            char[] chars = new char[(int) file.length()];
+            reader.read(chars);
+            content = new String(chars);
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+        }
+        return content;
+    }
+    
     /**
      * Lê um arquivo XML contendo uma única questão, e compara a resposta dada com a
      * resposta correta.
@@ -68,8 +105,6 @@ public class Correcao {
         }
         return correta;
     }
-    
-    
     /**
      * Lê um arquivo XML contendo uma prova com uma ou mais questões múltipla 
      * escolha, e compara a resposta dada com a
@@ -98,6 +133,10 @@ public class Correcao {
                     for (int i = 0; i < eElement.getElementsByTagName("alternativa").getLength(); i++) {
                         if ("true".equals(eElement.getElementsByTagName("alternativa").item(i).getAttributes().item(0).getTextContent())) {
                             altCorretaCompleta = eElement.getElementsByTagName("alternativa").item(i).getTextContent();
+                            /*System.out.println(x[temp]);
+                            System.out.println(altCorretaCompleta);
+                            System.out.println("debug");*/
+                            //bug na comparação
                             if (x[temp].equals(altCorretaCompleta)){
                                 respostasCorretas++;
                             }
@@ -110,7 +149,6 @@ public class Correcao {
         }
         return respostasCorretas;
     }
-    
     /**
      * Lê um arquivo XML contendo uma prova com uma ou mais questões múltipla 
      * escolha, e conta o número de questões que a mesma possui.
