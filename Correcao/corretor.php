@@ -42,5 +42,5 @@ echo "
 	<title>Correção</title>
 	<meta charset=\"utf-8\">
 </head>
-<body><p>Questões acertadas:".corrigir(lerProva($caminhoProva), lerGabarito($caminhoGabarito))."</p></body></html>"
+<body><p>Questões acertadas: ".corrigir(lerProva($caminhoProva), lerGabarito($caminhoGabarito))."</p></body></html>"
 ?>
