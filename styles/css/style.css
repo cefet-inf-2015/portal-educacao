@@ -12,8 +12,20 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
-a {
+
+.link {
 	color: white;
 	font-weight: bold;
 	text-decoration: underline;
+}
+
+.btn .normal {
+	border: none;
+	text-decoration: none;
+    display: inline-block;
+    box-shadow: 0;
+}
+
+#logo {
+	padding: 4px;
 }
