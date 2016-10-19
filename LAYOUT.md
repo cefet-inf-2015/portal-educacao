@@ -96,8 +96,7 @@ Para fazê-lo executar algo, basta criar em um arquivo .js um action listener
     }
 ```
 
-**_OBS:_** O # antes de btn indica que o querySelector deve procurar um elemento cuja id seja #btn#. De outra forma ele procuraria
-um elemento cuja classe fosse #btn#.
+**_OBS:_** O # antes de btn indica que o querySelector deve procurar um elemento cuja id seja *btn*.
 
 
 [layout]: https://github.com/paula-mr/Aplica-es-para-Web/blob/master/apresent/1.PNG
