@@ -48,9 +48,25 @@ public static void main(String[] args) {
 } 
 ```
   
-  - Para alterar o L&F dos JComponentes através do FORM EDITOR do netbeans, deve-se simplismente clicar com o botão direito em cima do frame, ao qual as mudanças devem ser aplicadas, depois basta ir até "preview design", e pronto, irá aparecer um menu com as opções de modificação do L&F.
+  - Para alterar o L&F dos JComponentes através do FORM EDITOR do netbeans, deve-se simplismente clicar com o botão direito em cima do frame, ao qual as mudanças devem ser aplicadas, depois basta ir até "preview design", e pronto, irá aparecer um menu com as opções de pré visualização do L&F.
   
   ![Alt Text](http://i.stack.imgur.com/hligH.png)
+
+
+  - Para que estás mudanças sejam aplicadas basta adicionar o seguinte trecho de código a sua classe de aplicação central(MAIN), ou ao construtor de sua classe.
+  
+```java
+    /**
+     * Creates new form Home
+     */
+     try {
+         UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+     }
+        initComponents();
+    }
+```
 
 ## Iremos seguir alguns padrões
 
