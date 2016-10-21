@@ -64,8 +64,6 @@ public static void main(String[] args) {
      } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
          Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
      }
-        initComponents();
-    }
 ```
 
 ## Iremos seguir alguns padrões
