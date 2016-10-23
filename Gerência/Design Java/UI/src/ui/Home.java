@@ -41,9 +41,9 @@ public class Home extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         container = new javax.swing.JPanel();
-        Home = new javax.swing.JPanel();
         saibaMais1 = new ui.SaibaMais();
         loginPanel1 = new ui.LoginPanel();
+        Home = new javax.swing.JPanel();
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -52,6 +52,16 @@ public class Home extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         Topo = new javax.swing.JPanel();
         Login = new javax.swing.JButton();
+        jToolBar1 = new javax.swing.JToolBar();
+        btnHome = new javax.swing.JButton();
+        btnChat = new javax.swing.JButton();
+        btnGaleria = new javax.swing.JButton();
+        btnDownload = new javax.swing.JButton();
+        btnForum = new javax.swing.JButton();
+        btnCorreção = new javax.swing.JButton();
+        btnBancoDeQuestões = new javax.swing.JButton();
+        btnProvas = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -69,8 +79,12 @@ public class Home extends javax.swing.JFrame {
 
         container.setBackground(new java.awt.Color(255, 255, 255));
         container.setLayout(new java.awt.CardLayout());
+        container.add(saibaMais1, "SaibaMais");
+        container.add(loginPanel1, "Login");
 
         Home.setBackground(new java.awt.Color(255, 255, 255));
+        Home.setMaximumSize(new java.awt.Dimension(90, 99));
+        Home.setMinimumSize(new java.awt.Dimension(90, 99));
 
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
         Home.setLayout(HomeLayout);
@@ -84,8 +98,6 @@ public class Home extends javax.swing.JFrame {
         );
 
         container.add(Home, "Home");
-        container.add(saibaMais1, "SaibaMais");
-        container.add(loginPanel1, "Login");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
 
@@ -146,7 +158,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.getAccessibleContext().setAccessibleName("Saiba Mais");
@@ -165,12 +177,129 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jToolBar1.setBackground(new java.awt.Color(1, 87, 155));
+        jToolBar1.setRollover(true);
+
+        btnHome.setBackground(new java.awt.Color(1, 87, 155));
+        btnHome.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/logo.png"))); // NOI18N
+        btnHome.setText("Home");
+        btnHome.setFocusable(false);
+        btnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHome.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnHome.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnHome);
+
+        btnChat.setBackground(new java.awt.Color(1, 87, 155));
+        btnChat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnChat.setForeground(new java.awt.Color(255, 255, 255));
+        btnChat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Download.png"))); // NOI18N
+        btnChat.setText("Baixar");
+        btnChat.setFocusable(false);
+        btnChat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnChat.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnChat.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnChat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnChat);
+
+        btnGaleria.setBackground(new java.awt.Color(1, 87, 155));
+        btnGaleria.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnGaleria.setForeground(new java.awt.Color(255, 255, 255));
+        btnGaleria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Galeria.png"))); // NOI18N
+        btnGaleria.setText("Galeria");
+        btnGaleria.setFocusable(false);
+        btnGaleria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGaleria.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnGaleria.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnGaleria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnGaleria);
+
+        btnDownload.setBackground(new java.awt.Color(1, 87, 155));
+        btnDownload.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnDownload.setForeground(new java.awt.Color(255, 255, 255));
+        btnDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Forum.png"))); // NOI18N
+        btnDownload.setText("Forum");
+        btnDownload.setFocusable(false);
+        btnDownload.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDownload.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnDownload.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnDownload.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnDownload);
+
+        btnForum.setBackground(new java.awt.Color(1, 87, 155));
+        btnForum.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnForum.setForeground(new java.awt.Color(255, 255, 255));
+        btnForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Chat.png"))); // NOI18N
+        btnForum.setText("Chat");
+        btnForum.setFocusable(false);
+        btnForum.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnForum.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnForum.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnForum.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnForum);
+
+        btnCorreção.setBackground(new java.awt.Color(1, 87, 155));
+        btnCorreção.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCorreção.setForeground(new java.awt.Color(255, 255, 255));
+        btnCorreção.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Canledario.png"))); // NOI18N
+        btnCorreção.setText("Data");
+        btnCorreção.setFocusable(false);
+        btnCorreção.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCorreção.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnCorreção.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnCorreção.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnCorreção);
+
+        btnBancoDeQuestões.setBackground(new java.awt.Color(1, 87, 155));
+        btnBancoDeQuestões.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBancoDeQuestões.setForeground(new java.awt.Color(255, 255, 255));
+        btnBancoDeQuestões.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/questões.png"))); // NOI18N
+        btnBancoDeQuestões.setText("Questões");
+        btnBancoDeQuestões.setFocusable(false);
+        btnBancoDeQuestões.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBancoDeQuestões.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnBancoDeQuestões.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnBancoDeQuestões.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBancoDeQuestões.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBancoDeQuestõesActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnBancoDeQuestões);
+
+        btnProvas.setBackground(new java.awt.Color(1, 87, 155));
+        btnProvas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnProvas.setForeground(new java.awt.Color(255, 255, 255));
+        btnProvas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/provas.png"))); // NOI18N
+        btnProvas.setText("Provas");
+        btnProvas.setFocusable(false);
+        btnProvas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProvas.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnProvas.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnProvas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnProvas);
+
+        jButton2.setBackground(new java.awt.Color(1, 87, 155));
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CorrecaoF.png"))); // NOI18N
+        jButton2.setText("Correção");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setMaximumSize(new java.awt.Dimension(90, 99));
+        jButton2.setMinimumSize(new java.awt.Dimension(90, 99));
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton2);
+
         javax.swing.GroupLayout TopoLayout = new javax.swing.GroupLayout(Topo);
         Topo.setLayout(TopoLayout);
         TopoLayout.setHorizontalGroup(
             TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TopoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -179,7 +308,8 @@ public class Home extends javax.swing.JFrame {
             .addGroup(TopoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,7 +327,8 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(container, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Baixo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Baixo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(703, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,6 +343,10 @@ public class Home extends javax.swing.JFrame {
         CardLayout card = (CardLayout)container.getLayout();
         card.show(container, "SaibaMais");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnBancoDeQuestõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBancoDeQuestõesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBancoDeQuestõesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,13 +388,23 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel Home;
     private javax.swing.JButton Login;
     private javax.swing.JPanel Topo;
+    private javax.swing.JButton btnBancoDeQuestões;
+    private javax.swing.JButton btnChat;
+    private javax.swing.JButton btnCorreção;
+    private javax.swing.JButton btnDownload;
+    private javax.swing.JButton btnForum;
+    private javax.swing.JButton btnGaleria;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnProvas;
     private javax.swing.JPanel container;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JToolBar jToolBar1;
     private ui.LoginPanel loginPanel1;
     private ui.SaibaMais saibaMais1;
     // End of variables declaration//GEN-END:variables
