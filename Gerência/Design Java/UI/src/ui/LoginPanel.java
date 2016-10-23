@@ -128,7 +128,7 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addComponent(Mensagem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -138,21 +138,21 @@ public class LoginPanel extends javax.swing.JPanel {
             switch(selecao.getSelectedIndex()){
                 //Aluno
                 case 0:
-                InstanciaUsuario.usuario = BancoDeDados.Login.logarAluno(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Alunos");
+                Sessão.usuario = BancoDeDados.Login.logarAluno(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Alunos");
                 //Professor
                 case 1:
-                InstanciaUsuario.usuario = BancoDeDados.Login.logarProfessor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Professores");
+                Sessão.usuario = BancoDeDados.Login.logarProfessor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Professores");
                 //Coordenador
                 case 2:
-                InstanciaUsuario.usuario = BancoDeDados.Login.logarCoordenador(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Coordenadores");
+                Sessão.usuario = BancoDeDados.Login.logarCoordenador(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Coordenadores");
                 //Diretor
                 case 3:
-                InstanciaUsuario.usuario = BancoDeDados.Login.logarDiretor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Diretores");
+                Sessão.usuario = BancoDeDados.Login.logarDiretor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Diretores");
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(InstanciaUsuario.usuario==null){
+        if(Sessão.usuario==null){
             Mensagem.setVisible(true);
         }else{
 
