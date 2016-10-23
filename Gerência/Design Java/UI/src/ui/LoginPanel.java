@@ -138,21 +138,21 @@ public class LoginPanel extends javax.swing.JPanel {
             switch(selecao.getSelectedIndex()){
                 //Aluno
                 case 0:
-                Sessão.usuario = BancoDeDados.Login.logarAluno(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Alunos");
+                Sessao.usuario = BancoDeDados.Login.logarAluno(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Alunos");
                 //Professor
                 case 1:
-                Sessão.usuario = BancoDeDados.Login.logarProfessor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Professores");
+                Sessao.usuario = BancoDeDados.Login.logarProfessor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Professores");
                 //Coordenador
                 case 2:
-                Sessão.usuario = BancoDeDados.Login.logarCoordenador(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Coordenadores");
+                Sessao.usuario = BancoDeDados.Login.logarCoordenador(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Coordenadores");
                 //Diretor
                 case 3:
-                Sessão.usuario = BancoDeDados.Login.logarDiretor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Diretores");
+                Sessao.usuario = BancoDeDados.Login.logarDiretor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Diretores");
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(Sessão.usuario==null){
+        if(Sessao.usuario==null){
             Mensagem.setVisible(true);
         }else{
 
