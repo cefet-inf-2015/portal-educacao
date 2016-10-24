@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Portal Educação</title>
+
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="icon" href="imgs/logo.png" >
+</head>
+<body>
+  <nav class="light-blue darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <!-- MENU SLIDE OUT STRUCTURE-->
+      <ul id="slide-out" class="side-nav">
+	   <br>
+	   <li>
+		    <div class="logo">
+		      <img class="background center-block responsive" src="imgs/logo.png">
+		    </div>
+	    </li>
+	    <br>
+      <li><a class="waves-effect" href="index.html">Página Inicial</a></li>
+	    <li><a class="waves-effect" href="#!">Modelo de Provas/Trabalhos</a></li>
+	    <li><a class="waves-effect" href="#!">Fórum</a></li>
+	    <li><a class="waves-effect" href="#!">Download/Upload Aplicativos</a></li>
+	    <li><a class="waves-effect" href="#!">Correção Provas e Trabalhos</a></li>
+	    <li><a class="waves-effect" href="Mural/projeto/index.html">Mural</a></li>
+	    <li><a class="waves-effect" href="#!">Chat</a></li>
+	    <li><a class="waves-effect" href="#!">Repositório de Fotos</a></li>
+	    <li><a class="waves-effect" href="#!">Banco de Questões</a></li>
+	    <li><a class="waves-effect" href="#!">Calendário</a></li>
+	    <!--<li><div class="divider"></div></li>-->
+	    <!--<li><a class="subheader">Subheader</a></li>-->
+	  </ul>
+      <ul class="left hide-on-med-and-down">
+        <li>
+        	<button data-activates="slide-out" class="waves-effect waves-light btn-flat button-collapse white-text light-blue darken-4">Menu</button>
+        </li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><button class="waves-effect waves-light btn-flat white-text light-blue darken-4">Entrar</button></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- ESPAÇO PARA MARQUEE -->
+  <div>
+    
+  </div>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center blue-text text-darken-4">Banco de Questões</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">A ferramenta que produz provas de maneira simples e funcional</h5>
+      </div>
+      <br><br>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section" align="center">
+      
+      <!-- Criação e posicionamento dos botões na página -->
+      
+      <a class="waves-effect waves-light btn light-blue darken-4" id="inserir" onclick="ExibirCamposEspecificos('inserir')">Inserir Questões
+        <i class="tiny material-icons white-text text-darken-1">mode_edit</i>
+      </a>
+	  
+	  <a class="waves-effect waves-light btn light-blue darken-4" id="alterar" onclick="ExibirCamposEspecificos('alterar')">Alterar Questões
+        <i class="tiny material-icons white-text text-darken-1">swap_horiz</i>
+      </a>
+
+      <a class="waves-effect waves-light btn light-blue darken-4" id="excluir" onclick="ExibirCamposEspecificos('excluir')">Excluir Questões
+        <i class="tiny material-icons white-text text-darken-1">delete</i>
+      </a>
+
+      <a class="waves-effect waves-light btn light-blue darken-4" id="produzir" onclick="ExibirCamposEspecificos('produzir')">Produzir Prova
+        <i class="tiny material-icons white-text text-darken-1">library_books</i>
+      </a>
+
+      <!-- Criação do formulário (Inserir Questões) -->
+      
+      <p>  
+        <div class="esconder" id="estilo_questao">
+          <select class="browser-default" id="estilo">
+            <option value="" disabled selected>Escolha o estilo da questão a ser inserida.</option>
+            <option value="1">Dissertativa</option>
+            <option value="2">Múltipla Escolha</option>
+            <option value="3">Verdadeiro ou Falso</option>
+          </select>
+        </div>
+      </p>
+     
+      <p>
+        <div class="esconder" id="nivel_questao">
+          <select class="browser-default">
+            <option value="" disabled selected>Escolha o nível de dificuldade da questão.</option>
+            <option value="1">Fácil</option>
+            <option value="2">Mediana</option>
+            <option value="3">Difícil</option>
+          </select>
+        </div>
+      </p> 
+
+      <p>
+        <div class="esconder" id="disciplina_questao">
+          <select class="browser-default">
+            <option value="" disabled selected>Defina a disciplina.</option>
+            <option value="1">Aplicações para Web</option>
+            <option value="2">Arquitetura de Sistemas Digitais</option>
+            <option value="3">Linguagem de Programação - JAVA</option>
+            <option value="4">Manutenção de Computadores</option>
+            <option value="5">Biologia</option>
+            <option value="6">Filosofia</option>
+            <option value="7">Física</option>
+            <option value="8">Geografia</option>
+            <option value="9">História</option>
+            <option value="10">Matemática</option>
+            <option value="11">Português</option>
+            <option value="12">Química</option>
+            <option value="13">Sociologia</option>
+            <option value="14">Outra</option>
+          </select>
+        </div>
+      </p> 
+
+      <p>
+        <div class="esconder" id="tema_questao">
+          <div class="row" align="left">
+            <div class="input-field col s12">
+              <input id="tema" type="text" class="validate">
+              <label class="active" for="tema">Digite o tema:</label>
+            </div>
+          </div>
+        </div>
+      </p>
+
+      <div class="esconder" id="cabecalho_questao">
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="cabecalho" class="materialize-textarea"></textarea>
+                <label for="cabecalho">Digite o cabeçalho da questão:</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+     <p>
+        <div class="mostrar" id="multipla_V_F">
+        </div>
+      </p>
+
+      <div class="esconder" id="botao_add">
+        <a class="btn-floating btn-small waves-effect light-blue darken-4"><i class="material-icons">add</i></a>
+      </div>
+
+      <div class="esconder" id="gabarito_questao">
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="gabarito" class="materialize-textarea"></textarea>
+                <label for="gabarito">Digite o gabarito da questão:</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <p>
+        <div class="esconder" id="botoes_env_ref">
+          <a class="waves-effect waves-light btn light-blue darken-4" id="enviar">Enviar
+            <i class="tiny material-icons white-text text-darken-1">input</i>
+          </a>
+          <a class="waves-effect waves-light btn light-blue darken-4" id="refazer">Refazer
+            <i class="tiny material-icons white-text text-darken-1">replay</i>
+          </a>
+        </div>
+      </p>
+	  
+	  
+	  <!-- Criação do formulário (Alterar Questões) -->
+	  <p>
+        <div class="esconder" id="botao_salva">
+          <a class="waves-effect waves-light btn light-blue darken-4" id="salva">Salvar Alterações
+            <i class="tiny material-icons white-text text-darken-1">done</i>
+          </a>
+        </div>
+      </p>
+
+      <!-- Criação do formulário (Excluir Questões) -->
+
+      <p>
+        <div class="esconder" id="botao_confirma">
+          <a class="waves-effect waves-light btn light-blue darken-4" id="confirma">Confirmar Exclusão
+            <i class="tiny material-icons white-text text-darken-1">done</i>
+          </a>
+        </div>
+      </p>
+
+      <!-- Criação do formulário (Produzir Prova) -->
+
+      <div class="esconder" id="nivel_prova">
+        <form action="#">
+          <p>Escolha o nível de dificuldade das questões da prova:</p> 
+          <p>
+            <input name="nivel" type="radio" id="f" />
+            <label for="f">Fáceis</label>
+          </p>
+          <p>
+            <input name="nivel" type="radio" id="m" />
+            <label for="m">Medianas</label>
+          </p>
+          <p>
+            <input name="nivel" type="radio" id="d"  />
+            <label for="d">Difíceis</label>
+          </p>
+        </form>
+      </div>
+
+      <div class="esconder" id="estilo_prova">
+        <form action="#">
+          <p>Defina o estilo das questões que estarão presentes na prova:</p>
+          <p>
+            <input type="checkbox" class="filled-in" id="dissertativas"/>
+            <label for="dissertativas">Dissertativas</label>
+          </p>
+          <p>
+            <input type="checkbox" class="filled-in" id="multipla_escolha"/>
+            <label for="multipla_escolha">Multipla Escolha</label>
+          </p>
+          <p>
+            <input type="checkbox" class="filled-in" id="v_f"/>
+            <label for="v_f">Verdadeiro ou Falso</label>
+          </p>
+        </form>
+      </div>
+
+      <div class="esconder" id="numero">
+        <form action="#">
+          <p>Escolha o número de questões:</p>
+          <p class="range-field">
+            <input type="range" id="test5" min="0" max="100" />
+          </p>
+        </form>
+      </div>
+
+      <p>
+        <div class="esconder" id="botoes_vi_ge_im">
+          <a class="waves-effect waves-light btn light-blue darken-4" id="pub">Visualizar Prova
+            <i class="tiny material-icons white-text text-darken-1">visibility</i>
+          </a>
+
+          <a class="waves-effect waves-light btn light-blue darken-4" id="pub">Gerar Prova
+            <i class="tiny material-icons white-text text-darken-1">description</i>
+          </a>
+
+          <a class="waves-effect waves-light btn light-blue darken-4" id="pub">Imprimir Prova
+            <i class="tiny material-icons white-text text-darken-1">print</i>
+          </a>
+        </div>
+      </p>
+
+    </div>
+  </div>
+
+  <footer class="page-footer blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Desenvolvedores</h5>
+          <p class="grey-text text-lighten-4">
+            Somos a turma de Informática 2A do ano de 2016 do CEFET-MG (Centro Federal de Educação Tecnológica de Minas Gerais) desenvolvendo o trabalho final multidisciplinar de Linguagem de Programação 1 e Aplicações para WEB.
+            <br><a class="white-text link" href="colaboradores.html">Clique aqui</a> para saber mais
+          </p>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Sobre a Instituição</h5>
+          <p class="grey-text text-lighten-4">
+            Centro Federal de Educação Tecnológica de Minas Gerais
+            <br>Av. Amazonas 5253 - Nova Suiça - Belo Horizonte - MG - Brasil
+            <br>Telefone: +55 (31) 3319-7000 - Fax: +55 (31) 3319-7001
+          </p>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Recursos</h5>
+          <ul>
+            <li><a class="white-text link" href="https://github.com/cefet-inf-2015/portal-educacao/" target="_blank">Github</a></li>
+            <li><a class="white-text link" href="http://cefetmg.br/" target="_blank">CEFET-MG</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="blue-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="template/js/materialize.js"></script>
+  <script src="template/js/init.js"></script>
+  <script src="Script.js"></script>
+
+  </body>
+</html>
