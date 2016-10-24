@@ -6,6 +6,9 @@
 package ui;
 
 import java.awt.CardLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -23,11 +26,15 @@ public class Home extends javax.swing.JFrame {
      * Creates new form Home
      */
     public Home() {
+        super("Portal Educação");
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
+        URL url = this.getClass().getResource("logo.png");  
+           Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);  
+        this.setIconImage(iconeTitulo);
         initComponents();
         if(Sessao.usuario==null){
             Login.setText("Entrar");
