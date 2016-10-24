@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -60,6 +61,20 @@ public class Home extends javax.swing.JFrame {
         btnHome.setEnabled(true);
         */
         }
+    
+    public String getFraseTempo(){
+        Calendar c = Calendar.getInstance();
+        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+        if(timeOfDay >= 6 && timeOfDay < 12){
+            return "Bom Dia";        
+        }else if(timeOfDay >= 12 && timeOfDay < 18){
+            return "Boa Tarde";
+        }else if((timeOfDay >= 18 && timeOfDay < 24) || timeOfDay >=0 && timeOfDay<6){
+            return "Boa Noite";
+        }
+        return "Erro";
+    }
+    
     public void refresh(){
         btnChat.setEnabled(true);
         btnChat.setText("Chat");
@@ -75,11 +90,11 @@ public class Home extends javax.swing.JFrame {
         if(Sessao.usuario!=null){
             foto.setIcon(Sessao.usuario.getFoto());
             foto.setSize(Sessao.usuario.getFoto().getIconWidth(), Sessao.usuario.getFoto().getIconHeight());
-            idUser.setText(Sessao.usuario.getNickname());
+            idUser.setText(getFraseTempo()+ ", "+Sessao.usuario.getNickname());
         }
             
         if(Sessao.usuario==null){
-            idUser.setText("Usuário Anônimo");
+            idUser.setText(getFraseTempo()+ ", Usuário Anônimo");
             Login.setText("Entrar");
             foto.setIcon(null);
             btnChat.setEnabled(false);
@@ -213,7 +228,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(BaixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         BaixoLayout.setVerticalGroup(
             BaixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,15 +437,15 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TopoLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(idUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(idUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(TopoLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(83, 83, 83)
                         .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         TopoLayout.setVerticalGroup(
             TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
