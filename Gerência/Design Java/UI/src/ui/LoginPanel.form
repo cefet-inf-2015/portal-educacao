@@ -67,7 +67,7 @@
               <Component id="Mensagem" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="Login" min="-2" pref="41" max="-2" attributes="0"/>
-              <EmptySpace pref="157" max="32767" attributes="0"/>
+              <EmptySpace pref="127" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

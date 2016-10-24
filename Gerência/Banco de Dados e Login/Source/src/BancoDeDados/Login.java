@@ -1,0 +1,136 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package BancoDeDados;
+
+import java.sql.Blob;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.ImageIcon;
+
+/**
+ *
+ * @author Aluno
+ */
+public class Login {
+
+    private static Conexao conexao;
+    
+    //Pra salvar ArrayLists deve ser usado o método Join
+
+    /**
+     * Faz a conexão com o banco de dados
+     *
+     * @param ip Ip do banco
+     * @param user Usuário do banco
+     * @param senha Senha do usuário do banco
+     * @param banco Nome do banco de dados a ser selecionado
+     */
+    public static void conectarBanco(String ip, String user, String senha, String banco) {
+        conexao = new Conexao();
+        conexao.conectar(ip, user, senha, banco);
+    }
+
+    /**
+     * Realiza o login de um aluno
+     * 
+     * @param username Nome de usuario do aluno
+     * @param senha Senha do aluno
+     * @param tabela Tabela do banco em que os alunos estão guardados
+     * @return Aluno
+     * @throws SQLException
+     */
+    public static Aluno logarAluno(String username, String senha, String tabela) throws SQLException {
+        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + senha + "\'");
+        resultado.first();
+        //Recupera os dados binários da foto
+        Blob blob = resultado.getBlob("foto");
+        //Instancia um novo usuário com os dados recuperados do Banco de Dados
+        Aluno usuario;
+        usuario = new Aluno(resultado.getString("primeiroNome"), 
+                resultado.getString("ultimoNome"),
+                resultado.getString("username"),
+                new ImageIcon(blob.getBytes(1, (int) blob.length())),
+                resultado.getString("matricula"),
+                resultado.getString("turma"),
+                resultado.getString("divisao"));
+        resultado.close();
+        return usuario;
+    }
+    /**
+     * Realiza o login de um diretor
+     * 
+     * @param username Nome de usuario do diretor
+     * @param senha Senha do diretor
+     * @param tabela Tabela do banco em que os diretores estão guardados
+     * @return Diretor
+     * @throws SQLException
+     */
+    public static Diretor logarDiretor(String username, String senha, String tabela) throws SQLException {
+        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + senha + "\'");
+        resultado.first();
+        //Recupera os dados binários da foto
+        Blob blob = resultado.getBlob("foto");
+        //Instancia um novo usuário com os dados recuperados do Banco de Dados
+        Diretor usuario = new Diretor(resultado.getString("primeiroNome"), 
+                              resultado.getString("ultimoNome"), 
+                              resultado.getString("username"), 
+                              new ImageIcon(blob.getBytes(1, (int) blob.length())), 
+                              resultado.getString("matricula"));
+        resultado.close();
+        return usuario;
+    }
+    /**
+     * Realiza o login de um professor
+     * 
+     * @param username Nome de usuario do professor
+     * @param senha Senha do professor
+     * @param tabela Tabela do banco em que os professores estão guardados
+     * @throws SQLException
+     */
+    public static Professor logarProfessor(String username, String senha, String tabela) throws SQLException {
+        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + senha + "\'");
+        resultado.first();
+        //Recupera os dados binários da foto
+        Blob blob = resultado.getBlob("foto");
+        //Instancia um novo usuário com os dados recuperados do Banco de Dados
+        Professor usuario;
+        usuario = new Professor(resultado.getString("primeiroNome"), 
+                resultado.getString("ultimoNome"),
+                resultado.getString("username"),
+                new ImageIcon(blob.getBytes(1, (int) blob.length())),
+                resultado.getString("matricula"),
+                new ArrayList(Arrays.asList(resultado.getString("turmas").split(","))));
+        resultado.close();
+        return usuario;
+    }
+    /**
+     * Realiza o login de um coordenador
+     * 
+     * @param username Nome de usuario do coordenador
+     * @param senha Senha do coordenador
+     * @param tabela Tabela do banco em que os coordenadores estão guardados
+     * @return Coordenador
+     * @throws SQLException
+     */
+    public static Coordenador logarCoordenador(String username, String senha, String tabela) throws SQLException {
+        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + senha + "\'");
+        resultado.first();
+        //Recupera os dados binários da foto
+        Blob blob = resultado.getBlob("foto");
+        //Instancia um novo usuário com os dados recuperados do Banco de Dados
+        Coordenador usuario = new Coordenador(resultado.getString("primeiroNome"), 
+                              resultado.getString("ultimoNome"), 
+                              resultado.getString("username"), 
+                              new ImageIcon(blob.getBytes(1, (int) blob.length())), 
+                              resultado.getString("matricula"),
+                              new ArrayList(Arrays.asList(resultado.getString("cursos").split(","))));
+        resultado.close();
+        return usuario;
+    }
+
+}

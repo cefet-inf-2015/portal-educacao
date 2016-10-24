@@ -19,6 +19,7 @@ public class SaibaMais extends javax.swing.JPanel {
      */
     public SaibaMais() {
         initComponents();
+        jTextPane2.setCaretPosition(0);
     }
 
     /**
@@ -48,7 +49,7 @@ public class SaibaMais extends javax.swing.JPanel {
 
         jTextPane2.setContentType("text/html"); // NOI18N
         jTextPane2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jTextPane2.setText("<html>\n<body>\n<font face=\"Trebuchet MS\" size=\"5\">\n<b>Professores</b><br>\nJosé Wilson\nWilliam Sallum<br><br>\n<b>Gerência</b><br>\nAdalberto Barbosa\nJoão Pedro Rosa\nPaula Ribeiro\nVitor Rodarte<br><br>\n<b>Modelo de Provas/Trabalhos</b><br>\nVictor César\nGabriel Victor\nIsabela Carolina\nJoão Pedro dos Santos<br><br>\n<b>Fórum</b><br>\nVictor Gabriel\nLuana Pinheiro\nMatheus Morato\nRafael Gontijo<br><br>\n<b>Download/Upload Aplicativos</b><br>\nPedro Otávio\nAndré Mateus\nBruno Ferreira<br><br>\n<b>Correção Provas e Trabalhos</b><br>\nLuiz Augusto\nFelipe Linhares\nLucas Henrique<br><br>\n<b>Mural</b><br>\nGabriel Haddad\nBreno Mariz\nBryann Bueno<br><br>\n<b>Chat</b><br>\nCarlos Eduardo\nAna Luísa Menezes\nEster Atman<br><br>\n<b>Repositório de Fotos</b><br>\nMarcelo Augusto\nMaria Carolina Resende\nThales Alan Araújo\nGabriel Garcia<br><br>\n<b>Banco de Questões</b><br>\nJoão Vitor de Carvalho\nBreno Paiva\nThales Gabriel Nunes\nAlice Costa<br><br>\n<b>Calendário</b><br>\nPedro Henrique Almeida\nGabriel Vinícius\nAmaury Vianna\n</font>\n</body>\n</html>\n");
+        jTextPane2.setText("<html>\n<body>\n<font face=\"Trebuchet MS\" size=\"5\">\n<b>Professores</b><br>\nJosé Wilson<br>\nWilliam Sallum<br><br>\n<b>Gerência</b><br>\nAdalberto Barbosa<br>\nJoão Pedro Rosa<br>\nPaula Ribeiro<br>\nVitor Rodarte<br><br>\n<b>Modelo de Provas/Trabalhos</b><br>\nVictor César<br>\nGabriel Victor<br>\nIsabela Carolina<br>\nJoão Pedro dos Santos<br><br>\n<b>Fórum</b><br>\nVictor Gabriel<br>\nLuana Pinheiro<br>\nMatheus Morato<br>\nRafael Gontijo<br><br>\n<b>Download/Upload Aplicativos</b><br>\nPedro Otávio<br>\nAndré Mateus<br>\nBruno Ferreira<br><br>\n<b>Correção Provas e Trabalhos</b><br>\nLuiz Augusto<br>\nFelipe Linhares<br>\nLucas Henrique<br><br>\n<b>Mural</b><br>\nGabriel Haddad<br>\nBreno Mariz<br>\nBryann Bueno<br><br>\n<b>Chat</b><br>\nCarlos Eduardo<br>\nAna Luísa Menezes<br>\nEster Atman<br><br>\n<b>Repositório de Fotos</b><br>\nMarcelo Augusto<br>\nMaria Carolina Resende<br>\nThales Alan Araújo<br>\nGabriel Garcia<br><br>\n<b>Banco de Questões</b><br>\nJoão Vitor de Carvalho<br>\nBreno Paiva<br>\nThales Gabriel Nunes<br>\nAlice Costa<br><br>\n<b>Calendário</b><br>\nPedro Henrique Almeida<br>\nGabriel Vinícius<br>\nAmaury Vianna<br><br>\n<b>Patrocinadores</b><br>\nPai do Thales Nunes\n</font>\n</body>\n</html>\n");
         scroll.setViewportView(jTextPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -56,27 +57,27 @@ public class SaibaMais extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(286, Short.MAX_VALUE)
+                .addComponent(scroll)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(289, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(185, 185, 185))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(252, 252, 252))))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(scroll)
-                .addContainerGap())
+                        .addGap(249, 249, 249))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(4, 4, 4)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE))
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
