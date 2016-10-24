@@ -19,9 +19,9 @@ tutorial de como utilizar look and feel, para edição de interface gráfica em 
 
   - Parece bem complicado, mas na realidade é bem simples. //É igual andar de bike enquanto o chão pega fogo.
   
-  - Neste tutorial, daremos maior enfoque a utilização da ferramenta de WYSING do netbeans. // Que por sinal é uma coisa linda.
+  - Neste tutorial, daremos maior enfoque a utilização da ferramenta de WYSIWYG do netbeans. // Que por sinal é uma coisa linda.
   
-  - É possivel trocar o L&F de JComponents mexendo diretamente no código, para isso deve-se usar o comando UIManager.setLookAndFeel(Uma explicação mais detalhada pode ser encontrada [No site da orocle](https://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html), ou neste [forum aqui](http://javafree.uol.com.br/topic-3229-Aparencias-de-interface-Look-and-Feel.html)). //Mas caso você tenha amor proprio, irá usar o editor WYSING do netbeans.
+  - É possivel trocar o L&F de JComponents mexendo diretamente no código, para isso deve-se usar o comando UIManager.setLookAndFeel(Uma explicação mais detalhada pode ser encontrada [No site da Oracle](https://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html), ou neste [forum aqui](http://javafree.uol.com.br/topic-3229-Aparencias-de-interface-Look-and-Feel.html)). //Mas caso você tenha amor proprio, irá usar o editor WYSIWYG do netbeans.
   
   - Mas se ainda assim quiser dar uma olhada no código, aqui vai um exemplo:
 ```java
