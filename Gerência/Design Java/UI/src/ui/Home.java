@@ -8,7 +8,6 @@ package ui;
 import java.awt.CardLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -28,7 +27,16 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-    }
+        /*
+        Disabilitar Botão
+        btnHome.setText("<html><font color=black>Home</font></html>");
+        btnHome.setEnabled(false);
+        
+        Habilitar Botão
+        btnHome.setText("Home");
+        btnHome.setEnabled(true);
+        */
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -177,6 +185,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         jToolBar1.setBackground(new java.awt.Color(1, 87, 155));
+        jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
         btnHome.setBackground(new java.awt.Color(1, 87, 155));
@@ -189,6 +198,11 @@ public class Home extends javax.swing.JFrame {
         btnHome.setMaximumSize(new java.awt.Dimension(90, 99));
         btnHome.setMinimumSize(new java.awt.Dimension(90, 99));
         btnHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnHome);
 
         btnChat.setBackground(new java.awt.Color(1, 87, 155));
@@ -201,6 +215,11 @@ public class Home extends javax.swing.JFrame {
         btnChat.setMaximumSize(new java.awt.Dimension(90, 99));
         btnChat.setMinimumSize(new java.awt.Dimension(90, 99));
         btnChat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnChat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChatActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnChat);
 
         btnGaleria.setBackground(new java.awt.Color(1, 87, 155));
@@ -213,6 +232,11 @@ public class Home extends javax.swing.JFrame {
         btnGaleria.setMaximumSize(new java.awt.Dimension(90, 99));
         btnGaleria.setMinimumSize(new java.awt.Dimension(90, 99));
         btnGaleria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGaleria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGaleriaActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnGaleria);
 
         btnDownload.setBackground(new java.awt.Color(1, 87, 155));
@@ -225,6 +249,11 @@ public class Home extends javax.swing.JFrame {
         btnDownload.setMaximumSize(new java.awt.Dimension(90, 99));
         btnDownload.setMinimumSize(new java.awt.Dimension(90, 99));
         btnDownload.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDownload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDownloadActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnDownload);
 
         btnForum.setBackground(new java.awt.Color(1, 87, 155));
@@ -237,6 +266,11 @@ public class Home extends javax.swing.JFrame {
         btnForum.setMaximumSize(new java.awt.Dimension(90, 99));
         btnForum.setMinimumSize(new java.awt.Dimension(90, 99));
         btnForum.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnForum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnForumActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnForum);
 
         btnCorreção.setBackground(new java.awt.Color(1, 87, 155));
@@ -249,6 +283,11 @@ public class Home extends javax.swing.JFrame {
         btnCorreção.setMaximumSize(new java.awt.Dimension(90, 99));
         btnCorreção.setMinimumSize(new java.awt.Dimension(90, 99));
         btnCorreção.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCorreção.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCorreçãoActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnCorreção);
 
         btnBancoDeQuestões.setBackground(new java.awt.Color(1, 87, 155));
@@ -278,6 +317,11 @@ public class Home extends javax.swing.JFrame {
         btnProvas.setMaximumSize(new java.awt.Dimension(90, 99));
         btnProvas.setMinimumSize(new java.awt.Dimension(90, 99));
         btnProvas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProvas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProvasActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnProvas);
 
         jButton2.setBackground(new java.awt.Color(1, 87, 155));
@@ -290,6 +334,11 @@ public class Home extends javax.swing.JFrame {
         jButton2.setMaximumSize(new java.awt.Dimension(90, 99));
         jButton2.setMinimumSize(new java.awt.Dimension(90, 99));
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton2);
 
         javax.swing.GroupLayout TopoLayout = new javax.swing.GroupLayout(Topo);
@@ -345,8 +394,48 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnBancoDeQuestõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBancoDeQuestõesActionPerformed
-        // TODO add your handling code here:
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "BancoDeQuestoes");
     }//GEN-LAST:event_btnBancoDeQuestõesActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Home");
+    }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Chat");
+    }//GEN-LAST:event_btnChatActionPerformed
+
+    private void btnGaleriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaleriaActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Galeria");
+    }//GEN-LAST:event_btnGaleriaActionPerformed
+
+    private void btnDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Download");
+    }//GEN-LAST:event_btnDownloadActionPerformed
+
+    private void btnForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForumActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Forum");
+    }//GEN-LAST:event_btnForumActionPerformed
+
+    private void btnCorreçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorreçãoActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Correcao");
+    }//GEN-LAST:event_btnCorreçãoActionPerformed
+
+    private void btnProvasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvasActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Provas");
+    }//GEN-LAST:event_btnProvasActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
