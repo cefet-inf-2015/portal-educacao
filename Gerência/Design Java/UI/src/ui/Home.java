@@ -8,6 +8,8 @@ package ui;
 import java.awt.CardLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import static javax.swing.SwingConstants.CENTER;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -28,6 +30,7 @@ public class Home extends javax.swing.JFrame {
         }
         initComponents();
         if(Sessao.usuario==null){
+            Login.setText("Entrar");
             btnChat.setEnabled(false);
             btnChat.setText("<html><font color=black>Chat</font></html>");
             btnData.setEnabled(false);
@@ -39,11 +42,7 @@ public class Home extends javax.swing.JFrame {
             btnCorrecao.setEnabled(false);
             btnCorrecao.setText("<html><font color=black>Correção</font></html>");
         }
-        if(Sessao.isAluno()){
-            btnProvas.setEnabled(false);
-            btnCorrecao.setEnabled(false);
-        }
-
+        refresh();
         /*
         //Desabilitar Botão
         btnHome.setText("<html><font color=black>Home</font></html>");
@@ -65,7 +64,17 @@ public class Home extends javax.swing.JFrame {
         btnProvas.setText("Provas");
         btnCorrecao.setEnabled(true);
         btnCorrecao.setText("Correção");
+        Login.setText("Sair");
+        if(Sessao.usuario!=null){
+            foto.setIcon(Sessao.usuario.getFoto());
+            foto.setSize(Sessao.usuario.getFoto().getIconWidth(), Sessao.usuario.getFoto().getIconHeight());
+            idUser.setText(Sessao.usuario.getNickname());
+        }
+            
         if(Sessao.usuario==null){
+            idUser.setText("Usuário Anônimo");
+            Login.setText("Entrar");
+            foto.setIcon(null);
             btnChat.setEnabled(false);
             btnChat.setText("<html><font color=black>Chat</font></html>");
             btnData.setEnabled(false);
@@ -104,7 +113,6 @@ public class Home extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         Topo = new javax.swing.JPanel();
-        Login = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         btnHome = new javax.swing.JButton();
         btnBaixar = new javax.swing.JButton();
@@ -115,6 +123,9 @@ public class Home extends javax.swing.JFrame {
         btnQuestões = new javax.swing.JButton();
         btnProvas = new javax.swing.JButton();
         btnCorrecao = new javax.swing.JButton();
+        Login = new javax.swing.JButton();
+        idUser = new javax.swing.JLabel();
+        foto = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -216,18 +227,6 @@ public class Home extends javax.swing.JFrame {
         jButton1.getAccessibleContext().setAccessibleName("Saiba Mais");
 
         Topo.setBackground(new java.awt.Color(1, 87, 155));
-
-        Login.setBackground(new java.awt.Color(33, 150, 243));
-        Login.setFont(new java.awt.Font("Trebuchet MS", 1, 15)); // NOI18N
-        Login.setForeground(new java.awt.Color(255, 255, 255));
-        Login.setText("ENTRAR");
-        Login.setBorder(null);
-        Login.setIconTextGap(0);
-        Login.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginActionPerformed(evt);
-            }
-        });
 
         jToolBar1.setBackground(new java.awt.Color(1, 87, 155));
         jToolBar1.setFloatable(false);
@@ -386,24 +385,58 @@ public class Home extends javax.swing.JFrame {
         });
         jToolBar1.add(btnCorrecao);
 
+        Login.setBackground(new java.awt.Color(33, 150, 243));
+        Login.setFont(new java.awt.Font("Trebuchet MS", 1, 15)); // NOI18N
+        Login.setForeground(new java.awt.Color(255, 255, 255));
+        Login.setText("SAIR");
+        Login.setBorder(null);
+        Login.setIconTextGap(0);
+        Login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginActionPerformed(evt);
+            }
+        });
+
+        idUser.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        idUser.setForeground(new java.awt.Color(255, 255, 255));
+        idUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        idUser.setText("Usuário Anônimo");
+
+        foto.setMaximumSize(new java.awt.Dimension(10, 10));
+        foto.setMinimumSize(new java.awt.Dimension(10, 10));
+        foto.setPreferredSize(new java.awt.Dimension(10, 10));
+        foto.setRequestFocusEnabled(false);
+
         javax.swing.GroupLayout TopoLayout = new javax.swing.GroupLayout(Topo);
         Topo.setLayout(TopoLayout);
         TopoLayout.setHorizontalGroup(
             TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TopoLayout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TopoLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(idUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TopoLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         TopoLayout.setVerticalGroup(
             TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TopoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
-            .addGroup(TopoLayout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TopoLayout.createSequentialGroup()
+                .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(TopoLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(idUser)
+                            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -429,8 +462,15 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
-        CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Login");
+        if(Login.getText()=="Entrar"){
+           CardLayout card = (CardLayout)container.getLayout();
+           card.show(container, "Login"); 
+        }else{
+            CardLayout card = (CardLayout)container.getLayout();
+            card.show(container, "Home"); 
+            Sessao.usuario=null;
+            refresh();
+        }
     }//GEN-LAST:event_LoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -533,6 +573,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnProvas;
     private javax.swing.JButton btnQuestões;
     private javax.swing.JPanel container;
+    private javax.swing.JLabel foto;
+    private javax.swing.JLabel idUser;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
