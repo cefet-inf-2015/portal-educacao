@@ -328,7 +328,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHomeActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnChat">
+            <Component class="javax.swing.JButton" name="btnBaixar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9b" green="57" red="1" type="rgb"/>
@@ -354,7 +354,7 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChatActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBaixarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnGaleria">
@@ -386,7 +386,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGaleriaActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnDownload">
+            <Component class="javax.swing.JButton" name="btnForum">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9b" green="57" red="1" type="rgb"/>
@@ -412,10 +412,10 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDownloadActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnForumActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnForum">
+            <Component class="javax.swing.JButton" name="btnChat">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9b" green="57" red="1" type="rgb"/>
@@ -441,10 +441,10 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnForumActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChatActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCorre&#xe7;&#xe3;o">
+            <Component class="javax.swing.JButton" name="btnData">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9b" green="57" red="1" type="rgb"/>
@@ -470,10 +470,10 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCorre&#xe7;&#xe3;oActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDataActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnBancoDeQuest&#xf5;es">
+            <Component class="javax.swing.JButton" name="btnQuest&#xf5;es">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9b" green="57" red="1" type="rgb"/>
@@ -499,7 +499,7 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBancoDeQuest&#xf5;esActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQuest&#xf5;esActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnProvas">
@@ -531,7 +531,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProvasActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="btnCorrecao">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="9b" green="57" red="1" type="rgb"/>
@@ -557,7 +557,7 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCorrecaoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

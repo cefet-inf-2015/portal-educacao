@@ -16,13 +16,13 @@ import BancoDeDados.Usuario;
  * @author Aluno
  */
 public class Sessao {
-    public static Usuario usuario;
+    public static Usuario usuario = null;
     
     /**
      *
      * @return Verdadeiro caso o usuario seja um aluno e falso caso contrário
      */
-    public boolean isAluno(){
+    public static boolean isAluno(){
         return usuario instanceof Aluno;
     }
     
@@ -30,7 +30,7 @@ public class Sessao {
      *
      * @return Verdadeiro caso o usuario seja um professor e falso caso contrário
      */
-    public boolean isProfessor(){
+    public static boolean isProfessor(){
         return usuario instanceof Professor;
     }
     
@@ -38,7 +38,7 @@ public class Sessao {
      *
      * @return Verdadeiro caso o usuario seja um coordenador e falso caso contrário
      */
-    public boolean isCoordenador(){
+    public static boolean isCoordenador(){
         return usuario instanceof Coordenador;
     }
     
@@ -46,7 +46,7 @@ public class Sessao {
      *
      * @return Verdadeiro caso o usuario seja um diretor e falso caso contrário
      */
-    public boolean isDiretor(){
+    public static boolean isDiretor(){
         return usuario instanceof Diretor;
     }
 }

@@ -138,16 +138,22 @@ public class LoginPanel extends javax.swing.JPanel {
             switch(selecao.getSelectedIndex()){
                 //Aluno
                 case 0:
-                Sessao.usuario = BancoDeDados.Login.logarAluno(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Alunos");
-                //Professor
+                    Sessao.usuario = BancoDeDados.Login.logarAluno(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Alunos"); 
+                    break;
+                    //Professor
                 case 1:
-                Sessao.usuario = BancoDeDados.Login.logarProfessor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Professores");
+                    Sessao.usuario = BancoDeDados.Login.logarProfessor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Professores"); 
+                    
+                    break;
                 //Coordenador
                 case 2:
-                Sessao.usuario = BancoDeDados.Login.logarCoordenador(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Coordenadores");
+                    Sessao.usuario = BancoDeDados.Login.logarCoordenador(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Coordenadores"); 
+                    
+                    break;
                 //Diretor
                 case 3:
-                Sessao.usuario = BancoDeDados.Login.logarDiretor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Diretores");
+                    Sessao.usuario = BancoDeDados.Login.logarDiretor(fieldUser.getText(), String.valueOf(fieldSenha.getPassword()), "Diretores");        
+                    break;
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,7 +161,8 @@ public class LoginPanel extends javax.swing.JPanel {
         if(Sessao.usuario==null){
             Mensagem.setVisible(true);
         }else{
-
+            Home h = (Home)this.getParent().getParent().getParent().getParent().getParent();
+            h.refresh();
         }
     }//GEN-LAST:event_LoginActionPerformed
 

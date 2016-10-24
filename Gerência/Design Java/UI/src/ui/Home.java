@@ -27,17 +27,62 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        if(Sessao.usuario==null){
+            btnChat.setEnabled(false);
+            btnChat.setText("<html><font color=black>Chat</font></html>");
+            btnData.setEnabled(false);
+            btnData.setText("<html><font color=black>Data</font></html>");
+            btnQuestões.setEnabled(false);
+            btnQuestões.setText("<html><font color=black>Questões</font></html>");
+            btnProvas.setEnabled(false);
+            btnProvas.setText("<html><font color=black>Provas</font></html>");
+            btnCorrecao.setEnabled(false);
+            btnCorrecao.setText("<html><font color=black>Correção</font></html>");
+        }
+        if(Sessao.isAluno()){
+            btnProvas.setEnabled(false);
+            btnCorrecao.setEnabled(false);
+        }
+
         /*
-        Disabilitar Botão
+        //Desabilitar Botão
         btnHome.setText("<html><font color=black>Home</font></html>");
         btnHome.setEnabled(false);
-        
+        /*
         Habilitar Botão
         btnHome.setText("Home");
         btnHome.setEnabled(true);
         */
         }
-
+    public void refresh(){
+        btnChat.setEnabled(true);
+        btnChat.setText("Chat");
+        btnData.setEnabled(true);
+        btnData.setText("Data");
+        btnQuestões.setEnabled(true);
+        btnQuestões.setText("Questões");
+        btnProvas.setEnabled(true);
+        btnProvas.setText("Provas");
+        btnCorrecao.setEnabled(true);
+        btnCorrecao.setText("Correção");
+        if(Sessao.usuario==null){
+            btnChat.setEnabled(false);
+            btnChat.setText("<html><font color=black>Chat</font></html>");
+            btnData.setEnabled(false);
+            btnData.setText("<html><font color=black>Data</font></html>");
+            btnQuestões.setEnabled(false);
+            btnQuestões.setText("<html><font color=black>Questões</font></html>");
+            btnProvas.setEnabled(false);
+            btnProvas.setText("<html><font color=black>Provas</font></html>");
+            btnCorrecao.setEnabled(false);
+            btnCorrecao.setText("<html><font color=black>Correção</font></html>");
+        }else{
+            if(Sessao.isAluno()){
+                btnProvas.setEnabled(false);
+                btnCorrecao.setEnabled(false);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,14 +107,14 @@ public class Home extends javax.swing.JFrame {
         Login = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         btnHome = new javax.swing.JButton();
-        btnChat = new javax.swing.JButton();
+        btnBaixar = new javax.swing.JButton();
         btnGaleria = new javax.swing.JButton();
-        btnDownload = new javax.swing.JButton();
         btnForum = new javax.swing.JButton();
-        btnCorreção = new javax.swing.JButton();
-        btnBancoDeQuestões = new javax.swing.JButton();
+        btnChat = new javax.swing.JButton();
+        btnData = new javax.swing.JButton();
+        btnQuestões = new javax.swing.JButton();
         btnProvas = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCorrecao = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -205,22 +250,22 @@ public class Home extends javax.swing.JFrame {
         });
         jToolBar1.add(btnHome);
 
-        btnChat.setBackground(new java.awt.Color(1, 87, 155));
-        btnChat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnChat.setForeground(new java.awt.Color(255, 255, 255));
-        btnChat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Download.png"))); // NOI18N
-        btnChat.setText("Baixar");
-        btnChat.setFocusable(false);
-        btnChat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnChat.setMaximumSize(new java.awt.Dimension(90, 99));
-        btnChat.setMinimumSize(new java.awt.Dimension(90, 99));
-        btnChat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnChat.addActionListener(new java.awt.event.ActionListener() {
+        btnBaixar.setBackground(new java.awt.Color(1, 87, 155));
+        btnBaixar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBaixar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBaixar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Download.png"))); // NOI18N
+        btnBaixar.setText("Baixar");
+        btnBaixar.setFocusable(false);
+        btnBaixar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBaixar.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnBaixar.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnBaixar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBaixar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChatActionPerformed(evt);
+                btnBaixarActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnChat);
+        jToolBar1.add(btnBaixar);
 
         btnGaleria.setBackground(new java.awt.Color(1, 87, 155));
         btnGaleria.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -239,28 +284,11 @@ public class Home extends javax.swing.JFrame {
         });
         jToolBar1.add(btnGaleria);
 
-        btnDownload.setBackground(new java.awt.Color(1, 87, 155));
-        btnDownload.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnDownload.setForeground(new java.awt.Color(255, 255, 255));
-        btnDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Forum.png"))); // NOI18N
-        btnDownload.setText("Forum");
-        btnDownload.setFocusable(false);
-        btnDownload.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDownload.setMaximumSize(new java.awt.Dimension(90, 99));
-        btnDownload.setMinimumSize(new java.awt.Dimension(90, 99));
-        btnDownload.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnDownload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDownloadActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btnDownload);
-
         btnForum.setBackground(new java.awt.Color(1, 87, 155));
         btnForum.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnForum.setForeground(new java.awt.Color(255, 255, 255));
-        btnForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Chat.png"))); // NOI18N
-        btnForum.setText("Chat");
+        btnForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Forum.png"))); // NOI18N
+        btnForum.setText("Forum");
         btnForum.setFocusable(false);
         btnForum.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnForum.setMaximumSize(new java.awt.Dimension(90, 99));
@@ -273,39 +301,56 @@ public class Home extends javax.swing.JFrame {
         });
         jToolBar1.add(btnForum);
 
-        btnCorreção.setBackground(new java.awt.Color(1, 87, 155));
-        btnCorreção.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnCorreção.setForeground(new java.awt.Color(255, 255, 255));
-        btnCorreção.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Canledario.png"))); // NOI18N
-        btnCorreção.setText("Data");
-        btnCorreção.setFocusable(false);
-        btnCorreção.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCorreção.setMaximumSize(new java.awt.Dimension(90, 99));
-        btnCorreção.setMinimumSize(new java.awt.Dimension(90, 99));
-        btnCorreção.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnCorreção.addActionListener(new java.awt.event.ActionListener() {
+        btnChat.setBackground(new java.awt.Color(1, 87, 155));
+        btnChat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnChat.setForeground(new java.awt.Color(255, 255, 255));
+        btnChat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Chat.png"))); // NOI18N
+        btnChat.setText("Chat");
+        btnChat.setFocusable(false);
+        btnChat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnChat.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnChat.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnChat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnChat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCorreçãoActionPerformed(evt);
+                btnChatActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnCorreção);
+        jToolBar1.add(btnChat);
 
-        btnBancoDeQuestões.setBackground(new java.awt.Color(1, 87, 155));
-        btnBancoDeQuestões.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnBancoDeQuestões.setForeground(new java.awt.Color(255, 255, 255));
-        btnBancoDeQuestões.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/questões.png"))); // NOI18N
-        btnBancoDeQuestões.setText("Questões");
-        btnBancoDeQuestões.setFocusable(false);
-        btnBancoDeQuestões.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBancoDeQuestões.setMaximumSize(new java.awt.Dimension(90, 99));
-        btnBancoDeQuestões.setMinimumSize(new java.awt.Dimension(90, 99));
-        btnBancoDeQuestões.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBancoDeQuestões.addActionListener(new java.awt.event.ActionListener() {
+        btnData.setBackground(new java.awt.Color(1, 87, 155));
+        btnData.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnData.setForeground(new java.awt.Color(255, 255, 255));
+        btnData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Canledario.png"))); // NOI18N
+        btnData.setText("Data");
+        btnData.setFocusable(false);
+        btnData.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnData.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnData.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnData.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBancoDeQuestõesActionPerformed(evt);
+                btnDataActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnBancoDeQuestões);
+        jToolBar1.add(btnData);
+
+        btnQuestões.setBackground(new java.awt.Color(1, 87, 155));
+        btnQuestões.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnQuestões.setForeground(new java.awt.Color(255, 255, 255));
+        btnQuestões.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/questões.png"))); // NOI18N
+        btnQuestões.setText("Questões");
+        btnQuestões.setFocusable(false);
+        btnQuestões.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnQuestões.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnQuestões.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnQuestões.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnQuestões.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuestõesActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnQuestões);
 
         btnProvas.setBackground(new java.awt.Color(1, 87, 155));
         btnProvas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -324,22 +369,22 @@ public class Home extends javax.swing.JFrame {
         });
         jToolBar1.add(btnProvas);
 
-        jButton2.setBackground(new java.awt.Color(1, 87, 155));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CorrecaoF.png"))); // NOI18N
-        jButton2.setText("Correção");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setMaximumSize(new java.awt.Dimension(90, 99));
-        jButton2.setMinimumSize(new java.awt.Dimension(90, 99));
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCorrecao.setBackground(new java.awt.Color(1, 87, 155));
+        btnCorrecao.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCorrecao.setForeground(new java.awt.Color(255, 255, 255));
+        btnCorrecao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CorrecaoF.png"))); // NOI18N
+        btnCorrecao.setText("Correção");
+        btnCorrecao.setFocusable(false);
+        btnCorrecao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCorrecao.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnCorrecao.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnCorrecao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCorrecao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCorrecaoActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton2);
+        jToolBar1.add(btnCorrecao);
 
         javax.swing.GroupLayout TopoLayout = new javax.swing.GroupLayout(Topo);
         Topo.setLayout(TopoLayout);
@@ -393,49 +438,50 @@ public class Home extends javax.swing.JFrame {
         card.show(container, "SaibaMais");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnBancoDeQuestõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBancoDeQuestõesActionPerformed
+    private void btnQuestõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuestõesActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
         card.show(container, "BancoDeQuestoes");
-    }//GEN-LAST:event_btnBancoDeQuestõesActionPerformed
+    }//GEN-LAST:event_btnQuestõesActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
         card.show(container, "Home");
     }//GEN-LAST:event_btnHomeActionPerformed
 
-    private void btnChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatActionPerformed
+    private void btnBaixarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaixarActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Chat");
-    }//GEN-LAST:event_btnChatActionPerformed
+        card.show(container, "Download");
+    }//GEN-LAST:event_btnBaixarActionPerformed
 
     private void btnGaleriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaleriaActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
         card.show(container, "Galeria");
     }//GEN-LAST:event_btnGaleriaActionPerformed
 
-    private void btnDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadActionPerformed
-        CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Download");
-    }//GEN-LAST:event_btnDownloadActionPerformed
-
     private void btnForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForumActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
         card.show(container, "Forum");
     }//GEN-LAST:event_btnForumActionPerformed
 
-    private void btnCorreçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorreçãoActionPerformed
+    private void btnChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Correcao");
-    }//GEN-LAST:event_btnCorreçãoActionPerformed
+        card.show(container, "Chat");
+    }//GEN-LAST:event_btnChatActionPerformed
+
+    private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Calendario");
+    }//GEN-LAST:event_btnDataActionPerformed
 
     private void btnProvasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvasActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
         card.show(container, "Provas");
     }//GEN-LAST:event_btnProvasActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnCorrecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrecaoActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Correcao");
+    }//GEN-LAST:event_btnCorrecaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,17 +523,17 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel Home;
     private javax.swing.JButton Login;
     private javax.swing.JPanel Topo;
-    private javax.swing.JButton btnBancoDeQuestões;
+    private javax.swing.JButton btnBaixar;
     private javax.swing.JButton btnChat;
-    private javax.swing.JButton btnCorreção;
-    private javax.swing.JButton btnDownload;
+    private javax.swing.JButton btnCorrecao;
+    private javax.swing.JButton btnData;
     private javax.swing.JButton btnForum;
     private javax.swing.JButton btnGaleria;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnProvas;
+    private javax.swing.JButton btnQuestões;
     private javax.swing.JPanel container;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
