@@ -10,22 +10,54 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" type="text/css" rel="stylesheet">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
+  <style type="text/css">
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+  </style>
+  <link rel="icon" href="imgs/logo.png" >
 </head>
-
 <body>
-	 <nav class="light-blue darken-4" role="navigation">
-     	<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      		<ul class="right hide-on-med-and-down">
-        		<li><a href="#">Navbar Link</a></li>
-      		</ul>
-
-      		<ul id="nav-mobile" class="side-nav">
-        		<li><a href="#">Navbar Link</a></li>
-      		</ul>
-      		<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    	</div>
-  	</nav>
+	<nav class="light-blue darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <!-- MENU SLIDE OUT STRUCTURE-->
+    <ul id="slide-out" class="side-nav">
+      <br>
+      <li>
+        <div class="logo">
+          <img class="background center-block responsive" src="C:\Users\Aluno\Desktop\portal-educacao\portal-educacao-master\imgs/logo.png">
+        </div>
+      </li>
+      <br>
+      <li><a class="waves-effect" href="index.html">Página Inicial</a></li>
+      <li><a class="waves-effect" href="#!">Modelo de Provas/Trabalhos</a></li>
+      <li><a class="waves-effect" href="#!">Fórum</a></li>
+      <li><a class="waves-effect" href="#!">Download/Upload Aplicativos</a></li>
+      <li><a class="waves-effect" href="#!">Correção Provas e Trabalhos</a></li>
+      <li><a class="waves-effect" href="Mural/projeto/index.html">Mural</a></li>
+      <li><a class="waves-effect" href="#!">Chat</a></li>
+      <li><a class="waves-effect" href="#!">Repositório de Fotos</a></li>
+      <li><a class="waves-effect" href="#!">Banco de Questões</a></li>
+      <li><a class="waves-effect" href="#!">Calendário</a></li>
+      <!--<li><div class="divider"></div></li>-->
+      <!--<li><a class="subheader">Subheader</a></li>-->
+    </ul>
+      <ul class="left ">
+        <li>
+          <button data-activates="slide-out" class="waves-effect waves-light btn-flat button-collapse white-text light-blue darken-4">Menu</button>
+        </li>
+      </ul>
+      <ul class="right ">
+        <!-- <li><button class="waves-effect waves-light btn-flat white-text light-blue darken-4">Entrar</button></li> -->
+        <li><a class="waves-effect waves-light btn modal-trigger white-text light-blue darken-3" href="#modal1">Entrar</a></li>
+      </ul>
+    </div>
+  </nav>
 
   	<div class="container">
   		<br><br>
@@ -97,7 +129,10 @@
     </div>
   </footer>
 
-
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="C:\Users\Aluno\Desktop\portal-educacao\portal-educacao-master\template/js/materialize.js"></script>
+  <script src="C:\Users\Aluno\Desktop\portal-educacao\portal-educacao-master\template/js/init.js"></script>
+  <script src="C:\Users\Aluno\Desktop\portal-educacao\portal-educacao-master\index.js"></script>
 
 </body>
 
