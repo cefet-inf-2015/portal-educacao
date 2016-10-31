@@ -43,13 +43,12 @@
           <button data-activates="slide-out" class="waves-effect waves-light btn-flat button-collapse white-text light-blue darken-4">Menu</button>
         </li>
       </ul>
-      <ul class="right ">
-        <!-- <li><button class="waves-effect waves-light btn-flat white-text light-blue darken-4">Entrar</button></li> -->
-        <li><a class="waves-effect waves-light btn modal-trigger white-text light-blue darken-3" href="#modal1">Entrar</a></li>
-      </ul>
-    </div>
-  </nav>
-  
+          <ul class="right ">
+            <!-- <li><button class="waves-effect waves-light btn-flat white-text light-blue darken-4">Entrar</button></li> -->
+            <li><a class="waves-effect waves-light btn modal-trigger white-text light-blue darken-3" href="#modal1">Entrar</a></li>
+          </ul>
+        </div>
+      </nav>
   <!-- ESPAÇO PARA MARQUEE-->
   <div id="marquee">
       <div><span>Portal Educação</span></div>
@@ -77,35 +76,35 @@
        <!-- Postar -->
        <div class="col s1 m8 offset-m2 l6 offset-l3" >
          <div class="card-panel grey lighten-5 z-depth-1">
+          <form>
            <div class="row valign-wrapper">
              <div class="col s6 m4 l2">
                <img src="https://yt3.ggpht.com/-ZtBlVYCvXOg/AAAAAAAAAAI/AAAAAAAAAAA/-5eDEfuCFlA/s900-c-k-no-rj-c0xffffff/photo.jpg" alt="" class="square responsive-img" id="perfil">
              </div>
              <div class="col s10">
-               <textarea id="post" placeholder="Poste algo aqui!" class="materialize-textarea"></textarea>
+               <textarea id="post" name="post" placeholder="Poste algo aqui!" class="materialize-textarea"></textarea>
              </div>
            </div>
            <div class="row valign-wrapper">
              <div class="col s10">
-               <form action="#">
-                  <div class="file-field input-field">
-                    <div class="btn waves-effect waves-light light-blue darken-4 left">
-                      <span class="medium material-icons white-text text-darken-1">attach_file</span>
-                      <input type="file" id="arq" name="arq">
-                    </div>
-                    <div class="file-path-wrapper">
-                      <input class="file-path validate" placeholder="Selecione um arquivo" readonly type="text" id="file_path">
-                    </div>
+               <div class="file-field input-field">
+                 <div class="btn waves-effect waves-light light-blue darken-4 left">
+                   <span class="medium material-icons white-text text-darken-1">attach_file</span>
+                     <input type="file" id="arq" name="arq">
                   </div>
-                </form>
-                      
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" placeholder="Selecione um arquivo" readonly type="text" id="file_path">
+                  </div>
+               </div>                      
              </div>
              <div class="col s4 m3 l2">
-               <a action="UploadBD.php" class="waves-effect waves-light btn light-blue darken-4 right" id="teste" name="upload">Publicar</a>
+               <a class = "waves-effect waves-light btn light-blue darken-4 right" id="teste" name="upload">Publicar</a>
              </div>
            </div>
+          </form>
          </div>
-       </div>  
+       </div>
+     </div>  
 
        <!--Postagens --> 
        <div class="col s12 m8 offset-m2 l6 offset-l3">
