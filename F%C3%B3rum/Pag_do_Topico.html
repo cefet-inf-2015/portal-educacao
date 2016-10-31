@@ -101,20 +101,26 @@
 		<div class="section">
 			<div class="row">
 				<div class="input-field col s6">
-					<select>
-						<option value="" disabled selected>Selecione uma das opções abaixo:</option>
-						<option value="1">Disciplinas</option>
-						<option value="2">Cursos Técnicos</option>
-						<option value="3">Entretenimento</option>
-						<option value="3">Dúvidas Gerais</option>
-						<option value="3">Assuntos Genéricos</option>
-					</select>
-					<dl><class="titulo">
-						<legend>Título para o tópico: </legend>
-						<input type="text" name="titulo" placeholder="Título do Tópico..." value=""/>
-					</dl>
-					<legend>Escreva sua pergunta abaixo: </legend>
-					<input type="text" name="pergunta" size="" /> 
+					<form action="envia.php" method="post">
+						<select name="categoria">
+							<option value="" disabled selected>Selecione uma das opções abaixo:</option>
+							<option value="Disciplinas">Disciplinas</option>
+							<option value="Cursos Técnicos">Cursos Técnicos</option>
+							<option value="Entretenimento">Entretenimento</option>
+							<option value="Dúvidas Gerais">Dúvidas Gerais</option>
+							<option value="Assuntos Genéricos">Assuntos Genéricos</option>
+						</select>
+						<dl><class="titulo">
+							<legend>Título: </legend>
+							<input type="text" name="titulo" placeholder="Título do Tópico..." value=""/>
+						</dl>
+						<legend>Escreva sua pergunta abaixo: </legend>
+						<input type="text" name="pergunta" size="" /> 
+						<div id="botao_enviar">
+							<a class="waves-effect waves-light blue darken-4 btn"><i class="material-icons right">send</i><input type="submit" name="enviar"></a>
+							
+						</div>
+					</form>
 				</div>
 				<div class="col s6">
 					<div class="col s12 m7">
@@ -165,7 +171,7 @@
 								<input type="file">
 							</div>
 							<div class="file-path-wrapper">
-							<input class="file-path validate" type="text" placeholder="Insira uma imagem.">
+								<input class="file-path validate" type="text">
 							</div>
 						</div>
 					</form>
@@ -173,10 +179,6 @@
 			</div>
 		</div>
 	</div>
-</div>
-
-<div id="botao_enviar">
-	<a class="waves-effect waves-light blue darken-4 btn"><i class="material-icons right">cloud</i>Enviar</a> 
 </div>
 
 <footer class="page-footer blue">
