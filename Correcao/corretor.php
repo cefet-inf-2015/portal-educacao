@@ -1,11 +1,21 @@
 <?php
+session_start();
+if(!isset($_SESSION['numeroCorretas'])){
+	$_SESSION['numeroCorretas'] = array();
+}
+if(!isset($_SESSION['alunos'])){
+	$_SESSION['alunos'] = array();
+}
+if(!isset($_SESSION['respostasAssociadas'])){
+	$_SESSION['respostasAssociadas'] = array();
+}
 $caminhoProva = $_FILES['prova']['tmp_name'];
 $caminhoGabarito = $_FILES['gabarito']['tmp_name'];
 function lerProva($caminhoprova){
 	if (file_exists($caminhoprova)) {
  	   $xml = simplexml_load_file($caminhoprova);
 	} else {
-	    exit('Falha ao abrir ModeloProva.xml.');
+	    exit('Falha ao abrir arquivo');
 	}
 	return $xml;
 }
@@ -20,7 +30,7 @@ function lerGabarito($caminhogabarito){
 	return $respostas;
 }
 function corrigir($xml, $respostas){
-	$numeroCorretas=0;
+	$numeroCorretas = 0;
 	$questao_length=count($xml->questao);
 	for ($i=0; $i<$questao_length; $i++){
 		$questaoAtual = $xml->questao[$i];
@@ -33,14 +43,10 @@ function corrigir($xml, $respostas){
 			}
 		}
 	}
+	array_push($_SESSION["numeroCorretas"], $numeroCorretas); // keys
+	array_push($_SESSION["alunos"], $_POST["nomeAluno"]); // values
+	$_SESSION["respostasAssociadas"] = array_map(function($key, $val) {return array($key=>$val);}, $_SESSION["alunos"], $_SESSION["numeroCorretas"]);
 	return $numeroCorretas;
 }
-echo "
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Correção</title>
-	<meta charset=\"utf-8\">
-</head>
-<body><p>Questões acertadas: ".corrigir(lerProva($caminhoProva), lerGabarito($caminhoGabarito))."</p></body></html>"
+$resultado = corrigir(lerProva($caminhoProva), lerGabarito($caminhoGabarito));
 ?>
