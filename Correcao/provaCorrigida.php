@@ -107,6 +107,21 @@
         <h4 class="center blue-text text-darken-4">Questões acertadas: <?= $resultado ?></h4>
       </div>
     </div>
+
+    <div class="container">
+      <br><br>
+      <div class="row">
+        <div class="col s6 m6 l8">
+          <a href="" class="blue darken-4 hoverable btn"><i class="material-icons left">edit</i>Corrigir mais Provas</a>
+        </div>
+        <div class="col s6 m6 l4">
+          <a href="" class="blue darken-4 hoverable btn"><i class="material-icons left">equalizer</i>Mostrar gráficos</a>
+        </div>
+      </div>
+    </div>
+
+
+
   </main>
   <footer class="page-footer blue">
     <div class="container">

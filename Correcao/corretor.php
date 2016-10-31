@@ -3,6 +3,12 @@ session_start();
 if(!isset($_SESSION['numeroCorretas'])){
 	$_SESSION['numeroCorretas'] = array();
 }
+if(!isset($_SESSION['alunos'])){
+	$_SESSION['alunos'] = array();
+}
+if(!isset($_SESSION['respostasAssociadas'])){
+	$_SESSION['respostasAssociadas'] = array();
+}
 $caminhoProva = $_FILES['prova']['tmp_name'];
 $caminhoGabarito = $_FILES['gabarito']['tmp_name'];
 function lerProva($caminhoprova){
@@ -37,7 +43,9 @@ function corrigir($xml, $respostas){
 			}
 		}
 	}
-	array_push($_SESSION["numeroCorretas"], $numeroCorretas);
+	array_push($_SESSION["numeroCorretas"], $numeroCorretas); // keys
+	array_push($_SESSION["alunos"], $_POST["nomeAluno"]); // values
+	$_SESSION["respostasAssociadas"] = array_map(function($key, $val) {return array($key=>$val);}, $_SESSION["alunos"], $_SESSION["numeroCorretas"]);
 	return $numeroCorretas;
 }
 $resultado = corrigir(lerProva($caminhoProva), lerGabarito($caminhoGabarito));
