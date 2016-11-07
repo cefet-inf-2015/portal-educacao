@@ -126,6 +126,7 @@ public class Home extends javax.swing.JFrame {
         container = new javax.swing.JPanel();
         Home = new javax.swing.JPanel();
         saibaMais1 = new ui.SaibaMais();
+        capturaFotos1 = new capturadefotos.capturaFotos();
         loginPanel1 = new ui.LoginPanel();
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -173,7 +174,7 @@ public class Home extends javax.swing.JFrame {
         Home.setLayout(HomeLayout);
         HomeLayout.setHorizontalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGap(0, 1029, Short.MAX_VALUE)
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,6 +183,7 @@ public class Home extends javax.swing.JFrame {
 
         container.add(Home, "Home");
         container.add(saibaMais1, "SaibaMais");
+        container.add(capturaFotos1, "Galeria");
         container.add(loginPanel1, "Login");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
@@ -227,7 +229,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(BaixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BaixoLayout.setVerticalGroup(
             BaixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +422,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TopoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(idUser, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                        .addComponent(idUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(TopoLayout.createSequentialGroup()
                         .addGap(66, 66, 66)
@@ -570,6 +572,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnProvas;
     private javax.swing.JButton btnQuestões;
+    private capturadefotos.capturaFotos capturaFotos1;
     private javax.swing.JPanel container;
     private javax.swing.JLabel foto;
     private javax.swing.JLabel idUser;
