@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Tela;
+import BancoDeDados.Aluno;
+import BancoDeDados.Conexao;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Collections;
@@ -18,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -65,10 +68,10 @@ public class TelaPrincipal extends Frame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PainelDiscussoes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray), "Discussões", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        PainelDiscussoes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(0, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray), "Discussões", 0, 0, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
         PainelDiscussoes.setLayout(new java.awt.CardLayout());
 
-        PainelDiscussoesOrganizadas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
+        PainelDiscussoesOrganizadas.setBorder(new javax.swing.border.SoftBevelBorder(0, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
 
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -76,14 +79,14 @@ public class TelaPrincipal extends Frame {
 
             },
             new String [] {
-                "Título", "Avaliação", "Data"
+                "Título", "Autor", "Avaliação", "Data"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -107,11 +110,16 @@ public class TelaPrincipal extends Frame {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
         jTable1.setColumnSelectionAllowed(false);
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
-        jTable1.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+        TableRowSorter sorter = new TableRowSorter(jTable1.getModel());
+        sorter.setComparator(3, new Ordena());
+        jTable1.setRowSorter(sorter);
 
         javax.swing.GroupLayout PainelDiscussoesOrganizadasLayout = new javax.swing.GroupLayout(PainelDiscussoesOrganizadas);
         PainelDiscussoesOrganizadas.setLayout(PainelDiscussoesOrganizadasLayout);
@@ -126,7 +134,7 @@ public class TelaPrincipal extends Frame {
 
         PainelDiscussoes.add(PainelDiscussoesOrganizadas, "listathreads");
 
-        PainelDiscussoesExpandidas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
+        PainelDiscussoesExpandidas.setBorder(new javax.swing.border.SoftBevelBorder(0, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
 
         BotaoVoltarDiscussoesOrganizadas.setText("Voltar");
 
@@ -155,7 +163,7 @@ public class TelaPrincipal extends Frame {
 
         PainelDiscussoes.add(PainelDiscussoesExpandidas, "exibicao");
 
-        OrganizarDiscussoes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray), "Organizar por", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        OrganizarDiscussoes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(0, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray), "Organizar por", 0, 0, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Topicos");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Materias Ensino Medio");
         javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Matemática");
@@ -285,31 +293,22 @@ public class TelaPrincipal extends Frame {
         texto = texto.replace("[", "");
         texto = texto.replace("]", "");
         String[] path = texto.split(", ");
-        
         if(path.length>2) {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             for(int i = model.getRowCount() - 1; i > -1; i--) model.removeRow(i);
             
-            TableRowSorter sorter = new TableRowSorter(jTable1.getModel());
-            sorter.setComparator(2, new Ordena());
-            jTable1.setRowSorter(sorter);
-            Topicos topicos = new Topicos(String.valueOf(path[(path.length-1)]));
-            for(int i=0; i<topicos.getQuantidade(); i++) {
-                String dia=
-                String.valueOf(topicos.getData()[i].get(Calendar.DAY_OF_MONTH));
-                String mes=
-                String.valueOf(topicos.getData()[i].get(Calendar.MONTH)+1);
-                String ano=
-                String.valueOf(topicos.getData()[i].get(Calendar.YEAR));
-                String data;
-                if((topicos.getData()[i].get(Calendar.MONTH)+1)<10) {
-                    mes="0"
-                    +String.valueOf(topicos.getData()[i].get(Calendar.MONTH)+1);
+            
+            try {
+                Topicos topicos = new Topicos(String.valueOf(path[(path.length-1)]));
+                for(int i=0; i<topicos.getQuantidade(); i++) {
+                    model.addRow(new Object[]{topicos.getTitulo()[i], 
+                    topicos.getAutor()[i], topicos.getAvaliacao()[i], 
+                    topicos.getData()[i]});
                 }
-                data = dia+"/"+mes+"/"+ano;
-                model.addRow(new Object[]{topicos.getTitulo()[i], 
-                topicos.getAvaliacao()[i], data});
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
     }//GEN-LAST:event_OrganizarDiscussoesValueChanged
 
