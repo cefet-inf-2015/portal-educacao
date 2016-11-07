@@ -46,7 +46,7 @@ public class Framemural extends javax.swing.JFrame {
                 
                 auxusuario.add(retorno.getString("usuario") + "\n");
                 auxdata.add(retorno.getString("data") + "\n");
-                auxconteudo.add(retorno.getString("conteudo") + "\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
                 a++;
             } while (retorno.next());
             System.out.println(a);
@@ -65,10 +65,16 @@ public class Framemural extends javax.swing.JFrame {
                 retorno.previous();
             }*/
             Collections.reverse(auxusuario);
-            Iterator it = auxusuario.iterator();
+            Collections.reverse(auxdata);
+            Collections.reverse(auxconteudo);
+            Iterator it1 = auxusuario.iterator();
+            Iterator it2 = auxdata.iterator();
+            Iterator it3 = auxconteudo.iterator();
             
-            while(it.hasNext()){
-                jTextArea1.append((String) it.next());
+            while(it1.hasNext()){
+                jTextArea1.append((String) it1.next());
+                jTextArea1.append((String) it2.next());
+                jTextArea1.append((String) it3.next());
                 
             }
             /* do {
