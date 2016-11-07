@@ -5,7 +5,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -19,35 +22,60 @@ public class Framemural extends javax.swing.JFrame {
     BancoDeDados.Conexao bd;
     int id=0;
     int x=0;
+    int a=0;
     String [] usuario = new String[1];
 
     public Framemural(){
         initComponents();
+        jTextArea1.setEditable(false);
         
         bd = new Conexao();
         //bd.conectar("localhost:3306", "root", "", "vrau");
         bd.conectar("cefet-inf-2015.ddns.net:43306", "mural", "inf2015", "Mural");
-        
-        this.setBackground(Color.white);
-        
+       
         ResultSet retorno;
+        
         try {
-            /*String aux = new Date().toString();
-            String usuario = "TESTE";
-            String conteudo = "TESTE"
-            bd.enviarQuery("INSERT INTO Mural (id, usuario, data, conteudo) VALUES (\'" + id + "\',\'" + usuario + "\',\'" + aux + "\', \'" + conteudo + "\')");*/
             retorno = bd.enviarQueryResultados("SELECT * FROM Mural");
-            
-            /*do {
-                String [x] usuario = retorno.getString("usuario");
-                
-            } while (retorno.next());*/
+            System.out.println(a);
+            ArrayList<String> auxusuario = new ArrayList<>();
+            ArrayList<String> auxdata = new ArrayList<>();
+            ArrayList<String> auxconteudo = new ArrayList<>();
             
             do {
+                
+                auxusuario.add(retorno.getString("usuario") + "\n");
+                auxdata.add(retorno.getString("data") + "\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n");
+                a++;
+            } while (retorno.next());
+            System.out.println(a);
+            
+            
+            /*retorno.afterLast();
+            retorno.last();
+            System.err.println(retorno.getFetchSize());
+            for(int cont=0; cont<retorno.getFetchSize(); cont++){
+                //retorno.last();
+                System.out.println("ENTORU!!!!!!!!");
+                //retorno.previous();
                 jTextArea1.append(retorno.getString("usuario") + "\n");
                 jTextArea1.append(retorno.getString("data") + "\n\n");
-                jTextArea1.append(retorno.getString("conteudo") + "\n-------------------------------------------------------------------------------------------------------\n");
-            } while (retorno.next());
+                jTextArea1.append(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n"); 
+                retorno.previous();
+            }*/
+            Collections.reverse(auxusuario);
+            Iterator it = auxusuario.iterator();
+            
+            while(it.hasNext()){
+                jTextArea1.append((String) it.next());
+                
+            }
+            /* do {
+                jTextArea1.append(retorno.getString("usuario") + "\n");
+                jTextArea1.append(retorno.getString("data") + "\n\n");
+                jTextArea1.append(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
+            } while (retorno.next()); */
             
         } catch (SQLException ex) {
             Logger.getLogger(Framemural.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,23 +155,40 @@ public class Framemural extends javax.swing.JFrame {
     
     
     
-    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String aux = new Date().toString();
+        String[] mud = aux.split(" ");
+        String formal = mud[2].concat(" ").concat(mud[1]).concat(" ").concat(mud[5]).concat(" às ").concat(mud[3]);
         String usuario = "TESTE";
         String conteudo = jTextArea2.getText();
         System.out.println(conteudo);
-        SwingUtilities.updateComponentTreeUI(jTextArea1);
-        jTextArea1.repaint();
+        jTextArea2.setText("");
 
         try {
-            bd.enviarQuery("INSERT INTO Mural (id, usuario, data, conteudo) VALUES (\'" + id + "\',\'" + usuario + "\',\'" + aux + "\', \'" + conteudo + "\')");
+            bd.enviarQuery("INSERT INTO Mural (id, usuario, data, conteudo) VALUES (\'" + id + "\',\'" + usuario + "\',\'" + formal + "\', \'" + conteudo + "\')");
             id++;
             System.out.println(id);
 
         } catch (SQLException Ex) {
             Logger.getLogger(Framemural.class.getName()).log(Level.SEVERE, null, Ex);
         }
+        
+        jTextArea1.setText("");
+        ResultSet retorno;
+        try {
+            retorno = bd.enviarQueryResultados("SELECT * FROM Mural");
+
+            do {
+                jTextArea1.append(retorno.getString("usuario") + "\n");
+                jTextArea1.append(retorno.getString("data") + "\n\n");
+                jTextArea1.append(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
+            } while (retorno.next());
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Framemural.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("VAZIO");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
