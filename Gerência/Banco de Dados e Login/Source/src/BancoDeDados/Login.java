@@ -5,6 +5,9 @@
  */
 package BancoDeDados;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,9 +33,23 @@ public class Login {
      * @param senha Senha do usuário do banco
      * @param banco Nome do banco de dados a ser selecionado
      */
+    
     public static void conectarBanco(String ip, String user, String senha, String banco) {
         conexao = new Conexao();
         conexao.conectar(ip, user, senha, banco);
+    }
+    
+    private static String md5(String senha){
+		String sen = "";
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
+		sen = hash.toString(16);			
+		return sen;
     }
 
     /**
@@ -45,7 +62,7 @@ public class Login {
      * @throws SQLException
      */
     public static Aluno logarAluno(String username, String senha, String tabela) throws SQLException {
-        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + senha + "\'");
+        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + md5(senha) + "\'");
         resultado.first();
         //Recupera os dados binários da foto
         Blob blob = resultado.getBlob("foto");
@@ -71,7 +88,7 @@ public class Login {
      * @throws SQLException
      */
     public static Diretor logarDiretor(String username, String senha, String tabela) throws SQLException {
-        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + senha + "\'");
+        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + md5(senha) + "\'");
         resultado.first();
         //Recupera os dados binários da foto
         Blob blob = resultado.getBlob("foto");
@@ -93,7 +110,7 @@ public class Login {
      * @throws SQLException
      */
     public static Professor logarProfessor(String username, String senha, String tabela) throws SQLException {
-        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + senha + "\'");
+        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + md5(senha) + "\'");
         resultado.first();
         //Recupera os dados binários da foto
         Blob blob = resultado.getBlob("foto");
@@ -118,7 +135,7 @@ public class Login {
      * @throws SQLException
      */
     public static Coordenador logarCoordenador(String username, String senha, String tabela) throws SQLException {
-        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + senha + "\'");
+        ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + md5(senha) + "\'");
         resultado.first();
         //Recupera os dados binários da foto
         Blob blob = resultado.getBlob("foto");
