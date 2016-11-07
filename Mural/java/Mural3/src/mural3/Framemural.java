@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -24,14 +25,18 @@ public class Framemural extends javax.swing.JFrame {
         initComponents();
         
         bd = new Conexao();
-        bd.conectar("localhost:3306", "root", "", "vrau");
-        //bd.conectar("cefet-inf-2015.ddns.net:4080", "mural", "inf2015", "Mural");
+        //bd.conectar("localhost:3306", "root", "", "vrau");
+        bd.conectar("cefet-inf-2015.ddns.net:43306", "mural", "inf2015", "Mural");
         
         this.setBackground(Color.white);
         
         ResultSet retorno;
         try {
-            retorno = bd.enviarQueryResultados("SELECT * FROM mural");
+            /*String aux = new Date().toString();
+            String usuario = "TESTE";
+            String conteudo = "TESTE"
+            bd.enviarQuery("INSERT INTO Mural (id, usuario, data, conteudo) VALUES (\'" + id + "\',\'" + usuario + "\',\'" + aux + "\', \'" + conteudo + "\')");*/
+            retorno = bd.enviarQueryResultados("SELECT * FROM Mural");
             
             /*do {
                 String [x] usuario = retorno.getString("usuario");
@@ -41,11 +46,12 @@ public class Framemural extends javax.swing.JFrame {
             do {
                 jTextArea1.append(retorno.getString("usuario") + "\n");
                 jTextArea1.append(retorno.getString("data") + "\n\n");
-                jTextArea1.append(retorno.getString("conteudo") + "\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+                jTextArea1.append(retorno.getString("conteudo") + "\n-------------------------------------------------------------------------------------------------------\n");
             } while (retorno.next());
             
         } catch (SQLException ex) {
             Logger.getLogger(Framemural.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("VAZIO");
         }
 
     }
@@ -127,9 +133,11 @@ public class Framemural extends javax.swing.JFrame {
         String usuario = "TESTE";
         String conteudo = jTextArea2.getText();
         System.out.println(conteudo);
+        SwingUtilities.updateComponentTreeUI(jTextArea1);
+        jTextArea1.repaint();
 
         try {
-            bd.enviarQuery("INSERT INTO mural (id, usuario, data, conteudo) VALUES (\'" + id + "\',\'" + usuario + "\',\'" + aux + "\', \'" + conteudo + "\')");
+            bd.enviarQuery("INSERT INTO Mural (id, usuario, data, conteudo) VALUES (\'" + id + "\',\'" + usuario + "\',\'" + aux + "\', \'" + conteudo + "\')");
             id++;
             System.out.println(id);
 
@@ -142,6 +150,11 @@ public class Framemural extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Mural3.class.getName()).log(Level.SEVERE, null, ex);
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
