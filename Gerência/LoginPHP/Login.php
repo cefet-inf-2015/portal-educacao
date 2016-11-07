@@ -133,7 +133,7 @@
 		}
 		//Realiza o login de um aluno
 		public static function logarAluno($username, $senha, $tabela){
-			$query ="SELECT * FROM $tabela WHERE username='$username' AND senha='$senha'";
+			$query ="SELECT * FROM $tabela WHERE username='$username' AND senha='".md5($senha)."'";
 			$resultado = mysqli_query(self::$conexao, $query);
 			//Recupera os dados binários da foto
 			//Instancia um novo usuário com os dados recuperados do Banco de Dados
@@ -154,7 +154,7 @@
 		//Realiza o login de um diretor
 		
 		public static function logarDiretor($username, $senha, $tabela){
-			$query ="SELECT * FROM $tabela WHERE username='$username' AND senha='$senha'";
+			$query ="SELECT * FROM $tabela WHERE username='$username' AND senha='".md5($senha)."'";
 			$resultado = mysqli_query(self::$conexao, $query);
 			//Recupera os dados binários da foto
 			//Instancia um novo usuário com os dados recuperados do Banco de Dados
@@ -170,7 +170,7 @@
 		
 		//Realiza o login de um professor
 		public static function logarProfessor($username, $senha, $tabela){
-			$query ="SELECT * FROM $tabela WHERE username='$username' AND senha='$senha'";
+			$query ="SELECT * FROM $tabela WHERE username='$username' AND senha='".md5($senha)."'";
 			$resultado = mysqli_query(self::$conexao, $query);
 			//Recupera os dados binários da foto
 			//Instancia um novo usuário com os dados recuperados do Banco de Dados
@@ -189,7 +189,7 @@
 		}
 		//Realiza o login de um coordenador
 		public static function logarCoordenador($username, $senha, $tabela){
-			$query ="SELECT * FROM $tabela WHERE username='$username' AND senha='$senha'";
+			$query ="SELECT * FROM $tabela WHERE username='$username' AND senha='".md5($senha)."'";
 			$resultado = mysqli_query(self::$conexao, $query);
 			//Recupera os dados binários da foto
 			//Instancia um novo usuário com os dados recuperados do Banco de Dados
