@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.UIManager;
@@ -39,7 +40,6 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         if(Sessao.usuario==null){
             Login.setText("Entrar");
-
             btnData.setEnabled(false);
             btnData.setText("<html><font color=black>Data</font></html>");
             btnQuestões.setEnabled(false);
@@ -86,9 +86,9 @@ public class Home extends javax.swing.JFrame {
         btnCorrecao.setText("Correção");
         Login.setText("Sair");
         if(Sessao.usuario!=null){
-            foto.setIcon(Sessao.usuario.getFoto());
-            foto.setSize(Sessao.usuario.getFoto().getIconWidth(), Sessao.usuario.getFoto().getIconHeight());
-            idUser.setText(getFraseTempo()+ ", "+Sessao.usuario.getNickname());
+            ImageIcon ft = new ImageIcon(Sessao.usuario.getFoto().getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_SMOOTH));
+            foto.setIcon(ft);
+            idUser.setText(getFraseTempo()+ ", "+Sessao.usuario.getPrimeiroNome());
         }
             
         if(Sessao.usuario==null){
@@ -146,7 +146,6 @@ public class Home extends javax.swing.JFrame {
         Login = new javax.swing.JButton();
         idUser = new javax.swing.JLabel();
         foto = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -412,8 +411,6 @@ public class Home extends javax.swing.JFrame {
         foto.setPreferredSize(new java.awt.Dimension(10, 10));
         foto.setRequestFocusEnabled(false);
 
-        jLabel6.setText("jLabel6");
-
         javax.swing.GroupLayout TopoLayout = new javax.swing.GroupLayout(Topo);
         Topo.setLayout(TopoLayout);
         TopoLayout.setHorizontalGroup(
@@ -426,30 +423,26 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(idUser, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(TopoLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Login, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         TopoLayout.setVerticalGroup(
             TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TopoLayout.createSequentialGroup()
                 .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(TopoLayout.createSequentialGroup()
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TopoLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idUser)
-                            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(TopoLayout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(idUser)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -585,7 +578,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JToolBar jToolBar1;
     private ui.LoginPanel loginPanel1;

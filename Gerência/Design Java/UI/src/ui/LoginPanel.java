@@ -134,7 +134,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
         try {
-            BancoDeDados.Login.conectarBanco("localhost:3306", "root", "", "teste");
+            BancoDeDados.Login.conectarBanco("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "Usuários");
             switch(selecao.getSelectedIndex()){
                 //Aluno
                 case 0:
