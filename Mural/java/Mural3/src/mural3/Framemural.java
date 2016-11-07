@@ -46,24 +46,11 @@ public class Framemural extends javax.swing.JFrame {
                 
                 auxusuario.add(retorno.getString("usuario") + "\n");
                 auxdata.add(retorno.getString("data") + "\n");
-                auxconteudo.add(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
                 a++;
             } while (retorno.next());
             System.out.println(a);
-            
-            
-            /*retorno.afterLast();
-            retorno.last();
-            System.err.println(retorno.getFetchSize());
-            for(int cont=0; cont<retorno.getFetchSize(); cont++){
-                //retorno.last();
-                System.out.println("ENTORU!!!!!!!!");
-                //retorno.previous();
-                jTextArea1.append(retorno.getString("usuario") + "\n");
-                jTextArea1.append(retorno.getString("data") + "\n\n");
-                jTextArea1.append(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n"); 
-                retorno.previous();
-            }*/
+
             Collections.reverse(auxusuario);
             Collections.reverse(auxdata);
             Collections.reverse(auxconteudo);
@@ -77,11 +64,7 @@ public class Framemural extends javax.swing.JFrame {
                 jTextArea1.append((String) it3.next());
                 
             }
-            /* do {
-                jTextArea1.append(retorno.getString("usuario") + "\n");
-                jTextArea1.append(retorno.getString("data") + "\n\n");
-                jTextArea1.append(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
-            } while (retorno.next()); */
+
             
         } catch (SQLException ex) {
             Logger.getLogger(Framemural.class.getName()).log(Level.SEVERE, null, ex);
@@ -187,7 +170,7 @@ public class Framemural extends javax.swing.JFrame {
             do {
                 jTextArea1.append(retorno.getString("usuario") + "\n");
                 jTextArea1.append(retorno.getString("data") + "\n\n");
-                jTextArea1.append(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
+                jTextArea1.append(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
             } while (retorno.next());
 
         } catch (SQLException ex) {
