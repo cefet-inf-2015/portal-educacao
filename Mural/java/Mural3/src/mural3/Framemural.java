@@ -24,6 +24,7 @@ public class Framemural extends javax.swing.JFrame {
     int x=0;
     int a=0;
     String [] usuario = new String[1];
+    ResultSet retorno;
 
     public Framemural(){
         initComponents();
@@ -32,9 +33,7 @@ public class Framemural extends javax.swing.JFrame {
         bd = new Conexao();
         //bd.conectar("localhost:3306", "root", "", "vrau");
         bd.conectar("cefet-inf-2015.ddns.net:43306", "mural", "inf2015", "Mural");
-       
-        ResultSet retorno;
-        
+      
         try {
             retorno = bd.enviarQueryResultados("SELECT * FROM Mural");
             System.out.println(a);
@@ -163,15 +162,36 @@ public class Framemural extends javax.swing.JFrame {
         }
         
         jTextArea1.setText("");
-        ResultSet retorno;
+        
         try {
             retorno = bd.enviarQueryResultados("SELECT * FROM Mural");
+            System.out.println(a);
+            ArrayList<String> auxusuario = new ArrayList<>();
+            ArrayList<String> auxdata = new ArrayList<>();
+            ArrayList<String> auxconteudo = new ArrayList<>();
 
             do {
-                jTextArea1.append(retorno.getString("usuario") + "\n");
-                jTextArea1.append(retorno.getString("data") + "\n\n");
-                jTextArea1.append(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
+
+                auxusuario.add(retorno.getString("usuario") + "\n");
+                auxdata.add(retorno.getString("data") + "\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
+                a++;
             } while (retorno.next());
+            System.out.println(a);
+
+            Collections.reverse(auxusuario);
+            Collections.reverse(auxdata);
+            Collections.reverse(auxconteudo);
+            Iterator it1 = auxusuario.iterator();
+            Iterator it2 = auxdata.iterator();
+            Iterator it3 = auxconteudo.iterator();
+
+            while (it1.hasNext()) {
+                jTextArea1.append((String) it1.next());
+                jTextArea1.append((String) it2.next());
+                jTextArea1.append((String) it3.next());
+
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Framemural.class.getName()).log(Level.SEVERE, null, ex);
