@@ -9,14 +9,14 @@
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" type="text/css" rel="stylesheet">
-  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
   <style type="text/css">
     body {
         display: flex;
         min-height: 100vh;
         flex-direction: column;
       }
-
       main {
         flex: 1 0 auto;
       }
@@ -96,32 +96,17 @@
     
   </div>
 
-  
-
   <main>
     <div class="container">
       <div class="section">
-      <br>
-      <h4 class="center blue-text text-darken-4">Prova corrigida com sucesso.</h4>
-        <?php include "corretor.php"; ?>
-        <h4 class="center blue-text text-darken-4">Questões acertadas: <?= $resultado ?></h4>
+        <?php include ('corretor.php') ?>
+				<h4 class="blue-text text-darken-4">Prova corrigida com sucesso.</h4>
+				<h5 class="blue-text text-darken-4">Questões acertadas: <?= $questoesAcertadas ?></h5> <!-- formatar -->
       </div>
+			<div class="section">
+				<button class="hoverable btn-flat blue darken-4 white-text" type="button">Clique para retornar</button><!-- adicionar link-->
+			</div>
     </div>
-
-    <div class="container">
-      <br><br>
-      <div class="row">
-        <div class="col s6 m6 l8">
-          <a href="ProvaOffline.html" class="blue darken-4 hoverable btn"><i class="material-icons left">edit</i>Corrigir mais Provas</a>
-        </div>
-        <div class="col s6 m6 l4">
-          <a href="mainpage.php" class="blue darken-4 hoverable btn"><i class="material-icons left">equalizer</i>Mostrar gráficos</a>
-        </div>
-      </div>
-    </div>
-
-
-
   </main>
   <footer class="page-footer blue">
     <div class="container">
@@ -159,10 +144,10 @@
 
 
   <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="template/js/materialize.js"></script>
   <script src="template/js/init.js"></script>
   <script src="index.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
   </body>
 </html>
