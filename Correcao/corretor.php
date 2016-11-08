@@ -10,7 +10,8 @@ if(!isset($_SESSION['respostasAssociadas'])){
 	$_SESSION['respostasAssociadas'] = array();
 }
 $caminhoProva = $_FILES['prova']['tmp_name'];
-$caminhoGabarito = $_FILES['gabarito']['tmp_name'];
+$respostas = $_POST['resposta'];
+$valorProva = $_POST['notaProva'];
 function lerProva($caminhoprova){
 	if (file_exists($caminhoprova)) {
  	   $xml = simplexml_load_file($caminhoprova);
@@ -19,16 +20,7 @@ function lerProva($caminhoprova){
 	}
 	return $xml;
 }
-function lerGabarito($caminhogabarito){
-	$a = file($caminhogabarito);
-	$respostasConcatenadas = implode(",", $a);
-	$respostas = explode(",", $respostasConcatenadas);
-	foreach ($respostas as &$key) {
-		$key = substr($key, 3);
-		$key = rtrim($key);
-	}
-	return $respostas;
-}
+
 function corrigir($xml, $respostas){
 	$numeroCorretas = 0;
 	$questao_length=count($xml->questao);
@@ -48,5 +40,5 @@ function corrigir($xml, $respostas){
 	$_SESSION["respostasAssociadas"] = array_map(function($key, $val) {return array($key=>$val);}, $_SESSION["alunos"], $_SESSION["numeroCorretas"]);
 	return $numeroCorretas;
 }
-$resultado = corrigir(lerProva($caminhoProva), lerGabarito($caminhoGabarito));
+$resultado = corrigir(lerProva($caminhoProva), $respostas);
 ?>

@@ -8,15 +8,14 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" type="text/css" rel="stylesheet">
-  
+  <link href="styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <style type="text/css">
     body {
         display: flex;
         min-height: 100vh;
         flex-direction: column;
       }
-
       main {
         flex: 1 0 auto;
       }
@@ -95,33 +94,13 @@
   <div>
     
   </div>
-
-  
-
   <main>
     <div class="container">
       <div class="section">
-      <br>
-      <h4 class="center blue-text text-darken-4">Prova corrigida com sucesso.</h4>
-        <?php include "corretor.php"; ?>
-        <h4 class="center blue-text text-darken-4">Questões acertadas: <?= $resultado ?></h4>
+        <!-- CONTEÚDO AQUI -->
+        <h1>Teste</h1>
       </div>
     </div>
-
-    <div class="container">
-      <br><br>
-      <div class="row">
-        <div class="col s6 m6 l8">
-          <a href="ProvaOffline.html" class="blue darken-4 hoverable btn"><i class="material-icons left">edit</i>Corrigir mais Provas</a>
-        </div>
-        <div class="col s6 m6 l4">
-          <a href="" class="blue darken-4 hoverable btn"><i class="material-icons left">equalizer</i>Mostrar gráficos</a>
-        </div>
-      </div>
-    </div>
-
-
-
   </main>
   <footer class="page-footer blue">
     <div class="container">
@@ -159,10 +138,10 @@
 
 
   <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="template/js/materialize.js"></script>
   <script src="template/js/init.js"></script>
   <script src="index.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
   </body>
 </html>
