@@ -9,9 +9,8 @@ if(!isset($_SESSION['alunos'])){
 if(!isset($_SESSION['respostasAssociadas'])){
 	$_SESSION['respostasAssociadas'] = array();
 }
-$caminhoProva = $_FILES['prova']['tmp_name'];
 $respostas = $_POST['resposta'];
-$valorProva = $_POST['notaProva'];
+$caminhoProva = $_FILES['prova']['tmp_name'];
 function lerProva($caminhoprova){
 	if (file_exists($caminhoprova)) {
  	   $xml = simplexml_load_file($caminhoprova);
@@ -20,6 +19,7 @@ function lerProva($caminhoprova){
 	}
 	return $xml;
 }
+
 
 function corrigir($xml, $respostas){
 	$numeroCorretas = 0;
