@@ -1,39 +1,53 @@
 package Tela;
 
+import BancoDeDados.Conexao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
 
 public class Topicos {
     private int quantidade;
     private String[] titulo;
+    private String[] autor;
     private int[] avaliacao;
-    private Calendar[] data;
-    
-    public Topicos(String categoria) {
-        if(categoria.equals("Matemática")) {
-            /*
-            Pega os dados(Tópicos) do Banco de Dados relativo a categoria 
-            matematica.
-            */
-            quantidade=3;
-            titulo = new String[quantidade];
-            avaliacao = new int[quantidade];
-            data = new Calendar[quantidade];
-            /*
-            Exemplo
-            */
-            titulo[0] = "A famosa matemágica";
-            avaliacao[0] = 575;
-            data[0] = new GregorianCalendar( 2016, 8, 28 );
-            
-            titulo[1] = "Inicio a funções de 2ºgrau";
-            avaliacao[1] = 777;
-            data[1] = new GregorianCalendar( 2016, 8, 27 );
-            
-            titulo[2] = "Um tópico sobre matemática";
-            avaliacao[2] = 700;
-            data[2] = new GregorianCalendar( 2015, 8, 28 );
-        }
+    private String[] data;
+    private String ip;
+    private String user;
+    private String senha;
+    private String banco;
+    private ResultSet resultado;
+    private String comando;
+    public Topicos(String categoria) throws SQLException {
+            Conexao conec = new Conexao();
+            ip = "cefet-inf-2015.ddns.net:43306";
+            user = "forum";
+            senha = "inf2015";
+            banco = "bdforum";
+            try {
+                conec.conectar(ip, user, senha, banco);
+                comando = "SELECT * FROM `"+categoria+"`";
+                resultado = conec.enviarQueryResultados(comando);
+                resultado.last();
+                quantidade =  resultado.getRow();
+                resultado.first();
+
+                titulo = new String[quantidade];
+                autor = new String[quantidade];
+                avaliacao = new int[quantidade];
+                data = new String[quantidade];
+
+                for(int i=0; i<quantidade; i++) {
+                    titulo[i] = resultado.getString("Titulo");
+                    autor[i] = resultado.getString("Autor");
+                    avaliacao[i] = resultado.getInt("Avaliacao");
+                    data[i] = resultado.getString("Data");
+                    resultado.next();
+                }
+            } catch(Exception ex) {
+                System.out.println("Erro: "+ex);
+            }
     }
 
     public int getQuantidade() {
@@ -60,11 +74,52 @@ public class Topicos {
         this.avaliacao = avaliacao;
     }
 
-    public Calendar[] getData() {
+    public String[] getData() {
         return data;
     }
 
-    public void setData(Calendar[] data) {
+    public void setData(String[] data) {
         this.data = data;
     }
+
+    public String[] getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String[] autor) {
+        this.autor = autor;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getBanco() {
+        return banco;
+    }
+
+    public void setBanco(String banco) {
+        this.banco = banco;
+    }
+    
 }
