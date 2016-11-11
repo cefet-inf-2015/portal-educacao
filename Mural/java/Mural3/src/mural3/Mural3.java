@@ -15,7 +15,8 @@ public class Mural3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Framemural mural = new Framemural();
+        mural.setVisible(true);
     }
     
 }

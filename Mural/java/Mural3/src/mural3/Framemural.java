@@ -5,7 +5,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -18,34 +22,52 @@ public class Framemural extends javax.swing.JFrame {
     BancoDeDados.Conexao bd;
     int id=0;
     int x=0;
+    int a=0;
     String [] usuario = new String[1];
+    ResultSet retorno;
 
     public Framemural(){
         initComponents();
+        jTextArea1.setEditable(false);
         
         bd = new Conexao();
-        bd.conectar("localhost:3306", "root", "", "vrau");
-        //bd.conectar("cefet-inf-2015.ddns.net:4080", "mural", "inf2015", "Mural");
-        
-        this.setBackground(Color.white);
-        
-        ResultSet retorno;
+        //bd.conectar("localhost:3306", "root", "", "vrau");
+        bd.conectar("cefet-inf-2015.ddns.net:43306", "mural", "inf2015", "Mural");
+      
         try {
-            retorno = bd.enviarQueryResultados("SELECT * FROM mural");
-            
-            /*do {
-                String [x] usuario = retorno.getString("usuario");
-                
-            } while (retorno.next());*/
+            retorno = bd.enviarQueryResultados("SELECT * FROM Mural");
+            System.out.println(a);
+            ArrayList<String> auxusuario = new ArrayList<>();
+            ArrayList<String> auxdata = new ArrayList<>();
+            ArrayList<String> auxconteudo = new ArrayList<>();
             
             do {
-                jTextArea1.append(retorno.getString("usuario") + "\n");
-                jTextArea1.append(retorno.getString("data") + "\n\n");
-                jTextArea1.append(retorno.getString("conteudo") + "\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+                
+                auxusuario.add(retorno.getString("usuario") + "\n");
+                auxdata.add(retorno.getString("data") + "\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
+                a++;
             } while (retorno.next());
+            System.out.println(a);
+
+            Collections.reverse(auxusuario);
+            Collections.reverse(auxdata);
+            Collections.reverse(auxconteudo);
+            Iterator it1 = auxusuario.iterator();
+            Iterator it2 = auxdata.iterator();
+            Iterator it3 = auxconteudo.iterator();
+            
+            while(it1.hasNext()){
+                jTextArea1.append((String) it1.next());
+                jTextArea1.append((String) it2.next());
+                jTextArea1.append((String) it3.next());
+                
+            }
+
             
         } catch (SQLException ex) {
             Logger.getLogger(Framemural.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("VAZIO");
         }
 
     }
@@ -121,27 +143,72 @@ public class Framemural extends javax.swing.JFrame {
     
     
     
-    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String aux = new Date().toString();
+        String[] mud = aux.split(" ");
+        String formal = mud[2].concat(" ").concat(mud[1]).concat(" ").concat(mud[5]).concat(" às ").concat(mud[3]);
         String usuario = "TESTE";
         String conteudo = jTextArea2.getText();
         System.out.println(conteudo);
+        jTextArea2.setText("");
 
         try {
-            bd.enviarQuery("INSERT INTO mural (id, usuario, data, conteudo) VALUES (\'" + id + "\',\'" + usuario + "\',\'" + aux + "\', \'" + conteudo + "\')");
+            bd.enviarQuery("INSERT INTO Mural (id, usuario, data, conteudo) VALUES (\'" + id + "\',\'" + usuario + "\',\'" + formal + "\', \'" + conteudo + "\')");
             id++;
             System.out.println(id);
 
         } catch (SQLException Ex) {
             Logger.getLogger(Framemural.class.getName()).log(Level.SEVERE, null, Ex);
         }
+        
+        jTextArea1.setText("");
+        
+        try {
+            retorno = bd.enviarQueryResultados("SELECT * FROM Mural");
+            System.out.println(a);
+            ArrayList<String> auxusuario = new ArrayList<>();
+            ArrayList<String> auxdata = new ArrayList<>();
+            ArrayList<String> auxconteudo = new ArrayList<>();
+
+            do {
+
+                auxusuario.add(retorno.getString("usuario") + "\n");
+                auxdata.add(retorno.getString("data") + "\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
+                a++;
+            } while (retorno.next());
+            System.out.println(a);
+
+            Collections.reverse(auxusuario);
+            Collections.reverse(auxdata);
+            Collections.reverse(auxconteudo);
+            Iterator it1 = auxusuario.iterator();
+            Iterator it2 = auxdata.iterator();
+            Iterator it3 = auxconteudo.iterator();
+
+            while (it1.hasNext()) {
+                jTextArea1.append((String) it1.next());
+                jTextArea1.append((String) it2.next());
+                jTextArea1.append((String) it3.next());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Framemural.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("VAZIO");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Mural3.class.getName()).log(Level.SEVERE, null, ex);
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
