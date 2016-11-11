@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		
+	<script src="criaInputs.js"></script>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Correção Provas</title>
@@ -65,7 +68,7 @@
       <div class="file-field input-field">
           <div class="blue darken-4 hoverable btn"><i class="material-icons right">send</i>
             <span>Insira a Prova</span>
-            <input type="file" name="prova" accept=".xml">
+            <input type="file" id="inputProva" name="prova" accept=".xml" onchange='openFile(event)'>
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text">
@@ -73,17 +76,15 @@
       </div>
     </div>
 
-    <div class="container">
+    <div id="containerInput" class="container">
       <br><br>
-      <div class="file-field input-field">
-          <div class="blue darken-4 hoverable btn"><i class="material-icons right">send</i>
-            <span>Insira o Gabarito</span>
-            <input type="file" name="gabarito" accept=".txt">
-          </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-          </div>
-      </div>
+    </div>
+		<div class="container">
+      <br><br>
+      <div class="input-field col s12">
+          <input name="notaProva" type="number" step="any" class="validate">
+          <label for="notaProva">Valor da prova</label>
+        </div>
     </div>
     <div class="container">
       <br><br>
@@ -118,7 +119,7 @@
     <div class="section">
 
     </div>
-  </div>
+  
 
   <footer class="page-footer blue">
     <div class="container">
