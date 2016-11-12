@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.UIManager;
@@ -39,8 +40,6 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         if(Sessao.usuario==null){
             Login.setText("Entrar");
-            btnChat.setEnabled(false);
-            btnChat.setText("<html><font color=black>Chat</font></html>");
             btnData.setEnabled(false);
             btnData.setText("<html><font color=black>Data</font></html>");
             btnQuestões.setEnabled(false);
@@ -76,8 +75,7 @@ public class Home extends javax.swing.JFrame {
     }
     
     public void refresh(){
-        btnChat.setEnabled(true);
-        btnChat.setText("Chat");
+
         btnData.setEnabled(true);
         btnData.setText("Data");
         btnQuestões.setEnabled(true);
@@ -88,17 +86,16 @@ public class Home extends javax.swing.JFrame {
         btnCorrecao.setText("Correção");
         Login.setText("Sair");
         if(Sessao.usuario!=null){
-            foto.setIcon(Sessao.usuario.getFoto());
-            foto.setSize(Sessao.usuario.getFoto().getIconWidth(), Sessao.usuario.getFoto().getIconHeight());
-            idUser.setText(getFraseTempo()+ ", "+Sessao.usuario.getNickname());
+            ImageIcon ft = new ImageIcon(Sessao.usuario.getFoto().getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_SMOOTH));
+            foto.setIcon(ft);
+            idUser.setText(getFraseTempo()+ ", "+Sessao.usuario.getPrimeiroNome());
         }
             
         if(Sessao.usuario==null){
             idUser.setText(getFraseTempo()+ ", Usuário Anônimo");
             Login.setText("Entrar");
             foto.setIcon(null);
-            btnChat.setEnabled(false);
-            btnChat.setText("<html><font color=black>Chat</font></html>");
+
             btnData.setEnabled(false);
             btnData.setText("<html><font color=black>Data</font></html>");
             btnQuestões.setEnabled(false);
@@ -129,6 +126,7 @@ public class Home extends javax.swing.JFrame {
         container = new javax.swing.JPanel();
         Home = new javax.swing.JPanel();
         saibaMais1 = new ui.SaibaMais();
+        capturaFotos1 = new capturadefotos.capturaFotos();
         loginPanel1 = new ui.LoginPanel();
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -139,10 +137,9 @@ public class Home extends javax.swing.JFrame {
         Topo = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         btnHome = new javax.swing.JButton();
-        btnBaixar = new javax.swing.JButton();
         btnGaleria = new javax.swing.JButton();
         btnForum = new javax.swing.JButton();
-        btnChat = new javax.swing.JButton();
+        btnBaixar = new javax.swing.JButton();
         btnData = new javax.swing.JButton();
         btnQuestões = new javax.swing.JButton();
         btnProvas = new javax.swing.JButton();
@@ -177,7 +174,7 @@ public class Home extends javax.swing.JFrame {
         Home.setLayout(HomeLayout);
         HomeLayout.setHorizontalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGap(0, 1029, Short.MAX_VALUE)
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,6 +183,7 @@ public class Home extends javax.swing.JFrame {
 
         container.add(Home, "Home");
         container.add(saibaMais1, "SaibaMais");
+        container.add(capturaFotos1, "Galeria");
         container.add(loginPanel1, "Login");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
@@ -231,7 +229,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(BaixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BaixoLayout.setVerticalGroup(
             BaixoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,23 +272,6 @@ public class Home extends javax.swing.JFrame {
         });
         jToolBar1.add(btnHome);
 
-        btnBaixar.setBackground(new java.awt.Color(1, 87, 155));
-        btnBaixar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnBaixar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBaixar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Download.png"))); // NOI18N
-        btnBaixar.setText("Baixar");
-        btnBaixar.setFocusable(false);
-        btnBaixar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBaixar.setMaximumSize(new java.awt.Dimension(90, 99));
-        btnBaixar.setMinimumSize(new java.awt.Dimension(90, 99));
-        btnBaixar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBaixar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBaixarActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btnBaixar);
-
         btnGaleria.setBackground(new java.awt.Color(1, 87, 155));
         btnGaleria.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnGaleria.setForeground(new java.awt.Color(255, 255, 255));
@@ -311,7 +292,7 @@ public class Home extends javax.swing.JFrame {
         btnForum.setBackground(new java.awt.Color(1, 87, 155));
         btnForum.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnForum.setForeground(new java.awt.Color(255, 255, 255));
-        btnForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Forum.png"))); // NOI18N
+        btnForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Chat.png"))); // NOI18N
         btnForum.setText("Forum");
         btnForum.setFocusable(false);
         btnForum.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -325,22 +306,22 @@ public class Home extends javax.swing.JFrame {
         });
         jToolBar1.add(btnForum);
 
-        btnChat.setBackground(new java.awt.Color(1, 87, 155));
-        btnChat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnChat.setForeground(new java.awt.Color(255, 255, 255));
-        btnChat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Chat.png"))); // NOI18N
-        btnChat.setText("Chat");
-        btnChat.setFocusable(false);
-        btnChat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnChat.setMaximumSize(new java.awt.Dimension(90, 99));
-        btnChat.setMinimumSize(new java.awt.Dimension(90, 99));
-        btnChat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnChat.addActionListener(new java.awt.event.ActionListener() {
+        btnBaixar.setBackground(new java.awt.Color(1, 87, 155));
+        btnBaixar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBaixar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBaixar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Download.png"))); // NOI18N
+        btnBaixar.setText("Arquivos\n");
+        btnBaixar.setFocusable(false);
+        btnBaixar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBaixar.setMaximumSize(new java.awt.Dimension(90, 99));
+        btnBaixar.setMinimumSize(new java.awt.Dimension(90, 99));
+        btnBaixar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBaixar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChatActionPerformed(evt);
+                btnBaixarActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnChat);
+        jToolBar1.add(btnBaixar);
 
         btnData.setBackground(new java.awt.Color(1, 87, 155));
         btnData.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -442,26 +423,28 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(TopoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(idUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(TopoLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(66, 66, 66)
+                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         TopoLayout.setVerticalGroup(
             TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TopoLayout.createSequentialGroup()
                 .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(TopoLayout.createSequentialGroup()
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TopoLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idUser)
+                        .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(TopoLayout.createSequentialGroup()
+                                .addComponent(idUser)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(foto, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -487,7 +470,7 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
-        if(Login.getText()=="Entrar"){
+        if("Entrar".equals(Login.getText())){
            CardLayout card = (CardLayout)container.getLayout();
            card.show(container, "Login"); 
         }else{
@@ -527,11 +510,6 @@ public class Home extends javax.swing.JFrame {
         CardLayout card = (CardLayout)container.getLayout();
         card.show(container, "Forum");
     }//GEN-LAST:event_btnForumActionPerformed
-
-    private void btnChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChatActionPerformed
-        CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Chat");
-    }//GEN-LAST:event_btnChatActionPerformed
 
     private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
@@ -576,10 +554,8 @@ public class Home extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Home().setVisible(true);
         });
     }
 
@@ -589,7 +565,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Login;
     private javax.swing.JPanel Topo;
     private javax.swing.JButton btnBaixar;
-    private javax.swing.JButton btnChat;
     private javax.swing.JButton btnCorrecao;
     private javax.swing.JButton btnData;
     private javax.swing.JButton btnForum;
@@ -597,6 +572,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnProvas;
     private javax.swing.JButton btnQuestões;
+    private capturadefotos.capturaFotos capturaFotos1;
     private javax.swing.JPanel container;
     private javax.swing.JLabel foto;
     private javax.swing.JLabel idUser;
