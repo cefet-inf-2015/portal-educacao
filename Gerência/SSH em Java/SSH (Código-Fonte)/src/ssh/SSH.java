@@ -50,6 +50,34 @@ public class SSH {
         }
     }
     /**
+     * Método para deletar um arquivo do servidor
+     * @param host Endereço do servidor
+     * @param usuario Nome de usuário
+     * @param senha Senha para acessar o SSH
+     * @param arquivo Caminho do arquivo a ser deletado do servidor
+     */
+    public static void deletarArquivo(String host, String usuario, String senha, String arquivo){
+        JSch jsch = new JSch();
+        Session session = null;
+        try {
+            session = jsch.getSession(usuario, host, 4022);
+            session.setConfig("StrictHostKeyChecking", "no");
+            session.setPassword(senha);
+            session.connect();
+
+            Channel channel = session.openChannel("sftp");
+            channel.connect();
+            ChannelSftp sftpChannel = (ChannelSftp) channel;
+            sftpChannel.rm(arquivo);
+            sftpChannel.exit();
+            session.disconnect();
+        } catch (JSchException e) {
+            e.printStackTrace();  
+        } catch (SftpException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
       * Método para baixar um arquivo do servidor
       * @param host Endereço do servidor
       * @param usuario Nome de usuário
@@ -65,7 +93,6 @@ public class SSH {
             session.setConfig("StrictHostKeyChecking", "no");
             session.setPassword(senha);
             session.connect();
-
             Channel channel = session.openChannel("sftp");
             channel.connect();
             ChannelSftp sftpChannel = (ChannelSftp) channel;
