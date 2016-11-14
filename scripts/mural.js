@@ -1,18 +1,42 @@
 //include '../Gerência/LoginPHP/Login.php';
 
-let dataAtual = null;
+let dataAtual = null,
+	likeAux=false;
 
 
 window.onload=function(){
 	dataAtual = new Date();
 
 	document.querySelector("#teste").addEventListener('click', posta, false);
+	document.querySelector("#like").addEventListener('click', curtir, false);
 		
 }
 
+function curtir(){
+	console.log("OIa")
+	if(likeAux==false){
+		likeAux=true;
+		btn = document.querySelector("#like");
+		btn.className = "waves-effect waves-light btn light-blue darken-4"
+	}
+	else{
+		likeAux=false;
+		btn = document.querySelector("#like");
+		btn.className = "waves-effect waves-light btn grey lighten-1"
+	}	
+	
+}
 
 function posta(){ 
+	console.log("OI");
  	let dataPostagem = new Date(),
+ 		segundos = dataPostagem.getSeconds(),
+ 		minutos = dataPostagem.getMinutes(),
+ 		horas = dataPostagem.getHours(),
+ 		dia = dataPostagem.getDate(),
+ 		mes = dataPostagem.getMonth()+1,
+ 		ano = dataPostagem.getFullYear(),
+ 		dataPostString = "",
 		texto = document.querySelector("#post").value,
 //		nomeUsuario = getPrimeiroNome() + " " + getUltimoNome(),
 //		fotoUsuario = getFoto(),
@@ -20,7 +44,18 @@ function posta(){
 		if(texto == "" && imgPost == ""){
 
 		}else{
-			criaPost(texto, imgPost);
+
+			if(dia<10) {
+			    dia='0'+dia
+			} 
+
+			if(mes<10) {
+			    mes='0'+mes
+			}
+
+			dataPostString = dia+"/"+mes+"/"+ano+" às "+horas+":"+minutos+":"+segundos 
+
+			criaPost(texto, imgPost, dataPostString);
 		}
 }
 
@@ -28,11 +63,7 @@ function cria(el){
 	return document.createElement(el);
 }
 
-function criaPost(texto, imgPost){ //criação do Layout de uma postagem
-	if (texto == null  && imgPost == null) {
-
-	}else{
-
+function criaPost(texto, imgPost, data){ //criação do Layout de uma postagem
 		//criação de Divs
 		let divExt, divCard, divRow1, divFoto,
 			divNome, divRow2, divCont, divLike;
@@ -64,7 +95,7 @@ function criaPost(texto, imgPost){ //criação do Layout de uma postagem
 
 		tempo = cria('p');
 		tempo.className = "grey-text text-lighten-1 hora";
-		tempo.innerHTML= "2 min";
+		tempo.innerHTML= data;
 
 
 		divRow2 = cria('div');
@@ -86,18 +117,24 @@ function criaPost(texto, imgPost){ //criação do Layout de uma postagem
 		divLike.className = "col s6";
 
 		aLike = cria('a');
-		aLike.className = "waves-effect waves-light btn light-blue darken-4";
-		aLike.setAttribute("id","pub");
+		aLike.className = "waves-effect waves-light btn grey lighten-1";
+		aLike.setAttribute("id","like");
+		aLike.addEventListener('click', curtir, false);
 
 		iLike= cria('i');
-		iLike.className = "medium material-icons white-text text-darken-1";
+		iLike.className = "medium material-icons white-text text-darken-3";
 		iLike.innerHTML = "thumb_up";
+		iLike.setAttribute("id","like");
+		iLike.addEventListener('click', curtir, false);
 
 		aLike.appendChild(iLike);
 		divLike.appendChild(aLike);
-
-		divCont.appendChild(post);
-		divCont.appendChild(fotoCont);
+		if(texto!=""){
+			divCont.appendChild(post);
+		}
+		if(imgPost!= ""){
+			divCont.appendChild(fotoCont);
+		}	
 
 		divRow2.appendChild(divCont);
 		divRow2.appendChild(divLike);
@@ -116,6 +153,5 @@ function criaPost(texto, imgPost){ //criação do Layout de uma postagem
 
 
 		document.querySelector('#posts').appendChild(divExt);
-	}
 }
 

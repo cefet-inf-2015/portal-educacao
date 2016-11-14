@@ -1,23 +1,22 @@
 
 
 <?php
-$dbhost = 'localhost'; // endereco do servidor de banco de dados
+$dbhost = 'cefet-inf-2015.ddns.net:43306'; // endereco do servidor de banco de dados
 $dbuser = 'root'; // login do banco de dados
-$dbpass = ''; // senha
-$dbname = 'forum'; // nome do banco de dados a ser usado
+$dbpass = 'apenasinf-2015'; // senha
+$dbname = 'bdforum'; // nome do banco de dados a ser usado
 $nome = $_POST["titulo"];
-$today = date("Y-m-d H:i:s");
-$categoria = $_POST["categoria"];
+$data= date('d/m/Y');
 $conteudo = $_POST["pergunta"];
-//$aux = array("?",".",",","!"," ");
-//$nomebd = str_replace($aux,"",$nome);
-$conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
-$seleciona = mysql_select_db($dbname);
 
-$sqlcriatabela = "CREATE TABLE IF NOT EXISTS topico (ID int AUTO_INCREMENT,idtopico int,idresposta int, titulo text, categoria VARCHAR(50), conteudo Text,dia timestamp, autor VARCHAR(50),primary key (ID))DEFAULT CHARSET = utf8;";
-$sqlinsere= "INSERT INTO topico (ID, titulo, categoria,conteudo,dia) VALUES (DEFAULT,'$nome','$categoria','$conteudo','$today')";
-$criatabela = mysql_query( $sqlcriatabela, $conecta );
-$inseretabela = mysql_query( $sqlinsere, $conecta );
+
+$conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
+$seleciona = @mysql_select_db($dbname);
+echo $nome;
+$sqlinsere= "INSERT INTO Matematica ( Titulo,Conteudo,Data,Comentario) VALUES ('$nome','$conteudo','$data','0')";
+
+
+$inseretabela = @mysql_query( $sqlinsere, $conecta );
 
 // inicia a conexao ao servidor de banco de dados
 
@@ -40,17 +39,14 @@ if (! $seleciona)
 
 echo "<br />selecionado o banco de dados $dbname";
 
-if(! $criatabela )
-{
-  die("<br />Nao foi possivel criar a tabela: " . mysql_error());
-}
-echo "<br />A tabela foi criada!";
+
 
 if(! $inseretabela )
 {
   die("<br />Nao foi possivel inserir na tabela: " . mysql_error());
 }
 echo "<br />os dados foram inseridos!";
+
  
 mysql_close($conecta);
 
