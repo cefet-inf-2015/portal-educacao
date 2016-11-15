@@ -104,7 +104,7 @@
       <br>
       <h4 class="center blue-text text-darken-4">Prova corrigida com sucesso.</h4>
         <?php include "corretor.php"; ?>
-        <h4 class="center blue-text text-darken-4">Questões acertadas: <?= $resultado ?></h4>
+        <h4 class="center blue-text text-darken-4">Nota obtida: <?= $resultado ?></h4>
       </div>
     </div>
 
