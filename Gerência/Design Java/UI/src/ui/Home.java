@@ -130,6 +130,10 @@ public class Home extends javax.swing.JFrame {
         saibaMais1 = new ui.SaibaMais();
         loginPanel1 = new ui.LoginPanel();
         forumPanel1 = new forum.ForumPanel();
+        layoutInicio1 = new Download_Upload.LayoutInicio();
+        layoutUpload1 = new Download_Upload.LayoutUpload();
+        layoutGerenciar1 = new Download_Upload.LayoutGerenciar();
+        layoutDownload1 = new Download_Upload.LayoutDownload();
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -173,6 +177,10 @@ public class Home extends javax.swing.JFrame {
 
         forumPanel1.setBackground(new java.awt.Color(255, 255, 255));
         container.add(forumPanel1, "Forum");
+        container.add(layoutInicio1, "Download");
+        container.add(layoutUpload1, "LayoutUpload");
+        container.add(layoutGerenciar1, "LayoutGerenciar");
+        container.add(layoutDownload1, "LayoutDownload");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
 
@@ -570,6 +578,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JToolBar jToolBar1;
+    private Download_Upload.LayoutDownload layoutDownload1;
+    private Download_Upload.LayoutGerenciar layoutGerenciar1;
+    private Download_Upload.LayoutInicio layoutInicio1;
+    private Download_Upload.LayoutUpload layoutUpload1;
     private ui.LoginPanel loginPanel1;
     private mural.MuralPanel muralPanel1;
     private mural.MuralPanel muralPanel2;

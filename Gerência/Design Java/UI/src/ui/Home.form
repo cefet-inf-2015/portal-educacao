@@ -106,6 +106,34 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="Download_Upload.LayoutInicio" name="layoutInicio1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="Download"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Download_Upload.LayoutUpload" name="layoutUpload1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="LayoutUpload"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Download_Upload.LayoutGerenciar" name="layoutGerenciar1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="LayoutGerenciar"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Download_Upload.LayoutDownload" name="layoutDownload1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="LayoutDownload"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="Baixo">
