@@ -41,7 +41,7 @@ function login() {
     modalSenha = document.querySelector('#modal1');
 	nome = modalSenha.querySelector('input[name="username"]').value;
     senha = modalSenha.querySelector('input[name="senha"]').value;
-    tipo = modalSenha.querySelector('input[name="tipoUsuario"]');
-    console.log(tipo);
-    callPage(`/Gerência/LoginPHP/Login.php?nome=${nome}&senha=${senha}&tipo=${tipo}`, document.getElementById(targetId));
+    let e = modalSenha.querySelector('#tipoUsuario');
+    tipo = e.options[e.selectedIndex].textContent;
+    callPage(`/Gerência/LoginPHP/Login.php?nome=${nome}&senha=${senha}&tipo=${tipo}`, document.getElementById('targetId'));
 }
