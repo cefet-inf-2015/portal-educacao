@@ -3,43 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tela;
-import BancoDeDados.Aluno;
-import BancoDeDados.Conexao;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Collections;
+package forum;
+
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JEditorPane;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.*;
-import java.awt.*;
-import java.sql.SQLException;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-import javax.swing.text.Document;
-import javax.xml.transform.dom.DOMSource;
-import org.w3c.dom.Element;
+
 /**
  *
- * @author Aluno
+ * @author umcan
  */
-public class TelaPrincipal extends Frame {
+public class ForumPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form TelaPrincipal
+     * Creates new form ForumPanel
      */
-    public TelaPrincipal() {
+    public ForumPanel() {
         initComponents();
     }
 
@@ -52,7 +32,6 @@ public class TelaPrincipal extends Frame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         PainelDiscussoes = new javax.swing.JPanel();
         PainelDiscussoesOrganizadas = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -64,8 +43,6 @@ public class TelaPrincipal extends Frame {
         OrganizarDiscussoes = new javax.swing.JTree();
         PagAnterior = new javax.swing.JButton();
         ProxPagina = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PainelDiscussoes.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray), "Discussões", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
         PainelDiscussoes.setLayout(new java.awt.CardLayout());
@@ -104,31 +81,16 @@ public class TelaPrincipal extends Frame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-        }
-        jTable1.setColumnSelectionAllowed(false);
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
-        jTable1.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
-        jTable1.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
-        TableRowSorter sorter = new TableRowSorter(jTable1.getModel());
-        sorter.setComparator(3, new Ordena());
-        jTable1.setRowSorter(sorter);
 
         javax.swing.GroupLayout PainelDiscussoesOrganizadasLayout = new javax.swing.GroupLayout(PainelDiscussoesOrganizadas);
         PainelDiscussoesOrganizadas.setLayout(PainelDiscussoesOrganizadasLayout);
         PainelDiscussoesOrganizadasLayout.setHorizontalGroup(
             PainelDiscussoesOrganizadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
         );
         PainelDiscussoesOrganizadasLayout.setVerticalGroup(
             PainelDiscussoesOrganizadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
         );
 
         PainelDiscussoes.add(PainelDiscussoesOrganizadas, "listathreads");
@@ -143,20 +105,21 @@ public class TelaPrincipal extends Frame {
             PainelDiscussoesExpandidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelDiscussoesExpandidasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PainelDiscussoesExpandidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MostrarDiscussoesExpandidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(PainelDiscussoesExpandidasLayout.createSequentialGroup()
-                        .addComponent(BotaoVoltarDiscussoesOrganizadas)
-                        .addGap(0, 938, Short.MAX_VALUE)))
+                .addComponent(BotaoVoltarDiscussoesOrganizadas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(MostrarDiscussoesExpandidas, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PainelDiscussoesExpandidasLayout.setVerticalGroup(
             PainelDiscussoesExpandidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelDiscussoesExpandidasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(MostrarDiscussoesExpandidas, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BotaoVoltarDiscussoesOrganizadas)
+                .addGroup(PainelDiscussoesExpandidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelDiscussoesExpandidasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(MostrarDiscussoesExpandidas, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PainelDiscussoesExpandidasLayout.createSequentialGroup()
+                        .addGap(373, 373, 373)
+                        .addComponent(BotaoVoltarDiscussoesOrganizadas)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -249,39 +212,38 @@ public class TelaPrincipal extends Frame {
 
         ProxPagina.setText("Próxima página >>");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PainelOrganizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PainelDiscussoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PagAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ProxPagina))
-                    .addComponent(PainelDiscussoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(ProxPagina))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PainelOrganizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(PainelOrganizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(PainelDiscussoes, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PagAnterior)
-                            .addComponent(ProxPagina))
-                        .addContainerGap(22, Short.MAX_VALUE))))
+                .addGap(11, 11, 11)
+                .addComponent(PainelDiscussoes, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PagAnterior)
+                    .addComponent(ProxPagina)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        System.out.println(jTable1.getSelectedRow());
+        System.out.println(jTable1.getRowSorter());
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     private void OrganizarDiscussoesValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_OrganizarDiscussoesValueChanged
         String texto = String.valueOf(evt.getPath());
@@ -291,63 +253,21 @@ public class TelaPrincipal extends Frame {
         if(path.length>2) {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             for(int i = model.getRowCount() - 1; i > -1; i--) model.removeRow(i);
-            
-            
+
             try {
                 Topicos topicos = new Topicos(String.valueOf(path[(path.length-1)]));
                 for(int i=0; i<topicos.getQuantidade(); i++) {
-                    model.addRow(new Object[]{topicos.getTitulo()[i], 
-                    topicos.getAutor()[i], topicos.getAvaliacao()[i], 
-                    topicos.getData()[i]});
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    model.addRow(new Object[]{topicos.getTitulo()[i],
+                        topicos.getAutor()[i], topicos.getAvaliacao()[i],
+                        topicos.getData()[i]});
             }
-            
+        } catch (SQLException ex) {
+            Logger.getLogger(ForumPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         }
     }//GEN-LAST:event_OrganizarDiscussoesValueChanged
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        System.out.println(jTable1.getSelectedRow());
-        System.out.println(jTable1.getRowSorter());
-        
-    }//GEN-LAST:event_jTable1MouseClicked
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-                //---------------------------------//
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoVoltarDiscussoesOrganizadas;
@@ -359,7 +279,6 @@ public class TelaPrincipal extends Frame {
     private javax.swing.JPanel PainelDiscussoesOrganizadas;
     private javax.swing.JScrollPane PainelOrganizacao;
     private javax.swing.JButton ProxPagina;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
