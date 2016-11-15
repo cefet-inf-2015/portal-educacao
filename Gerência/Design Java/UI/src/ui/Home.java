@@ -129,6 +129,7 @@ public class Home extends javax.swing.JFrame {
         muralPanel2 = new mural.MuralPanel();
         saibaMais1 = new ui.SaibaMais();
         loginPanel1 = new ui.LoginPanel();
+        forumPanel1 = new forum.ForumPanel();
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -166,11 +167,12 @@ public class Home extends javax.swing.JFrame {
 
         container.setBackground(new java.awt.Color(255, 255, 255));
         container.setLayout(new java.awt.CardLayout());
-
-        muralPanel2.setBackground(new java.awt.Color(255, 255, 255));
         container.add(muralPanel2, "Home");
         container.add(saibaMais1, "SaibaMais");
         container.add(loginPanel1, "Login");
+
+        forumPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        container.add(forumPanel1, "Forum");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
 
@@ -558,6 +560,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnProvas;
     private javax.swing.JButton btnQuestões;
     private javax.swing.JPanel container;
+    private forum.ForumPanel forumPanel1;
     private javax.swing.JLabel foto;
     private javax.swing.JLabel idUser;
     private javax.swing.JButton jButton1;
