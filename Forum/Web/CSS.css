@@ -4,14 +4,3 @@
 .mostra {
 	display: absolute;
 }
-#botao_enviar {
-	position: absolute;
-	right: 69.5%;
-	top: 140%;
-}
-
-#upload {
-	position: absolute;
-	right: 65%;
-	top: 67%;
-}

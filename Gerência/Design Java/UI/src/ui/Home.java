@@ -112,6 +112,7 @@ public class Home extends javax.swing.JFrame {
                 btnCorrecao.setEnabled(false);
             }
         }
+        muralPanel2.setNome();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,11 +124,12 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        muralPanel1 = new mural.MuralPanel();
         container = new javax.swing.JPanel();
-        Home = new javax.swing.JPanel();
+        muralPanel2 = new mural.MuralPanel();
         saibaMais1 = new ui.SaibaMais();
-        capturaFotos1 = new capturadefotos.capturaFotos();
         loginPanel1 = new ui.LoginPanel();
+        forumPanel1 = new forum.ForumPanel();
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -165,26 +167,12 @@ public class Home extends javax.swing.JFrame {
 
         container.setBackground(new java.awt.Color(255, 255, 255));
         container.setLayout(new java.awt.CardLayout());
-
-        Home.setBackground(new java.awt.Color(255, 255, 255));
-        Home.setMaximumSize(new java.awt.Dimension(90, 99));
-        Home.setMinimumSize(new java.awt.Dimension(90, 99));
-
-        javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
-        Home.setLayout(HomeLayout);
-        HomeLayout.setHorizontalGroup(
-            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1029, Short.MAX_VALUE)
-        );
-        HomeLayout.setVerticalGroup(
-            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-
-        container.add(Home, "Home");
+        container.add(muralPanel2, "Home");
         container.add(saibaMais1, "SaibaMais");
-        container.add(capturaFotos1, "Galeria");
         container.add(loginPanel1, "Login");
+
+        forumPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        container.add(forumPanel1, "Forum");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
 
@@ -469,62 +457,62 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
-        if("Entrar".equals(Login.getText())){
-           CardLayout card = (CardLayout)container.getLayout();
-           card.show(container, "Login"); 
-        }else{
-            CardLayout card = (CardLayout)container.getLayout();
-            card.show(container, "Home"); 
-            Sessao.usuario=null;
-            refresh();
-        }
-    }//GEN-LAST:event_LoginActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
         card.show(container, "SaibaMais");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnQuestõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuestõesActionPerformed
-        CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "BancoDeQuestoes");
-    }//GEN-LAST:event_btnQuestõesActionPerformed
+    private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
+        if("Entrar".equals(Login.getText())){
+            CardLayout card = (CardLayout)container.getLayout();
+            card.show(container, "Login");
+        }else{
+            CardLayout card = (CardLayout)container.getLayout();
+            card.show(container, "Home");
+            Sessao.usuario=null;
+            refresh();
+        }
+    }//GEN-LAST:event_LoginActionPerformed
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+    private void btnCorrecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrecaoActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Home");
-    }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void btnBaixarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaixarActionPerformed
-        CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Download");
-    }//GEN-LAST:event_btnBaixarActionPerformed
-
-    private void btnGaleriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaleriaActionPerformed
-        CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Galeria");
-    }//GEN-LAST:event_btnGaleriaActionPerformed
-
-    private void btnForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForumActionPerformed
-        CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Forum");
-    }//GEN-LAST:event_btnForumActionPerformed
-
-    private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
-        CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Calendario");
-    }//GEN-LAST:event_btnDataActionPerformed
+        card.show(container, "Correcao");
+    }//GEN-LAST:event_btnCorrecaoActionPerformed
 
     private void btnProvasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvasActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
         card.show(container, "Provas");
     }//GEN-LAST:event_btnProvasActionPerformed
 
-    private void btnCorrecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrecaoActionPerformed
+    private void btnQuestõesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuestõesActionPerformed
         CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Correcao");
-    }//GEN-LAST:event_btnCorrecaoActionPerformed
+        card.show(container, "BancoDeQuestoes");
+    }//GEN-LAST:event_btnQuestõesActionPerformed
+
+    private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Calendario");
+    }//GEN-LAST:event_btnDataActionPerformed
+
+    private void btnBaixarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaixarActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Download");
+    }//GEN-LAST:event_btnBaixarActionPerformed
+
+    private void btnForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForumActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Forum");
+    }//GEN-LAST:event_btnForumActionPerformed
+
+    private void btnGaleriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaleriaActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Galeria");
+    }//GEN-LAST:event_btnGaleriaActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        CardLayout card = (CardLayout)container.getLayout();
+        card.show(container, "Home");
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -561,7 +549,6 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Baixo;
-    private javax.swing.JPanel Home;
     private javax.swing.JButton Login;
     private javax.swing.JPanel Topo;
     private javax.swing.JButton btnBaixar;
@@ -572,8 +559,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnProvas;
     private javax.swing.JButton btnQuestões;
-    private capturadefotos.capturaFotos capturaFotos1;
     private javax.swing.JPanel container;
+    private forum.ForumPanel forumPanel1;
     private javax.swing.JLabel foto;
     private javax.swing.JLabel idUser;
     private javax.swing.JButton jButton1;
@@ -584,6 +571,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JToolBar jToolBar1;
     private ui.LoginPanel loginPanel1;
+    private mural.MuralPanel muralPanel1;
+    private mural.MuralPanel muralPanel2;
     private ui.SaibaMais saibaMais1;
     // End of variables declaration//GEN-END:variables
 }

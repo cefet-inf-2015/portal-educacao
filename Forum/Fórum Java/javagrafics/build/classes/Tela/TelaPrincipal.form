@@ -39,14 +39,12 @@
                   <Component id="PainelDiscussoes" max="32767" attributes="0"/>
               </Group>
           </Group>
-          <Component id="jLabel2" alignment="0" pref="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jLabel2" min="-2" pref="63" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="PainelOrganizacao" min="-2" pref="570" max="-2" attributes="0"/>
@@ -279,13 +277,6 @@
     <Component class="javax.swing.JButton" name="ProxPagina">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pr&#xf3;xima p&#xe1;gina &gt;&gt;"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagens/Titulo.png"/>
-        </Property>
       </Properties>
     </Component>
   </SubComponents>
