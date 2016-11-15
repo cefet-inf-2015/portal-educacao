@@ -134,6 +134,13 @@ public class Home extends javax.swing.JFrame {
         layoutUpload1 = new Download_Upload.LayoutUpload();
         layoutGerenciar1 = new Download_Upload.LayoutGerenciar();
         layoutDownload1 = new Download_Upload.LayoutDownload();
+        try {
+            calendario1 = new calendario.Calendario();
+        } catch (java.lang.NoSuchFieldException e1) {
+            e1.printStackTrace();
+        } catch (java.lang.IllegalAccessException e2) {
+            e2.printStackTrace();
+        }
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -181,6 +188,7 @@ public class Home extends javax.swing.JFrame {
         container.add(layoutUpload1, "LayoutUpload");
         container.add(layoutGerenciar1, "LayoutGerenciar");
         container.add(layoutDownload1, "LayoutDownload");
+        container.add(calendario1, "Calendario");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
 
@@ -567,6 +575,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnProvas;
     private javax.swing.JButton btnQuestões;
+    private calendario.Calendario calendario1;
     private javax.swing.JPanel container;
     private forum.ForumPanel forumPanel1;
     private javax.swing.JLabel foto;
