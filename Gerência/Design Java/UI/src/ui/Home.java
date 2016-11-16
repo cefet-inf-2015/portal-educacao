@@ -5,6 +5,7 @@
  */
 package ui;
 
+import chat.Check;
 import galeria.Galeria;
 import java.awt.CardLayout;
 import java.awt.Image;
@@ -28,6 +29,7 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    public static JLabel notificacao;
     public Home() {
         super("Portal Educação");
         try {
@@ -39,6 +41,8 @@ public class Home extends javax.swing.JFrame {
            Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);  
         this.setIconImage(iconeTitulo);
         initComponents();
+        notificacao= jLabel5;
+        jLabel5.setVisible(false);
         if(Sessao.usuario==null){
             Login.setText("Entrar");
             btnData.setEnabled(false);
@@ -51,6 +55,7 @@ public class Home extends javax.swing.JFrame {
             btnCorrecao.setText("<html><font color=black>Correção</font></html>");
         }
         refresh();
+        new Thread(new Check()).start();
         /*
         //Desabilitar Botão
         btnHome.setText("<html><font color=black>Home</font></html>");
@@ -110,7 +115,9 @@ public class Home extends javax.swing.JFrame {
             card.show(container, "Home");
             if(Sessao.isAluno()){
                 btnProvas.setEnabled(false);
+                btnProvas.setText("<html><font color=black>Provas</font></html>");
                 btnCorrecao.setEnabled(false);
+                btnCorrecao.setText("<html><font color=black>Correção</font></html>");
             }
         }
         muralPanel2.setNome();
@@ -143,7 +150,6 @@ public class Home extends javax.swing.JFrame {
             e2.printStackTrace();
         }
         interfacePrincipal1 = new correcao.InterfacePrincipal();
-        panelCorrecao1 = new correcao.PanelCorrecao();
         provaOff1 = new correcao.ProvaOff();
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -164,6 +170,7 @@ public class Home extends javax.swing.JFrame {
         Login = new javax.swing.JButton();
         idUser = new javax.swing.JLabel();
         foto = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -194,7 +201,6 @@ public class Home extends javax.swing.JFrame {
         container.add(layoutDownload1, "LayoutDownload");
         container.add(calendario1, "Calendario");
         container.add(interfacePrincipal1, "Correcao");
-        container.add(panelCorrecao1, "PanelCorrecao");
         container.add(provaOff1, "ProvaOff");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
@@ -424,6 +430,11 @@ public class Home extends javax.swing.JFrame {
         foto.setPreferredSize(new java.awt.Dimension(10, 10));
         foto.setRequestFocusEnabled(false);
 
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("jLabel5");
+
         javax.swing.GroupLayout TopoLayout = new javax.swing.GroupLayout(Topo);
         Topo.setLayout(TopoLayout);
         TopoLayout.setHorizontalGroup(
@@ -439,7 +450,9 @@ public class Home extends javax.swing.JFrame {
                         .addGap(66, 66, 66)
                         .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(TopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Login, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         TopoLayout.setVerticalGroup(
@@ -454,7 +467,10 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(idUser)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(TopoLayout.createSequentialGroup()
+                                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -592,6 +608,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JToolBar jToolBar1;
     private Download_Upload.LayoutDownload layoutDownload1;
@@ -601,7 +618,6 @@ public class Home extends javax.swing.JFrame {
     private ui.LoginPanel loginPanel1;
     private mural.MuralPanel muralPanel1;
     private mural.MuralPanel muralPanel2;
-    private correcao.PanelCorrecao panelCorrecao1;
     private correcao.ProvaOff provaOff1;
     private ui.SaibaMais saibaMais1;
     // End of variables declaration//GEN-END:variables
