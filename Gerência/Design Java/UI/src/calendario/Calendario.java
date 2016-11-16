@@ -84,7 +84,33 @@ public class Calendario extends javax.swing.JPanel {
         }
     }
     
+    private void checkaEventos(){
+        int I;
+        for(I=0; I<42; I++){
+            if(!block[I].getText().equals("")){
+                break;
+            }
+        }
+        I--;
+        Conexao c = new Conexao();
+        try {
+            c.conectar("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "calendario");
+            String dia;
+            ResultSet res = c.enviarQueryResultados("SELECT * FROM eventos WHERE ano='" + data.getYear() + "' AND mes='" + data.getMonthValue() + "' ORDER BY hora ASC");
+            while(!res.isAfterLast()){
+                dia=res.getString("dia");
+                block[I+Integer.parseInt(dia)].getParent().setBackground(Color.blue);
+                block[I+Integer.parseInt(dia)].setBackground(new Color(204,204,204));
+                res.next();
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Calendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void exibeData(LocalDate data) {
+        
         //Seta a data para o primeiro dia do mês
         data = data.withDayOfMonth(1);
         //Pega o dia da semana em que o mês começa
@@ -142,29 +168,7 @@ public class Calendario extends javax.swing.JPanel {
             auxd++;
             dia++;
         }
-        checkarEventos();
-    }
-    
-    private void checkarEventos(){
-        int I;
-        for(I=0; I<42; I++){
-            if(!block[I].getText().equals("")){
-                break;
-            }
-        }
-        I--;
-        Conexao c = new Conexao();
-        try {
-            c.conectar("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "calendario");
-            String dia;
-            ResultSet res = c.enviarQueryResultados("SELECT * FROM eventos WHERE ano='" + data.getYear() + "' AND mes='" + data.getMonthValue() + "' ORDER BY hora ASC");
-            while(!res.isAfterLast()){
-                dia=res.getString("dia");
-                block[I+Integer.parseInt(dia)].getParent().setBackground(Color.blue);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Calendario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        checkaEventos();
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -1986,6 +1990,7 @@ public class Calendario extends javax.swing.JPanel {
         //Esvazia o calendário
         for(int x=0; x<42; x++) {
             block[x].setText("");
+            block[x].getParent().setBackground(new Color(204,204,204));
         }
         //Capta o dado inserido pelo usuário
         String sData[] = jTextField3.getText().split("/");

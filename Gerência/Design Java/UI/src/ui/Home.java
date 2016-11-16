@@ -92,7 +92,7 @@ public class Home extends javax.swing.JFrame {
         btnCorrecao.setText("Correção");
         Login.setText("Sair");
         if(Sessao.usuario!=null){
-            ImageIcon ft = new ImageIcon(Sessao.usuario.getFoto().getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_SMOOTH));
+            ImageIcon ft = new ImageIcon(Sessao.usuario.getFoto().getImage().getScaledInstance((int) (foto.getWidth()*0.75), foto.getHeight(), Image.SCALE_SMOOTH));
             foto.setIcon(ft);
             idUser.setText(getFraseTempo()+ ", "+Sessao.usuario.getPrimeiroNome());
         }
@@ -151,6 +151,7 @@ public class Home extends javax.swing.JFrame {
         }
         interfacePrincipal1 = new correcao.InterfacePrincipal();
         provaOff1 = new correcao.ProvaOff();
+        modelo1 = new modeloDeProvas.Modelo();
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -202,6 +203,7 @@ public class Home extends javax.swing.JFrame {
         container.add(calendario1, "Calendario");
         container.add(interfacePrincipal1, "Correcao");
         container.add(provaOff1, "ProvaOff");
+        container.add(modelo1, "Provas");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
 
@@ -616,6 +618,7 @@ public class Home extends javax.swing.JFrame {
     private Download_Upload.LayoutInicio layoutInicio1;
     private Download_Upload.LayoutUpload layoutUpload1;
     private ui.LoginPanel loginPanel1;
+    private modeloDeProvas.Modelo modelo1;
     private mural.MuralPanel muralPanel1;
     private mural.MuralPanel muralPanel2;
     private correcao.ProvaOff provaOff1;
