@@ -1,22 +1,31 @@
 package calendario;
 
+import BancoDeDados.Conexao;
 import calendario.Formulario;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JLabel;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 public class Calendario extends javax.swing.JPanel {
     /*Contêm os Labels dos blocos do calendário*/
-    private  JLabel[] block;
+    public JLabel[] block;
     /*Recebe os dados para inserção de atividade*/
     private Formulario form;
     /*Contêm a data inserida no calendário*/
-    private LocalDate data;
+    public LocalDate data;
     
+    public JLabel diaSelec;
+    public JTextArea ativ;
     public Calendario() throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
         //Inicia a interface
         initComponents();
+        ativ = jTextArea1;
         /*Ultra Mega Hyper Gambiarra por conta da p***a do Netbeans que não me deixa alterar as coisas*/
         block = new JLabel[42];
         block[0] = lBlock1;
@@ -68,6 +77,10 @@ public class Calendario extends javax.swing.JPanel {
         jTextField3.setText(sData[1]+sData[0]);
         //Chama exibição dos dias do calendário
         exibeData(data);     
+        //Adiciona o Action Listener às datas
+        for(int I=0; I<42; I++){
+            block[I].addMouseListener(new ListenerData());
+        }
     }
     
     private void exibeData(LocalDate data) {
@@ -1973,7 +1986,40 @@ public class Calendario extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        int I;
+        for(I=0; I<42; I++){
+            if(!block[I].getText().equals("")){
+                break;
+            }
+        }
+        I--;
+        Conexao c = new Conexao();
+        try {
+            c.conectar("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "calendario");
+            String eventos="";
+            String dia;
+            String ultimaHora="";
+            String subHora="";
+            ResultSet res = c.enviarQueryResultados("SELECT * FROM eventos WHERE ano='" + data.getYear() + "' AND mes='" + data.getMonthValue() + "' ORDER BY hora ASC");
+            while(!res.isAfterLast()){
+                dia=res.getString("dia");
+                if(block[I+Integer.parseInt(dia)]==diaSelec && (res.getString("atividade").equals(jTextField1.getText()) || jTextField1.getText().equals("")) && (res.getString("materia").equals(jTextField2.getText()) || jTextField2.getText().equals(""))){
+                    if(!res.getString("hora").substring(0, 5).equals(ultimaHora)){
+                        subHora = res.getString("hora").substring(0, 5);
+                        ultimaHora=subHora;
+                        eventos+=subHora+"\n";
+                    }
+                    eventos+=res.getString("atividade") + " - " + res.getString("descricao") + " - " + res.getString("materia") + "\n";
+                }
+                res.next();
+            }
+            ativ.setText(eventos);
+            System.out.println("Filtrou");
+            System.out.println(eventos);
+        } catch (SQLException ex) {
+            Logger.getLogger(Calendario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

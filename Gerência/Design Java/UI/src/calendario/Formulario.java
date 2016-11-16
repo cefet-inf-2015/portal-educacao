@@ -1,5 +1,16 @@
 package calendario;
 
+import BancoDeDados.Conexao;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -7,6 +18,10 @@ import javax.swing.JOptionPane;
 public class Formulario extends javax.swing.JFrame {
 
     public Formulario() {
+        super("Inserir Evento");
+        URL url = this.getClass().getResource("logo.png");  
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);  
+        this.setIconImage(iconeTitulo);
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -241,6 +256,15 @@ public class Formulario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Hora inserida inválida!!!","                                      Alerta",
             JOptionPane.ERROR_MESSAGE,new ImageIcon("img.jpg"));
         }
+        //BD
+        Conexao c = new Conexao();
+        c.conectar("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "calendario");
+        try {
+            c.enviarQuery("INSERT INTO eventos VALUES('" + jTextField1.getText() + "','" + sData[2] + "','" + sData[1] + "','" + sData[0] + "','" + sHora[0] + ":" + sHora[1] + ":00','"+jTextField2.getText()+ "','" + jTextField5.getText()+"')");
+        } catch (SQLException ex) {
+            Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
