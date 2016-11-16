@@ -1,17 +1,20 @@
 <?php
+ob_start();
 class Usuario {
 	public $primeiroNome;
 	public $ultimoNome;
 	public $nickname;
 	public $foto;
 	public $numeroMatricula;
+	public $permissao;
 
-	public function __construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula) {
+	public function __construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, $permissao) {
 		$this->primeiroNome = $primeiroNome;
 		$this->ultimoNome = $ultimoNome;
 		$this->nickname = $nickname;
 		$this->foto = $foto;
 		$this->numeroMatricula = $numeroMatricula;
+		$this->permissao = $permissao;
 	}
 
 
@@ -62,7 +65,7 @@ class Aluno extends Usuario {
 	public $divisaoTurma;
 
 	public function __construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, $turma, $divisao) {
-		parent::__construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula);
+		parent::__construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, 0);
 		$this->turma=$turma;
 		$divisaoTurma=$divisao;
 	}
@@ -86,7 +89,7 @@ class Aluno extends Usuario {
  class Professor extends Usuario{
 	public $turmas = Array();
 	public function __construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, $turmas) {
-		parent::__construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula);
+		parent::__construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, 1);
 		$this->turmas=$turmas;
 	}
 	function getTurmas() {
@@ -99,14 +102,14 @@ class Aluno extends Usuario {
  }
  class Diretor extends Usuario{
    public function __construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula) {
-         parent::__construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula);
+         parent::__construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, 3);
    }
  }
  class Coordenador extends Usuario{
     public $cursos= Array();
    
-	public function __construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, $cursos) {
-		parent::__construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula);
+	public function __construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, $cursos, $permissao) {
+		parent::__construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, 2);
 		$this->cursos=$cursos;
 	}
 
@@ -140,7 +143,7 @@ class Login {
 			$tabela = $tipo . 'es';
 		}
 		$senha = md5($senha);
-		$query ="SELECT primeiroNome, ultimoNome, username FROM $tabela WHERE username='$username' AND senha='$senha'";
+		$query ="SELECT * FROM $tabela WHERE username='$username' AND senha='$senha'";
 		//$resultado = mysqli_query(self::$conexao, $query);
 		$resultado = self::$conexao->query($query);
 		//Recupera os dados binários da foto
@@ -149,6 +152,7 @@ class Login {
 			return false;
 		}
 		$dados = $resultado->fetch_assoc();
+		$dados['foto'] = NULL;
 		//Cria variavel usuario
 		$usuario = null;
 		switch($tipo) {
@@ -159,7 +163,8 @@ class Login {
 						$dados["foto"],
 						$dados["matricula"],
 						$dados["turma"],
-						$dados["divisao"]);
+						$dados["divisao"]
+					);
 				break;
 
 			case 'Diretor':
@@ -167,7 +172,8 @@ class Login {
 						$dados["ultimoNome"],
 						$dados["username"],
 						$dados["foto"],
-						$dados["matricula"]);
+						$dados["matricula"]
+					);
 				break;
 			case 'Professor':
 				$usuario = new Professor($dados["primeiroNome"], 
@@ -175,7 +181,8 @@ class Login {
 						$dados["username"],
 						$dados["foto"],
 						$dados["matricula"],
-						explode(',' , $dados["turmas"]));
+						explode(',' , $dados["turmas"])
+					);
 				break;
 
 			case 'Coordenador':
@@ -184,7 +191,8 @@ class Login {
 						$dados["username"],
 						$dados["foto"],
 						$dados["matricula"],
-						explode(',' , $dados["cursos"]));
+						explode(',' , $dados["cursos"])
+				);
 		}
 		
 		return $usuario;

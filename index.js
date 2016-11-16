@@ -2,7 +2,15 @@ $(document).ready(function() {
 	$(".dropdown-button").dropdown();
 	$('.modal-trigger').leanModal();
 	$('select').material_select();
-    document.querySelector('#loginBtn').addEventListener('click', login, false);
+    let botao;
+    if ( document.querySelector("#logOutBtn") != null) {
+        botao = document.querySelector("#logOutBtn");
+        botao.addEventListener('click', logOut, false);
+    }
+    else {
+        botao = document.querySelector('#loginBtn');
+        botao.addEventListener('click', login, false);
+    }
 });
 
 function AjaxCaller(){
@@ -34,6 +42,12 @@ function callPage(url, div){
         }
     }
     ajax.send(null);
+}
+
+function logOut() {
+    callPage(`/Gerência/LoginPHP/Logout.php`, document.querySelector('#msgSaiu'));
+    //window.location.reload(true);
+    setTimeout( () => {window.location.reload(true);}, 500);
 }
 
 function login() {

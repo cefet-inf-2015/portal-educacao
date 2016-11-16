@@ -72,17 +72,18 @@
           <label for="senha">Senha</label>
           <input type="password" name="senha">
           <label for="tipoUsuario">Tipo de usuário</label>
-          <select name="tipoUsuario">
+          <select name="tipoUsuario" id="tipoUsuario">
             <option value="" disabled selected>Tipo de Usuario</option>
             <option value="1">Aluno</option>
             <option value="2">Professor</option>
             <option value="3">Coordenador</option>
             <option value="4">Diretor</option>
           </select>
-          <button class="col s12 btn-flat waves-effect waves-light green white-text" type="submit" name="action">Entrar
+          <button class="col s12 btn-flat waves-effect waves-light green white-text" type="button" name="action" id="loginBtn">Entrar
               <i class="material-icons right">input</i>
             </button>
         </form>
+        <div id="targetId"></div>
 
       </div>
     </div>
