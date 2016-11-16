@@ -6,11 +6,11 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
             <!-- CSS  -->
-            <link href="CSS.css" rel="stylesheet">
+            <link href="../CSS.css" rel="stylesheet">
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link href="../../styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-            <link href="../../styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-            <link rel="icon" href="../../imgs/logo.png" >
+            <link href="../../../styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+            <link href="../../../styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+            <link rel="icon" href="../../../imgs/logo.png" >
             <style type="text/css">
                 body {
                     display: flex;
@@ -23,7 +23,7 @@
             </style>
         </head>
 
-        <body onload="Perfil(0)">
+        <body onload="Perfil(0); CarregaTopicos('Matemática')">
             <nav class="light-blue darken-4" role="navigation">
                 <div class="nav-wrapper container">
 
@@ -31,7 +31,7 @@
                         <br>
                         <li>
                             <div class="logo">
-                                <img class="background center-block responsive" src="../../imgs/logo.png">
+                                <img class="background center-block responsive" src="../../../imgs/logo.png">
                             </div>
                         </li>
                         <br>
@@ -95,50 +95,94 @@
             <div>
             
             </div>
-<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-			<div class="section no-pad-bot" id="index-banner">
-		    	<div class="container">
-		    	  	<br><br>
-		    	  	<a href="Fórum.html"><h1 class="header center blue-text text-darken-4">Fórum</h1></a>
-		    	  	<div class="row center">
-		    	  	  	<h5 class="header col s12 light">Fórum para discussões</h5>
-		    	  	</div>
-		    	  	<br><br>
-		    	</div>
-		  	</div>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <div class="section no-pad-bot" id="index-banner">
+                <div class="container">
+                    <br><br>
+                    <a href="../Fórum.html"><h1 class="header center blue-text text-darken-4">Fórum</h1></a>
+                    <div class="row center">
+                        <h5 class="header col s12 light">Fórum para discussões</h5>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
 
-			<!-- Página para Criação do Tópico! -->
-			<div class="container">
-				<div class="section">
-					<div class="row">
-						<div class="input-field col s6">
-							<form action="envia.php" method="post" id="criaTopico">
-								<dl><class="titulo">
-									<legend>Título: </legend>
-									<input type="text" name="titulo" placeholder="Título do Tópico..." value=""/>
-								</dl>
-								<legend>Campo de texto: </legend>
-								<textarea id="campoTexto" form="criaTopico"></textarea> 
-								<div class="file-field input-field">
-									<div class="blue darken-4 btn">
-										<span><i class="material-icons right">publish</i>Upload</span>
-										<input type="file">
-									</div>
-									<div class="file-path-wrapper">
-										<input class="file-path validate" type="text">
-									</div>
-								</div>
-								<div id="botao_enviar">
-									<a class="waves-effect waves-light blue darken-4 btn"><i class="material-icons right">send</i><input type="submit" name="enviar"></a>
-								</div>
-							</form>
-						</div>
+            <div class="container">
+                <div class="section">
+                    <div class="row">
+                        <div class="col s7">
+                            <h4 class="light-blue-text text-darken-3 center-align"> Matématica  
+        <a href="../Pag_do_Topico.php" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a></h4>
+                            <table class="highlight">
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Data</th>
+                                        <th>Respostas</th>
+                                        <th>Autor</th>
+                                    </tr>
+                                </thead>
 
-						<div class="col s6">
-                            <div class="col s12 m7">
+                                <tbody id="Topicos">
+                                    <form action="../MostraTopico.php" method="post" name="acessar">
+                                    <input type="hidden" id="titulo" name="tituloo" value="teste">
+
+                                    <script type="text/javascript">
+
+                                        function envia(titulo) {
+
+                                            document.getElementById("titulo").value = titulo;
+
+                                          document.acessar.submit();
+                                            
+                                            
+                                        }
+                                    </script>
+            <?php 
+              //
+
+              $dbhost = 'cefet-inf-2015.ddns.net:43306'; // endereco do servidor de banco de dados
+              $dbuser = 'root'; // login do banco de dados
+              $dbpass = 'apenasinf-2015'; // senha
+              $dbname = 'bdforum'; // nome do banco de dados a ser usado
+              $conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
+              $seleciona = @mysql_select_db($dbname);
+
+              $consulta = mysql_query('select * from Matematica where comentario=0 order by Data desc');
+
+
+
+              // envia a categoria
+              
+              $categoriavet =  explode("/",$_SERVER['PHP_SELF']);
+              $categoria = explode(".", end($categoriavet));
+              $aux =current($categoria);
+              echo "<input type=\"hidden\" name=\"categoria\" value=\"$aux\">";
+
+              // mostra os tópicos
+
+              while($conteudo=mysql_fetch_array($consulta)){
+
+                  $titulo= $conteudo['Titulo'];
+
+                  $result = mysql_query("select count(*) from Matematica where Titulo='$titulo' and Comentario=1");//conta o numero de respostas
+                 
+                
+                  echo "<tr><input type=\"hidden\" id=\"tit\" name=\"titulo\"><td><a href=\"#\" onclick=\"envia('".$titulo."')\">". $conteudo['Titulo'] . "</td><td>" . $conteudo['Data'] . "</td><td>" . mysql_result($result, 0) . "</td><td>". $conteudo['Autor'] . "</a></td></tr>";
+
+              } 
+             ?>
+
+             </form>
+                                </tbody>
+                            </table>
+                        </div>
+                  
+                        <div class="col s5">
+                            <div class="col s12 m10">
                                 <div class="card horizontal">
-                                    <div class="card-image">
-                                        <img src="Squirtle.png">
+                                    <div onmouseover="document.getElementById('tit').value=$titulo" class="card-image">
+                                        <img src="../Squirtle.png">
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content">
@@ -165,11 +209,12 @@
                                 </div>
                             </div>
                         </div>
-					</div>
-				</div>
-			</div>
-<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-			<footer class="page-footer blue">
+
+                    </div>
+                </div>
+            </div>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <footer class="page-footer blue">
                 <div class="container">
                     <div class="row">
                         <div class="col l6 s12">
@@ -207,13 +252,9 @@
 
             <!--  Scripts-->
             <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-            <script src="../../template/js/materialize.js"></script>
-            <script src="../../template/js/init.js"></script>
-            <script src="../../index.js"></script>
-            <script type="text/javascript" src="Script.js"></script>
+            <script src="../../../template/js/materialize.js"></script>
+            <script src="../../../template/js/init.js"></script>
+            <script src="../../../index.js"></script>
+            <script type="text/javascript" src="../Script.js"></script>
         </body>
     </html>
-
-
-
-
