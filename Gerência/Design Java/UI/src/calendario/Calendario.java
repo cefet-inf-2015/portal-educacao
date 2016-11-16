@@ -2,6 +2,7 @@ package calendario;
 
 import BancoDeDados.Conexao;
 import calendario.Formulario;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JLabel;
@@ -140,6 +141,29 @@ public class Calendario extends javax.swing.JPanel {
             block[dia].setText(Integer.toString(auxd));
             auxd++;
             dia++;
+        }
+        checkarEventos();
+    }
+    
+    private void checkarEventos(){
+        int I;
+        for(I=0; I<42; I++){
+            if(!block[I].getText().equals("")){
+                break;
+            }
+        }
+        I--;
+        Conexao c = new Conexao();
+        try {
+            c.conectar("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "calendario");
+            String dia;
+            ResultSet res = c.enviarQueryResultados("SELECT * FROM eventos WHERE ano='" + data.getYear() + "' AND mes='" + data.getMonthValue() + "' ORDER BY hora ASC");
+            while(!res.isAfterLast()){
+                dia=res.getString("dia");
+                block[I+Integer.parseInt(dia)].getParent().setBackground(Color.blue);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Calendario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

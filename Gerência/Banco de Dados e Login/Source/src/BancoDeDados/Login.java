@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.ImageIcon;
+import ssh.SSH;
 
 /**
  *
@@ -51,6 +52,12 @@ public class Login {
 		sen = hash.toString(16);			
 		return sen;
     }
+    
+    private static ImageIcon baixarFoto(String path){
+        String arquivo[] = path.split("\\/");
+        SSH.baixarArquivo("cefet-inf-2015.ddns.net", "root", "apenasinf-2015", path, arquivo[arquivo.length-1]);
+        return new ImageIcon(arquivo[arquivo.length-1]);
+    }
 
     /**
      * Realiza o login de um aluno
@@ -64,14 +71,12 @@ public class Login {
     public static Aluno logarAluno(String username, String senha, String tabela) throws SQLException {
         ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + md5(senha) + "\'");
         resultado.first();
-        //Recupera os dados binários da foto
-        Blob blob = resultado.getBlob("foto");
         //Instancia um novo usuário com os dados recuperados do Banco de Dados
         Aluno usuario;
         usuario = new Aluno(resultado.getString("primeiroNome"), 
                 resultado.getString("ultimoNome"),
                 resultado.getString("username"),
-                new ImageIcon(blob.getBytes(1, (int) blob.length())),
+                baixarFoto(resultado.getString("foto")),
                 resultado.getString("matricula"),
                 resultado.getString("turma"),
                 resultado.getString("divisao"));
@@ -90,13 +95,11 @@ public class Login {
     public static Diretor logarDiretor(String username, String senha, String tabela) throws SQLException {
         ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + md5(senha) + "\'");
         resultado.first();
-        //Recupera os dados binários da foto
-        Blob blob = resultado.getBlob("foto");
         //Instancia um novo usuário com os dados recuperados do Banco de Dados
         Diretor usuario = new Diretor(resultado.getString("primeiroNome"), 
                               resultado.getString("ultimoNome"), 
                               resultado.getString("username"), 
-                              new ImageIcon(blob.getBytes(1, (int) blob.length())), 
+                              baixarFoto(resultado.getString("foto")),
                               resultado.getString("matricula"));
         resultado.close();
         return usuario;
@@ -112,14 +115,12 @@ public class Login {
     public static Professor logarProfessor(String username, String senha, String tabela) throws SQLException {
         ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + md5(senha) + "\'");
         resultado.first();
-        //Recupera os dados binários da foto
-        Blob blob = resultado.getBlob("foto");
         //Instancia um novo usuário com os dados recuperados do Banco de Dados
         Professor usuario;
         usuario = new Professor(resultado.getString("primeiroNome"), 
                 resultado.getString("ultimoNome"),
                 resultado.getString("username"),
-                new ImageIcon(blob.getBytes(1, (int) blob.length())),
+                baixarFoto(resultado.getString("foto")),
                 resultado.getString("matricula"),
                 new ArrayList(Arrays.asList(resultado.getString("turmas").split(","))));
         resultado.close();
@@ -137,13 +138,11 @@ public class Login {
     public static Coordenador logarCoordenador(String username, String senha, String tabela) throws SQLException {
         ResultSet resultado = conexao.enviarQueryResultados("SELECT * FROM " + tabela + " WHERE username=\'" + username + "\' AND senha=\'" + md5(senha) + "\'");
         resultado.first();
-        //Recupera os dados binários da foto
-        Blob blob = resultado.getBlob("foto");
         //Instancia um novo usuário com os dados recuperados do Banco de Dados
         Coordenador usuario = new Coordenador(resultado.getString("primeiroNome"), 
                               resultado.getString("ultimoNome"), 
                               resultado.getString("username"), 
-                              new ImageIcon(blob.getBytes(1, (int) blob.length())), 
+                              baixarFoto(resultado.getString("foto")),
                               resultado.getString("matricula"),
                               new ArrayList(Arrays.asList(resultado.getString("cursos").split(","))));
         resultado.close();
