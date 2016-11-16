@@ -1,8 +1,7 @@
 <?php
-	//incluindo cabecalho
 	include('cabecalho.html');
 
-	//Pegando dados via POST
+	//Pega os dados via POST.
 	$estilo = $_POST['estilo-inserir'];
 	$nivel = $_POST['nivel-inserir'];
 	$disciplina = $_POST['disciplina-inserir'];
@@ -11,42 +10,42 @@
     $gabarito = $_POST['gabarito-inserir'];
     $criador = $_SERVER['SERVER_ADMIN'];
     
-    //Se questao for multipla escolha
+    //Se o estilo da questao escolhida for ME.
     if($estilo==0){    	
-    	//Gerando XML
+    	//Gera o XML.
     	$GLOBALS['xml'] = "<questao tipo=\"\"ME\"\" aleatorio=\"\"true\"\">
     			<dificuldade>".$GLOBALS['nivel']."</dificuldade> <!--dificuldade(1 a 3) -->
         		<materia>".$GLOBALS['disciplina']."</materia> <!--Materia -->
         		<conteudo>".$GLOBALS['tema']."</conteudo> <!--Conteudo -->
         		<enunciado>".$GLOBALS['cabecalho']."</enunciado> <!--enunciado -->";
         		
-        //Pegando Alternativas em Array
+        //Pega as alternativas em um Array.
     	$alternativa = array();
+    	$radio = $_POST['rdio'];
     	for($i=0; $i<=4; $i++){
 			if(array_key_exists('alternativa'.$i, $_POST)){
 				$alternativa[$i] = $_POST['alternativa'.$i];
-				$GLOBALS['xml'] .= "<alternativa>".$alternativa[$i]."</alternativa>";
+				if('rdio'+$i==$radio){
+					$GLOBALS['xml'] .= "<alternativa correta=\"\"true\"\">";
+					$GLOBALS['xml'] .= $alternativa[$i]."</alternativa>";
+				}else{
+					$GLOBALS['xml'] .= "<alternativa correta=\"\"false\"\">";	
+					$GLOBALS['xml'] .= $alternativa[$i]."</alternativa>";
+				}
 			}
-			
 		}
-		
-		//Pegando resposta certa
-		$GLOBALS['xml'] .= "<alternativa correta=\"\"true\"\">".$gabarito."</alternativa>";
-		
-		//fechando XML
-		$GLOBALS['xml'] .= "</questao>";
 	}
 	
-	//Se questao for VF
+	//Se o estilo da questao escolhida for VF.
     if($estilo==1){    	
-    	//Gerando XML
+    	//Gera o XML.
     	$GLOBALS['xml'] = "<questao tipo=\"\"VF\"\" aleatorio=\"\"true\"\">
     			<dificuldade>".$GLOBALS['nivel']."</dificuldade> <!--dificuldade(1 a 3) -->
         		<materia>".$GLOBALS['disciplina']."</materia> <!--Materia -->
         		<conteudo>".$GLOBALS['tema']."</conteudo> <!--Conteudo -->
         		<enunciado>".$GLOBALS['cabecalho']."</enunciado> <!--enunciado -->";
         		
-        //Pegando Alternativas em Array
+        //Pega as alternativas em um Array.
     	$alternativa = array();
     	for($i=0; $i<=4; $i++){
 			if(array_key_exists('alternativa'.$i, $_POST)){
@@ -56,29 +55,24 @@
 				}else{
 					$GLOBALS['xml'] .= "<alternativa>".$alternativa[$i]."</alternativa>";
 				}
-			}
-			
+			}	
 		}
-		
-		
-		//fechando XML
-		$GLOBALS['xml'] .= "</questao>";
 	}
 	
-	//Se questao for aberta
+	//Se o estilo da questao escolhida for 'aberta'.
     if($estilo==2){    	
-    	//Gerando XML
+    	//Gera o XML.
     	$GLOBALS['xml'] = "<questao tipo=\"\"aberta\"\" aleatorio=\"\"true\"\">
     			<dificuldade>".$GLOBALS['nivel']."</dificuldade> <!--dificuldade(1 a 3) -->
         		<materia>".$GLOBALS['disciplina']."</materia> <!--Materia -->
         		<conteudo>".$GLOBALS['tema']."</conteudo> <!--Conteudo -->
         		<enunciado>".$GLOBALS['cabecalho']."</enunciado> <!--enunciado -->";
-
-		//fechando XML
-		$GLOBALS['xml'] .= "</questao>";
 	}
 
-    //Conectando e escrevendo no BD
+	//Fecha o XML.
+	$GLOBALS['xml'] .= "</questao>";
+
+    //Conecta e escreve no banco de dados.
     $conexao = new PDO('mysql:host=localhost; dbname=banco_de_questoes', 'phpmyadmin', 'o9rtjh88');    
     $sql = "INSERT INTO questoes VALUES ('', '".$disciplina."', '".$tema."', ".$nivel.", ".$estilo.", \"".$GLOBALS['xml']."\", '".$criador."')";
 	
@@ -89,10 +83,11 @@
 		$msg = "Questão não inserida!";
 	}
 	
-	echo "<div class=\"row center\"><h5 class=\"header col s12 light\">".$msg."</h5>
-			<a class=\"waves-effect waves-light btn light-blue darken-4\" href=\"BancoDeQuestoes.php\"
-			 id=\"inserir\">Voltar<i class=\"tiny material-icons white-text text-darken-1\">replay</i></a>
-			 </div>";
+	echo "<div class=\"row center\"><h5 class=\"header col s12 light\">".$msg."</h5><br><br>
+		    <a class=\"waves-effect waves-light btn light-blue darken-4\" href=\"BancoDeQuestoes.php\"
+			  id=\"inserir\">Voltar<i class=\"tiny material-icons white-text text-darken-1\">replay</i>
+			</a>
+		  </div><br><br>";
 	
 	include('rodape.html')
 ?>
