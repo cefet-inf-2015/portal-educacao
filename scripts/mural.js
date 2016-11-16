@@ -7,9 +7,32 @@ let dataAtual = null,
 window.onload=function(){
 	dataAtual = new Date();
 
-	document.querySelector("#teste").addEventListener('click', posta, false);
-	document.querySelector("#like").addEventListener('click', curtir, false);
+	//document.querySelector("#teste").addEventListener('click', posta, false);
+	//document.querySelector("#like").addEventListener('click', curtir, false);
 		
+}
+
+function sendBD() {
+	let dataPostagem = new Date(),
+		segundos = dataPostagem.getSeconds(),
+		minutos = dataPostagem.getMinutes(),
+		horas = dataPostagem.getHours(),
+		dia = dataPostagem.getDate(),
+		mes = dataPostagem.getMonth()+1,
+		ano = dataPostagem.getFullYear(),
+		dataPostString = "",
+		texto = document.querySelector("#post").value,
+	//		nomeUsuario = getPrimeiroNome() + " " + getUltimoNome(),
+	//		fotoUsuario = getFoto(),
+		imgPost = document.querySelector("#file_path").value;
+		if(dia<10) {
+			dia='0'+dia
+		} 
+		if(mes<10) {
+		    mes='0'+mes
+		}
+		dataPostString = dia+"/"+mes+"/"+ano+" às "+horas+":"+minutos+":"+segundos 	
+    window.location.href = "UploadBD.php?texto="+texto+"&dataPostString="+dataPostString;
 }
 
 function curtir(){
