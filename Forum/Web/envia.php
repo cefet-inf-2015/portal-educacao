@@ -8,12 +8,13 @@ $dbname = 'bdforum'; // nome do banco de dados a ser usado
 $nome = $_POST["titulo"];
 $data= date('d/m/Y');
 $conteudo = $_POST["pergunta"];
-
+$comentario = $_POST["comentario"];
+$categoria = $_POST["categoria"];
 
 $conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
 $seleciona = @mysql_select_db($dbname);
 echo $nome;
-$sqlinsere= "INSERT INTO Matematica ( Titulo,Conteudo,Data,Comentario) VALUES ('$nome','$conteudo','$data','0')";
+$sqlinsere= "INSERT INTO $categoria ( Titulo,Conteudo,Data,Comentario) VALUES ('$nome','$conteudo','$data','$comentario')";
 
 
 $inseretabela = @mysql_query( $sqlinsere, $conecta );

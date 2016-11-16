@@ -108,91 +108,114 @@
 		  	</div>
 		  	<div>
 
-				<div class="container">
-					<div class="grid-example col s12 m6">
-						<div class="card-panel">
+				<?php
+				$dbhost = 'cefet-inf-2015.ddns.net:43306'; // endereco do servidor de banco de dados
+				$dbuser = 'root'; // login do banco de dados
+				$dbpass = 'apenasinf-2015'; // senha
+				$dbname = 'bdforum'; // nome do banco de dados a ser usado
+				$categoria = $_POST["categoria"];
+				$titulo = $_POST["tituloo"]; 
+				$conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
+                $seleciona = @mysql_select_db($dbname);
+                
+
+				$idname = 0;
+				$idmatricula = 0;
+				$idposts = 0;
+				$idclassificacao = 0;
+				$idcomentario = 0;
+				$idresponde = 0;
+
+				echo "<h4 class=\"center-align\" id=\"titulo\"  >".$titulo."</h4>";
+				
+				$consulta = mysql_query("select * from $categoria where Titulo='$titulo' "); 
+
+				
+
+				while($conteudo=mysql_fetch_array($consulta)){
+
+					
+				echo "<div class=\"container\">
+					<div class=\"grid-example col s12 m6\">
+						<div class=\"card-panel\">
 							<div>
-								<div class="row">
-									<div class="col s12 m9 l3">
-											<div class="card horizontal">
-			                                    <div class="card-image">
-			                                        <img src="Squirtle.png">
+								<div class=\"row\">
+									<div class=\"col s12 m9 l3\">
+											<div class=\"card horizontal\">
+			                                    <div class=\"card-image\">
+			                                        <img src=\"Squirtle.png\">
 			                                    </div>
-			                                    <div class="card-stacked">
-			                                        <div class="card-content">
-			                                            <div style="color: #1E90FF">Nome: </div><div id="Nome0">Rafael</div>
-			                                            <div style="color: #1E90FF">Matrícula: </div><div id="Matricula0">1231</div>
-			                                            <div style="color: #1E90FF">Posts: </div><div id="Posts0">23</div>
-			                                            <div id="Classificacao0" style="color: blue">Coordenador</div>
+			                                    <div class=\"card-stacked\">
+			                                        <div class=\"card-content\">
+			                                            <div style=\"color: #1E90FF\">Nome: </div><div id=\"Nome".$idname."\">".$conteudo['Autor']."</div>
+			                                            <div style=\"color: #1E90FF\">Matrícula: </div><div id=\"Matricula".$idmatricula."\">1231</div>
+			                                            <div style=\"color: #1E90FF\">Posts: </div><div id=\"Posts".$idposts."\">23</div>
+			                                            <div id=\"Classificacao".$idclassificacao."\" style=\"color: blue\">Coordenador</div>
 			                                        </div>
 			                                    </div>
 			                                </div>
 										</div>	
-									<div class="row col s12 m8 l9">								
-										<h5 class="col s12 light">					
-										<span id="Comentario0" class="flow-text">Etiam posuere quam ac quam. Maecenas aliquet accumsan leo. Nullam dapibus fermentum ipsum. Etiam quis quam. Integer lacinia. Nulla est. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Integer vulputate sem a nibh rutrum consequat. Maecenas lorem. Pellentesque pretium lectus id turpis. Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. Fusce wisi. Phasellus faucibus molestie nisl. Fusce eget urna. Curabitur vitae diam non enim vestibulum interdum. Nulla quis diam. Ut tempus purus at lorem.
+									<div class=\"row col s12 m8 l9\">
+									<h5 class=\"col s12 light\">					
+										<span id=\"Comentario".$idcomentario."\" class=\"flow-text\">".$conteudo['Conteudo']."
 										</span>
 										</h5>
 									</div>							
 								</div>
-								<div class="row">
-									<div class="col s12 m6 l3">
-										<a class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">thumb_up</i></a>
+								<div class=\"row\">
+									<div class=\"col s12 m6 l3\">
+										<a class=\"btn-floating btn-large waves-effect waves-light blue\"><i class=\"material-icons\">thumb_up</i></a>
 									</div>
-									<div align="right" class="row col s12 m6 l9">
-										<a name="BotaoResponde" id="BotaoResponde0" href="#comentario" class="waves-effect waves-light blue btn">responder</a>       
+									<div align=\"right\" class=\"row col s12 m6 l9\">
+										<a name=\"BotaoResponde\" id=\"BotaoResponde".$idresponde."\" href=\"#comentario\" class=\"waves-effect waves-light blue btn\">responder</a>       
 									</div>	
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>";
 
-				<div class="container">
-					<div class="grid-example col s12 m6">
-						<div class="card-panel">
-							<div>
-								<div class="row">
-									<div class="col s12 m9 l3">
-											<div class="card horizontal">
-			                                    <div class="card-image">
-			                                        <img src="Squirtle.png">
-			                                    </div>
-			                                    <div class="card-stacked">
-			                                        <div class="card-content">
-			                                            <div style="color: #1E90FF">Nome: </div><div id="Nome1">Luana</div>
-			                                            <div style="color: #1E90FF">Matrícula: </div><div id="Matricula1">3517</div>
-			                                            <div style="color: #1E90FF">Posts: </div><div id="Posts1">71</div>
-			                                            <div id="Classificacao1" style="color: blue">Professor</div>
-			                                        </div>
-			                                    </div>
-			                                </div>
-										</div>
-									<div class="row col s12 m8 l9">								
-										<h5 class="col s12 light">					
-										<span id="Comentario1" class="flow-text">
-											HY
-										</span>
-										</h5>
-									</div>							
-								</div>
-								<div class="row">
-									<div class="col s12 m6 l3">
-										<a class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">thumb_up</i></a>
-									</div>
-									<div align="right" class="row col s12 m6 l9">
-										<a  name="BotaoResponde" id="BotaoResponde1" href="#comentario" class="waves-effect waves-light blue btn">responder</a>     
-									</div>	
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				$idname++;
+				$idmatricula++;
+				$idposts++;
+				$idclassificacao++;
+				$idcomentario++;
+				$idresponde++;
+
+				}
+
+				echo "<p id=\"categoria\" style=\"display: none\" >".$categoria."</p>";
+
+				?>
+				
+	
 
 			</div>
 
 			<div>
-				<form action="envia.php" method="post" id="criaComentario">
+				<form action="envia.php" method="post" id="criaComentario" name="envia">
+					<input type="hidden" name="comentario" value="1">
+					<input type="hidden" id="titu" name="titulo" value="teste">
+					<input type="hidden" id="conteudo" name="pergunta">
+					<input type="hidden" id="categ" name="categoria">
+					
+
+					<script type="text/javascript">
+						
+						function inserevalores() {
+							
+							document.getElementById("titu").value = document.getElementById("titulo").innerHTML;
+
+							document.getElementById("categ").value = document.getElementById("categoria").innerHTML;
+
+							document.getElementById("conteudo").value = "<div style=\"color: grey\"> "+document.getElementById("ConteudoResposta").innerHTML +" </div><br>"+document.getElementById("campoTexto").value ;
+
+							
+							document.envia.submit();
+
+						}
+    				
+					</script>
 					<div class="container">
 						<div class="grid-example col s12 m6">
 							<div class="card-panel">
@@ -216,7 +239,7 @@
 										<div class="row col s12 m8 l9 card-panel">
 											<div id="ConteudoResposta">
 											</div>
-											<div>
+											<div >
 												<textarea id="campoTexto" form="criaComentario"></textarea>
 											</div>
 										</div>						
@@ -225,7 +248,7 @@
 										<div class="col s12 m6 l3">
 										</div>
 										<div align="right" class="row col s12 m6 l9">
-											<a class="waves-effect waves-light blue btn"><input type="submit" name="Enviar"></a>     
+											<a class="waves-effect waves-light blue btn"><input type="button" value="Enviar" onclick="inserevalores()"></a>     
 										</div>	
 									</div>
 								</div>
