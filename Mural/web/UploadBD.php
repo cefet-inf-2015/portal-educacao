@@ -7,7 +7,7 @@
 	$sql = "INSERT INTO mural (conteudo, data) VALUES ('$text', '$dataPostString')";
 
 	if ($conexao->query($sql) === TRUE) {
-	    echo "CRIOU";
+	    header("Location:index.html");
 	} else {
 	    echo "Error: " . $sql . "<br>" . $conexao->error;
 	}
