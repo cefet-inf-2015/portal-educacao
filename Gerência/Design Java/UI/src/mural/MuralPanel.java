@@ -33,6 +33,8 @@ public class MuralPanel extends javax.swing.JPanel {
     public MuralPanel() {
         initComponents();
         jTextArea1.setEditable(false);
+        jEditorPane1.setEditable(false);
+        
         
         bd = new Conexao();
         //bd.conectar("localhost:3306", "root", "", "vrau");
@@ -48,8 +50,9 @@ public class MuralPanel extends javax.swing.JPanel {
             do {
                 
                 auxusuario.add(retorno.getString("usuario") + "\n");
-                auxdata.add(retorno.getString("data") + "\n");
-                auxconteudo.add(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
+                auxdata.add(retorno.getString("data") + "\n\n");
+                //auxconteudo.add(retorno.getString("conteudo") + "\n\n\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
                 a++;
             } while (retorno.next());
             System.out.println(a);
@@ -178,8 +181,8 @@ public class MuralPanel extends javax.swing.JPanel {
             do {
 
                 auxusuario.add(retorno.getString("usuario") + "\n");
-                auxdata.add(retorno.getString("data") + "\n");
-                auxconteudo.add(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
+                auxdata.add(retorno.getString("data") + "\n\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
                 a++;
             } while (retorno.next());
             System.out.println(a);
