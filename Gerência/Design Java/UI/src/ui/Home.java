@@ -5,6 +5,7 @@
  */
 package ui;
 
+import galeria.Galeria;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -141,6 +142,9 @@ public class Home extends javax.swing.JFrame {
         } catch (java.lang.IllegalAccessException e2) {
             e2.printStackTrace();
         }
+        interfacePrincipal1 = new correcao.InterfacePrincipal();
+        panelCorrecao1 = new correcao.PanelCorrecao();
+        provaOff1 = new correcao.ProvaOff();
         Baixo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -189,6 +193,9 @@ public class Home extends javax.swing.JFrame {
         container.add(layoutGerenciar1, "LayoutGerenciar");
         container.add(layoutDownload1, "LayoutDownload");
         container.add(calendario1, "Calendario");
+        container.add(interfacePrincipal1, "Correcao");
+        container.add(panelCorrecao1, "PanelCorrecao");
+        container.add(provaOff1, "ProvaOff");
 
         Baixo.setBackground(new java.awt.Color(33, 150, 243));
 
@@ -521,8 +528,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnForumActionPerformed
 
     private void btnGaleriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaleriaActionPerformed
-        CardLayout card = (CardLayout)container.getLayout();
-        card.show(container, "Galeria");
+        new Galeria();
     }//GEN-LAST:event_btnGaleriaActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
@@ -580,6 +586,7 @@ public class Home extends javax.swing.JFrame {
     private forum.ForumPanel forumPanel1;
     private javax.swing.JLabel foto;
     private javax.swing.JLabel idUser;
+    private correcao.InterfacePrincipal interfacePrincipal1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -594,6 +601,8 @@ public class Home extends javax.swing.JFrame {
     private ui.LoginPanel loginPanel1;
     private mural.MuralPanel muralPanel1;
     private mural.MuralPanel muralPanel2;
+    private correcao.PanelCorrecao panelCorrecao1;
+    private correcao.ProvaOff provaOff1;
     private ui.SaibaMais saibaMais1;
     // End of variables declaration//GEN-END:variables
 }

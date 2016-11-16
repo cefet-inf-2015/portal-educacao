@@ -141,6 +141,27 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="correcao.InterfacePrincipal" name="interfacePrincipal1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="Correcao"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="correcao.PanelCorrecao" name="panelCorrecao1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="PanelCorrecao"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="correcao.ProvaOff" name="provaOff1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="ProvaOff"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="Baixo">
