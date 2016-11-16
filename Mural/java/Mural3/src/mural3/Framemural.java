@@ -44,8 +44,8 @@ public class Framemural extends javax.swing.JFrame {
             do {
                 
                 auxusuario.add(retorno.getString("usuario") + "\n");
-                auxdata.add(retorno.getString("data") + "\n");
-                auxconteudo.add(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
+                auxdata.add(retorno.getString("data") + "\n\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
                 a++;
             } while (retorno.next());
             System.out.println(a);
@@ -147,7 +147,7 @@ public class Framemural extends javax.swing.JFrame {
         String aux = new Date().toString();
         String[] mud = aux.split(" ");
         String formal = mud[2].concat(" ").concat(mud[1]).concat(" ").concat(mud[5]).concat(" às ").concat(mud[3]);
-        String usuario = "TESTE";
+        String usuario = jEditorPane1.getText();
         String conteudo = jTextArea2.getText();
         System.out.println(conteudo);
         jTextArea2.setText("");
@@ -173,8 +173,8 @@ public class Framemural extends javax.swing.JFrame {
             do {
 
                 auxusuario.add(retorno.getString("usuario") + "\n");
-                auxdata.add(retorno.getString("data") + "\n");
-                auxconteudo.add(retorno.getString("conteudo") + "\n------------------------------------------------------------------------------------------------------------\n");
+                auxdata.add(retorno.getString("data") + "\n\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
                 a++;
             } while (retorno.next());
             System.out.println(a);

@@ -1,10 +1,16 @@
 <?php
-	$conexao = new mysqli('localhost', 'root', '', 'Mural') or die("Erro na conexão");
-	$textoPostagem = htmlentities($_GET['post']);
+	$conexao = new mysqli('localhost', 'root', '', 'mural') or print("zona");
+	$text = $_GET['texto'];
+	$dataPostString = $_GET['dataPostString'];
 	//$imagem = htmlentities($_FILES['arq']);
-	$dataPostagem = date("d-m-Y H:i:s");
 
-	$query = "INSERT INTO Mural (data, conteudo) VALUES ($dataPostagem, $textoPostagem)";
-	$conexao ->query($query);
-	
+	$sql = "INSERT INTO mural (conteudo, data) VALUES ('$text', '$dataPostString')";
+
+	if ($conexao->query($sql) === TRUE) {
+	    header("Location:index.html");
+	} else {
+	    echo "Error: " . $sql . "<br>" . $conexao->error;
+	}
+
+	$conexao->close();	
 ?>
