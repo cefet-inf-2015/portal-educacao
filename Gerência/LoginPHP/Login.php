@@ -9,7 +9,7 @@ $tipo = $_GET['tipo'];
 Login::conectarBanco('localhost', 'root', 'apenasinf-2015', 'Usuarios');
   if ( $usuario = Login::logarUsuario($nome, $senha, $tipo)) {
 		$_SESSION['usuario'] = $usuario;
-    echo "Seja bem vindo, " . $_SESSION['usuario']->primeiroNome;
+    echo 'passed';
 	}
 	else {
 		echo "Dados de login inválidos.";

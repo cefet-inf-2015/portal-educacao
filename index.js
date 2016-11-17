@@ -37,7 +37,13 @@ function callPage(url, div){
     ajax.onreadystatechange=function(){
         if(ajax.readyState==4){
             if(ajax.status==200){
-                div.innerHTML = ajax.responseText;
+                resposta = ajax.responseText;
+                if (resposta === "passed") {
+                  setTimeout( () => {window.location.reload(true);}, 500);
+                }
+                else {
+                    div.textContent = resposta;
+                }
             }
         }
     }
