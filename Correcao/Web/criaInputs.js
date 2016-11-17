@@ -30,7 +30,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 					var label = document.createElement("label");
 					input.name = "q"+i;
 					input.type = "radio";
-					var nomeAtual = "q"+i+j
+					var nomeAtual = "q"+i+"a"+j; //mudei aqui
 					input.id = nomeAtual;
 					label.setAttribute("for", nomeAtual);
 					input.value = alternativaAtual;
@@ -62,7 +62,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 					var label = document.createElement("label");
 					input.type = "checkbox";
 					input.name = "q"+i+"[]";
-					var nomeCheckbox = "q"+i+k;
+					var nomeCheckbox = "q"+i+"a"+k;//mudei aqui
 					input.id = nomeCheckbox
 					input.value = k;
 					label.setAttribute("for", nomeCheckbox);
