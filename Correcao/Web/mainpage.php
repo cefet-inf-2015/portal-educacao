@@ -36,5 +36,7 @@
   </body>
 </html>
 <?php
-session_destroy();
+unset($_SESSION['alunos']);
+unset($_SESSION['numeroCorretas']);
+unset($_SESSION['respostasAssociadas']);
 ?>
