@@ -4,5 +4,6 @@ $(document).ready(function calcMedia(){
 		soma = soma+notas[i];
 	}
 	var media = soma/notas.length;
+	media = Number((media).toFixed(2));
 	document.querySelector('#media').innerHTML = "Média da nota da turma: " + media;
 })
