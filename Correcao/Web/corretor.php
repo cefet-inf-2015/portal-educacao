@@ -27,20 +27,30 @@ for ($i=0; $i<$questao_length; $i++){
 	$nomePost = "q".strval($i);
 	if (isset($_POST[$nomePost])){
 		if (is_array($_POST[$nomePost])){
-			$respostas[$i] = formatarArray($xml, $nomePost);
+			$respostas[$i] = formatarArray($xml, $nomePost, $i);
 		} else{
 			$respostas[$i]= $_POST[$nomePost];
 		}
+	} else{
+		$respostas[$i] = formatarArrayVazio($xml, $i);
 	}
 }
 
-function formatarArray($xml, $nomePost){
+function formatarArray($xml, $nomePost, $iterador){
 	$arrayNovo = [];
-	for ($i=0; $i<count($xml->questao[1]->alternativa); $i++){
+	for ($i=0; $i<count($xml->questao[$iterador]->alternativa); $i++){
 		$arrayNovo[$i]=0;
 	}
 	for ($i=0; $i<count($_POST[$nomePost]); $i++){
 		$arrayNovo[$_POST[$nomePost][$i]] = 1;
+	}
+	return $arrayNovo;
+}
+
+function formatarArrayVazio($xml, $iterador){
+	$arrayNovo = [];
+	for ($i=0; $i<count($xml->questao[$iterador]->alternativa); $i++){
+		$arrayNovo[$i]=0;
 	}
 	return $arrayNovo;
 }
@@ -84,9 +94,10 @@ function corrigir($xml, $respostas){
 				}
 			}
 			for ($k=0; $k<$qtdAlt; $k++){
-				if ($respostas[$i][$k]==$arrayCorretas[$k]){
-					$VFAcertadas++;
-				}
+						if ($respostas[$i][$k]==$arrayCorretas[$k]){
+							
+							$VFAcertadas++;
+						}
 			}
 			$vQuestao = $notaBaseQuestao*$dificuldadeQuestao;
 			$aumento = $VFAcertadas*$vQuestao/$qtdAlt;
