@@ -204,8 +204,8 @@
 
                                 <div class="collection">
                                     <a href="#!" class="collection-item"><h6>Estatísticas do Fórum</h6></a>
-                                    <a href="#!" class="collection-item"><div id="PostsTotal"></div></a>
-                                    <a href="#!" class="collection-item"><div id="TopicosTotal"></div></a>
+                                    <a  class="collection-item"><div id="PostsTotal"></div></a>
+                                    <a  class="collection-item"><div id="TopicosTotal"></div></a>
                                 </div>
                             </div>
                         </div>

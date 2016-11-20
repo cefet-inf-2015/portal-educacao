@@ -1,0 +1,164 @@
+<?php 
+    session_start();
+    if ( isset($_SESSION["usuario"]) ) {
+      $userData = (array) $_SESSION["usuario"];
+    }
+?>
+
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Portal Educação</title>
+            <!--Meta-->
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+            <!-- CSS  -->
+            <link href="CSS.css" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link href="../../styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+            <link href="../../styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+            <link rel="icon" href="../../imgs/logo.png" >
+            <style type="text/css">
+                body {
+                    display: flex;
+                    min-height: 100vh;
+                    flex-direction: column;
+                }
+                main {
+                    flex: 1 0 auto;
+                }
+            </style>
+        </head>
+
+        <body onload="Listener(0); Perfil(0)">
+            <?php 
+              include('../../navbar.php');
+            ?>
+          
+            <!-- Modal de login -->
+           <?php 
+             if(!isset($_SESSION['usuario'])) {
+               include('../../modal.php');
+             }
+            ?>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <div class="section no-pad-bot" id="index-banner">
+                <div class="container">
+                    <br><br>
+                    <a href="Fórum.html"><h1 class="header center blue-text text-darken-4">Fórum</h1></a>
+                    <div class="row center">
+                        <h5 class="header col s12 light">Fórum para discussões</h5>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="section">
+                    <div class="row">
+                        <div class="col s7">
+                            <div class="row collection">
+                                <a href="#!" class="collection-item"><h5>Máterias do Ensino Médio</h5></a>
+                                <div name="divhide" class="esconde">
+                            	   <a href="Categorias/Matematica.php" class="collection-item">Matemática</a>
+                            	   <a href="Categorias/Português.html" class="collection-item">Português</a>
+                            	   <a href="Categorias/Biologia.html" class="collection-item">Biologia</a>
+                            	   <a href="Categorias/Filosofia.html" class="collection-item">Filosofia</a>
+                            	   <a href="Categorias/Geografia.html" class="collection-item">Geografia</a>
+                            	   <a href="Categorias/História.html" class="collection-item">História</a>
+                            	   <a href="Categorias/Inglês.html" class="collection-item">Inglês</a>
+                            	   <a href="Categorias/Química.html" class="collection-item">Química</a>
+                            	   <a href="Categorias/Redação.html" class="collection-item">Redação</a>
+                            	   <a href="Categorias/Sociologia.html" class="collection-item">Sociologia</a>
+                            	   <a href="Categorias/EducaçãoFísica.html" class="collection-item">Educação Física</a>
+                                </div>
+                            </div>
+
+                            <div class="row collection">
+                                <a href="#!" class="collection-item"><h5>Cursos Técnicos</h5></a>
+                                <div name="divhide" class="esconde">
+                                    <a href="Categorias/Edificações.html" class="collection-item">Edificações</a>
+                                    <a href="Categorias/Eletrônica.html" class="collection-item">Eletrônica</a>
+                                    <a href="Categorias/Eletrotécnica.html" class="collection-item">Eletrotécnica</a>
+                                    <a href="Categorias/EquipamentosBiomédicos.html" class="collection-item">Equipamentos Biomédicos</a>
+                                    <a href="Categorias/Estradas.html" class="collection-item">Estradas</a>
+                                    <a href="Categorias/Informática.html" class="collection-item">Informática</a>
+                                    <a href="Categorias/MeioAmbiente.html" class="collection-item">Meio Ambiente</a>
+                                    <a href="Categorias/Mecânica.html" class="collection-item">Mecânica</a>
+                                    <a href="Categorias/Mecatrônica.html" class="collection-item">Mecatrônica</a>
+                                    <a href="Categorias/QuímicaTécnico.html" class="collection-item">Química</a>
+                                    <a href="Categorias/RededeComputadores.html" class="collection-item">Rede de Computadores</a>
+                                    <a href="Categorias/TransporteseTransito.html" class="collection-item">Transportes e Trânsito</a>
+                                    <a href="Categorias/Hospedagem.html" class="collection-item">Hospedagem</a>
+                                </div>
+                            </div>
+
+                            <div class="row collection">
+                                <a href="#!" class="collection-item"><h5>Entretenimento</h5></a>
+                                <div name="divhide" class="esconde">
+                                    <a href="Categorias/Filmes.html" class="collection-item">Filmes</a>
+                                    <a href="Categorias/Teatro.html" class="collection-item">Teatro</a>
+                                    <a href="Categorias/Livros.html" class="collection-item">Livros</a>
+                                    <a href="Categorias/Jogos.html" class="collection-item">Jogos</a>
+                                    <a href="Categorias/Moda.html" class="collection-item">Moda</a>
+                                </div>
+                            </div>
+
+                            <div class="row collection">
+                                <a href="Categorias/DúvidasGerais.html" class="collection-item"><h5>Dúvidas Gerais</h5></a>
+                            </div>
+
+                            <div class="row collection">
+                                <a href="Categorias/AssuntosGenéricos.html" class="collection-item"><h5>Assuntos Genéricos</h5></a>
+                            </div>
+                        </div>
+
+                        <div class="col s5">
+                            <div class="col s12 m10">
+                                <div class="card horizontal">
+                                    <div class="card-image">
+                                        <img src="Squirtle.png">
+                                    </div>
+                                    <div class="card-stacked">
+                                        <div class="card-content">
+                                            <div style="color: #1E90FF">Nome: </div><div id="Nome">
+                                                <?php echo $userData['primeiroNome']; ?>
+                                            </div>
+                                            <div style="color: #1E90FF">Matrícula: </div><div id="Matricula"></div>
+                                            <div style="color: #1E90FF">Posts: </div><div id="Posts"></div>
+                                            <div id="Classificacao" style="color: blue"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="collection">
+                                    <a href="#!" class="collection-item"><h6>Novos Posts</h6></a>
+                                    <a href="#!" class="collection-item"><div id="Topico1"></div></a>
+                                    <a href="#!" class="collection-item"><div id="Topico2"></div></a>
+                                    <a href="#!" class="collection-item"><div id="Topico3"></div></a>
+                                    <a href="#!" class="collection-item"><div id="Topico4"></div></a>
+                                </div>
+
+                                <div class="collection">
+                                    <a href="#!" class="collection-item"><h6>Estatísticas do Fórum</h6></a>
+                                    <a href="#!" class="collection-item"><div id="PostsTotal"></div></a>
+                                    <a href="#!" class="collection-item"><div id="TopicosTotal"></div></a>
+                                </div>
+                            </div>
+                        </div>
+                          
+                    </div>
+                </div>
+            </div>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->            
+            <?php 
+              include('../../footer.php');
+            ?>
+            <!--  Scripts-->
+            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script src="../../template/js/materialize.js"></script>
+            <script src="../../template/js/init.js"></script>
+            <script src="../../index.js"></script>
+            <script type="text/javascript" src="Script.js"></script>
+        </body>
+    </html>

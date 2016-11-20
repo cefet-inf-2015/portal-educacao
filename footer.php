@@ -1,4 +1,3 @@
-<?php session_start() ?>
 <footer class="page-footer blue">
   <div class="container">
     <div class="row">
@@ -6,7 +5,7 @@
         <h5 class="white-text">Desenvolvedores</h5>
         <p class="grey-text text-lighten-4">
           Somos a turma de Informática 2A do ano de 2016 do CEFET-MG (Centro Federal de Educação Tecnológica de Minas Gerais) desenvolvendo o trabalho final multidisciplinar de Linguagem de Programação 1 e Aplicações para WEB.
-          <br><a class="white-text link" href="colaboradores.html">Clique aqui</a> para saber mais
+          <br><a class="white-text link" href="colaboradores.php">Clique aqui</a> para saber mais
         </p>
       </div>
       <div class="col l3 s12">

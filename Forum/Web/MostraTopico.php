@@ -133,9 +133,19 @@
 				
 
 				while($conteudo=mysql_fetch_array($consulta)){
+					$name = $conteudo['Autor'];
 
-					
-				echo "<div class=\"container\">
+					$busca = mysql_query("select * from usuario where nome='$name' "); //informaçoes do autor
+					while($infouser=mysql_fetch_array($busca)){
+						$matricula= $infouser['matricula'];
+						$tipo = $infouser['tipo'];
+						$criados = $infouser['criados'];
+					}
+
+
+
+
+					echo "<div class=\"container\">
 					<div class=\"grid-example col s12 m6\">
 						<div class=\"card-panel\">
 							<div>
@@ -148,9 +158,9 @@
 			                                    <div class=\"card-stacked\">
 			                                        <div class=\"card-content\">
 			                                            <div style=\"color: #1E90FF\">Nome: </div><div id=\"Nome".$idname."\">".$conteudo['Autor']."</div>
-			                                            <div style=\"color: #1E90FF\">Matrícula: </div><div id=\"Matricula".$idmatricula."\">1231</div>
-			                                            <div style=\"color: #1E90FF\">Posts: </div><div id=\"Posts".$idposts."\">23</div>
-			                                            <div id=\"Classificacao".$idclassificacao."\" style=\"color: blue\">Coordenador</div>
+			                                            <div style=\"color: #1E90FF\">Matrícula: </div><div id=\"Matricula".$idmatricula."\">".$matricula."</div>
+			                                            <div style=\"color: #1E90FF\">Posts: </div><div id=\"Posts".$idposts."\">".$criados."</div>
+			                                            <div id=\"Classificacao".$idclassificacao."\" style=\"color: blue\">".$tipo."</div>
 			                                        </div>
 			                                    </div>
 			                                </div>
