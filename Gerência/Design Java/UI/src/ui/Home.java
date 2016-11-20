@@ -92,7 +92,7 @@ public class Home extends javax.swing.JFrame {
         btnCorrecao.setText("Correção");
         Login.setText("Sair");
         if(Sessao.usuario!=null){
-            ImageIcon ft = new ImageIcon(Sessao.usuario.getFoto().getImage().getScaledInstance((int) (foto.getWidth()*(Sessao.usuario.getFoto().getIconHeight()/Sessao.usuario.getFoto().getIconWidth())), foto.getHeight(), Image.SCALE_SMOOTH));
+            ImageIcon ft = new ImageIcon(Sessao.usuario.getFoto().getImage().getScaledInstance((int) (foto.getWidth()*(Sessao.usuario.getFoto().getIconWidth()/Sessao.usuario.getFoto().getIconHeight())), foto.getHeight(), Image.SCALE_SMOOTH));
             foto.setIcon(ft);
             idUser.setText(getFraseTempo()+ ", "+Sessao.usuario.getPrimeiroNome());
         }

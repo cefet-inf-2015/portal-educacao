@@ -258,7 +258,7 @@ public class Formulario extends javax.swing.JFrame {
         }
         //BD
         Conexao c = new Conexao();
-        c.conectar("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "calendario");
+        c.conectar("localhost:3306", "root", "", "calendario");
         try {
             c.enviarQuery("INSERT INTO eventos VALUES('" + jTextField1.getText() + "','" + sData[2] + "','" + sData[1] + "','" + sData[0] + "','" + sHora[0] + ":" + sHora[1] + ":00','"+jTextField2.getText()+ "','" + jTextField5.getText()+"')");
         } catch (SQLException ex) {

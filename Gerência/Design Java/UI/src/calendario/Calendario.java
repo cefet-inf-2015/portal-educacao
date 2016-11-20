@@ -2024,7 +2024,7 @@ public class Calendario extends javax.swing.JPanel {
         I--;
         Conexao c = new Conexao();
         try {
-            c.conectar("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "calendario");
+            c.conectar("localhost:3306", "root", "", "calendario");
             String eventos="";
             String dia;
             String ultimaHora="";
