@@ -27,14 +27,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Component id="PainelOrganizacao" min="-2" pref="216" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="PagAnterior" min="-2" max="-2" attributes="0"/>
+                      <Component id="PagAnterior1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="ProxPagina" min="-2" max="-2" attributes="0"/>
+                      <Component id="ProxPagina1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="PainelDiscussoes" max="32767" attributes="0"/>
               </Group>
@@ -45,20 +45,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="PainelOrganizacao" min="-2" pref="570" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="PainelDiscussoes" min="-2" pref="536" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="PagAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ProxPagina" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="PainelDiscussoes" max="32767" attributes="0"/>
+                  <Component id="PainelOrganizacao" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="PagAnterior1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ProxPagina1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -83,6 +77,9 @@
           </Border>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
@@ -108,12 +105,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="1019" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="1019" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="492" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="526" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -136,7 +133,7 @@
                         <Column editable="false" title="Data" type="java.lang.String"/>
                       </Table>
                     </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="jTable1.setColumnSelectionAllowed(false);&#xa;DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();&#xa;rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);&#xa;jTable1.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);&#xa;jTable1.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);&#xa;TableRowSorter sorter = new TableRowSorter(jTable1.getModel());&#xa;sorter.setComparator(3, new Ordena());&#xa;jTable1.setRowSorter(sorter);">
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="jTable1.setColumnSelectionAllowed(false);&#xa;DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();&#xa;rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);&#xa;jTable1.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);&#xa;jTable1.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);&#xa;TableRowSorter sorter = new TableRowSorter(jTable1.getModel());&#xa;sorter.setComparator(3, new Ordena());&#xa;jTable1.setRowSorter(sorter);&#xa;&#xa;mostraTopico = new MostraTopico();">
                       <TableColumnModel selectionModel="1">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                           <Title/>
@@ -168,6 +165,9 @@
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private MostraTopico mostraTopico;"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -269,15 +269,21 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="PagAnterior">
+    <Component class="javax.swing.JButton" name="PagAnterior1">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;&lt; P&#xe1;gina anterior"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PagAnterior1MouseClicked"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ProxPagina">
+    <Component class="javax.swing.JButton" name="ProxPagina1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pr&#xf3;xima p&#xe1;gina &gt;&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ProxPagina1MouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

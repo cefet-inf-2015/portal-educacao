@@ -20,6 +20,12 @@ public class Topicos {
     private ResultSet resultado;
     private String comando;
     public Topicos(String categoria) throws SQLException {
+            categoria = categoria.replaceAll("[aáàãâä]","a");
+            categoria = categoria.replaceAll("[eéèêë]","e");
+            categoria = categoria.replaceAll("[iíìîï]","i");
+            categoria = categoria.replaceAll("[oóòõôö]","o");
+            categoria = categoria.replaceAll("[uúùûü]","u");
+            System.out.println(categoria);
             Conexao conec = new Conexao();
             ip = "cefet-inf-2015.ddns.net:43306";
             user = "forum";
@@ -27,7 +33,8 @@ public class Topicos {
             banco = "bdforum";
             try {
                 conec.conectar(ip, user, senha, banco);
-                comando = "SELECT * FROM `"+categoria+"`";
+                //comando = "SELECT * FROM `"+categoria+"`";
+                comando = "SELECT * FROM "+categoria+" WHERE Comentario='0'";
                 resultado = conec.enviarQueryResultados(comando);
                 resultado.last();
                 quantidade =  resultado.getRow();
@@ -39,10 +46,17 @@ public class Topicos {
                 data = new String[quantidade];
 
                 for(int i=0; i<quantidade; i++) {
+                    String[] aux = new String[3];
                     titulo[i] = resultado.getString("Titulo");
                     autor[i] = resultado.getString("Autor");
                     avaliacao[i] = resultado.getInt("Avaliacao");
-                    data[i] = resultado.getString("Data");
+                    aux = resultado.getString("Data").split("/");
+                    if(Integer.parseInt(aux[0])<10) {
+                        data[i] = "0"+resultado.getString("Data");
+                    } else {
+                        data[i] = resultado.getString("Data");
+                    }
+                    
                     resultado.next();
                 }
             } catch(Exception ex) {
