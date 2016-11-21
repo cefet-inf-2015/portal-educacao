@@ -116,10 +116,9 @@
             $conexao = mysql_connect('localhost','root','123');
 			mysql_select_db('teste',$conexao);
             $result = mysql_query("SELECT * FROM new_table WHERE status=0");
+			$numCard = 0;   //Se houverem 4 cards pula uma linha
 			if($_POST['palavrasChave']!=""){
             $tags = explode(',', $_POST['palavrasChave']);
-			$numCard = 0;   //Se houverem 4 cards pula uma linha
-            $numTags = count($tags); //Se houverem 0 tags lista todos os arquivos
 				echo '<div class="row">';
                 while ($arrArq = mysql_fetch_assoc($result)) {
                     $enc = false;
@@ -141,7 +140,26 @@
                               <span class="card-title grey-text text-darken-4">' . $arrArq['nome'] . '<i class="material-icons right">close</i></span>
                               <p> Tags: ' . $arrArq['tags1'] . '</p>
                             </div>
-                          </div>';
+                          </div>
+						  <div class="container">
+        <div class="section">
+          <!-- CONTEÚDO AQUI -->
+          <div>
+            <form enctype= "multipart/form-data" class="col s12" action="Download.php" method="post">
+              <div class="row center">
+                <div class="input-field col s10">
+                  <input type="text" name = "palavrasChave" id="palavrasChave" class="materialize-textarea tooltipped" data-position="left" data-delay="50" data-tooltip="Palavras simples separadas por vírgula" placeholder="Exemplo: &quot;vídeo,matemática,etc&quot;"/>
+                  <label for="palavrasChave">Palavras-chave</label>
+                </div>
+                <div class="right-align">
+                  <button class="btn-large waves-effect waves-light" type="submit" name="enviar">Procurar
+                    <i class="material-icons right">search</i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>';
                                 break;
                             }
                         }
@@ -166,6 +184,7 @@
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4 truncate">' . $arrArq['nome'] . '<i class="material-icons right">more_vert</i></span>
                               <a class="col btn-large" href="' . $arrArq['path'] . '" download>BAIXAR</a>
+							  <a class="col btn-large" onclick="mudaStatus()"><i id="' . $arrArq['nome'] . '" class="material-icons right" onload="exibeStatus(' . $arrArq['status'] . ',this.id)"></i></a>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">' . $arrArq['nome'] . '<i class="material-icons right">close</i></span>
@@ -223,6 +242,24 @@
     <script src="template/js/materialize.js"></script>
     <script src="template/js/init.js"></script>
     <script src="index.js"></script>
+	<script type="text/javascript">
+        function mudaStatus(status, id) {
+		if (status == 0) {
+                document.getElementById(id).querySelector("#child").innerHTML = "visibility";
+                //Aqui modifica a tabela pra colocar status 1 <? //n sei como exatamente    ?>
+            } else if (status == 1) {
+                document.getElementById(id).querySelector("#child").innerHTML = "visibility_off";
+                //Aqui modifica a tabela pra colocar status 0
+            }
+        }
+        function exibeStatus(status, id) {
+            if (status == 0) {
+                document.getElementById(id).innerHTML = "visibility_off";
+            } else if (status == 1) {
+                document.getElementById(id).innerHTML = "visibility";
+            }
+        }
+    </script>
 
   </body>
 </html>
