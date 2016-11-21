@@ -81,7 +81,7 @@ public class Home extends javax.swing.JFrame {
     }
     
     public void refresh(){
-
+        jLabel5.setVisible(false);
         btnData.setEnabled(true);
         btnData.setText("Data");
         btnQuestões.setEnabled(true);
@@ -92,7 +92,8 @@ public class Home extends javax.swing.JFrame {
         btnCorrecao.setText("Correção");
         Login.setText("Sair");
         if(Sessao.usuario!=null){
-            ImageIcon ft = new ImageIcon(Sessao.usuario.getFoto().getImage().getScaledInstance((int) (foto.getWidth()*(Sessao.usuario.getFoto().getIconWidth()/Sessao.usuario.getFoto().getIconHeight())), foto.getHeight(), Image.SCALE_SMOOTH));
+            jLabel5.setVisible(true);
+            ImageIcon ft = new ImageIcon(Sessao.usuario.getFoto().getImage().getScaledInstance((int) (foto.getWidth()*((double)Sessao.usuario.getFoto().getIconWidth()/Sessao.usuario.getFoto().getIconHeight())), foto.getHeight(), Image.SCALE_SMOOTH));
             foto.setIcon(ft);
             idUser.setText(getFraseTempo()+ ", "+Sessao.usuario.getPrimeiroNome());
         }
@@ -101,7 +102,7 @@ public class Home extends javax.swing.JFrame {
             idUser.setText(getFraseTempo()+ ", Usuário Anônimo");
             Login.setText("Entrar");
             foto.setIcon(null);
-
+            jLabel5.setVisible(false);
             btnData.setEnabled(false);
             btnData.setText("<html><font color=black>Data</font></html>");
             btnQuestões.setEnabled(false);

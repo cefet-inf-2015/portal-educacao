@@ -15,7 +15,7 @@ public class Conectar {
   
   public Conectar() {
     try {
-      bd.conectar("cefet-inf-2015.ddns.net:43306", "chat", "inf2015", "chat");
+      bd.conectar("localhost:3306", "root", "", "chat");
     } catch (Exception e) {
       System.out.println(e.getMessage());
       System.out.println("ERRO NA CONEXAO");

@@ -20,26 +20,35 @@ import ui.Sessao;
  */
 public class Check extends Conectar implements Runnable{
         private Conectar c = new Conectar();
-        private int ultimaMsg = 0;
 
     @Override
     public void run () {
+        boolean novo=false;
+        
         while(true){
-            System.out.println("Checkando");
+            novo=false;
+            System.out.println("LA");
             if(Sessao.usuario!=null){
+                
+                Home.notificacao.setVisible(true);
                 try {
                     System.out.println("Logado");
-                ResultSet resultado = c.bd.enviarQueryResultados("SELECT id, usuario FROM mensagens WHERE alvo = '"+ Sessao.usuario.getNickname() +"' ORDER BY id DESC LIMIT 1");
-                if(resultado.first()) {
-                    //checando se recebeu uma nova mensagem
-                    if(resultado.getInt(1) != ultimaMsg) {
-                        ultimaMsg = resultado.getInt("id");
-                        Home.notificacao.setVisible(true);
-                        Home.notificacao.setText("Você tem novas mensagens");
-                    } 
-                }
+                    ResultSet resultado = c.bd.enviarQueryResultados("SELECT * FROM mensagens WHERE alvo = '"+ Sessao.usuario.getNickname() +"' ORDER BY id DESC");
+                    if(resultado.first()) {
+                        while(!resultado.isAfterLast()){
+                            //checando se recebeu uma nova mensagem
+                            if(!resultado.getBoolean("visualizado")) {
+                                Home.notificacao.setText("Você tem novas mensagens");
+                                novo=true;
+                            }
+                            resultado.next();
+                        }
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(Check.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(!novo){
+                    Home.notificacao.setText("Você não tem novas mensagens");
                 }
                 try {
                     Thread.sleep(1000);
@@ -50,13 +59,6 @@ public class Check extends Conectar implements Runnable{
         }
     }   
 
-    public int getUltimaMsg() {
-        return ultimaMsg;
-    }
-
-    public void setUltimaMsg(int ultimaMsg) {
-        this.ultimaMsg = ultimaMsg;
-    }
 
 
 

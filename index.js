@@ -63,5 +63,5 @@ function login() {
     senha = modalSenha.querySelector('input[name="senha"]').value;
     let e = modalSenha.querySelector('#tipoUsuario');
     tipo = e.options[e.selectedIndex].textContent;
-    callPage(`/Gerência/LoginPHP/Login.php?nome=${nome}&senha=${senha}&tipo=${tipo}`, document.getElementById('targetId'));
+    callPage(`\Gerência\LoginPHP\Login.php?nome=${nome}&senha=${senha}&tipo=${tipo}`, document.getElementById('targetId'));
 }
