@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.5
--- http://www.phpmyadmin.net
+-- version 4.4.15.8
+-- https://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Oct 16, 2016 at 06:30 PM
--- Server version: 5.5.49-log
--- PHP Version: 5.6.24
+-- Host: localhost
+-- Generation Time: Nov 13, 2016 at 09:11 PM
+-- Server version: 5.5.50-MariaDB
+-- PHP Version: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,8 +28,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `mensagens` (
   `id` int(11) unsigned NOT NULL,
+  `usuario` varchar(255) NOT NULL,
+  `alvo` varchar(255) NOT NULL,
   `mensagem` varchar(255) NOT NULL,
-  `usuario` varchar(255) NOT NULL
+  `horario` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -40,7 +42,9 @@ CREATE TABLE IF NOT EXISTS `mensagens` (
 -- Indexes for table `mensagens`
 --
 ALTER TABLE `mensagens`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario` (`usuario`),
+  ADD KEY `alvo` (`alvo`);
 
 --
 -- AUTO_INCREMENT for dumped tables

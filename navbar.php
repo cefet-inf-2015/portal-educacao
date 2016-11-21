@@ -53,3 +53,8 @@
     </ul>
   </div>
 </nav>
+
+<!-- ESPAÇO PARA MARQUEE-->
+<div id="marquee">
+    <div><span>Portal Educação</span></div>
+</div>
