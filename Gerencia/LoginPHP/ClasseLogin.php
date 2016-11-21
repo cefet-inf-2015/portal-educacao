@@ -19,7 +19,7 @@ class Usuario {
 
 
 	function getPrimeiroNome() {
-		return $primeiroNome;
+		return $this->primeiroNome;
 	}
 
 	function setPrimeiroNome($primeiroNome) {
@@ -27,7 +27,7 @@ class Usuario {
 	}
 
 	function getUltimoNome() {
-		return $ultimoNome;
+		return $this->ultimoNome;
 	}
 
 	function setUltimoNome($ultimoNome) {
@@ -35,7 +35,7 @@ class Usuario {
 	}
 
 	function getNickname() {
-		return $nickname;
+		return $this->nickname;
 	}
 
 	function setNickname($nickname) {
@@ -43,7 +43,7 @@ class Usuario {
 	}
 	
 	function getFoto() {
-		return $foto;
+		return $this->foto;
 	}
 	
 	function setFoto($foto) {
@@ -51,7 +51,7 @@ class Usuario {
 	}
 	
 	function getNumeroMatricula() {
-		return $numeroMatricula;
+		return $this->numeroMatricula;
 	}
 	
 	function setNumeroMatricula($numeroMatricula) {
@@ -67,11 +67,11 @@ class Aluno extends Usuario {
 	public function __construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, $turma, $divisao) {
 		parent::__construct($primeiroNome, $ultimoNome, $nickname, $foto, $numeroMatricula, 0);
 		$this->turma=$turma;
-		$divisaoTurma=$divisao;
+		$this->divisaoTurma=$divisao;
 	}
 
 	function getTurma() {
-		return $turma;
+		return $this->turma;
 	}
 
 	function setTurma($turma) {
@@ -79,7 +79,7 @@ class Aluno extends Usuario {
 	}
 
 	function getDivisaoTurma() {
-		return $divisaoTurma;
+		return $this->divisaoTurma;
 	}
 	
 	function setDivisaoTurma($divisaoTurma) {
@@ -93,7 +93,7 @@ class Aluno extends Usuario {
 		$this->turmas=$turmas;
 	}
 	function getTurmas() {
-		return $turmas;
+		return $this->turmas;
 	}
 
 	function setTurmas($turmas) {
@@ -114,7 +114,7 @@ class Aluno extends Usuario {
 	}
 
 	function getCursos() {
-		return $cursos;
+		return $this->cursos;
 	}
 
 	function setCursos($cursos) {

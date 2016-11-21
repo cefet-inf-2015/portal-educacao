@@ -42,7 +42,7 @@ function callPage(url, div){
                   setTimeout( () => {window.location.reload(true);}, 500);
                 }
                 else {
-                    div.textContent = resposta;
+                    div.textContent = "Dados inválidos";
                 }
             }
         }
@@ -51,7 +51,7 @@ function callPage(url, div){
 }
 
 function logOut() {
-    callPage(`.\\Gerencia\\LoginPHP\\Logout.php`, document.querySelector('#msgSaiu'));
+    callPage(`http://localhost/portal-educacao/Gerencia/LoginPHP/Logout.php`, document.querySelector('#msgSaiu'));
     //window.location.reload(true);
     setTimeout( () => {window.location.reload(true);}, 500);
 }
@@ -63,5 +63,5 @@ function login() {
     senha = modalSenha.querySelector('input[name="senha"]').value;
     let e = modalSenha.querySelector('#tipoUsuario');
     tipo = e.options[e.selectedIndex].textContent;
-    callPage(`.\\Gerencia\\LoginPHP\\Login.php?nome=${nome}&senha=${senha}&tipo=${tipo}`, document.getElementById('targetId'));
+    callPage(`http://localhost/portal-educacao/Gerencia/LoginPHP/Login.php?nome=${nome}&senha=${senha}&tipo=${tipo}`, document.getElementById('targetId'));
 }
