@@ -42,7 +42,7 @@ function callPage(url, div){
                   setTimeout( () => {window.location.reload(true);}, 500);
                 }
                 else {
-                    div.textContent = resposta;
+                    div.textContent = "Dados inválidos";
                 }
             }
         }
