@@ -58,9 +58,13 @@
           <div class="col s2">
             <img src="imgs/logo.png" label="logo">
           </div>
-          <div class="col s10">
+          <div class="col s10st">
             <p>Bem vindo ao Portal Educação!</p>
-            <p>Logue-se para acessar mais conteúdo.</p>
+            <?php
+              if (!isset($_SESSION["usuario"]) ) {
+                echo '<p>Logue-se para acessar mais conteúdo.</p>';
+              }
+            ?>
           </div>
         </div>
       </div>
