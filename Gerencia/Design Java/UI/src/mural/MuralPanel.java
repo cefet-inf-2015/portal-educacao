@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mural;
 
 import BancoDeDados.Conexao;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,12 +12,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ui.Sessao;
 
+
 /**
  *
  * @author umcan
  */
 public class MuralPanel extends javax.swing.JPanel {
-     BancoDeDados.Conexao bd;
+    BancoDeDados.Conexao bd;
     int id=0;
     int x=0;
     int a=0;
@@ -34,15 +31,13 @@ public class MuralPanel extends javax.swing.JPanel {
         initComponents();
         jTextArea1.setEditable(false);
         jEditorPane1.setEditable(false);
-        
-        
+       
         bd = new Conexao();
-        //bd.conectar("localhost:3306", "root", "", "vrau");
-        bd.conectar("cefet-inf-2015.ddns.net:43306", "mural", "inf2015", "Mural");
+        bd.conectar("localhost:3306", "root", "", "mural");
+        //bd.conectar("cefet-inf-2015.ddns.net:43306", "mural", "inf2015", "Mural");
         
         try {
             retorno = bd.enviarQueryResultados("SELECT * FROM Mural");
-            System.out.println(a);
             ArrayList<String> auxusuario = new ArrayList<>();
             ArrayList<String> auxdata = new ArrayList<>();
             ArrayList<String> auxconteudo = new ArrayList<>();
@@ -51,11 +46,9 @@ public class MuralPanel extends javax.swing.JPanel {
                 
                 auxusuario.add(retorno.getString("usuario") + "\n");
                 auxdata.add(retorno.getString("data") + "\n\n");
-                //auxconteudo.add(retorno.getString("conteudo") + "\n\n\n");
-                auxconteudo.add(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n________________________________________________________________________________________________________\n");
                 a++;
             } while (retorno.next());
-            System.out.println(a);
 
             Collections.reverse(auxusuario);
             Collections.reverse(auxdata);
@@ -77,6 +70,8 @@ public class MuralPanel extends javax.swing.JPanel {
             System.out.println("VAZIO");
         }
         jTextArea1.setCaretPosition(0);
+        
+        
 
     }
     public void setNome(){
@@ -86,6 +81,7 @@ public class MuralPanel extends javax.swing.JPanel {
             jEditorPane1.setText("Anônimo");
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,14 +136,14 @@ public class MuralPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,13 +153,10 @@ public class MuralPanel extends javax.swing.JPanel {
         String formal = mud[2].concat(" ").concat(mud[1]).concat(" ").concat(mud[5]).concat(" às ").concat(mud[3]);
         String usuario = jEditorPane1.getText();
         String conteudo = jTextArea2.getText();
-        System.out.println(conteudo);
         jTextArea2.setText("");
 
         try {
-            bd.enviarQuery("INSERT INTO Mural (id, usuario, data, conteudo) VALUES (\'" + id + "\',\'" + usuario + "\',\'" + formal + "\', \'" + conteudo + "\')");
-            id++;
-            System.out.println(id);
+            bd.enviarQuery("INSERT INTO Mural (usuario, data, conteudo) VALUES (\'" + usuario + "\',\'" + formal + "\', \'" + conteudo + "\')");
 
         } catch (SQLException Ex) {
             Logger.getLogger(MuralPanel.class.getName()).log(Level.SEVERE, null, Ex);
@@ -182,10 +175,9 @@ public class MuralPanel extends javax.swing.JPanel {
 
                 auxusuario.add(retorno.getString("usuario") + "\n");
                 auxdata.add(retorno.getString("data") + "\n\n");
-                auxconteudo.add(retorno.getString("conteudo") + "\n---------------------------------------------------------------------------------------------------------\n");
-                a++;
+                auxconteudo.add(retorno.getString("conteudo") + "\n________________________________________________________________________________________________________\n");
+                
             } while (retorno.next());
-            System.out.println(a);
 
             Collections.reverse(auxusuario);
             Collections.reverse(auxdata);
