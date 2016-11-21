@@ -105,7 +105,20 @@ function corrigir($xml, $respostas){
 		}
 	}
 	array_push($_SESSION["numeroCorretas"], $nota); // keys
-	array_push($_SESSION["alunos"], $_POST["nomeAluno"]); // values
+
+	$conecta =  new mysqli("localhost", "root", "", "oi") or print (mysqli_error()); 
+	$sql = "SELECT * FROM aluno WHERE matricula='".$_POST['matricula']."'";
+	$query = $conecta->query($sql);
+	$sql = mysqli_fetch_assoc($query);
+	if (isset($sql["nome"])) {
+		$nome = $sql["nome"];
+	} else {
+		$nome = $_POST['matricula'];
+	}
+	/* nome BD: Usuarios
+	   nome TABELA: Alunos
+	*/
+	array_push($_SESSION["alunos"], $nome); // values
 	$_SESSION["respostasAssociadas"] = array_map(function($key, $val) {return array($key=>$val);}, $_SESSION["alunos"], $_SESSION["numeroCorretas"]);
 	return $nota;
 }
