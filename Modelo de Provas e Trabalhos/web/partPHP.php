@@ -4,7 +4,7 @@
 
 require_once 'PHPWord.php';
 //require_once 'insereBd.php';
-$UploadDirectory = 'img/';
+
 $valor           = $_POST['valor'];
 $titulo          = $_POST['Titulo'];
 $turno           = $_POST['turno'];
@@ -13,17 +13,20 @@ $elab            = $_POST['prof'];
 $turma           = $_POST['turmas'];
 $escola          = $_POST['instituicao'];
 $duracao         = $_POST['duracao'];
-$dataProva       = $_POST['datadeAplicacao'];
+$dataProva       = $_POST['data'];
 $dataEntrega     = $_POST['dataEntrega'];
 $dataRecebimento = $_POST['dataRecebimento'];
-$tipo            = $_POST['tipo'];
 $logo            = $_FILES['logo']['name'];
 $brasao          = $_FILES['brasao']['name'];
 $foto            = $_FILES['foto']['name'];
+$tipo            = $_POST['tipo'];
+$UploadDirectory = 'img/';
+$tipoEscola      = $_POST['tiopoInsti'];
 
 move_uploaded_file($_FILES['foto']["tmp_name"], $UploadDirectory . $foto);
 move_uploaded_file($_FILES['logo']["tmp_name"], $UploadDirectory . $logo);
 move_uploaded_file($_FILES['brasao']["tmp_name"], $UploadDirectory . $brasao);
+
 // Create a new PHPWord Object
 $PHPWord = new PHPWord();
 
@@ -34,34 +37,40 @@ $section = $PHPWord->createSection();
 // You can directly style your text by giving the addText function an array:
 
 //$section->addText($titulo, array('align'=>'center','name'=>'Arial', 'size'=>16, 'bold'=>true));
-
-$table = $section->addTable();
-
 if ($tipo == 'prova') {
     
-    for ($r = 1; $r <= 1; $r++) { // Loop through rows
-        // Add row
-        $table->addRow();
-        
-        for ($c = 1; $c <= 1; $c++) { // Loop through cells
-            // Add Cell
-            $table->addCell(3000)->addImage($UploadDirectory . $foto, array(
-                'width' => 133,
-                'height' => 100,
-                'align' => 'left'
-            ));
-            $table->addCell(3000)->addImage($UploadDirectory . $logo, array(
-                'width' => 133,
-                'height' => 100,
-                'align' => 'center'
-            ));
-            $table->addCell(3000)->addImage($UploadDirectory . $brasao, array(
-                'width' => 133,
-                'height' => 100,
-                'align' => 'right'
-            ));
-        }
-    }
+    
+    
+    $tamanho = array(
+        'width' => 5000,
+        'valign' => 'center'
+    );
+    $PHPWord->addTableStyle('tableStyle', $tamanho);
+    $table  = $section->addTable();
+    $table1 = $section->addTable('tableStyle');
+    $table2 = $section->addTable();
+    
+    
+    
+    // Add row
+    $table->addRow();
+    // Add Cell
+    $table->addCell(4000)->addImage($UploadDirectory . $foto, array(
+        'width' => 133,
+        'height' => 100,
+        'align' => 'left'
+    ));
+    $table->addCell(4000)->addImage($UploadDirectory . $logo, array(
+        'width' => 133,
+        'height' => 100,
+        'align' => 'center'
+    ));
+    $table->addCell(4000)->addImage($UploadDirectory . $brasao, array(
+        'width' => 133,
+        'height' => 100,
+        'align' => 'right'
+    ));
+    
     
     
     $PHPWord->addFontStyle('myOwnStyle', array(
@@ -79,52 +88,65 @@ if ($tipo == 'prova') {
         'spaceAfter' => 200
     ));
     
+    // Add row
+    $table1->addRow();
+    // Add Cell
+    $table1->addCell(1500)->addText("\t\t");
+    $table1->addCell(6000)->addText($escola, 'myOwnStyle', 'myOwnP');
+    // Add Cell
+    $table1->addRow();
+    // Add Cell
+    $table1->addCell(1500)->addText("\t\t");
+    $table1->addCell(6000)->addText($titulo, 'myOwnStyle', 'myOwnP');
     
-    
-    
-    //USAR TABELA PARA INSERIR CAMPOS
-    
-    $section->addText($escola, 'myOwnStyle', 'myOwnP');
-    $section->addText($titulo, 'myOwnStyle', 'myOwnP');
-    $section->addText('Aluno(a): ' . "\t\t\t\t\t\t\t\t\t" . 'Data: ' . $dataProva, 'myOwnStyle');
-    $section->addText('Professor(A): ' . $elab . "\t\t\t\t\t" . 'Turma: ' . $turma, 'myOwnStyle');
-    
-    
-    $section->addText('Valor: ' . $valor . "\t\t\t\t\t\t\t\t\t" . 'Turno: ' . $turno, 'myOwnStyle');
-    
-    $section->addText('N. de Questoes: ' . $nQuest . "\t\t\t\t\t\t\t\t" . 'Duracao: ' . $duracao . ' min.', 'myOwnStyle');
-    
-    
+    $table2->addRow();
+    $table2->addCell(9500)->addText("Aluno(a): " . "NOME DO ALUNO", 'myOwnStyle');
+    $table2->addCell(2500)->addText("Data: " . $dataProva, 'myOwnStyle');
+    $table2->addRow();
+    $table2->addCell(9500)->addText("Professor(a): " . $elab, 'myOwnStyle');
+    $table2->addCell(2000)->addText("Turma: " . $turma, 'myOwnStyle');
+    $table2->addRow();
+    $table2->addCell(9500)->addText("Valor: " . $valor, 'myOwnStyle');
+    $table2->addCell(2000)->addText("Turno: " . $turno, 'myOwnStyle');
+    $table2->addRow();
+    $table2->addCell(9500)->addText("N. de Questoes: " . $nQuest, 'myOwnStyle');
+    $table2->addCell(2000)->addText("Duracao: " . $duracao . " min", 'myOwnStyle');
     
     // At least write the document to webspace:
     $objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
     $objWriter->save('prova.docx');
-    
 } else if ($tipo == 'trabalho') {
     
-    for ($r = 1; $r <= 1; $r++) { // Loop through rows
-        // Add row
-        $table->addRow();
-        
-        for ($c = 1; $c <= 1; $c++) { // Loop through cells
-            // Add Cell
-            $table->addCell(3000)->addImage($foto, array(
-                'width' => 133,
-                'height' => 100,
-                'align' => 'left'
-            ));
-            $table->addCell(3000)->addImage($logo, array(
-                'width' => 133,
-                'height' => 100,
-                'align' => 'center'
-            ));
-            $table->addCell(3000)->addImage($brasao, array(
-                'width' => 133,
-                'height' => 100,
-                'align' => 'right'
-            ));
-        }
-    }
+    $tamanho = array(
+        'width' => 5000,
+        'valign' => 'center'
+    );
+    $PHPWord->addTableStyle('tableStyle', $tamanho);
+    $table  = $section->addTable();
+    $table1 = $section->addTable('tableStyle');
+    $table2 = $section->addTable();
+    
+    
+    
+    // Add row
+    $table->addRow();
+    // Add Cell
+    $table->addCell(4000)->addImage($UploadDirectory . $foto, array(
+        'width' => 133,
+        'height' => 100,
+        'align' => 'left'
+    ));
+    $table->addCell(4000)->addImage($UploadDirectory . $logo, array(
+        'width' => 133,
+        'height' => 100,
+        'align' => 'center'
+    ));
+    $table->addCell(4000)->addImage($UploadDirectory . $brasao, array(
+        'width' => 133,
+        'height' => 100,
+        'align' => 'right'
+    ));
+    
     
     
     $PHPWord->addFontStyle('myOwnStyle', array(
@@ -142,27 +164,37 @@ if ($tipo == 'prova') {
         'spaceAfter' => 200
     ));
     
+    // Add row
+    $table1->addRow();
+    // Add Cell
+    $table1->addCell(1500)->addText("\t\t");
+    $table1->addCell(6000)->addText($escola, 'myOwnStyle', 'myOwnP');
+    // Add Cell
+    $table1->addRow();
+    // Add Cell
+    $table1->addCell(1500)->addText("\t\t");
+    $table1->addCell(6000)->addText($titulo, 'myOwnStyle', 'myOwnP');
     
-    
-    
-    //USAR TABELA PARA INSERIR CAMPOS
-    
-    $section->addText($escola, 'myOwnStyle', 'myOwnP');
-    $section->addText($titulo, 'myOwnStyle', 'myOwnP');
-    $section->addText('Aluno(a): ' . "\t\t\t\t\t\t\t\t\t" . 'Data: ' . $dataProva, 'myOwnStyle');
-    $section->addText('Professor(A): ' . $elab . "\t\t\t\t\t" . 'Turma: ' . $turma, 'myOwnStyle');
-    
-    
-    $section->addText('Valor: ' . $valor . "\t\t\t\t\t\t\t\t\t" . 'Turno: ' . $turno, 'myOwnStyle');
-    
-    $section->addText('N. de Questoes: ' . $nQuest . "\t\t\t\t\t\t\t\t" . 'Duracao: ' . $duracao . ' min.', '	myOwnStyle');
-    
+    $table2->addRow();
+    $table2->addCell(9500)->addText("Aluno(a): " . "puxar do banco de dados", 'myOwnStyle');
+    $table2->addCell(2000)->addText("Turma: " . $turma, 'myOwnStyle');
+    $table2->addRow();
+    $table2->addCell(9500)->addText("Professor(a): " . $elab, 'myOwnStyle');
+    $table2->addCell(2000)->addText("Turno: " . $turno, 'myOwnStyle');
+    $table2->addRow();
+    $table2->addCell(4000)->addText("Data Entrega: " . $dataEntrega, 'myOwnStyle');
+    $table2->addCell(3000)->addText("N. de Questoes: " . $nQuest, 'myOwnStyle');
+    $table2->addCell(1000)->addText("Valor: " . $valor, 'myOwnStyle');
+    $table2->addRow();
+    $table2->addCell(9500)->addText("Data Recebimento: " . $dataRecebimento, 'myOwnStyle');
+    $table2->addCell(2000)->addText("Duracao: " . $duracao . " min", 'myOwnStyle');
     
     
     // At least write the document to webspace:
     $objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
     $objWriter->save('trabalho.docx');
+    
+    
 }
-
 
 ?>
