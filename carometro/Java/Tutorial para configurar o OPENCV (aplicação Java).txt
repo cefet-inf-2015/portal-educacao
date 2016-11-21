@@ -1,0 +1,20 @@
+1) Baixe o arquivo opencv-2.4.13.exe (que está nessa pasta) e execute-o.
+
+2) No campo que pede o diretório de extração, digite C: (pasta raiz).
+
+3) Abra o projeto no NetBeans.
+
+4) Clique com o botão direito na pasta "Bibliotecas" e depois em "Adicionar jar/pasta".
+
+5) Selecione o arquivo "opencv-2413.jar" que está localizado em C:\opencv\build\java e dê ok.
+
+6) Clique com o botão direito sobre a pasta principal do projeto no NetBeans (OpenCVWebCam2) e clique em propriedades.
+
+7) Na nova janela que aparecerá clique em "Executar".
+
+8) No campo "Opções de VM:" copie e cole a linha abaixo toda:
+	-Djava.library.path="C:\opencv\build\java\x64" 
+
+9) Dê ok.
+
+OpenCV configurado n i c e

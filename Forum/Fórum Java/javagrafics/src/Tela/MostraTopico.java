@@ -6,8 +6,12 @@
 package Tela;
 
 import BancoDeDados.Conexao;
+import carometro.Carometro;
+import com.jcraft.jsch.SftpException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -44,16 +48,21 @@ public class MostraTopico extends Exibicao{
         categoria = categoria.replaceAll("[oóòõôö]","o");
         categoria = categoria.replaceAll("[uúùûü]","u");
         conec = new Conexao();
+        /*
         ip = "cefet-inf-2015.ddns.net:43306";
         user = "forum";
         senha = "inf2015";
+        */
+        ip = "localhost";
+        user = "root";
+        senha = "";
         banco = "bdforum";
         try {    
             conec.conectar(ip, user, senha, banco);
             comando = "SELECT * FROM "+categoria+" WHERE Titulo='"+titulo+"'";
             resultado = conec.enviarQueryResultados(comando);
-            //comando = "SELECT * FROM usuario WHERE nome='"+
-            //resultado.getString("Autor")+"'";
+            comando = "SELECT * FROM usuarios WHERE nome='"+
+            resultado.getString("Autor")+"'";
             resultado.last();
             quantidade = resultado.getRow();
             if((quantidade%5)==0) {
@@ -72,21 +81,22 @@ public class MostraTopico extends Exibicao{
     public String Formata(String resultado) {
         teste += resultado+"\n____________________\n";
         String TextoFormatado = resultado;
-        TextoFormatado = TextoFormatado.replaceAll("<div style=\"color:"
-        +" grey\"> ", "");
+        TextoFormatado = TextoFormatado.replaceAll("<div style=\"color: grey\">", "");
         TextoFormatado = TextoFormatado.replaceAll("<br>", "\n");
         TextoFormatado = TextoFormatado.replaceAll("\"", "");
         TextoFormatado = TextoFormatado.replaceAll(
-        "				"
-        +"						 ", "");
-        TextoFormatado = TextoFormatado.replaceAll("</div>", 
-        "---------------------------"
-        +"-----------------------------------------------------------");
+        "										", "");
+        TextoFormatado = TextoFormatado.replaceAll("</div><div>", 
+        "\n---------------------------"
+        +"-----------------------------------------------------------\n");
+        TextoFormatado = TextoFormatado.replaceAll("</div>", "");
+        TextoFormatado = TextoFormatado.replaceAll( "	\n" +
+"--------------------------------------------------------------------------------------", "");
         teste2 += TextoFormatado+"\n____________________\n";
         return TextoFormatado;
     }
     
-    public void CarregaPagina() throws SQLException {
+    public void CarregaPagina() throws SQLException, SftpException {
         if(PagAtual<numeroPag) {
             String[] Conteudo = new String[5];
             String[] Usuario = new String[5];
@@ -96,34 +106,35 @@ public class MostraTopico extends Exibicao{
                 System.out.println("Até aqui chegou");
                 for(int i=0; i<5; i++) {
                     Conteudo[i] = Formata(resultado.getString("Conteudo"));
+                    resultadoUsuario = conec.enviarQueryResultados(comando);
+                    Usuario[i] = formataUsuario(resultadoUsuario);
                     resultado.next();
                 }
+                //jLabel17.setIcon(Carometro.getFotoCarometro("201511130210"));
                 
-                //jLabel17.setText(Formata(resultado.getString("Conteudo")));
-                
-                //jTextArea15.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea15.setText(Usuario[0]);
                 jTextArea16.setText(Conteudo[0]);
 
                 //jLabel14.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea2.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea2.setText(Usuario[1]);
                 jTextArea7.setText(Conteudo[1]);
 
                 //jLabel16.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea1.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea1.setText(Usuario[2]);
                 jTextArea8.setText(Conteudo[2]);
 
                 //jLabel18.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea4.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea4.setText(Usuario[3]);
                 jTextArea9.setText(Conteudo[3]);
-
+                
                 //jLabel20.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea5.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea5.setText(Usuario[4]);
                 jTextArea10.setText(Conteudo[4]);
             } else {
                 for(int i=0; i<(quantidade%5); i++) {
                     Conteudo[i] = Formata(resultado.getString("Conteudo"));
-                    //resultadoUsuario = conec.enviarQueryResultados(comando);
-                    //Usuario[i] = formataUsuario(resultadoUsuario);
+                    resultadoUsuario = conec.enviarQueryResultados(comando);
+                    Usuario[i] = formataUsuario(resultadoUsuario);
                     resultado.next();
                 }
                 for(int i=(quantidade%5); i<5; i++) {
@@ -133,23 +144,23 @@ public class MostraTopico extends Exibicao{
                 }
                 //jLabel17.setText(Formata(resultado.getString("Conteudo")));
                 
-                //jTextArea15.setText(Usuario[0]);
+                jTextArea15.setText(Usuario[0]);
                 jTextArea16.setText(Conteudo[0]);
 
                 //jLabel14.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea2.setText(Usuario[1]);
+                jTextArea2.setText(Usuario[1]);
                 jTextArea7.setText(Conteudo[1]);
 
                 //jLabel16.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea1.setText(Usuario[2]);
+                jTextArea1.setText(Usuario[2]);
                 jTextArea8.setText(Conteudo[2]);
 
                 //jLabel18.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea4.setText(Usuario[3]);
+                jTextArea4.setText(Usuario[3]);
                 jTextArea9.setText(Conteudo[3]);
 
                 //jLabel20.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea5.setText(Usuario[4]);
+                jTextArea5.setText(Usuario[4]);
                 jTextArea10.setText(Conteudo[4]);
             }
             PagAtual++;
@@ -159,31 +170,34 @@ public class MostraTopico extends Exibicao{
     
     public void VoltaPagina() throws SQLException {
         if(PagAtual>1) {
+            String[] Usuario = new String[5];
             String[] Conteudo = new String[5];
             resultado.first();
             for(int i=0; i<((PagAtual-2)*5); i++) resultado.next();
                 for(int i=0; i<5; i++) {
                     Conteudo[i] = Formata(resultado.getString("Conteudo"));
+                    resultadoUsuario = conec.enviarQueryResultados(comando);
+                    Usuario[i] = formataUsuario(resultadoUsuario);
                     resultado.next();
                 }
                 //jLabel17.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea15.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea15.setText(Usuario[0]);
                 jTextArea16.setText(Conteudo[0]);
 
                 //jLabel14.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea2.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea2.setText(Usuario[1]);
                 jTextArea7.setText(Conteudo[1]);
 
                 //jLabel16.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea1.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea1.setText(Usuario[2]);
                 jTextArea8.setText(Conteudo[2]);
 
                 //jLabel18.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea4.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea4.setText(Usuario[3]);
                 jTextArea9.setText(Conteudo[3]);
 
                 //jLabel20.setText(Formata(resultado.getString("Conteudo")));
-                //jTextArea5.setText(Formata(resultado.getString("Conteudo")));
+                jTextArea5.setText(Usuario[4]);
                 jTextArea10.setText(Conteudo[4]);
             PagAtual--;
         }
