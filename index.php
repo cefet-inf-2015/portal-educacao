@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="styles/css/layoutmural.css" type="text/css" rel="stylesheet" media="screen,projection">
   <style type="text/css">
     body {
         display: flex;
@@ -34,14 +35,7 @@
     if(!isset($_SESSION['usuario'])) {
       include('modal.php');
     }
-   ?>
-
-  <!-- ESPAÇO PARA MARQUEE -->
-  <div>
-    
-  </div>
-
-          
+   ?>        
 
 
   <div class="section no-pad-bot" id="index-banner">
@@ -60,10 +54,23 @@
     <div class="container">
       <div class="section">
         <!-- CONTEÚDO AQUI -->
-        <h1>Inserir conteudo aquii</h1>
+        <div class="row">  
+          <div class="col s2">
+            <img src="imgs/logo.png" label="logo">
+          </div>
+          <div class="col s10st">
+            <p>Bem vindo ao Portal Educação!</p>
+            <?php
+              if (!isset($_SESSION["usuario"]) ) {
+                echo '<p>Logue-se para acessar mais conteúdo.</p>';
+              }
+            ?>
+          </div>
+        </div>
       </div>
     </div>
   </main>
+
   <!-- AQUI FICA O FOOTER -->
   <?php 
     include('footer.php');

@@ -9,8 +9,8 @@
       </div>
     </li>
     <br>
-    <li><a class="waves-effect" href="index.html">Página Inicial</a></li>
-    <li><a class="waves-effect" href="Mural/web/index.html">Mural</a></li>
+    <li><a class="waves-effect" href="index.php">Página Inicial</a></li>
+    <li><a class="waves-effect" href="http:///localhost/portal-educacao/Mural/web/index.php">Mural</a></li>
     <li><a class="waves-effect" href="#!">Repositório de Fotos</a></li>
     <li><a class="waves-effect" href="Upload/index.html">Download/Upload Aplicativos</a></li>
     
@@ -46,6 +46,8 @@
           echo '<li><a class="waves-effect waves-light btn modal-trigger white-text light-blue darken-3" href="#modal1">Entrar</a></li>';
         }
         else {
+          $userData = (array) $_SESSION["usuario"];
+          echo '<li>Bem vindo(a), '. $userData["primeiroNome"]. '</li>';
           echo '<li><a class="waves-effect waves-light btn white-text light-red darken-3" id="logOutBtn">Sair</a></li>'; 
           echo '<div id="msgSaiu"></div>';
         }
@@ -53,3 +55,8 @@
     </ul>
   </div>
 </nav>
+
+<!-- ESPAÇO PARA MARQUEE-->
+<div id="marquee">
+    <div><span>Portal Educação</span></div>
+</div>

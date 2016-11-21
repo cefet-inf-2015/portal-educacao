@@ -21,17 +21,6 @@
         <ul>
           <li><a class="white-text link" href="https://github.com/cefet-inf-2015/portal-educacao/" target="_blank">Github</a></li>
           <li><a class="white-text link" href="http://cefetmg.br/" target="_blank">CEFET-MG</a></li>
-          <li>
-            <?php 
-              if ( isset($_SESSION["usuario"]) ) {
-                $userData = (array) $_SESSION["usuario"];
-                echo $userData['primeiroNome'];
-              }
-              else {
-                echo "Ngm logado";
-              }
-            ?>
-          </li>
         </ul>
       </div>
     </div>
