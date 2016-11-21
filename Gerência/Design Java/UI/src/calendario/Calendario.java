@@ -9,9 +9,12 @@ import javax.swing.JLabel;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
 
 public class Calendario extends javax.swing.JPanel {
     /*Contêm os Labels dos blocos do calendário*/
@@ -99,8 +102,9 @@ public class Calendario extends javax.swing.JPanel {
             ResultSet res = c.enviarQueryResultados("SELECT * FROM eventos WHERE ano='" + data.getYear() + "' AND mes='" + data.getMonthValue() + "' ORDER BY hora ASC");
             while(!res.isAfterLast()){
                 dia=res.getString("dia");
-                block[I+Integer.parseInt(dia)].getParent().setBackground(Color.blue);
-                block[I+Integer.parseInt(dia)].setBackground(new Color(204,204,204));
+                //block[I+Integer.parseInt(dia)].setBorder(BorderFactory.createLineBorder(Color.blue, 5));
+                JPanel pai = (JPanel) block[I+Integer.parseInt(dia)].getParent();
+                pai.setBorder(BorderFactory.createLineBorder(Color.blue, 5));
                 res.next();
             }
             

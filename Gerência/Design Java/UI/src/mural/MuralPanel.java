@@ -22,7 +22,7 @@ import ui.Sessao;
  */
 public class MuralPanel extends javax.swing.JPanel {
      BancoDeDados.Conexao bd;
-    int id=0;
+    static public int id=0;
     int x=0;
     int a=0;
     String [] usuario = new String[1];
