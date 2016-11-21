@@ -35,14 +35,7 @@
     if(!isset($_SESSION['usuario'])) {
       include('modal.php');
     }
-   ?>
-
-  <!-- ESPAÇO PARA MARQUEE -->
-  <div>
-    
-  </div>
-
-          
+   ?>        
 
 
   <div class="section no-pad-bot" id="index-banner">
@@ -61,10 +54,19 @@
     <div class="container">
       <div class="section">
         <!-- CONTEÚDO AQUI -->
-        <h1>Inserir conteudo aquii</h1>
+        <div class="row">  
+          <div class="col s2">
+            <img src="imgs/logo.png" label="logo">
+          </div>
+          <div class="col s10">
+            <p>Bem vindo ao Portal Educação!</p>
+            <p>Logue-se para acessar mais conteúdo.</p>
+          </div>
+        </div>
       </div>
     </div>
   </main>
+
   <!-- AQUI FICA O FOOTER -->
   <?php 
     include('footer.php');
