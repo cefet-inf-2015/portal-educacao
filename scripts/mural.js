@@ -31,7 +31,8 @@ function loadBD(linha){
 			dataType: 'json',
 			success: function(data){
 				console.log(typeof data, data);
-				data = JSON.parse(data);
+				//data = JSON.parse(data);
+
 				//Criação de Divs para o layout
 				let divExt, divCard, divRow1, divFoto,
 					divNome, divRow2, divCont, divLike;
@@ -81,13 +82,10 @@ function loadBD(linha){
 				// fotoCont.src = "../../../"+imgPost;
 
 				//Impede a criação de campo vazio ou com erro
-				if(texto!=""){
+				if(data.conteudo!=""){
 					divCont.appendChild(post);
 				}
-				if(imgPost!= ""){
-					divCont.appendChild(fotoCont);
-				}	
-
+				
 				divRow2.appendChild(divCont);
 
 				divNome.appendChild(nomePerf);
