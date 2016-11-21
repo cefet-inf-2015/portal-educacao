@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
  * @author Victor
  */
 public class MostraTopico extends Exibicao{
+    private String teste;
+    private String teste2;
     private String ip;
     private String user;
     private String senha;
@@ -68,6 +70,7 @@ public class MostraTopico extends Exibicao{
         }
     }
     public String Formata(String resultado) {
+        teste += resultado+"\n____________________\n";
         String TextoFormatado = resultado;
         TextoFormatado = TextoFormatado.replaceAll("<div style=\"color:"
         +" grey\"> ", "");
@@ -79,6 +82,7 @@ public class MostraTopico extends Exibicao{
         TextoFormatado = TextoFormatado.replaceAll("</div>", 
         "---------------------------"
         +"-----------------------------------------------------------");
+        teste2 += TextoFormatado+"\n____________________\n";
         return TextoFormatado;
     }
     
@@ -149,6 +153,7 @@ public class MostraTopico extends Exibicao{
                 jTextArea10.setText(Conteudo[4]);
             }
             PagAtual++;
+            System.out.println(teste+"\n++++++++++++++++++++++++++++++++++\n"+teste2);
         }
     }
     
