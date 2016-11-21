@@ -25,13 +25,19 @@ function Categoria() {
 }
 
 function Responde() {
+
 	var string = event.target.id;
 	var Nome = document.getElementById("Nome"+string.substr(string.length - 1)).innerHTML;
 	var Matricula = document.getElementById("Matricula"+string.substr(string.length - 1)).innerHTML;
 	var Posts = document.getElementById("Posts"+string.substr(string.length - 1)).innerHTML;
 	var Classificacao = document.getElementById("Classificacao"+string.substr(string.length - 1)).innerHTML;
 	var comentario = document.getElementById("Comentario"+string.substr(string.length - 1)).innerHTML;
-	document.getElementById("ConteudoResposta").innerHTML = Nome+" - "+Matricula+" - "+Posts+" - "+Classificacao+"<br>"+"\""+comentario+"\"";
+
+	var aux =comentario.split("<div>"); 
+	var aux = aux[aux.length-1].split("</div>");
+
+
+	document.getElementById("ConteudoResposta").innerHTML = Nome+" - "+Matricula+" - "+Posts+" - "+Classificacao+"<br>"+"\""+aux[0]+"\"";
 }
 
 function Listener(x) {

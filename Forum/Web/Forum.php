@@ -30,7 +30,7 @@
             </style>
         </head>
 
-        <body onload="Listener(0); Perfil(0)">
+        <body onload="Listener(0);">
             <?php 
               include('../../navbar.php');
             ?>
@@ -45,7 +45,7 @@
             <div class="section no-pad-bot" id="index-banner">
                 <div class="container">
                     <br><br>
-                    <a href="Fórum.html"><h1 class="header center blue-text text-darken-4">Fórum</h1></a>
+                    <a href="Forum.php"><h1 class="header center blue-text text-darken-4">Fórum</h1></a>
                     <div class="row center">
                         <h5 class="header col s12 light">Fórum para discussões</h5>
                     </div>
@@ -116,18 +116,35 @@
                         <div class="col s5">
                             <div class="col s12 m10">
                                 <div class="card horizontal">
-                                    <div class="card-image">
-                                        <img src="Squirtle.png">
-                                    </div>
-                                    <div class="card-stacked">
-                                        <div class="card-content">
-                                            <div style="color: #1E90FF">Nome: </div><div id="Nome">
-                                                <?php echo $userData['primeiroNome']; ?>
+                                    
+                                        <?php
+
+                                        if ( isset($_SESSION["usuario"]) ) {
+    
+
+                                        echo 
+                                        "<div class=\"card-image\">
+                                        <img src=\"../../carometro/LUANA_PINHEIRO_201511130296.jpg\">
+                                    	</div>
+                                    	<div class=\"card-stacked\">
+                                        <div class=\"card-content\">
+                                            <div style=\"color: #1E90FF\">Nome: </div><div id=\"Nome\">".
+                                                 $userData['primeiroNome']." 
                                             </div>
-                                            <div style="color: #1E90FF">Matrícula: </div><div id="Matricula"></div>
-                                            <div style="color: #1E90FF">Posts: </div><div id="Posts"></div>
-                                            <div id="Classificacao" style="color: blue"></div>
-                                        </div>
+                                            <div style=\"color: #1E90FF\">Matrícula: </div>
+                                            <div id=\"Matricula\">"
+                                            .$userData['matricula'].
+                                            "</div>
+                                            <div style=\"color: #1E90FF\">Posts: </div><div id=\"Posts\"></div>
+                                            <div id=\"Classificacao\" style=\"color: blue\"></div>
+                                        </div>";
+										}else{
+											echo "
+											<div class=\"card-stacked\">
+											<h2 class=\"header\" style=\"color:#069\"> Bem Vindo ao Fórum!</h2>";
+										}
+
+                                        ?>
                                     </div>
                                 </div>
 

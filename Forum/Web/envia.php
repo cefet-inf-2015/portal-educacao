@@ -1,27 +1,33 @@
 
 
 <?php
-
+session_start();
 if ( isset($_SESSION["usuario"]) ) {
+                echo "<script>alert(\"debug\")</script>";
+                var_dump($_SESSION['usuario']);
                 $userData = (array) $_SESSION["usuario"];
                 $nome = $userData['primeiroNome'].$userData['ultimoNome'];
-                $matricula = $userData['matricula'];
+                $matricula = $userData['numeroMatricula'];
                 $foto = $userData['foto'];
-                // $tipo // pegar tipo de usuario
+                $tipo="coordenador"; // pegar tipo de usuario
               }
               else {
-                echo "Ngm logado";
-                $nome = "Raphell";
-                $tipo = "aluno";
+                echo "<script>alert(\"debug1\")</script>";
+                $nome = "hueg";
+                $tipo = "professor";
                 $foto = "/carometro/RAFAEL_NEVES 201511130237.jpg";
-                $matricula = '201511130237';
+                $matricula = 'a201511130237';
+}
 
-              }
-
-
+/*
 $dbhost = 'cefet-inf-2015.ddns.net:43306'; // endereco do servidor de banco de dados
 $dbuser = 'root'; // login do banco de dados
 $dbpass = 'apenasinf-2015'; // senha
+*/
+
+$dbhost = 'localhost'; // endereco do servidor de banco de dados
+$dbuser = 'root'; // login do banco de dados
+
 $dbname = 'bdforum'; // nome do banco de dados a ser usado
 $titulo = $_POST["titulo"];
 $data= date('d/m/Y');
@@ -31,19 +37,20 @@ $categoria = $_POST["categoria"];
 
 
               
-$conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
+//$conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
+$conecta = @mysql_connect($dbhost, $dbuser);
 $seleciona = @mysql_select_db($dbname);
 $sqlinseretopico= "INSERT INTO $categoria ( Titulo,Autor,Conteudo,Data,Comentario) VALUES ('$titulo','$nome','$conteudo','$data','$comentario')";
 $inseretabela = mysql_query( $sqlinseretopico, $conecta );
 
-$sqlinsereusuario= "INSERT INTO usuario ( nome,tipo,foto,matricula) VALUES ('$nome','$tipo','$foto','$matricula')";
+$sqlinsereusuario= "INSERT INTO usuarios ( nome,tipo,foto,matricula) VALUES ('$nome','$tipo','$foto','$matricula')";
 $insererusuario = @mysql_query($sqlinsereusuario, $conecta);
 
 
 
-$sqlsomatopico = "UPDATE usuario SET criados = criados + 1 WHERE nome = '$nome'";
+$sqlsomatopico = "UPDATE usuarios SET criados = criados + 1 WHERE nome = '$nome'";
 
-$sqlsomacomentario= "UPDATE usuario SET comentarios = comentarios + 1 WHERE nome = '$nome'";
+$sqlsomacomentario= "UPDATE usuarios SET comentarios = comentarios + 1 WHERE nome = '$nome'";
 
 
 // inicia a conexao ao servidor de banco de dados
@@ -100,6 +107,5 @@ mysql_close($conecta);
 
 
 
-//echo "<script>location.href='Categorias/".$categoria.".php';</script>"; 
-
+//echo "<script>location.href='Categorias/".$categoria.".php';</script>";
 ?>
