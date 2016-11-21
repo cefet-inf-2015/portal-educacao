@@ -27,9 +27,14 @@ public class Topicos {
             categoria = categoria.replaceAll("[uúùûü]","u");
             System.out.println(categoria);
             Conexao conec = new Conexao();
+            /*
             ip = "cefet-inf-2015.ddns.net:43306";
             user = "forum";
             senha = "inf2015";
+            */
+            ip = "localhost";
+            user = "root";
+            senha = "";
             banco = "bdforum";
             try {
                 conec.conectar(ip, user, senha, banco);
