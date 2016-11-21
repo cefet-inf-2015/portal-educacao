@@ -51,7 +51,7 @@ function callPage(url, div){
 }
 
 function logOut() {
-    callPage(`/Gerência/LoginPHP/Logout.php`, document.querySelector('#msgSaiu'));
+    callPage(`.\\Gerencia\\LoginPHP\\Logout.php`, document.querySelector('#msgSaiu'));
     //window.location.reload(true);
     setTimeout( () => {window.location.reload(true);}, 500);
 }
@@ -63,5 +63,5 @@ function login() {
     senha = modalSenha.querySelector('input[name="senha"]').value;
     let e = modalSenha.querySelector('#tipoUsuario');
     tipo = e.options[e.selectedIndex].textContent;
-    callPage(`\Gerência\LoginPHP\Login.php?nome=${nome}&senha=${senha}&tipo=${tipo}`, document.getElementById('targetId'));
+    callPage(`.\\Gerencia\\LoginPHP\\Login.php?nome=${nome}&senha=${senha}&tipo=${tipo}`, document.getElementById('targetId'));
 }
