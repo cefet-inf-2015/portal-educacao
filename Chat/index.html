@@ -3,13 +3,52 @@
 <head>
 	<title>CHAT</title>
 	<link rel="stylesheet" type="text/css" href="styles/layout.css">
+	<meta name="text:Search Label" content="" />
+	<script type="text/javascript" src="http://static.tumblr.com/p2evvtm/Wycm17d1m/tumblr_search_box.js"></script>
+	<script type="text/javascript" src="template/js/chat.js"></script>
 </head>
 <body>
-<div id="historico"> carregando </div>
-<form action="javascript:enviar()" method="post">
-	<input type="text" name="mensagem" id="mensagem">
-	<input type="submit" name="" value="enviar">
-</form>
-<script type="text/javascript" src="template/js/chat.js"></script>
+<div id="lateral">
+	<form action="javascript:void(0)" onsubmit="return buscar();">
+    	<input type="search" name="tag" placeholder="Pesquisar" id="busca" autocomplete="off" />
+    </form>
+	<div id="usuarios"></div>
+</div> <!-- /#lateral -->
+<div id="menu"> </div> <!-- /#menu -->
+<div id="conteudo">
+	<div id="historico"></div>
+	<form action="javascript:enviar()" method="post">
+		<input type="text" name="mensagem" id="mensagem">
+		<input type="submit" name="" value="enviar">
+	</form>
+</div>
+<div id="info">
+	<div class="conteudo">
+		<div id="primeiroNome">
+			<strong>Primeiro Nome:</strong>
+			<span></span>
+		</div>
+		<div id="ultimoNome">
+			<strong>Último Nome:</strong>
+			<span></span>
+		</div>
+		<div id="username">
+			<strong>Username:</strong>
+			<span></span>
+		</div>
+		<div id="matricula">
+			<strong>Matrícula:</strong>
+			<span></span>
+		</div>
+		<div id="turma">
+			<strong>Turma:</strong>
+			<span></span>
+		</div>
+		<div id="divisao">
+			<strong>Divisão:</strong>
+			<span></span>
+		</div>
+	</div>
+</div>
 </body>
 </html>
