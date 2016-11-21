@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="styles/css/layoutmural.css" type="text/css" rel="stylesheet" media="screen,projection">
   <style type="text/css">
     body {
         display: flex;
