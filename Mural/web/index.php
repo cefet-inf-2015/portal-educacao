@@ -1,4 +1,5 @@
 <?php 
+  session_start();
   if (!isset($_SESSION['usuario'])) {
     header('Location: ../../index.php');
   }
@@ -40,11 +41,6 @@
       include('../../modal.php');
     }
   ?>
-
-  <!-- ESPAÇO PARA MARQUEE-->
-  <div id="marquee">
-      <div><span>Portal Educação</span></div>
-  </div>
 
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
