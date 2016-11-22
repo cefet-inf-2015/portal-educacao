@@ -105,7 +105,7 @@
 									<div class=\"col s12 m9 l3\">
 											<div class=\"card horizontal\">
 			                                    <div class=\"card-image\">
-			                                        <img src=\"Squirtle.png\">
+			                                        <img src=\"foto.png\">
 			                                    </div>
 			                                    <div class=\"card-stacked\">
 			                                        <div class=\"card-content\">
@@ -125,8 +125,8 @@
 									</div>							
 								</div>
 								<div class=\"row\">
-									<div class=\"col s12 m6 l3\">
-										<a class=\"btn-floating btn-large waves-effect waves-light blue\"><i class=\"material-icons\">thumb_up</i></a>
+									<div class=\"col s12 m6 l3\">".$conteudo['Avaliacao']."
+										<a class=\"btn-floating btn-large waves-effect waves-light blue\" id=\"like\"><i class=\"material-icons\">thumb_up</i></a>
 									</div>
 									<div align=\"right\" class=\"row col s12 m6 l9\">
 										<a name=\"BotaoResponde\" id=\"BotaoResponde".$idresponde."\" href=\"#comentario\" class=\"waves-effect waves-light blue btn\">responder</a>       
@@ -187,19 +187,33 @@
 								<div id="comentario">
 									<div class="row">
 										<div class="col s12 m9 l3">
-											<div class="card horizontal">
-			                                    <div class="card-image">
-			                                        <img src="Squirtle.png">
+											<?php  
+											 $matricula= $userData['numeroMatricula'];
+
+                                        	$busca = mysql_query("select * from usuarios where matricula='$matricula' "); //informaçoes do autor
+                                        
+                                        	while($infouser=mysql_fetch_array($busca)){
+                                            
+                                            	$tipo = $infouser['Tipo'];
+                                            	$criados = $infouser['Criados'];
+                                        	}
+
+											echo "
+											<div class=\"card horizontal\">
+			                                    <div class=\"card-image\">
+			                                        <img src=\"foto.png\">
 			                                    </div>
-			                                    <div class="card-stacked">
-			                                        <div class="card-content">
-			                                            <div style="color: #1E90FF">Nome: </div><div id="Nome"></div>
-			                                            <div style="color: #1E90FF">Matrícula: </div><div id="Matricula"></div>
-			                                            <div style="color: #1E90FF">Posts: </div><div id="Posts"></div>
-			                                            <div id="Classificacao" style="color: blue"></div>
+			                                    <div class=\"card-stacked\">
+			                                        <div class=\"card-content\">
+			                                            <div style=\"color: #1E90FF\">Nome: </div>".$userData['primeiroNome']."<div id=\"Nome\"></div>
+			                                            <div style=\"color: #1E90FF\">Matrícula: </div>".$userData['numeroMatricula']."<div id=\"Matricula\"></div>
+			                                            <div style=\"color: #1E90FF\">Posts: </div>".$criados."<div id=\"Posts\"></div>
+			                                            <div id=\"Classificacao\" style=\"color: blue\">".$tipo."</div>
 			                                        </div>
 			                                    </div>
-			                                </div>
+			                                </div>";
+											?>
+
 										</div>
 										<div class="row col s12 m8 l9 card-panel">
 											<div id="ConteudoResposta">

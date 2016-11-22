@@ -19,7 +19,7 @@ import ui.Sessao;
  */
 public class MuralPanel extends javax.swing.JPanel {
     BancoDeDados.Conexao bd;
-    int id=0;
+    public static int id=0;
     int x=0;
     int a=0;
     String [] usuario = new String[1];
@@ -199,7 +199,46 @@ public class MuralPanel extends javax.swing.JPanel {
         }
         jTextArea1.setCaretPosition(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
+    public void reload(){
+        jTextArea1.setText("");
 
+        try {
+            retorno = bd.enviarQueryResultados("SELECT * FROM Mural");
+            System.out.println(a);
+            ArrayList<String> auxusuario = new ArrayList<>();
+            ArrayList<String> auxdata = new ArrayList<>();
+            ArrayList<String> auxconteudo = new ArrayList<>();
+
+            do {
+
+                auxusuario.add(retorno.getString("usuario") + "\n");
+                auxdata.add(retorno.getString("data") + "\n\n");
+                auxconteudo.add(retorno.getString("conteudo") + "\n________________________________________________________________________________________________________\n");
+                
+            } while (retorno.next());
+
+            Collections.reverse(auxusuario);
+            Collections.reverse(auxdata);
+            Collections.reverse(auxconteudo);
+            Iterator it1 = auxusuario.iterator();
+            Iterator it2 = auxdata.iterator();
+            Iterator it3 = auxconteudo.iterator();
+
+            while (it1.hasNext()) {
+                jTextArea1.append((String) it1.next());
+                jTextArea1.append((String) it2.next());
+                jTextArea1.append((String) it3.next());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MuralPanel.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("VAZIO");
+        }
+        jTextArea1.setCaretPosition(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import mural.MuralPanel;
 
 /**
  *
@@ -30,6 +31,7 @@ public class Home extends javax.swing.JFrame {
      * Creates new form Home
      */
     public static JLabel notificacao;
+    public static MuralPanel mural;
     public Home() {
         super("Portal Educação");
         try {
@@ -41,6 +43,7 @@ public class Home extends javax.swing.JFrame {
            Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);  
         this.setIconImage(iconeTitulo);
         initComponents();
+        mural = muralPanel2;
         notificacao= jLabel5;
         jLabel5.setVisible(false);
         if(Sessao.usuario==null){

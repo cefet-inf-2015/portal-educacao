@@ -119,12 +119,30 @@
                                     
                                         <?php
 
+                                        $dbhost = 'localhost'; // endereco do servidor de banco de dados
+                                        $dbuser = 'root'; // login do banco de dados
+                                        $dbname = 'bdforum'; // nome do banco de dados a ser usado
+               
+                                        $conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
+                                        $seleciona = @mysql_select_db($dbname);
+
+                                        $matricula= $userData['numeroMatricula'];
+
+                                        $busca = mysql_query("select * from usuarios where matricula='$matricula' "); //informaçoes do autor
+                                        
+                                        while($infouser=mysql_fetch_array($busca)){
+                                            
+                                            $tipo = $infouser['Tipo'];
+                                            $criados = $infouser['Criados'];
+                                        }
+
+
                                         if ( isset($_SESSION["usuario"]) ) {
     
 
                                         echo 
                                         "<div class=\"card-image\">
-                                        <img src=\"../../carometro/LUANA_PINHEIRO_201511130296.jpg\">
+                                        <img src=\"foto.png\">
                                     	</div>
                                     	<div class=\"card-stacked\">
                                         <div class=\"card-content\">
@@ -133,10 +151,10 @@
                                             </div>
                                             <div style=\"color: #1E90FF\">Matrícula: </div>
                                             <div id=\"Matricula\">"
-                                            .$userData['matricula'].
+                                            .$userData['numeroMatricula'].
                                             "</div>
-                                            <div style=\"color: #1E90FF\">Posts: </div><div id=\"Posts\"></div>
-                                            <div id=\"Classificacao\" style=\"color: blue\"></div>
+                                            <div style=\"color: #1E90FF\">Posts: </div>".$criados."<div id=\"Posts\"></div>
+                                            <div id=\"Classificacao\" style=\"color: blue\">".$tipo."</div>
                                         </div>";
 										}else{
 											echo "
@@ -158,8 +176,27 @@
 
                                 <div class="collection">
                                     <a href="#!" class="collection-item"><h6>Estatísticas do Fórum</h6></a>
-                                    <a href="#!" class="collection-item"><div id="PostsTotal"></div></a>
-                                    <a href="#!" class="collection-item"><div id="TopicosTotal"></div></a>
+                                    <?php 
+
+                                    $busca = mysql_query("select * from usuarios"); //informaçoes do autor
+                                        $Posts=0;
+                                        $Respostas=0;
+                                        $users=0;
+
+                                        while($infouser=mysql_fetch_array($busca)){
+                                            
+                                            $Posts = $Posts + $infouser['Criados'];
+                                            $Respostas = $infouser['Comentarios'];
+                                            $users++;
+                                        }
+
+                                    echo "
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"PostsTotal\">Respostas: ".$Respostas."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"TopicosTotal\">Tópicos: ".$Posts."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div >Usuários: ".$users."</div></a>
+                                    "
+
+                                    ?>
                                 </div>
                             </div>
                         </div>
