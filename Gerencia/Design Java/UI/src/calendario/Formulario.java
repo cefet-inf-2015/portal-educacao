@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import ui.Home;
 import ui.Sessao;
 
 public class Formulario extends javax.swing.JFrame {
@@ -278,12 +279,13 @@ public class Formulario extends javax.swing.JFrame {
                      String[] mud = aux.split(" ");
                      String formal = mud[2].concat(" ").concat(mud[1]).concat(" ").concat(mud[5]).concat(" às ").concat(mud[3]);
                      c = new Conexao();
-                     c.conectar("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "Mural");
+                     c.conectar("localhost:3306", "root", "", "mural");
                     try {
                         c.enviarQuery("INSERT INTO Mural (id, usuario, data, conteudo) VALUES (\'" + mural.MuralPanel.id + "\',\'" + Sessao.usuario.getPrimeiroNome()+" " + Sessao.usuario.getUltimoNome() + "\',\'" + formal + "\', \'" + "Atividade: " + jTextField1.getText() + "\nDescricao: " + jTextField2.getText()+ "\nMateria: " + jTextField5.getText() + "\nData: " + jTextField3.getText() + "\nHora: " + jTextField4.getText()  + "\')");
                     } catch (SQLException ex) {
                         Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    Home.mural.reload();
                 }
                 if(jCheckBox2.isSelected()){
                     
