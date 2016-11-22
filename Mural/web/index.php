@@ -2,6 +2,13 @@
    if (!isset($_SESSION['usuario'])) { 
      header('Location: ../../index.php'); 
    } 
+   else {
+    $GLOBALS['usuario'] = (array) $_SESSION['usuario'];
+    /* pra acessar os dados do usuario, utilize o nome da coluna do BD.
+    *  ex p acessar matricula:  $GLOBALS['usuario']['numeroMatricula'];
+    *  colunas: numeroMatricula, primeiroNome, ultimoNome, turma, username, divisao, senha
+    */
+   }
 ?> 
 
 <!DOCTYPE html>
@@ -37,9 +44,7 @@
 	?> 
      <!-- Modal de login --> 
 	<?php  
-  	  if(!isset($_SESSION['usuario'])) { 
-      	include('../../modal.php'); 
-      } 
+    	include('../../modal.php'); 
 	?>
 
 	<!-- ESPAÇO PARA MARQUEE-->
