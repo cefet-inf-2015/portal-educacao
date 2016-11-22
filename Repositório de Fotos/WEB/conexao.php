@@ -1,7 +1,7 @@
-<?php
-	$servidor = "localhost";
+﻿<?php
+	$servidor = "cefet-inf-2015.ddns.net:43306";
 	$usuario = "root";
-	$senha = "123";
+	$senha = "";
 	$dbname = "carometro";
 	
 	//Criar a conexão
