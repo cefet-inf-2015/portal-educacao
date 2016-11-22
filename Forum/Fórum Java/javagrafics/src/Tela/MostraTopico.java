@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -38,7 +39,7 @@ public class MostraTopico extends Exibicao{
     private ResultSet resultadoUsuario;
     private Conexao conec;
     public MostraTopico() {
-        
+        PagAtual=0;
     }
     public void CarregaTopico() throws SQLException {
         PagAtual=0;
@@ -61,8 +62,6 @@ public class MostraTopico extends Exibicao{
             conec.conectar(ip, user, senha, banco);
             comando = "SELECT * FROM "+categoria+" WHERE Titulo='"+titulo+"'";
             resultado = conec.enviarQueryResultados(comando);
-            comando = "SELECT * FROM usuarios WHERE nome='"+
-            resultado.getString("Autor")+"'";
             resultado.last();
             quantidade = resultado.getRow();
             if((quantidade%5)==0) {
@@ -100,66 +99,76 @@ public class MostraTopico extends Exibicao{
         if(PagAtual<numeroPag) {
             String[] Conteudo = new String[5];
             String[] Usuario = new String[5];
+            ImageIcon[] carometro = new ImageIcon[5];
             resultado.first();
             for(int i=0; i<(PagAtual*5); i++) resultado.next();
             if((PagAtual+1)!=numeroPag) {
-                System.out.println("Até aqui chegou");
                 for(int i=0; i<5; i++) {
+                    comando = "SELECT * FROM usuarios WHERE nome='"+
+                    resultado.getString("Autor")+"'";
                     Conteudo[i] = Formata(resultado.getString("Conteudo"));
                     resultadoUsuario = conec.enviarQueryResultados(comando);
+                    carometro[i] = new ImageIcon("carometro/"
+                    +resultadoUsuario.getString("Matricula")+".png");
                     Usuario[i] = formataUsuario(resultadoUsuario);
                     resultado.next();
                 }
-                //jLabel17.setIcon(Carometro.getFotoCarometro("201511130210"));
                 
+                jLabel17.setIcon(carometro[0]);
                 jTextArea15.setText(Usuario[0]);
                 jTextArea16.setText(Conteudo[0]);
 
-                //jLabel14.setText(Formata(resultado.getString("Conteudo")));
+                jLabel14.setIcon(carometro[1]);
                 jTextArea2.setText(Usuario[1]);
                 jTextArea7.setText(Conteudo[1]);
 
-                //jLabel16.setText(Formata(resultado.getString("Conteudo")));
+                jLabel16.setIcon(carometro[1]);
                 jTextArea1.setText(Usuario[2]);
                 jTextArea8.setText(Conteudo[2]);
 
-                //jLabel18.setText(Formata(resultado.getString("Conteudo")));
+                jLabel18.setIcon(carometro[3]);
                 jTextArea4.setText(Usuario[3]);
                 jTextArea9.setText(Conteudo[3]);
                 
-                //jLabel20.setText(Formata(resultado.getString("Conteudo")));
+                jLabel20.setIcon(carometro[4]);
                 jTextArea5.setText(Usuario[4]);
                 jTextArea10.setText(Conteudo[4]);
             } else {
                 for(int i=0; i<(quantidade%5); i++) {
+                    comando = "SELECT * FROM usuarios WHERE nome='"+
+                    resultado.getString("Autor")+"'";
                     Conteudo[i] = Formata(resultado.getString("Conteudo"));
                     resultadoUsuario = conec.enviarQueryResultados(comando);
+                    carometro[i] = new ImageIcon("carometro/"+resultadoUsuario.getString("Matricula")+".png");
                     Usuario[i] = formataUsuario(resultadoUsuario);
                     resultado.next();
                 }
                 for(int i=(quantidade%5); i<5; i++) {
                     Conteudo[i] = " ";
+                    carometro[i] = new ImageIcon("C:\\xampp\\htdocs\\portal"
+                    +"-educacao\\Forum\\Fórum Java\\javagrafics\\src\\Imagens\\"
+                    +"carometroDefault.png");
                     Usuario[i] = " ";
                     resultado.next();
                 }
-                //jLabel17.setText(Formata(resultado.getString("Conteudo")));
                 
+                jLabel17.setIcon(carometro[0]);
                 jTextArea15.setText(Usuario[0]);
                 jTextArea16.setText(Conteudo[0]);
 
-                //jLabel14.setText(Formata(resultado.getString("Conteudo")));
+                jLabel14.setIcon(carometro[1]);
                 jTextArea2.setText(Usuario[1]);
                 jTextArea7.setText(Conteudo[1]);
 
-                //jLabel16.setText(Formata(resultado.getString("Conteudo")));
+                jLabel16.setIcon(carometro[2]);
                 jTextArea1.setText(Usuario[2]);
                 jTextArea8.setText(Conteudo[2]);
 
-                //jLabel18.setText(Formata(resultado.getString("Conteudo")));
+                jLabel18.setIcon(carometro[3]);
                 jTextArea4.setText(Usuario[3]);
                 jTextArea9.setText(Conteudo[3]);
 
-                //jLabel20.setText(Formata(resultado.getString("Conteudo")));
+                jLabel20.setIcon(carometro[4]);
                 jTextArea5.setText(Usuario[4]);
                 jTextArea10.setText(Conteudo[4]);
             }
@@ -172,31 +181,35 @@ public class MostraTopico extends Exibicao{
         if(PagAtual>1) {
             String[] Usuario = new String[5];
             String[] Conteudo = new String[5];
+            ImageIcon[] carometro = new ImageIcon[5];
             resultado.first();
             for(int i=0; i<((PagAtual-2)*5); i++) resultado.next();
                 for(int i=0; i<5; i++) {
+                    comando = "SELECT * FROM usuarios WHERE nome='"+
+                    resultado.getString("Autor")+"'";
                     Conteudo[i] = Formata(resultado.getString("Conteudo"));
                     resultadoUsuario = conec.enviarQueryResultados(comando);
+                    carometro[i] = new ImageIcon("carometro/"+resultadoUsuario.getString("Matricula")+".png");
                     Usuario[i] = formataUsuario(resultadoUsuario);
                     resultado.next();
                 }
-                //jLabel17.setText(Formata(resultado.getString("Conteudo")));
+                jLabel17.setIcon(carometro[0]);
                 jTextArea15.setText(Usuario[0]);
                 jTextArea16.setText(Conteudo[0]);
 
-                //jLabel14.setText(Formata(resultado.getString("Conteudo")));
+                jLabel14.setIcon(carometro[1]);
                 jTextArea2.setText(Usuario[1]);
                 jTextArea7.setText(Conteudo[1]);
 
-                //jLabel16.setText(Formata(resultado.getString("Conteudo")));
+                jLabel16.setIcon(carometro[2]);
                 jTextArea1.setText(Usuario[2]);
                 jTextArea8.setText(Conteudo[2]);
 
-                //jLabel18.setText(Formata(resultado.getString("Conteudo")));
+                jLabel18.setIcon(carometro[3]);
                 jTextArea4.setText(Usuario[3]);
                 jTextArea9.setText(Conteudo[3]);
 
-                //jLabel20.setText(Formata(resultado.getString("Conteudo")));
+                jLabel20.setIcon(carometro[4]);
                 jTextArea5.setText(Usuario[4]);
                 jTextArea10.setText(Conteudo[4]);
             PagAtual--;
@@ -297,6 +310,10 @@ public class MostraTopico extends Exibicao{
 
     public void setContador(int contador) {
         this.contador = contador;
+    }
+
+    public int getPagAtual() {
+        return PagAtual;
     }
     
 }
