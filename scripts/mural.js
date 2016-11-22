@@ -9,16 +9,26 @@ function sendBD() {
 		mes = dataPostagem.getMonth()+1,
 		ano = dataPostagem.getFullYear(),
 		dataPostString = "",
-		texto = document.querySelector("#post").value,
-		imgPost = document.querySelector("#file_path").value;
+		texto = document.querySelector("#post").value;
+	if(texto!=''){
 		if(dia<10) {
 			dia='0'+dia;
 		} 
 		if(mes<10) {
 		    mes='0'+mes;
 		}
+		if(horas<10) {
+			horas='0'+horas;
+		} 
+		if(minutos<10) {
+		    minutos='0'+minutos;
+		}
+		if(segundos<10) {
+			segundos='0'+segundos;
+		} 
 		dataPostString = dia+"/"+mes+"/"+ano+" as "+horas+":"+minutos+":"+segundos; 	
-    window.location.href = "UploadBD.php?texto="+texto+"&dataPostString="+dataPostString;
+  	    window.location.href = "UploadBD.php?texto="+texto+"&dataPostString="+dataPostString;
+	}
 }
 
 function loadBD(linha){
@@ -30,87 +40,16 @@ function loadBD(linha){
 			},
 			dataType: 'json',
 			success: function(data){
-				console.log(typeof data, data);
 				//data = JSON.parse(data);
 
-				//Criação de Divs para o layout
-				let divExt, divCard, divRow1, divFoto,
-					divNome, divRow2, divCont, divLike;
-
-				let fotoPerf, nomePerf, tempo, post, fotoCont, aLike, iLike;
-
-				divExt= cria('div');
-				divExt.className = "col s12 m8 offset-m2 l6 offset-l3";
-
-				divCard = cria('div');
-				divCard.className= "card-panel grey lighten-5 z-depth-1";
-
-				divRow1 = cria('div');
-				divRow1.className= "row valign-wrapper";
-
-				divFoto = cria('div');
-				divFoto.className = "col s6 m2 l2";
-				fotoPerf = cria('img');
-				fotoPerf.className = "square responsive-img";
-				fotoPerf.src = "https://yt3.ggpht.com/-ZtBlVYCvXOg/AAAAAAAAAAI/AAAAAAAAAAA/-5eDEfuCFlA/s900-c-k-no-rj-c0xffffff/photo.jpg"
-
-				divNome = cria('div');
-				divNome.className = "col s11";
-
-				nomePerf = cria('a');
-				nomePerf.className = "blue-text text-lighten-1";
-				nomePerf.setAttribute("id", "nameProf");
-				nomePerf.innerHTML = data.usuario;
-
-				tempo = cria('p');
-				tempo.className = "grey-text text-lighten-1 hora";
-				tempo.innerHTML= data.data;
-
-
-				divRow2 = cria('div');
-				divRow2.className = "row";
-
-				divCont = cria('div');
-				divCont.className = "col s12";
-
-				post = cria('p');
-				post.className = "black-text center";
-				post.innerHTML = data.conteudo;
-
-				// fotoCont = cria('img');
-				// fotoCont.className = "center-block materialboxed square responsive-img";
-				// fotoCont.src = "../../../"+imgPost;
-
-				//Impede a criação de campo vazio ou com erro
-				if(data.conteudo!=""){
-					divCont.appendChild(post);
-				}
-				
-				divRow2.appendChild(divCont);
-
-				divNome.appendChild(nomePerf);
-				divNome.appendChild(tempo);
-
-				divFoto.appendChild(fotoPerf);
-
-				divRow1.appendChild(divFoto);
-				divRow1.appendChild(divNome);
-
-				divCard.appendChild(divRow1);
-				divCard.appendChild(divRow2);
-				divExt.appendChild(divCard);
-
-
-				document.querySelector('#posts').appendChild(divExt);
+				//Chama função para criação do layout do post obtido
+				criaPost(data);
 
 				//Chama a função recursivamente para carregar todas postagens
 				if(data!=null){	
 					loadBD(++linha);
 				}
 
-			},
-			error: function(req, err) {
-				console.log(err, req);
 			}
 		});
 	});
@@ -175,95 +114,58 @@ window.onload=function(){
 }
 
 
-/*function criaPost(texto, imgPost, data){ //criação do Layout de uma postagem
-		//criação de Divs
-		let divExt, divCard, divRow1, divFoto,
-			divNome, divRow2, divCont, divLike;
+function criaPost(data){ //criação do Layout de uma postagem
 
-		let fotoPerf, nomePerf, tempo, post, fotoCont, aLike, iLike;
+	//Criação de Divs para o layout
+	let divExt, divCard, divRow1, divFoto,
+		divNome, divRow2, divCont, divLike;
+	let fotoPerf, nomePerf, tempo, post, fotoCont, aLike, iLike;
+	divExt= cria('div');
+	divExt.className = "col s12 m8 offset-m2 l6 offset-l3";
+	divCard = cria('div');
+	divCard.className= "card-panel grey lighten-5 z-depth-1";
+	divRow1 = cria('div');
+	divRow1.className= "row valign-wrapper";
+	divFoto = cria('div');
+	divFoto.className = "col s6 m2 l2";
+	fotoPerf = cria('img');
+	fotoPerf.className = "square responsive-img";
+	fotoPerf.src = "https://yt3.ggpht.com/-ZtBlVYCvXOg/AAAAAAAAAAI/AAAAAAAAAAA/-5eDEfuCFlA/s900-c-k-no-rj-c0xffffff/photo.jpg"
+	divNome = cria('div');
+	divNome.className = "col s11";
+	nomePerf = cria('a');
+	nomePerf.className = "blue-text text-lighten-1";
+	nomePerf.setAttribute("id", "nameProf");
+	nomePerf.innerHTML = data.usuario;
+	tempo = cria('p');
+	tempo.className = "grey-text text-lighten-1 hora";
+	tempo.innerHTML= data.data;
+	divRow2 = cria('div');
+	divRow2.className = "row";
+	divCont = cria('div');
+	divCont.className = "col s12";
+	post = cria('p');
+	post.className = "black-text center";
+	post.innerHTML = data.conteudo;
 
-		divExt= cria('div');
-		divExt.className = "col s12 m8 offset-m2 l6 offset-l3";
+	// fotoCont = cria('img');
+	// fotoCont.className = "center-block materialboxed square responsive-img";
+	// fotoCont.src = "../../../"+imgPost;
 
-		divCard = cria('div');
-		divCard.className= "card-panel grey lighten-5 z-depth-1";
+	//Impede a criação de campo vazio ou com erro
+	if(data.conteudo!=""){
+		divCont.appendChild(post);
+	}
+	
+	divRow2.appendChild(divCont);
+	divNome.appendChild(nomePerf);
+	divNome.appendChild(tempo);
+	divFoto.appendChild(fotoPerf);
+	divRow1.appendChild(divFoto);
+	divRow1.appendChild(divNome);
+	divCard.appendChild(divRow1);
+	divCard.appendChild(divRow2);
+	divExt.appendChild(divCard);
+	document.querySelector('#posts').appendChild(divExt);
 
-		divRow1 = cria('div');
-		divRow1.className= "row valign-wrapper";
-
-		divFoto = cria('div');
-		divFoto.className = "col s6 m2 l2";
-		fotoPerf = cria('img');
-		fotoPerf.className = "square responsive-img";
-		fotoPerf.src = "https://yt3.ggpht.com/-ZtBlVYCvXOg/AAAAAAAAAAI/AAAAAAAAAAA/-5eDEfuCFlA/s900-c-k-no-rj-c0xffffff/photo.jpg"
-
-		divNome = cria('div');
-		divNome.className = "col s11";
-
-		nomePerf = cria('a');
-		nomePerf.className = "blue-text text-lighten-1";
-		nomePerf.setAttribute("id", "nameProf");
-		nomePerf.innerHTML = "Gabriel Haddad";
-
-		tempo = cria('p');
-		tempo.className = "grey-text text-lighten-1 hora";
-		tempo.innerHTML= data;
-
-
-		divRow2 = cria('div');
-		divRow2.className = "row";
-
-		divCont = cria('div');
-		divCont.className = "col s12";
-
-		post = cria('p');
-		post.className = "black-text center";
-		post.innerHTML = texto;
-
-		fotoCont = cria('img');
-		fotoCont.className = "center-block materialboxed square responsive-img";
-		fotoCont.src = "../../../"+imgPost;
-
-
-		divLike = cria('div');
-		divLike.className = "col s6";
-
-		aLike = cria('a');
-		aLike.className = "waves-effect waves-light btn grey lighten-1";
-		aLike.setAttribute("id","like");
-		aLike.addEventListener('click', curtir, false);
-
-		iLike= cria('i');
-		iLike.className = "medium material-icons white-text text-darken-3";
-		iLike.innerHTML = "thumb_up";
-		iLike.setAttribute("id","like");
-		iLike.addEventListener('click', curtir, false);
-
-		aLike.appendChild(iLike);
-		divLike.appendChild(aLike);
-		if(texto!=""){
-			divCont.appendChild(post);
-		}
-		if(imgPost!= ""){
-			divCont.appendChild(fotoCont);
-		}	
-
-		divRow2.appendChild(divCont);
-		divRow2.appendChild(divLike);
-
-		divNome.appendChild(nomePerf);
-		divNome.appendChild(tempo);
-
-		divFoto.appendChild(fotoPerf);
-
-		divRow1.appendChild(divFoto);
-		divRow1.appendChild(divNome);
-
-		divCard.appendChild(divRow1);
-		divCard.appendChild(divRow2);
-		divExt.appendChild(divCard);
-
-
-		document.querySelector('#posts').appendChild(divExt);
-}*/
-
+}

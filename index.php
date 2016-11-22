@@ -35,7 +35,7 @@
     if(!isset($_SESSION['usuario'])) {
       include('modal.php');
     }
-   ?>        
+   ?>
 
 
   <div class="section no-pad-bot" id="index-banner">
