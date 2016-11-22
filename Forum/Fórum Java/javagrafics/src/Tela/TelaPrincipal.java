@@ -6,6 +6,8 @@
 package Tela;
 import BancoDeDados.Aluno;
 import BancoDeDados.Conexao;
+import carometro.Carometro;
+import com.jcraft.jsch.SftpException;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Collections;
@@ -65,6 +67,7 @@ public class TelaPrincipal extends JFrame {
         OrganizarDiscussoes = new javax.swing.JTree();
         PagAnterior1 = new javax.swing.JButton();
         ProxPagina1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -273,6 +276,8 @@ public class TelaPrincipal extends JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PagAnterior1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(366, 366, 366)
                         .addComponent(ProxPagina1))
                     .addComponent(PainelDiscussoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -286,7 +291,8 @@ public class TelaPrincipal extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PagAnterior1)
-                    .addComponent(ProxPagina1)))
+                    .addComponent(ProxPagina1)
+                    .addComponent(jLabel1)))
         );
 
         pack();
@@ -314,6 +320,7 @@ public class TelaPrincipal extends JFrame {
                     topicos.getData()[i]});
                 }
                 mostraTopico.setCategoria(String.valueOf(path[(path.length-1)]));
+                jLabel1.setText("");
             } catch (SQLException ex) {
                 Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -333,6 +340,7 @@ public class TelaPrincipal extends JFrame {
             PainelDiscussoes.add(mostraTopico);
             PainelDiscussoes.revalidate();
             PainelDiscussoes.repaint();
+            jLabel1.setText("Página "+String.valueOf(mostraTopico.getPagAtual()));
             System.out.println(jTable1.getSelectedRow());
             System.out.println(jTable1.getRowSorter());
         } catch (SQLException ex) {
@@ -349,7 +357,10 @@ public class TelaPrincipal extends JFrame {
             PainelDiscussoes.add(mostraTopico);
             PainelDiscussoes.revalidate();
             PainelDiscussoes.repaint();
+            jLabel1.setText("Página "+String.valueOf(mostraTopico.getPagAtual()));
         } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SftpException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ProxPagina1MouseClicked
@@ -362,6 +373,7 @@ public class TelaPrincipal extends JFrame {
             PainelDiscussoes.add(mostraTopico);
             PainelDiscussoes.revalidate();
             PainelDiscussoes.repaint();
+            jLabel1.setText("Página "+String.valueOf(mostraTopico.getPagAtual()));
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -414,6 +426,7 @@ public class TelaPrincipal extends JFrame {
     private javax.swing.JScrollPane PainelOrganizacao;
     private javax.swing.JButton ProxPagina1;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private MostraTopico mostraTopico;

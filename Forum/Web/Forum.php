@@ -30,7 +30,7 @@
             </style>
         </head>
 
-        <body onload="Listener(0); Perfil(0)">
+        <body onload="Listener(0);">
             <?php 
               include('../../navbar.php');
             ?>
@@ -45,7 +45,7 @@
             <div class="section no-pad-bot" id="index-banner">
                 <div class="container">
                     <br><br>
-                    <a href="Fórum.html"><h1 class="header center blue-text text-darken-4">Fórum</h1></a>
+                    <a href="Forum.php"><h1 class="header center blue-text text-darken-4">Fórum</h1></a>
                     <div class="row center">
                         <h5 class="header col s12 light">Fórum para discussões</h5>
                     </div>
@@ -116,18 +116,53 @@
                         <div class="col s5">
                             <div class="col s12 m10">
                                 <div class="card horizontal">
-                                    <div class="card-image">
-                                        <img src="Squirtle.png">
-                                    </div>
-                                    <div class="card-stacked">
-                                        <div class="card-content">
-                                            <div style="color: #1E90FF">Nome: </div><div id="Nome">
-                                                <?php echo $userData['primeiroNome']; ?>
+                                    
+                                        <?php
+
+                                        $dbhost = 'localhost'; // endereco do servidor de banco de dados
+                                        $dbuser = 'root'; // login do banco de dados
+                                        $dbname = 'bdforum'; // nome do banco de dados a ser usado
+               
+                                        $conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
+                                        $seleciona = @mysql_select_db($dbname);
+
+                                        $matricula= $userData['numeroMatricula'];
+
+                                        $busca = mysql_query("select * from usuarios where matricula='$matricula' "); //informaçoes do autor
+                                        
+                                        while($infouser=mysql_fetch_array($busca)){
+                                            
+                                            $tipo = $infouser['Tipo'];
+                                            $criados = $infouser['Criados'];
+                                        }
+
+
+                                        if ( isset($_SESSION["usuario"]) ) {
+    
+
+                                        echo 
+                                        "<div class=\"card-image\">
+                                        <img src=\"foto.png\">
+                                    	</div>
+                                    	<div class=\"card-stacked\">
+                                        <div class=\"card-content\">
+                                            <div style=\"color: #1E90FF\">Nome: </div><div id=\"Nome\">".
+                                                 $userData['primeiroNome']." 
                                             </div>
-                                            <div style="color: #1E90FF">Matrícula: </div><div id="Matricula"></div>
-                                            <div style="color: #1E90FF">Posts: </div><div id="Posts"></div>
-                                            <div id="Classificacao" style="color: blue"></div>
-                                        </div>
+                                            <div style=\"color: #1E90FF\">Matrícula: </div>
+                                            <div id=\"Matricula\">"
+                                            .$userData['numeroMatricula'].
+                                            "</div>
+                                            <div style=\"color: #1E90FF\">Posts: </div>".$criados."<div id=\"Posts\"></div>
+                                            <div id=\"Classificacao\" style=\"color: blue\">".$tipo."</div>
+                                        </div>";
+										}else{
+											echo "
+											<div class=\"card-stacked\">
+											<h2 class=\"header\" style=\"color:#069\"> Bem Vindo ao Fórum!</h2>";
+										}
+
+                                        ?>
                                     </div>
                                 </div>
 
@@ -141,8 +176,27 @@
 
                                 <div class="collection">
                                     <a href="#!" class="collection-item"><h6>Estatísticas do Fórum</h6></a>
-                                    <a href="#!" class="collection-item"><div id="PostsTotal"></div></a>
-                                    <a href="#!" class="collection-item"><div id="TopicosTotal"></div></a>
+                                    <?php 
+
+                                    $busca = mysql_query("select * from usuarios"); //informaçoes do autor
+                                        $Posts=0;
+                                        $Respostas=0;
+                                        $users=0;
+
+                                        while($infouser=mysql_fetch_array($busca)){
+                                            
+                                            $Posts = $Posts + $infouser['Criados'];
+                                            $Respostas = $infouser['Comentarios'];
+                                            $users++;
+                                        }
+
+                                    echo "
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"PostsTotal\">Respostas: ".$Respostas."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"TopicosTotal\">Tópicos: ".$Posts."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div >Usuários: ".$users."</div></a>
+                                    "
+
+                                    ?>
                                 </div>
                             </div>
                         </div>
