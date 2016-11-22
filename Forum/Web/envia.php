@@ -3,20 +3,20 @@
 <?php
 session_start();
 if ( isset($_SESSION["usuario"]) ) {
-                echo "<script>alert(\"debug\")</script>";
+                
                 var_dump($_SESSION['usuario']);
                 $userData = (array) $_SESSION["usuario"];
-                $nome = $userData['primeiroNome'].$userData['ultimoNome'];
+                $nome = $userData['primeiroNome']; //." ".$userData['ultimoNome'];
                 $matricula = $userData['numeroMatricula'];
                 $foto = $userData['foto'];
                 $tipo="coordenador"; // pegar tipo de usuario
               }
               else {
-                echo "<script>alert(\"debug1\")</script>";
-                $nome = "hueg";
-                $tipo = "professor";
+               
+                $nome = "Rafael";
+                $tipo = "Aluno";
                 $foto = "/carometro/RAFAEL_NEVES 201511130237.jpg";
-                $matricula = 'a201511130237';
+                $matricula = '201511130237';
 }
 
 /*
@@ -107,5 +107,5 @@ mysql_close($conecta);
 
 
 
-//echo "<script>location.href='Categorias/".$categoria.".php';</script>";
+echo "<script>location.href='Categorias/".$categoria.".php';</script>";
 ?>
