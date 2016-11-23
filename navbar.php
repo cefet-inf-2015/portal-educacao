@@ -22,7 +22,7 @@
           case 2:
           case 1:
             echo '<li><a class="waves-effect" href="#!">Modelo de Provas/Trabalhos</a></li>
-            <li><a class="waves-effect" href="Correcao/LayoutCorrecaoProvas.html">Correção Provas e Trabalhos</a></li>';
+            <li><a class="waves-effect" href=".\Correcao\Web\ProvaOffline.php">Correção Provas e Trabalhos</a></li>';
           case 0:
             echo '<li><a class="waves-effect" href="#!">Calendário</a></li>
             <li><a class="waves-effect" href="Chat/index.html">Chat</a></li>
