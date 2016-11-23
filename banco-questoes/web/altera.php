@@ -1,4 +1,5 @@
 <?php
+	//se for clicado botão excluir
 	include('cabecalho.html');
 	if(isset($_POST['excluir-alterar'])){
 	    //Pega os dados via POST.
@@ -20,16 +21,18 @@
 			</div><br><br>";
 	
 		include('rodape.html');	
-	}else{
+	}
+	//Se for clicado botão enviar
+	else{
 		//Pega os dados via POST.
 		$id = $_POST['formID'];
 		$estilo = $_POST['estilo-alterar'];
 		$nivel = $_POST['nivel-alterar'];
 		$disciplina = $_POST['disciplina-alterar'];
-	   	$tema = $_POST['tema-alterar'];
-	   	$cabecalho = $_POST['cabecalho-alterar'];
-	   	$gabarito = $_POST['gabarito-alterar'];
-	   	$criador = $_SERVER['SERVER_ADMIN'];
+	   $tema = $_POST['tema-alterar'];
+	   $cabecalho = $_POST['cabecalho-alterar'];
+	   $criador = $_SERVER['SERVER_ADMIN'];
+	   $qNumero = $_POST['numQuestao'];
    	 
 	   	//Se o estilo da questao selecionada for ME.
 	   	if($estilo==0){    	
@@ -42,15 +45,14 @@
    	     		
 	   	    //Pegando as alternativas em Array.
 	   	 	$alternativa = array();
-	   	 	$radio = $_POST['rdioEdit'];
+	   	 	$radio = $_POST['rdioEdit-'.$qNumero];
 	   	 	for($i=0; $i<=4; $i++){ //Trocar para for..of!
-				if(array_key_exists('alternativaEdit-'.$i, $_POST)){
-					$alternativa[$i] = $_POST['alternativaEdit-'.$i];
-					if('rdio'+$i==$radio)
-						$GLOBALS['xml'] .= "<alternativa correta=\"\"true\"\">";
+				if(array_key_exists('alternativaEdit-'.$qNumero.'-'.$i, $_POST)){
+					$alternativa[$i] = $_POST['alternativaEdit-'.$qNumero.'-'.$i];
+					if('rdioEdit-'.$qNumero.'-'.$i==$radio)
+						$GLOBALS['xml'] .= "<alternativa correta=\"\"true\"\">".$alternativa[$i]."</alternativa>";
 					else
-						$GLOBALS['xml'] .= "<alternativa>";	
-					$GLOBALS['xml'] .= $alternativa[$i]."</alternativa>";
+						$GLOBALS['xml'] .= "<alternativa correta=\"\"false\"\">".$alternativa[$i]."</alternativa>";
 				}		
 			}
 		}
@@ -72,7 +74,7 @@
 					if($_POST['cBoxEdit-'.$i]=='on'){
 						$GLOBALS['xml'] .= "<alternativa correta=\"\"true\"\">".$alternativa[$i]."</alternativa>";
 					}else{
-						$GLOBALS['xml'] .= "<alternativa>".$alternativa[$i]."</alternativa>";
+						$GLOBALS['xml'] .= "<alternativa correta=\"\"false\"\">".$alternativa[$i]."</alternativa>";
 					}
 				}	
 			}
@@ -100,6 +102,22 @@
 		}else{
 			$msg = "Questão não alterada!";
 		}
+		
+
+		//~ if(isset($_FILES['userfile-Editar']['name'])&&$_FILES['userfile-Editar']['error']==0){
+			//~ $arquivo_tmp = $_FILES['userfile-Editar']['tmp_name'];
+			//~ $nome = $_FILES['userfile-Editar']['name'];
+			
+			//~ $extensao = pathinfo($nome, PATHINFO_EXTENSION);
+			//~ $entensao = strtolower($extensao);
+			//~ if(strstr('.jpg;.jpeg;.gif;.png', $extensao)){
+				//~ $novoNome = $id.'.'.$extensao;
+				//~ $destino = 'uploads/'.$novoNome;
+				
+				//~ move_uploaded_file($arquivo_tmp, $destino);
+			//~ }
+			//~ else $msg .= "Imagem não inserida!";
+		//~ }
 		
 		echo "<div class=\"row center\"><h5 class=\"header col s12 light\">".$msg."</h5><br><br>
 			<a class=\"waves-effect waves-light btn light-blue darken-4\" href=\"BancoDeQuestoes.php\"

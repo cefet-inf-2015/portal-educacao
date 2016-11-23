@@ -1,3 +1,9 @@
+<?php
+   session_start();  
+   if (!isset($_SESSION['usuario'])) { 
+     header('Location: ../../index.php'); 
+   } 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +14,13 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../../styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../../styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../../styles/css/layoutmural.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link rel="icon" href="../../imgs/logo.png" >
 </head>
 <body>
+  <!-- AQUI FICA A NAVBAR -->
   <?php 
     include('../../navbar.php');
   ?>
@@ -47,12 +55,20 @@
       </a>
       <br><br>
 
+		<form class="col s12" action="pesquisa.php" method="get">
+      	<div class="input-field row">
+				<div class="col s6 offset-s3">
+          		<input id="pesquisaText" type="text" class="validate" name="pesquisaText"><i class="material-icons prefix">search</i>
+        		</div>
+      	</div>
+      </form>
+
       <!-- Criação do formulário (Inserir Questões) -->
 
       <form id="FORMinserir" name="FORMiserir" action="insQuest.php" method="post" enctype="multipart/form-data">
         <div class="esconder" id="inserir_questoes">
           <p>  
-            <select class="browser-default" id="estilo-inserir" name="estilo-inserir">
+            <select class="browser-default" id="estilo-inserir" name="estilo-inserir" required>
               <option value="" disabled selected>Escolha o estilo da questão a ser inserida.</option>
               <option value="0">Múltipla Escolha</option>
               <option value="1">Verdadeiro ou Falso</option>
@@ -61,7 +77,7 @@
           </p>
          
           <p>
-            <select class="browser-default" id="nivel-inserir" name="nivel-inserir">
+            <select class="browser-default" id="nivel-inserir" name="nivel-inserir" required>
               <option value="" disabled selected>Escolha o nível de dificuldade da questão.</option>
               <option value="1">Fácil</option>
               <option value="2">Mediana</option>
@@ -70,7 +86,7 @@
           </p>
 
           <p>
-            <select class="browser-default" id="disciplina-inserir" name="disciplina-inserir">
+            <select class="browser-default" id="disciplina-inserir" name="disciplina-inserir" required>
               <option value="" disabled selected>Defina a disciplina.</option>
               <option value="Aplicações para Web">Aplicações para Web</option>
               <option value="Arquitetura de Sistemas Digitais">Arquitetura de Sistemas Digitais</option>
@@ -92,7 +108,7 @@
           <p>
             <div class="row" align="left">
               <div class="input-field col s12">
-                <input type="text" class="validate" id="tema-inserir" name="tema-inserir">
+                <input type="text" class="validate" id="tema-inserir" name="tema-inserir" required>
                 <label class="active" for="tema-inserir">Digite o tema:</label>
               </div>
             </div>
@@ -102,7 +118,7 @@
             <div class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea class="materialize-textarea" id="cabecalho-inserir" name="cabecalho-inserir"></textarea>
+                  <textarea class="materialize-textarea" id="cabecalho-inserir" name="cabecalho-inserir" required></textarea>
                   <label for="cabecalho-inserir">Digite o cabeçalho da questão:</label>
                 </div>
               </div>
@@ -166,7 +182,7 @@
       <form id="FORMproduzir" name="FORMproduzir" action="geraProva.php" method="post">
         <div class="esconder" id="produzir_prova">
           <p>
-            <select class="browser-default" id="disciplina-produzir" name="disciplina-produzir">
+            <select class="browser-default" id="disciplina-produzir" name="disciplina-produzir" required>
               <option value="" disabled selected>Defina a disciplina.</option>
               <option value="Aplicações para Web">Aplicações para Web</option>
               <option value="Arquitetura de Sistemas Digitais">Arquitetura de Sistemas Digitais</option>
@@ -226,19 +242,19 @@
           <br>
           <p>Escolha o número de questões:</p>
           <p class="range-field">
-            <input type="range" min="0" max="100"  id="numQuestoes-produzir"/>
+            <input type="range" min="0" max="100"  id="numQuestoes-produzir" name="numQuestoes-produzir"/>
           </p>
 
           <br><br>
-          <button type="submit" class="waves-effect waves-light btn light-blue darken-4" id="pub">Gerar Prova
+          <button type="submit" class="waves-effect waves-light btn light-blue darken-4" id="pub" name="pub">Gerar Prova
             <i class="tiny material-icons white-text text-darken-1">description</i>
           </button>
         </div>
       </form> 
-
     </div>
   </div>
-  <!-- FOOTER -->
+
+  <!-- AQUI FICA O FOOTER -->
   <?php 
     include('../../footer.php');
   ?>
@@ -246,10 +262,9 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../../template/js/materialize.js"></script>
-  <script src="../../template/js/init.js"></script>
+  <script src="../template/js/materialize.js"></script>
+  <script src="../template/js/init.js"></script>
   <script src="Script.js"></script>
-  <script src="../../index.js"></script>
 
   </body>
 </html>
