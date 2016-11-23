@@ -6,10 +6,16 @@
   <title>Portal Educação</title>
 
 
+   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../../template/js/materialize.js"></script>
+  <script src="../../template/js/init.js"></script>
+  <script src="script.js"></script>
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../../styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../../styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="icon" href="../../imgs/logo.png" >
+  <link rel="stylesheet" type="text/css" href="estilo.css">
   <style type="text/css">
     body {
         display: flex;
@@ -21,7 +27,7 @@
         flex: 1 0 auto;
       }
   </style>
-  <link rel="icon" href="imgs/logo.png" >
+  <link rel="icon" href="../../imgs/logo.png" >
 </head>
 <body>
   <nav class="light-blue darken-4" role="navigation">
@@ -31,17 +37,17 @@
       <br>
       <li>
         <div class="logo">
-          <img class="background center-block responsive" src="imgs/logo.png">
+          <img class="background center-block responsive" src="../../imgs/logo.png">
         </div>
       </li>
       <br>
-      <li><a class="waves-effect" href="index.html">Página Inicial</a></li>
-      <li><a class="waves-effect" href="#!">Modelo de Provas/Trabalhos</a></li>
-      <li><a class="waves-effect" href="Forum/Web/Fórum.html">Fórum</a></li>
-      <li><a class="waves-effect" href="Upload/index.html">Download/Upload Aplicativos</a></li>
-      <li><a class="waves-effect" href="Correcao/LayoutCorrecaoProvas.html">Correção Provas e Trabalhos</a></li>
-      <li><a class="waves-effect" href="Mural/web/index.html">Mural</a></li>
-      <li><a class="waves-effect" href="Chat/index.html">Chat</a></li>
+      <li><a class="waves-effect" href="../../index.html">Página Inicial</a></li>
+      <li><a class="waves-effect" href="pagInicial.html">Modelo de Provas/Trabalhos</a></li>
+      <li><a class="waves-effect" href="../../Forum/Web/Fórum.html">Fórum</a></li>
+      <li><a class="waves-effect" href="../../Upload/index.html">Download/Upload Aplicativos</a></li>
+      <li><a class="waves-effect" href="../../Correcao/LayoutCorrecaoProvas.html">Correção Provas e Trabalhos</a></li>
+      <li><a class="waves-effect" href="../../Mural/web/index.html">Mural</a></li>
+      <li><a class="waves-effect" href="#!">Chat</a></li>
       <li><a class="waves-effect" href="#!">Repositório de Fotos</a></li>
       <li><a class="waves-effect" href="#!">Banco de Questões</a></li>
       <li><a class="waves-effect" href="#!">Calendário</a></li>
@@ -98,38 +104,25 @@
 
           
 
-
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center blue-text text-darken-4">Upload de Imagens</h1>
-      <div class="row center">
-        <h5 class="header col s12 light"></h5>
+  <main>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <br><br>
+        <h1 class="header center blue-text text-darken-4">Modelos de Provas e Trabalhos</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">Faça Seu Cabeçalho</h5>
+          <br><br><br><br>
+               <a href="formulario.html" class="waves-effect waves-light blue darken-4 btn"><i class="material-icons left">cloud</i>Novo Arquivo</a>&emsp; 
+               <a href="formEdicao.php" class="waves-effect waves-light blue darken-4 btn"><i class="material-icons left">cloud</i>Editar</a>
+        </div>
+        <br><br><br><br>
       </div>
-      <br><br>
+    </div>
+  </main>
+
 
     </div>
   </div>
-
-  <main>
-    <div class="container">
-      <div class="section">
-        <!-- CONTEÚDO AQUI -->
-		
-        
-		<form method="POST" action="proc_upload.php" enctype="multipart/form-data">
-			<div class="row" align="center">
-				<input class="btn-large waves-effect waves-light light-blue darken-4" name="arquivo" type="file"><br><br>
-			</div>
-			<div class="row" align="center">
-				<input class="btn-large waves-effect waves-light light-blue darken-4" type="submit" value="Enviar">
-			</div>
-		</form>
-		
-		
-		
-		
-		
       </div>
     </div>
   </main>
@@ -140,7 +133,7 @@
           <h5 class="white-text">Desenvolvedores</h5>
           <p class="grey-text text-lighten-4">
             Somos a turma de Informática 2A do ano de 2016 do CEFET-MG (Centro Federal de Educação Tecnológica de Minas Gerais) desenvolvendo o trabalho final multidisciplinar de Linguagem de Programação 1 e Aplicações para WEB.
-            <br><a class="white-text link" href="colaboradores.html">Clique aqui</a> para saber mais
+            <br><a class="white-text link" href="../../colaboradores.html">Clique aqui</a> para saber mais
           </p>
         </div>
         <div class="col l3 s12">
@@ -170,9 +163,10 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="template/js/materialize.js"></script>
-  <script src="template/js/init.js"></script>
-  <script src="index.js"></script>
+  <script src="../../template/js/materialize.js"></script>
+  <script src="../../template/js/init.js"></script>
+  <script src="../../index.js"></script>
 
   </body>
 </html>
+
