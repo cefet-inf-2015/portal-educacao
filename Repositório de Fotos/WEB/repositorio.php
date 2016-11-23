@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="../../styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="../../styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link rel="icon" href="imgs/logo.png">
+        <link rel="icon" href="../../imgs/logo.png">
         <script type="text/javascript" src="mostrar.js"></script> 
 
 

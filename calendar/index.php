@@ -17,6 +17,7 @@
     <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
     <script type="text/javascript" src="js/materialize.js"></script>
+    <link rel="icon" href="../../imgs/logo.png" >
   </head>
 
   <body onload="carrega(new Date())">

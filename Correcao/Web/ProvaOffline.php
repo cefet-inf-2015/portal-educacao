@@ -31,7 +31,7 @@
         flex: 1 0 auto;
       }
   </style>
-  <link rel="icon" href="imgs/logo.png" >
+  <link rel="icon" href="../../imgs/logo.png" >
 </head>
 <body>
   <?php 
@@ -118,9 +118,9 @@
 
 
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="C:\Users\Aluno\Desktop\portal-educacao\portal-educacao-master\template/js/materialize.js"></script>
-  <script src="C:\Users\Aluno\Desktop\portal-educacao\portal-educacao-master\template/js/init.js"></script>
-  <script src="C:\Users\Aluno\Desktop\portal-educacao\portal-educacao-master\index.js"></script>
+  <script src="../../template/js/materialize.js"></script>
+  <script src="../../template/js/init.js"></script>
+  <script src="../../index.js"></script>
 
 </body>
 
