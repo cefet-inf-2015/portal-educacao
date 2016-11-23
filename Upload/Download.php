@@ -79,7 +79,7 @@
               <option value="3">Coordenador</option>
               <option value="4">Diretor</option>
             </select>
-            <button class="col s12 btn-flat waves-effect waves-light green white-text" type="submit" name="action">Entrar
+            <button href="Login.php" class="col s12 btn-flat waves-effect waves-light green white-text" type="submit" name="action">Entrar
               <i class="material-icons right">input</i>
             </button>
           </form>
@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat red white-text">Sair</a>
+        <a href="Logout.php" class="modal-action modal-close waves-effect waves-green btn-flat red white-text">Sair</a>
       </div>
     </div>
 
@@ -111,19 +111,34 @@
       <div class="container">
         <div class="section">
           <!-- CONTEÚDO AQUI -->
+          <div>
+            <form enctype= "multipart/form-data" class="col s12" action="Download.php" method="post">
+              <div class="row center">
+                <div class="input-field col s10">
+                  <input type="text" name = "palavrasChave" id="palavrasChave" class="materialize-textarea tooltipped" data-position="left" data-delay="50" data-tooltip="Palavras simples separadas por vírgula" placeholder="Exemplo: &quot;vídeo,matemática,etc&quot;"/>
+                  <label for="palavrasChave">Palavras-chave</label>
+                </div>
+                <div class="right-align">
+                  <button class="btn-large waves-effect waves-light" type="submit" name="enviar">Procurar
+                    <i class="material-icons right">search</i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row divider"></div>
+        <div class="row">
 <?php
             date_default_timezone_set("America/Sao_Paulo");
-            $conexao = mysql_connect('localhost','root','123');
-			mysql_select_db('teste',$conexao);
-            $result = mysql_query("SELECT * FROM new_table WHERE status=0");
-			if($_POST['palavrasChave']!=""){
-            $tags = explode(',', $_POST['palavrasChave']);
+            $conexao = mysqli_connect('localhost','root','123','bd_upload');
+            $result = mysqli_query($conexao,"SELECT * FROM arquivo WHERE arquivo_int_status=1");
 			$numCard = 0;   //Se houverem 4 cards pula uma linha
-            $numTags = count($tags); //Se houverem 0 tags lista todos os arquivos
-				echo '<div class="row">';
-                while ($arrArq = mysql_fetch_assoc($result)) {
+			if(@$_POST['palavrasChave']!=""){
+            $tags = explode(',', $_POST['palavrasChave']);
+                while ($arrArq = mysqli_fetch_assoc($result)) {
                     $enc = false;
-                    $tagsArq = explode(',', $arrArq["tags1"]);
+                    $tagsArq = explode(',', $arrArq["arquivo_char_tag"]);
                     foreach ($tags as $t) {
                         foreach ($tagsArq as $tA) {
                             if ($t == $tA) {
@@ -134,14 +149,15 @@
                               <img class="activator" src="icon.png">
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4 truncate">' . $arrArq['nome'] . '<i class="material-icons right">more_vert</i></span>
-                              <a class="col btn-large" href="' . $arrArq['path'] . '" download>BAIXAR</a>
+                              <span class="card-title activator grey-text text-darken-4 truncate">' . $arrArq['arquivo_char_nome'] . '<i class="material-icons right">more_vert</i></span>
+                              <a class="col btn-large s12" href="' . $arrArq['arquivo_char_diretorio'] . '" download>BAIXAR</a>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">' . $arrArq['nome'] . '<i class="material-icons right">close</i></span>
-                              <p> Tags: ' . $arrArq['tags1'] . '</p>
+                              <span class="card-title grey-text text-darken-4">' . $arrArq['arquivo_char_nome'] . '<i class="material-icons right">close</i></span>
+                              <p> Tags: ' . $arrArq['arquivo_char_tag'] . '</p>
                             </div>
-                          </div>';
+                          </div>
+						  <div class="container">';
                                 break;
                             }
                         }
@@ -156,33 +172,32 @@
                 }
 				echo '</div>';
             } else{
-				echo '<div class="row">';
-                while ($arrArq = mysql_fetch_assoc($result)) {
+                while ($arrArq = mysqli_fetch_assoc($result)) {
                     $numCard++;
                       echo '<div class="card sticky-action col s3">
                             <div class="card-image waves-effect waves-block waves-light">
                               <img class="activator" src="icon.png">
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4 truncate">' . $arrArq['nome'] . '<i class="material-icons right">more_vert</i></span>
-                              <a class="col btn-large" href="' . $arrArq['path'] . '" download>BAIXAR</a>
+                              <span class="card-title activator grey-text text-darken-4 truncate">' . $arrArq['arquivo_char_nome'] . '<i class="material-icons right">more_vert</i></span>
+                              <a class="col btn-large s12" href="' . $arrArq['arquivo_char_diretorio'] . '" download>BAIXAR</a>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">' . $arrArq['nome'] . '<i class="material-icons right">close</i></span>
-                              <p> Tags: ' . $arrArq['tags1'] . '</p>
+                              <span class="card-title grey-text text-darken-4">' . $arrArq['arquivo_char_nome'] . '<i class="material-icons right">close</i></span>
+                              <p> Tags: ' . $arrArq['arquivo_char_tag'] . '</p>
                             </div>
                           </div>';
                     if ($numCard == 4) {
                         echo '</div>
-                    <div class="row">';
+						<div class="row">';
                     }
                 }
 				echo '</div>';
             }
             ?>
-	<!--  Não-Tabela-->
+        </div>
+      </div>
     </main>
-
     <!--  Footer-->
     <footer class="page-footer blue">
       <div class="container">

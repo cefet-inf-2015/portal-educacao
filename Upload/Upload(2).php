@@ -3,8 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>Portal Educa√ß√£o</title>
-
+    <title>Portal EducaÁ„o</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,7 +15,6 @@
           min-height: 100vh;
           flex-direction: column;
       }
-
       main {
           flex: 1 0 auto;
       }
@@ -35,16 +33,16 @@
             </div>
           </li>
           <br>
-          <li><a class="waves-effect" href="index.html">P√°gina Inicial</a></li>
+          <li><a class="waves-effect" href="index.html">P·gina Inicial</a></li>
           <li><a class="waves-effect" href="#!">Modelo de Provas/Trabalhos</a></li>
-          <li><a class="waves-effect" href="#!">F√≥rum</a></li>
-          <li><a class="waves-effect" href="#!">Download/Upload Aplicativos</a></li>
-          <li><a class="waves-effect" href="#!">Corre√ß√£o Provas e Trabalhos</a></li>
-          <li><a class="waves-effect" href="Mural/projeto/index.html">Mural</a></li>
-          <li><a class="waves-effect" href="#!">Chat</a></li>
-          <li><a class="waves-effect" href="#!">Reposit√≥rio de Fotos</a></li>
-          <li><a class="waves-effect" href="#!">Banco de Quest√µes</a></li>
-          <li><a class="waves-effect" href="#!">Calend√°rio</a></li>
+          <li><a class="waves-effect" href="Forum/Web/FÛrum.html">FÛrum</a></li>
+          <li><a class="waves-effect" href="Upload/index.html">Download/Upload Aplicativos</a></li>
+          <li><a class="waves-effect" href="Correcao/LayoutCorrecaoProvas.html">CorreÁ„o Provas e Trabalhos</a></li>
+          <li><a class="waves-effect" href="Mural/web/index.html">Mural</a></li>
+          <li><a class="waves-effect" href="Chat/index.html">Chat</a></li>
+          <li><a class="waves-effect" href="#!">RepositÛrio de Fotos</a></li>
+          <li><a class="waves-effect" href="#!">Banco de Questıes</a></li>
+          <li><a class="waves-effect" href="#!">Calend·rio</a></li>
           <!--<li><div class="divider"></div></li>-->
           <!--<li><a class="subheader">Subheader</a></li>-->
         </ul>
@@ -71,18 +69,19 @@
             <input type="text" name="username">
             <label for="senha">Senha</label>
             <input type="password" name="senha">
-            <label for="tipoUsuario">Tipo de usu√°rio</label>
-            <select name="tipoUsuario">
+            <label for="tipoUsuario">Tipo de usu·rio</label>
+            <select name="tipoUsuario" id="tipoUsuario">
               <option value="" disabled selected>Tipo de Usuario</option>
               <option value="1">Aluno</option>
               <option value="2">Professor</option>
               <option value="3">Coordenador</option>
               <option value="4">Diretor</option>
             </select>
-            <button href="Login.php" class="col s12 btn-flat waves-effect waves-light green white-text" type="submit" name="action">Entrar
+            <button href="Login.php" class="col s12 btn-flat waves-effect waves-light green white-text" type="button" name="action" id="loginBtn">Entrar
               <i class="material-icons right">input</i>
             </button>
           </form>
+          <div id="targetId"></div>
         </div>
       </div>
       <div class="modal-footer">
@@ -90,16 +89,16 @@
       </div>
     </div>
 
-    <!-- ESPA√áO PARA MARQUEE -->
+    <!-- ESPA«O PARA MARQUEE -->
     <div>
     </div>
 
     <div class="section no-pad-bot" id="index-banner">
       <div class="container">
         <br><br>
-        <h1 class="header center blue-text text-darken-4">Download & Upload</h1>
+        <h1 class="header center blue-text text-darken-4">Upload</h1>
         <div class="row center">
-          <h5 class="header col s12 light">Pesquise ou envie arquivos</h5>
+          <h5 class="header col s12 light">Envie um arquivo com palavras-chave</h5>
         </div>
         <br><br>
       </div>
@@ -108,33 +107,88 @@
     <main>
       <div class="container">
         <div class="section">
-          <!-- CONTE√öDO AQUI -->
-          <div class="row center">
-            <a class="waves-effect waves-light btn light-blue darken-4" href="Download.php"><i class="material-icons left">search</i>Download</a>
-            <a class="waves-effect waves-light btn light-blue darken-4" href="Upload(2).php"><i class="material-icons left">send</i>Upload</a>
-			<a class="waves-effect waves-light btn light-blue darken-4" href="Gerenciamento.html"><i class="material-icons left">send</i>Gerenciar</a>
+          <!-- CONTE⁄DO AQUI -->
+          <div class="row">
+            <form enctype= "multipart/form-data" class="col s12" action="Upload(2).php" method="post">
+              <div class="row">
+                <div class="file-field input-field">
+                  <div class="btn">
+                    <span>Selecionar</span>
+                    <input type="file" name="upload" id="upload">
+                    <i class="material-icons left">perm_media</i>
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name = "palavrasChave" id="palavrasChave" class="materialize-textarea tooltipped" data-position="left" data-delay="50" data-tooltip="Palavras simples separadas por vÌrgula" placeholder="Exemplo: &quot;vÌdeo,matem·tica,etc&quot;"/>
+                  <label for="palavrasChave">Palavras-chave</label>
+                </div>
+              </div>
+              <div class="row center">
+                <button class="btn-large waves-effect waves-light" type="submit" name="enviar">Enviar
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </form>
+            <div class="center">
+              <h5 class="light-blue-text darken-4">
+<?php
+    date_default_timezone_set("America/Sao_Paulo");
+    $UploadDirectory = 'dado/';
+    $conexao = mysqli_connect('localhost', 'root', '123','bd_upload');
+    if (isset($_FILES['upload'])) {
+        $fileName = $_FILES['upload']['name'];
+        if (!file_exists($UploadDirectory . $fileName)) {
+            $tmpName = $_FILES['upload']['tmp_name'];
+            $fileSize = $_FILES['upload']['size'];
+            $fileType = $_FILES['upload']['type'];
+            if (move_uploaded_file($_FILES['upload']["tmp_name"], $UploadDirectory . $fileName)) {
+                if ($conexao) {
+                    if (mysqli_query($conexao,"INSERT INTO arquivo(arquivo_char_nome,arquivo_char_tamanho,arquivo_char_extensao,arquivo_char_diretorio,arquivo_char_tag) VALUES ('$fileName','$fileSize', '$fileType','$UploadDirectory$fileName','$_POST[palavrasChave]')")) {
+                        unset($_FILES['upload']);
+                        //header('Location: Inicio.html');
+                    }else{
+						echo 'Erro no query';
+                    }
+                }else{
+					echo 'Erro na conex„o';
+                }
+            }else{
+				echo 'Erro no upload do arquivo!';
+			}
+        }else{
+            echo 'Erro, arquivo j· existente';
+        }
+        unset($_FILES['upload']);
+    } else {
+        echo 'Nenhum arquivo selecionado';
+					}
+?>
+              </h5>
+            </div>
           </div>
         </div>
       </div>
     </main>
-    
-    
-    
     <footer class="page-footer blue">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
             <h5 class="white-text">Desenvolvedores</h5>
             <p class="grey-text text-lighten-4">
-              Somos a turma de Inform√°tica 2A do ano de 2016 do CEFET-MG (Centro Federal de Educa√ß√£o Tecnol√≥gica de Minas Gerais) desenvolvendo o trabalho final multidisciplinar de Linguagem de Programa√ß√£o 1 e Aplica√ß√µes para WEB.
+              Somos a turma de Inform·tica 2A do ano de 2016 do CEFET-MG (Centro Federal de EducaÁ„o TecnolÛgica de Minas Gerais) desenvolvendo o trabalho final multidisciplinar de Linguagem de ProgramaÁ„o 1 e AplicaÁıes para WEB.
               <br><a class="white-text link" href="colaboradores.html">Clique aqui</a> para saber mais
             </p>
           </div>
           <div class="col l3 s12">
-            <h5 class="white-text">Sobre a Institui√ß√£o</h5>
+            <h5 class="white-text">Sobre a InstituiÁ„o</h5>
             <p class="grey-text text-lighten-4">
-              Centro Federal de Educa√ß√£o Tecnol√≥gica de Minas Gerais
-              <br>Av. Amazonas 5253 - Nova Sui√ßa - Belo Horizonte - MG - Brasil
+              Centro Federal de EducaÁ„o TecnolÛgica de Minas Gerais
+              <br>Av. Amazonas 5253 - Nova SuiÁa - Belo Horizonte - MG - Brasil
               <br>Telefone: +55 (31) 3319-7000 - Fax: +55 (31) 3319-7001
             </p>
           </div>
@@ -160,6 +214,5 @@
     <script src="template/js/materialize.js"></script>
     <script src="template/js/init.js"></script>
     <script src="index.js"></script>
-
   </body>
 </html>
