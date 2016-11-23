@@ -10,12 +10,47 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="styles/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="icon" href="../../imgs/logo.png" >
+  <link rel="icon" href="imgs/logo.png" >
 </head>
 <body>
-  <?php 
-    include('../../navbar.php');
-  ?>
+  <nav class="light-blue darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <!-- MENU SLIDE OUT STRUCTURE-->
+      <ul id="slide-out" class="side-nav">
+	   <br>
+	   <li>
+		    <div class="logo">
+		      <img class="background center-block responsive" src="imgs/logo.png">
+		    </div>
+	    </li>
+	    <br>
+      <li><a class="waves-effect" href="index.html">Página Inicial</a></li>
+	    <li><a class="waves-effect" href="#!">Modelo de Provas/Trabalhos</a></li>
+	    <li><a class="waves-effect" href="#!">Fórum</a></li>
+	    <li><a class="waves-effect" href="#!">Download/Upload Aplicativos</a></li>
+	    <li><a class="waves-effect" href="#!">Correção Provas e Trabalhos</a></li>
+	    <li><a class="waves-effect" href="Mural/projeto/index.html">Mural</a></li>
+	    <li><a class="waves-effect" href="#!">Chat</a></li>
+	    <li><a class="waves-effect" href="#!">Repositório de Fotos</a></li>
+	    <li><a class="waves-effect" href="#!">Banco de Questões</a></li>
+	    <li><a class="waves-effect" href="#!">Calendário</a></li>
+	    <!--<li><div class="divider"></div></li>-->
+	    <!--<li><a class="subheader">Subheader</a></li>-->
+	  </ul>
+      <ul class="left hide-on-med-and-down">
+        <li>
+        	<button data-activates="slide-out" class="waves-effect waves-light btn-flat button-collapse white-text light-blue darken-4">Menu</button>
+        </li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><button class="waves-effect waves-light btn-flat white-text light-blue darken-4">Entrar</button></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- ESPAÇO PARA MARQUEE -->
+  <div>  
+  </div>
 
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -47,12 +82,20 @@
       </a>
       <br><br>
 
+		<form class="col s12" action="pesquisa.php" method="get">
+      	<div class="input-field row">
+				<div class="col s6 offset-s3">
+          		<input id="pesquisaText" type="text" class="validate" name="pesquisaText"><i class="material-icons prefix">search</i>
+        		</div>
+      	</div>
+      </form>
+
       <!-- Criação do formulário (Inserir Questões) -->
 
       <form id="FORMinserir" name="FORMiserir" action="insQuest.php" method="post" enctype="multipart/form-data">
         <div class="esconder" id="inserir_questoes">
           <p>  
-            <select class="browser-default" id="estilo-inserir" name="estilo-inserir">
+            <select class="browser-default" id="estilo-inserir" name="estilo-inserir" required>
               <option value="" disabled selected>Escolha o estilo da questão a ser inserida.</option>
               <option value="0">Múltipla Escolha</option>
               <option value="1">Verdadeiro ou Falso</option>
@@ -61,7 +104,7 @@
           </p>
          
           <p>
-            <select class="browser-default" id="nivel-inserir" name="nivel-inserir">
+            <select class="browser-default" id="nivel-inserir" name="nivel-inserir" required>
               <option value="" disabled selected>Escolha o nível de dificuldade da questão.</option>
               <option value="1">Fácil</option>
               <option value="2">Mediana</option>
@@ -70,7 +113,7 @@
           </p>
 
           <p>
-            <select class="browser-default" id="disciplina-inserir" name="disciplina-inserir">
+            <select class="browser-default" id="disciplina-inserir" name="disciplina-inserir" required>
               <option value="" disabled selected>Defina a disciplina.</option>
               <option value="Aplicações para Web">Aplicações para Web</option>
               <option value="Arquitetura de Sistemas Digitais">Arquitetura de Sistemas Digitais</option>
@@ -92,7 +135,7 @@
           <p>
             <div class="row" align="left">
               <div class="input-field col s12">
-                <input type="text" class="validate" id="tema-inserir" name="tema-inserir">
+                <input type="text" class="validate" id="tema-inserir" name="tema-inserir" required>
                 <label class="active" for="tema-inserir">Digite o tema:</label>
               </div>
             </div>
@@ -102,7 +145,7 @@
             <div class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea class="materialize-textarea" id="cabecalho-inserir" name="cabecalho-inserir"></textarea>
+                  <textarea class="materialize-textarea" id="cabecalho-inserir" name="cabecalho-inserir" required></textarea>
                   <label for="cabecalho-inserir">Digite o cabeçalho da questão:</label>
                 </div>
               </div>
@@ -166,7 +209,7 @@
       <form id="FORMproduzir" name="FORMproduzir" action="geraProva.php" method="post">
         <div class="esconder" id="produzir_prova">
           <p>
-            <select class="browser-default" id="disciplina-produzir" name="disciplina-produzir">
+            <select class="browser-default" id="disciplina-produzir" name="disciplina-produzir" required>
               <option value="" disabled selected>Defina a disciplina.</option>
               <option value="Aplicações para Web">Aplicações para Web</option>
               <option value="Arquitetura de Sistemas Digitais">Arquitetura de Sistemas Digitais</option>
@@ -226,30 +269,58 @@
           <br>
           <p>Escolha o número de questões:</p>
           <p class="range-field">
-            <input type="range" min="0" max="100"  id="numQuestoes-produzir"/>
+            <input type="range" min="0" max="100"  id="numQuestoes-produzir" name="numQuestoes-produzir"/>
           </p>
 
           <br><br>
-          <button type="submit" class="waves-effect waves-light btn light-blue darken-4" id="pub">Gerar Prova
+          <button type="submit" class="waves-effect waves-light btn light-blue darken-4" id="pub" name="pub">Gerar Prova
             <i class="tiny material-icons white-text text-darken-1">description</i>
           </button>
         </div>
       </form> 
-
     </div>
   </div>
-  <!-- FOOTER -->
-  <?php 
-    include('../../footer.php');
-  ?>
+
+  <footer class="page-footer blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Desenvolvedores</h5>
+          <p class="grey-text text-lighten-4">
+            Somos a turma de Informática 2A do ano de 2016 do CEFET-MG (Centro Federal de Educação Tecnológica de Minas Gerais) desenvolvendo o trabalho final multidisciplinar de Linguagem de Programação 1 e Aplicações para WEB.
+            <br><a class="white-text link" href="colaboradores.html">Clique aqui</a> para saber mais
+          </p>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Sobre a Instituição</h5>
+          <p class="grey-text text-lighten-4">
+            Centro Federal de Educação Tecnológica de Minas Gerais
+            <br>Av. Amazonas 5253 - Nova Suiça - Belo Horizonte - MG - Brasil
+            <br>Telefone: +55 (31) 3319-7000 - Fax: +55 (31) 3319-7001
+          </p>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Recursos</h5>
+          <ul>
+            <li><a class="white-text link" href="https://github.com/cefet-inf-2015/portal-educacao/" target="_blank">Github</a></li>
+            <li><a class="white-text link" href="http://cefetmg.br/" target="_blank">CEFET-MG</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="blue-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
 
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="../../template/js/materialize.js"></script>
-  <script src="../../template/js/init.js"></script>
+  <script src="template/js/materialize.js"></script>
+  <script src="template/js/init.js"></script>
   <script src="Script.js"></script>
-  <script src="../../index.js"></script>
 
   </body>
 </html>
