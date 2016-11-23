@@ -80,7 +80,11 @@
 	    	          </div>
 	    	        </div>
 	    	        <div class="row valign-wrapper">
-	    	        
+	    	          <div class="col s9 m9 l10">
+					    <?php
+	    	          		echo '<p class="black-text text-lighten-1 id="nomeUsuario">'.$GLOBALS['usuario']['primeiroNome'].' '.$GLOBALS['usuario']['ultimoNome'].'</p>';
+	    	          	?>
+	    	          </div>
 	    	          <div class="col s4 m3 l2">
 	    	            <a class = "waves-effect waves-light btn light-blue darken-4 right" id="btnPost" name="pload">Publicar</a>
 	    	          </div>
