@@ -94,16 +94,52 @@
 						<div class="col s6">
                             <div class="col s12 m7">
                                 <div class="card horizontal">
-                                    <div class="card-image">
-                                        <img src="Squirtle.png">
-                                    </div>
-                                    <div class="card-stacked">
-                                        <div class="card-content">
-                                            <div style="color: #1E90FF">Nome: </div><div id="Nome"></div>
-                                            <div style="color: #1E90FF">Matrícula: </div><div id="Matricula"></div>
-                                            <div style="color: #1E90FF">Posts: </div><div id="Posts"></div>
-                                            <div id="Classificacao" style="color: blue"></div>
+                                     <?php
+
+                                        $dbhost = 'localhost'; // endereco do servidor de banco de dados
+                                        $dbuser = 'root'; // login do banco de dados
+                                        $dbname = 'bdforum'; // nome do banco de dados a ser usado
+               
+                                        $conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
+                                        $seleciona = @mysql_select_db($dbname);
+
+                                       
+
+                                        if ( isset($_SESSION["usuario"]) ) {
+    
+                                             $matricula= $userData['numeroMatricula'];
+
+                                             $busca = mysql_query("select * from usuarios where matricula='$matricula' "); //informaçoes do autor
+                                        
+                                             while($infouser=mysql_fetch_array($busca)){
+                                            
+                                                $tipo = $infouser['Tipo'];
+                                                $criados = $infouser['Criados'];
+                                            }
+
+                                        echo 
+                                        "<div class=\"card-image\">
+                                        <img src=\"foto.png\">
                                         </div>
+                                        <div class=\"card-stacked\">
+                                        <div class=\"card-content\">
+                                            <div style=\"color: #1E90FF\">Nome: </div><div id=\"Nome\">".
+                                                 $userData['primeiroNome']." 
+                                            </div>
+                                            <div style=\"color: #1E90FF\">Matrícula: </div>
+                                            <div id=\"Matricula\">"
+                                            .$userData['numeroMatricula'].
+                                            "</div>
+                                            <div style=\"color: #1E90FF\">Posts: </div>".$criados."<div id=\"Posts\"></div>
+                                            <div id=\"Classificacao\" style=\"color: blue\">".$tipo."</div>
+                                        </div>";
+                                        }else{
+                                            echo "
+                                            <div class=\"card-stacked\">
+                                            <h2 class=\"header\" style=\"color:#069\"> Bem Vindo ao Fórum!</h2>";
+                                        }
+
+                                        ?>
                                     </div>
                                 </div>
 
@@ -115,10 +151,28 @@
                                     <a href="#!" class="collection-item"><div id="Topico4"></div></a>
                                 </div>
 
-                                <div class="collection">
                                     <a href="#!" class="collection-item"><h6>Estatísticas do Fórum</h6></a>
-                                    <a href="#!" class="collection-item"><div id="PostsTotal"></div></a>
-                                    <a href="#!" class="collection-item"><div id="TopicosTotal"></div></a>
+                                    <?php 
+
+                                    $busca = mysql_query("select * from usuarios"); //informaçoes do autor
+                                        $Posts=0;
+                                        $Respostas=0;
+                                        $users=0;
+
+                                        while($infouser=mysql_fetch_array($busca)){
+                                            
+                                            $Posts = $Posts + $infouser['Criados'];
+                                            $Respostas =$Respostas + $infouser['Comentarios'];
+                                            $users++;
+                                        }
+
+                                    echo "
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"PostsTotal\">Respostas: ".$Respostas."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"TopicosTotal\">Tópicos: ".$Posts."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div >Usuários: ".$users."</div></a>
+                                    "
+
+                                    ?>
                                 </div>
                             </div>
                         </div>

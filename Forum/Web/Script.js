@@ -48,7 +48,9 @@ function Listener(x) {
 	} else if (x==1) {
 		for(i=0; i<document.getElementsByName("BotaoResponde").length; i++) {
 			var string = "#BotaoResponde"+i;
+			var string2 = "#like"+i;
 			document.querySelector(string).addEventListener("click", Responde);
+			document.querySelector(string2).addEventListener("click", Curte);
 		}
 	}
 }
@@ -79,4 +81,12 @@ function Perfil(x) {
 function CarregaTopicos(categoria) {
 	document.getElementById("Categoria").innerHTML=categoria
 	+"<a href='../Pag_do_Topico.html' class='btn-floating btn-large waves-effect waves-light blue'><i class='material-icons'>add</i></a>";
+}
+
+function Curte() {
+	var string = document.getElementById("divlike0").innerHTML;
+	var numero = ((document.getElementById("divlike0").innerHTML).charAt(0));
+	numero++;
+	string = string.replace(((document.getElementById("divlike0").innerHTML).charAt(0)), numero);
+	document.getElementById("divlike0").innerHTML = string;
 }

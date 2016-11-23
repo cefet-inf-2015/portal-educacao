@@ -77,6 +77,7 @@
 				$idclassificacao = 0;
 				$idcomentario = 0;
 				$idresponde = 0;
+				$idlike = 0;
 
 				echo "<h4 class=\"center-align\" id=\"titulo\"  >".$titulo."</h4>";
 				
@@ -86,12 +87,21 @@
 
 				while($conteudo=mysql_fetch_array($consulta)){
 					$name = $conteudo['Autor'];
+					$id = $conteudo['Id'];
 
+					$likesql = "UPDATE matematica SET Avaliacao = Avaliacao + 1 WHERE Id = '$id'";
+					//$like= mysql_query($likesql , $conecta);
+					
 					$busca = mysql_query("select * from usuarios where nome='$name' "); //informaçoes do autor
 					while($infouser=mysql_fetch_array($busca)){
 						$matricula= $infouser['Matricula'];
 						$tipo = $infouser['Tipo'];
 						$criados = $infouser['Criados'];
+						if (is_file($infouser['Foto'])) {
+							$foto =$infouser['Foto']; 
+						}else{
+							$foto = "foto.png";
+						}
 					}
 
 
@@ -105,7 +115,7 @@
 									<div class=\"col s12 m9 l3\">
 											<div class=\"card horizontal\">
 			                                    <div class=\"card-image\">
-			                                        <img src=\"foto.png\">
+			                                        <img src=\"".$foto."\">
 			                                    </div>
 			                                    <div class=\"card-stacked\">
 			                                        <div class=\"card-content\">
@@ -125,8 +135,8 @@
 									</div>							
 								</div>
 								<div class=\"row\">
-									<div class=\"col s12 m6 l3\">".$conteudo['Avaliacao']."
-										<a class=\"btn-floating btn-large waves-effect waves-light blue\" id=\"like\"><i class=\"material-icons\">thumb_up</i></a>
+									<div class=\"col s12 m6 l3\" id=\"divlike".$idlike."\">".$conteudo['Avaliacao']."
+										<a class=\"btn-floating btn-large waves-effect waves-light blue\" id=\"like".$idlike."\" ><i class=\"material-icons\" >thumb_up</i></a>
 									</div>
 									<div align=\"right\" class=\"row col s12 m6 l9\">
 										<a name=\"BotaoResponde\" id=\"BotaoResponde".$idresponde."\" href=\"#comentario\" class=\"waves-effect waves-light blue btn\">responder</a>       
@@ -135,21 +145,22 @@
 							</div>
 						</div>
 					</div>
-				</div>";
+				</div>
+				";
 
 				$idname++;
 				$idmatricula++;
 				$idposts++;
 				$idclassificacao++;
 				$idcomentario++;
+				$idlike++;
 				$idresponde++;
 
 				}
-
+				
 				echo "<p id=\"categoria\" style=\"display: none\" >".$categoria."</p>";
 
 				?>
-				
 	
 
 			</div>
@@ -181,13 +192,18 @@
 						}
     				
 					</script>
-					<div class="container">
-						<div class="grid-example col s12 m6">
-							<div class="card-panel">
-								<div id="comentario">
-									<div class="row">
-										<div class="col s12 m9 l3">
+
+
 											<?php  
+											
+											if ( isset($_SESSION["usuario"]) ) {
+      										
+    										if (is_file("../../".$userData['foto'])) {
+                                                $foto = "../../".$userData['foto'];
+                                            }else{
+                                                $foto = "foto.png";
+                                            }										
+
 											 $matricula= $userData['numeroMatricula'];
 
                                         	$busca = mysql_query("select * from usuarios where matricula='$matricula' "); //informaçoes do autor
@@ -199,9 +215,15 @@
                                         	}
 
 											echo "
+					<div class=\"container\">
+						<div class=\"grid-example col s12 m6\">
+							<div class=\"card-panel\">
+								<div id=\"comentario\">
+									<div class=\"row\">
+										<div class=\"col s12 m9 l3\">
 											<div class=\"card horizontal\">
 			                                    <div class=\"card-image\">
-			                                        <img src=\"foto.png\">
+			                                        <img src=\"".$foto."\">
 			                                    </div>
 			                                    <div class=\"card-stacked\">
 			                                        <div class=\"card-content\">
@@ -211,29 +233,30 @@
 			                                            <div id=\"Classificacao\" style=\"color: blue\">".$tipo."</div>
 			                                        </div>
 			                                    </div>
-			                                </div>";
-											?>
-
+			                                </div>
 										</div>
-										<div class="row col s12 m8 l9 card-panel">
-											<div id="ConteudoResposta">
+										<div class=\"row col s12 m8 l9 card-panel\">
+											<div id=\"ConteudoResposta\">
 											</div>
 											<div >
-												<textarea id="campoTexto" form="criaComentario"></textarea>
+												<textarea id=\"campoTexto\" form=\"criaComentario\"></textarea>
 											</div>
 										</div>						
 									</div>
-									<div class="row">
-										<div class="col s12 m6 l3">
+									<div class=\"row\">
+										<div class=\"col s12 m6 l3\">
 										</div>
-										<div align="right" class="row col s12 m6 l9">
-											<a class="waves-effect waves-light blue btn"><input type="button" value="Enviar" onclick="inserevalores()"></a>     
+										<div align=\"right\" class=\"row col s12 m6 l9\">
+											<a class=\"waves-effect waves-light blue btn\"><input type=\"button\" value=\"Enviar\" onclick=\"inserevalores()\"></a>     
 										</div>	
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>";
+											}
+											?>
+
 				</form>
 			</div>
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->

@@ -57,8 +57,19 @@
                 <div class="section">
                     <div class="row">
                         <div class="col s7">
-                            <h4 class="light-blue-text text-darken-3 center-align"> Matématica  
-        <a href="../Pag_do_Topico.php" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a></h4>
+                            <h4 class="light-blue-text text-darken-3 center-align"> Matemáica
+                              <?php 
+   
+                              if ( isset($_SESSION["usuario"]) ) {
+        
+    
+
+                              echo "<a href=\"../Pag_do_Topico.php\" class=\"btn-floating btn-large waves-effect waves-light blue\"><i class=\"material-icons\">add</i></a>";
+                          }  
+
+                            ?>
+                            </h4>
+
                             <table class="highlight">
                                 <thead>
                                     <tr>
@@ -131,31 +142,103 @@
                         <div class="col s5">
                             <div class="col s12 m10">
                                 <div class="card horizontal">
-                                    <div onmouseover="document.getElementById('tit').value=$titulo" class="card-image">
-                                        <img src="../Squirtle.png">
-                                    </div>
-                                    <div class="card-stacked">
-                                        <div class="card-content">
-                                            <div style="color: #1E90FF">Nome: </div><div id="Nome"></div>
-                                            <div style="color: #1E90FF">Matrícula: </div><div id="Matricula"></div>
-                                            <div style="color: #1E90FF">Posts: </div><div id="Posts"></div>
-                                            <div id="Classificacao" style="color: blue"></div>
-                                        </div>
+                                     <?php
+
+                                        $dbhost = 'localhost'; // endereco do servidor de banco de dados
+                                        $dbuser = 'root'; // login do banco de dados
+                                        $dbname = 'bdforum'; // nome do banco de dados a ser usado
+               
+                                        $conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
+                                        $seleciona = @mysql_select_db($dbname);
+
+                                       
+
+                                        if ( isset($_SESSION["usuario"]) ) {
+                                             
+                                            $userData = (array) $_SESSION["usuario"];
+                                            $nome = $userData['primeiroNome']; //." ".$userData['ultimoNome'];
+                                            $matricula = $userData['numeroMatricula'];
+                                            if (is_file("../../".$userData['foto'])) {
+                                                $foto = "../../".$userData['foto'];
+                                            }else{
+                                                $foto = "foto.png";
+                                            }
+
+                                             
+                                            
+                                            switch ($userData['permissao']) {
+                                                case '0':$hierarquia= "Aluno"; break;
+                                                case '1':$hierarquia= "Professor"; break;                                                
+                                                case '2':$hierarquia= "Coordenador";break;
+                                                case '3':$hierarquia= "Diretor";break;
+                                            }
+
+                                            $sqlinsereusuario= "INSERT INTO usuarios ( nome,tipo,foto,matricula) VALUES ('$nome','$hierarquia','$foto','$matricula')";
+                                            $insererusuario = @mysql_query($sqlinsereusuario, $conecta);
+    
+                                             
+
+                                             $busca = mysql_query("select * from usuarios where matricula='$matricula' "); //informaçoes do autor
+                                        
+                                             while($infouser=mysql_fetch_array($busca)){
+                                            
+                                                $tipo = $infouser['Tipo'];
+                                                $criados = $infouser['Criados'];
+                                            }
+
+                                        echo 
+                                        "<div class=\"card-image\">
+                                        <img src=\"../".$foto."\">
+                                      </div>
+                                      <div class=\"card-stacked\">
+                                        <div class=\"card-content\">
+                                            <div style=\"color: #1E90FF\">Nome: </div><div id=\"Nome\">".
+                                                 $userData['primeiroNome']." 
+                                            </div>
+                                            <div style=\"color: #1E90FF\">Matrícula: </div>
+                                            <div id=\"Matricula\">"
+                                            .$userData['numeroMatricula'].
+                                            "</div>
+                                            <div style=\"color: #1E90FF\">Posts: </div>".$criados."<div id=\"Posts\"></div>
+                                            <div id=\"Classificacao\" style=\"color: blue\">".$tipo."</div>
+                                        </div>";
+                    }else{
+                      echo "
+                      <div class=\"card-stacked\">
+                      <h2 class=\"header\" style=\"color:#069\"> Bem Vindo ao Fórum!</h2>";
+                    }
+
+                                        
+
+                                        ?>
                                     </div>
                                 </div>
 
-                                <div class="collection">
-                                    <a href="#!" class="collection-item"><h6>Novos Posts</h6></a>
-                                    <a href="#!" class="collection-item"><div id="Topico1"></div></a>
-                                    <a href="#!" class="collection-item"><div id="Topico2"></div></a>
-                                    <a href="#!" class="collection-item"><div id="Topico3"></div></a>
-                                    <a href="#!" class="collection-item"><div id="Topico4"></div></a>
-                                </div>
+                               
 
                                 <div class="collection">
                                     <a href="#!" class="collection-item"><h6>Estatísticas do Fórum</h6></a>
-                                    <a  class="collection-item"><div id="PostsTotal"></div></a>
-                                    <a  class="collection-item"><div id="TopicosTotal"></div></a>
+                                    <?php 
+
+                                    $busca = mysql_query("select * from usuarios"); //informaçoes do autor
+                                        $Posts=0;
+                                        $Respostas=0;
+                                        $users=0;
+
+                                        while($infouser=mysql_fetch_array($busca)){
+                                            
+                                            $Posts = $Posts + $infouser['Criados'] + $infouser['Comentarios'];
+                                            $Respostas =$Respostas + $infouser['Criados'];
+                                            $users++;
+                                        }
+
+                                    echo "
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"PostsTotal\">Posts: ".$Posts."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"TopicosTotal\">Topicos: ".$Respostas."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div >Usuários: ".$users."</div></a>
+                                    "
+
+                                    ?>
                                 </div>
                             </div>
                         </div>

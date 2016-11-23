@@ -9,7 +9,12 @@ if ( isset($_SESSION["usuario"]) ) {
                 $nome = $userData['primeiroNome']; //." ".$userData['ultimoNome'];
                 $matricula = $userData['numeroMatricula'];
                 $foto = $userData['foto'];
-                $tipo="coordenador"; // pegar tipo de usuario
+                switch ($userData['permissao']) {
+                                                case '0':$tipo= "Aluno"; break;
+                                                case '1':$tipo= "Professor"; break;                                                
+                                                case '2':$tipo= "Coordenador";break;
+                                                case '3':$tipo= "Diretor";break;
+                                            } // pegar tipo de usuario
               }
               else {
                
