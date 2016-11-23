@@ -9,6 +9,12 @@
       <script src="../../template/js/materialize.js"></script>
       <script src="../../template/js/init.js"></script>
       <script src="script.js"></script>
+       <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+      <script src="criaInputs.js"></script>
       <!-- CSS  -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href="../../styles/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -28,7 +34,7 @@
       <link rel="icon" href="../../imgs/logo.png" >
    </head>
    <body>
-      <body>
+      <body action="#" method="post" enctype="multipart/form-data">
          <nav class="light-blue darken-4" role="navigation">
             <div class="nav-wrapper container">
                <!-- MENU SLIDE OUT STRUCTURE-->
@@ -105,74 +111,33 @@
             </div>
          </div>
          <div class="container">
-            <table class="centered" >
-               <thead>
-                  <tr>
-                     <th><img src="foto.jpg" width="133" height="100"></th>
-                     <th><img src="logo.jpg" width="133" height="100"></th>
-                     <th><img src="brasao.png" width="133" height="100"></th>
-                  </tr>
-                  <tr>
-                     <th>Aluno(a):</th>
-                     <th>Turma:</th>
-                     <th>Data:</th>
-                  </tr>
-                  <tr>
-                     <th>Professor(a):</th>
-                     <th>N° de Questões:</th>
-                     <th>Turno:</th>
-                  </tr>
-                  <tr>
-                     <th>Valor:</th>
-                     <th>Duração:</th>
-                  </tr>
-               </thead>
-               </tbody>
-            </table>
-            <div class="container">
-               <tr>
-                  <th>
-                  <p>
-                  	 <p>Questão 1)</p>
-                     <pre>#include < stdio .h >
-#include < string .h >
-int main (void) {
-int i , j ;
-char nome [80] , c ;
-gets ( nome );
-for (i =0 , j = strlen ( nome ) -1; i < strlen ( nome ); i ++ , j - -) {
-c = nome [ i ];
-nome [ i ] = nome [ j ];
-nome [ j ]= c ;
-}
-puts ( nome );
-return 0;
-}
-O que será impresso caso a cadeia de caracteres fornecida seja 43218765?
-</pre>
-<form action="#">
-    <p>
-      <input name="q1" type="radio" id="test1" />
-      <label for="test1">A) 43218765</label>
-    </p>
-    <p>
-      <input name="q1" type="radio" id="test2" />
-      <label for="test2">B) 87654321</label>
-    </p>
-    <p>
-      <input  name="q1" type="radio" id="test3"  />
-      <label for="test3">C) 18726354</label>
-    </p>
-      <p>
-        <input name="q1" type="radio" id="test4" />
-        <label for="test4">D) 56781234</label>
-    </p>
-  </form>
-                  </p>
-                    
-                  </th>
-               </tr>
+            <form action="resultado.php" method="post" enctype="multipart/form-data">
+            <div class="container" id="containerInput">
+               <h5 align="center" class = "blue-text text-darken-4" id="remover1">Insira as questões:</h5>
+               <div class="container">
+                  <br><br>
+                  <div class="file-field input-field">
+                     <div id="remover3" class="blue darken-4 hoverable btn"><i class="material-icons right">send</i>
+                        <span>Insira a Prova</span>
+                        <input type="file" id="remover2" name="provaXML" accept=".xml" onchange='openFile(event)'>
+                     </div>
+
+                     <div id="remover4" class="file-path-wrapper">
+                        <input id="remover1" class="file-path validate" type="text">
+                     </div>
+                  </div>
+               </div>
             </div>
+
+            <div class="container">
+            <br><br>
+               <div class="row">
+                  <div class="col s6">
+                     <button href="resultado.php" class="hoverable blue darken-4 btn-large" type="submit"><i class="material-icons right">edit</i>Corrigir</button>
+                  </div>
+               </div>
+            </div>
+            </form>
          </div>
    </body>
 </html>

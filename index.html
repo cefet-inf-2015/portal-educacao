@@ -72,17 +72,18 @@
           <label for="senha">Senha</label>
           <input type="password" name="senha">
           <label for="tipoUsuario">Tipo de usuário</label>
-          <select name="tipoUsuario">
+          <select name="tipoUsuario" id="tipoUsuario">
             <option value="" disabled selected>Tipo de Usuario</option>
             <option value="1">Aluno</option>
             <option value="2">Professor</option>
             <option value="3">Coordenador</option>
             <option value="4">Diretor</option>
           </select>
-          <button class="col s12 btn-flat waves-effect waves-light green white-text" type="submit" name="action">Entrar
+          <button class="col s12 btn-flat waves-effect waves-light green white-text" type="button" name="action" id="loginBtn">Entrar
               <i class="material-icons right">input</i>
             </button>
         </form>
+        <div id="targetId"></div>
 
       </div>
     </div>
@@ -115,10 +116,19 @@
     <div class="container">
       <div class="section">
         <!-- CONTEÚDO AQUI -->
-        <h1>Inserir conteudo aquii</h1>
+        <div class="row">  
+          <div class="col s2">
+            <img src="imgs/logo.png" label="logo">
+          </div>
+          <div class="col s10">
+            <p>Bem vindo ao Portal Educação!</p>
+            <p>Logue-se para acessar mais conteúdo.</p>
+          </div>
+        </div>
       </div>
     </div>
   </main>
+  
   <footer class="page-footer blue">
     <div class="container">
       <div class="row">

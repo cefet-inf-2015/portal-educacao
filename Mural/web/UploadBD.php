@@ -1,13 +1,15 @@
 <?php
-	$conexao = new mysqli('localhost', 'root', '', 'mural') or print("zona");
+	session_start();  
+	$conexao = new mysqli('localhost', 'root', '', 'mural');
 	$text = $_GET['texto'];
 	$dataPostString = $_GET['dataPostString'];
-	//$imagem = htmlentities($_FILES['arq']);
+	$GLOBALS['usuario'] = (array) $_SESSION['usuario'];
+	$usuario = $GLOBALS['usuario']['primeiroNome'].' '.$GLOBALS['usuario']['ultimoNome'];
 
-	$sql = "INSERT INTO mural (conteudo, data) VALUES ('$text', '$dataPostString')";
+	$sql = "INSERT INTO mural (conteudo, data, usuario) VALUES ('$text', '$dataPostString', '$usuario')";
 
 	if ($conexao->query($sql) === TRUE) {
-	    header("Location:index.html");
+	    header("Location:index.php");
 	} else {
 	    echo "Error: " . $sql . "<br>" . $conexao->error;
 	}

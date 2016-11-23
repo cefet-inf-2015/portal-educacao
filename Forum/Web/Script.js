@@ -25,13 +25,19 @@ function Categoria() {
 }
 
 function Responde() {
+
 	var string = event.target.id;
 	var Nome = document.getElementById("Nome"+string.substr(string.length - 1)).innerHTML;
 	var Matricula = document.getElementById("Matricula"+string.substr(string.length - 1)).innerHTML;
 	var Posts = document.getElementById("Posts"+string.substr(string.length - 1)).innerHTML;
 	var Classificacao = document.getElementById("Classificacao"+string.substr(string.length - 1)).innerHTML;
 	var comentario = document.getElementById("Comentario"+string.substr(string.length - 1)).innerHTML;
-	document.getElementById("ConteudoResposta").innerHTML = Nome+" - "+Matricula+" - "+Posts+" - "+Classificacao+"<br>"+"\""+comentario+"\"";
+
+	var aux =comentario.split("<div>"); 
+	var aux = aux[aux.length-1].split("</div>");
+
+
+	document.getElementById("ConteudoResposta").innerHTML = Nome+" - "+Matricula+" - "+Posts+" - "+Classificacao+"<br>"+"\""+aux[0]+"\"";
 }
 
 function Listener(x) {
@@ -42,7 +48,9 @@ function Listener(x) {
 	} else if (x==1) {
 		for(i=0; i<document.getElementsByName("BotaoResponde").length; i++) {
 			var string = "#BotaoResponde"+i;
+			var string2 = "#like"+i;
 			document.querySelector(string).addEventListener("click", Responde);
+			document.querySelector(string2).addEventListener("click", Curte);
 		}
 	}
 }
@@ -73,4 +81,12 @@ function Perfil(x) {
 function CarregaTopicos(categoria) {
 	document.getElementById("Categoria").innerHTML=categoria
 	+"<a href='../Pag_do_Topico.html' class='btn-floating btn-large waves-effect waves-light blue'><i class='material-icons'>add</i></a>";
+}
+
+function Curte() {
+	var string = document.getElementById("divlike0").innerHTML;
+	var numero = ((document.getElementById("divlike0").innerHTML).charAt(0));
+	numero++;
+	string = string.replace(((document.getElementById("divlike0").innerHTML).charAt(0)), numero);
+	document.getElementById("divlike0").innerHTML = string;
 }

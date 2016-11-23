@@ -1,13 +1,289 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+body {
+font-family: 'Open Sans', sans-serif;
+}
+
+#conteudo {
+	position: absolute;
+	width: 63%;
+    max-width: 80%;
+    height: 500px;
+	left: 55%;
+    top: 45%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
 #historico {
-	height: 250px;
 	overflow-y: scroll;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background-color: #f8f8f8;
+  height: 426px;
 
 }
-#historico > div > div {
+	/**/
+
+#historico > .direita {
+	text-align: right;
+}
+
+#historico > .direita > .texto {
+	position: relative;
 	display: inline-block;
-	border-radius: 4px;
-	padding: 4px 10px;
-	background-color: blue;
-	color: white;
-	margin: 4px;
+    background-color:#39c;
+    color: white;
+    border-radius: 8px;
+    background-clip: padding-box;
+    padding: 10px 10px 10px 10px;
+    margin: 5px 10px 5px 0;
+    font-size: 16px;
+}
+
+#historico > .direita > .texto:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	border-width: 10px;
+	box-sizing: border-box;
+	border-style: solid;
+	border-bottom-color: transparent;
+	border-right-color: transparent;
+	border-top-color: #39c;
+	border-left-color: #39c;
+}
+
+#historico > .direita > .foto,
+#historico > .esquerda > .foto {
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	border-radius: 100%;
+	border: 2px solid #AAA;
+	background-image: url(../images/avatar.png);
+	background-size: cover;
+}
+
+#historico > .esquerda {
+	text-align: left;
+}
+
+#historico > .esquerda > .texto {
+	position: relative;
+	display: inline-block;
+    background-color:#DDD;
+    color: #000;
+    border-radius: 8px;
+    background-clip: padding-box;
+    padding: 10px 10px 10px 10px;
+    margin: 5px 0 5px 10px;
+    font-size: 16px;
+}
+
+#historico > .esquerda > .texto:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -10px;
+	border-width: 10px;
+	box-sizing: border-box;
+	border-style: solid;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-top-color: #DDD;
+	border-right-color: #DDD;
+}
+
+.horas {
+	font-size: 10px;
+	opacity: .5;
+}
+
+form {
+	text-align: center;
+	margin-top: 10px;
+}
+
+#mensagem {
+    width: 80%;
+    padding: 10px 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 50px;
+
+}
+
+#busca {
+    width: 90%;
+    padding: 10px 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 50px;
+
+}
+
+input[type=submit] {
+	  height: 50px;
+    /*width: calc(100%-20px);*/
+	width: 19%;
+    background-color: #39c;
+    color: white;
+    padding: 14px 20px;
+    margin: 0px -1px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.usuario {
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	color: #FFF;
+	background-color: rgba(255,255,255,.1);
+	cursor: pointer;
+	margin: 10px 0
+}
+
+.usuario:hover {
+	background-color: rgba(255,255,255,.4);
+}
+
+#info {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0,0,0,.5);
+}
+
+#info.abrir {
+	display: block;
+}
+
+#info .conteudo {
+	position: absolute;
+	background-color: #FFF;
+	top: 50%;
+	left: 50%;
+	padding: 10px;
+	width: 250px;
+	transform: translate(-50%,-50%);
+	font-size: 12px;
+}
+
+@charset "UTF-8";
+/* =CSS Reset */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+*, html, body {
+  margin:0;
+  padding:0;
+  }
+... /* mais regras CSS reset */
+
+/* regra para o box-sizing */
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+/* regra para o clear float */
+.cf:before,
+.cf:after {content: " ";display: table;}
+.cf:after {clear: both;}
+.cf {*zoom: 1;}
+body {
+  margin-left:55px; /* espaço à esquerda para a barra vertical vísivel do menu */
+  font:  62.5%/1.2 Verdana, Helvetica, Arial, sans-serif;
+  }
+
+  #lateral {
+  padding:0 50px 0 0;
+  -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+  font-size:1.2em;
+  background:rgb(44,62,80);
+  background-image: -moz-linear-gradient(135deg, rgb(25,25,112), rgb(16,57,79));
+     background-image: -webkit-linear-gradient(135deg, rgb(25,25,112), rgb(16,57,79));
+      background-image: -o-linear-gradient(135deg, rgb(25,25,112), rgb(16,57,79) );
+       background-image: -ms-linear-gradient(135deg, rgb(25,25,112), rgb(16,57,79));
+        background-image: linear-gradient(135deg, rgb(25,25,112), rgb(16,57,79));
+  height:100%;
+  overflow:hidden;
+  width:300px;
+  position:fixed;
+  top:0;
+  left:-320px;
+  }
+#lateral:before {
+  z-index:1000;
+  content: url(icone-menu.png);
+  font-size:4em;
+  color:white;
+  position:fixed;
+  left:4px;
+  top:45px;
+  }
+#lateral:hover:before, #lateral:focus:before {
+left:-400px;
+  }
+#lateral:hover, #lateral:focus,  #lateral:active  {
+  overflow-y:scroll;
+  -moz-transform: translate(320px, 0);
+    -webkit-transform: translate(320px, 0);
+      -o-transform: translate(320px, 0);
+        transform: translate(320px, 0);
+  padding-right:0;
+  }
+  @media (max-width: 300px) {
+body {margin-left:0;background-size:100% 28em!important;}
+#lateral {
+  padding:0;
+  -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+  font-size:1.2em;
+  height:100%;
+  overflow:auto;
+  width:80%;
+  position:static;
+  top:0;
+  left:0;
+  }
+#lateral:before {
+  z-index:1000;
+  width:0;
+  text-align:center;
+  content: "";
+  font-size:0;
+  color:white;
+  position:static;
+  top:0;
+  left:0;
+  display:inline-block;
+  }
+#lateral:hover, #lateral:focus {
+  overflow:scroll;
+  -moz-transform: none;
+    -webkit-transform: none;
+      -o-transform:none;
+        transform:none;
+  }
+#menu li a {border-bottom:1px solid #ccc;}
+#menu li:first-child a {border-top:1px solid #ccc;}
 }
