@@ -1,42 +1,18 @@
 <?php
- // Guardas os arquivos no bd
-	$banco = 'cabecalho';
-	//$link = mysqli_connect("localhost", "root", "", "modelos");
+
+ session_start();
+  $titulo = $_SESSION['linha']; 
+  $banco = 'cabecalho';
+ // $link = mysqli_connect("localhost", "root", "", "modelos");
   $link = new mysqli_connect("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "modelos");
-	   
-	   if(!$link) {
-	     die('Not connected : ' . mysql_error()); 
-	    }
-	 
-	   $db = mysqli_select_db($link, $banco); 
+     
+     if(!$link) {
+       die('Not connected : ' . mysql_error()); 
+      }
+   
+     $db = mysqli_select_db($link, $banco); 
 
-		$valor = $_POST['valor'];
-		$titulo = $_POST['Titulo'];
-		$turno = $_POST['turno'];
-		$nQuest = $_POST['nquestao'];
-		$elab = $_POST['prof'];
-		$turma = $_POST['turmas'];
-		$escola = $_POST['instituicao'];
-		$duracao = $_POST['duracao'];
-		$dataEntrega = $_POST['dataEntrega'];
-		$dataRecebimento = $_POST['dataRecebimento'];
-		$matricula = $_POST['matricula'];
-		$modalidade = $_POST['quantAlunos'];
-		$dataAplica = $_POST['data'];
-	  $duracao = $_POST['duracao'];
-	
-
-		  if(isset($_FILES['logo'])){
-		    $fileName = $_FILES['logo']['name'];
-          }
-
-            if(isset($_FILES['brasao'])){
-		    $fileNameb = $_FILES['brasao']['name'];
-          }
-
-	    
-    		 $query = "INSERT INTO cabecalho (titulo, valor, modalidade, matricula, turma, nomeEscola, dataProva, dataRecebimento, numeroQuestoes, turno, dataEntrega, nomeLogotipo, nomeProfessor, nomeBrasao, duracao)  
-    		 VALUES ('".$titulo."', '".$valor."','".$modalidade."','".$matricula."','".$turma."','".$escola."','".$dataAplica."','".$dataRecebimento."','".$nQuest."','".$turno."','".$dataEntrega."','".$fileName."','".$elab."','".$fileNameb."','".$duracao."')";
+    		 $query = "DELETE FROM cabecalho WHERE titulo='".$titulo."'";
         
          mysqli_query($link, $query) or die("Erro ao guardar Informaçoes ".  mysqli_error($link) );
          mysqli_close($link);
@@ -153,14 +129,13 @@
                   <br><br>
                   <h1 class='header center blue-text text-darken-4'>Modelos de Provas e Trabalhos</h1>
                   <div class='row center'>
-                    <h5 class='header col s12 light'>Informações Guardadas com Sucesso </h5>
+                    <h5 class='header col s12 light'>Informações Alteradas com Sucesso </h5>
                   </div>
                   <br><br><br><br>
                 </div>
               </div>
             </main>
-
-
+              
               </div>
             </div>
                 </div>
@@ -208,5 +183,5 @@
             <script src='../../index.js'></script>
 
             </body>
-          </html>";
+          </html>"
       ?> 

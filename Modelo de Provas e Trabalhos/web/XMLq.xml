@@ -1,0 +1,46 @@
+﻿<prova>
+<!--Multipla escolha -->
+    <questao tipo="ME" aleatorio="true">
+        <dificuldade>5</dificuldade> <!--dificuldade(1 a 10) -->
+        <materia>Matematica</materia> <!--Materia -->
+        <conteudo>função 2 grau</conteudo> <!--Conteudo -->
+        <enunciado>Uma fábrica produz casacos de determinado modelo. O preço de um desses casacos é de R$200,00, quando são vendidos 200 *casacos.
+
+    O gerente da fábrica, a partir de uma pesquisa, verificou que, para cada desconto de R$2,00 no preço de cada casaco, o número de casacos *vendidos aumenta de 5.
+
+    A maior arrecadação possível com a venda dos casacos acontecerá se a fábrica vender cada casaco por um valor, em reais, pertencente ao    intervalo</enunciado> <!--enunciado -->
+         <alternativa>[105,125[</alternativa>
+         <alternativa correta="true">[105,145[</alternativa>
+        <alternativa>[105,165[</alternativa>
+         <alternativa>[105,185[</alternativa>
+     </questao>
+
+     <!--V ou F -->
+     <questao tipo="VF" aleatorio="true">
+         <dificuldade>1</dificuldade> <!--dificuldade(1 a 10) -->
+         <materia>Geografia</materia> <!--Materia -->
+         <conteudo>Regioes</conteudo> <!--Conteudo -->
+         <enunciado>Marque (V) para verdadeiro ou (F) para falso </enunciado> <!--enunciado -->
+         <alternativa>São Paulo e Mato Grosso estão inseridos na região sudeste.</alternativa>
+         <alternativa>Minas Gerais e Bahia fazem parte da região sudeste.</alternativa>
+         <alternativa>Amazonas e Tocantins fazem parte da região Nordeste</alternativa>
+         <alternativa>A região sudoeste é a mais nova região do Brasil desde 2012. </alternativa>
+         <alternativa>O núcleo industrial do Brasil está na região Centro-Oeste.</alternativa>
+         <alternativa> A Amazônia faz parte da região nordeste.</alternativa>
+         <alternativa correta="true"> O setor mais industrializado do Brasil se encontra em Mato Grosso.</alternativa>
+         <alternativa correta="true">O Nordeste possui a maioria dos estados na costa do país. </alternativa>
+         <alternativa>Toda a região centro-oeste não tem contato com qualquer oceano.</alternativa>
+         <alternativa>A região sul e centro-oeste possuem três estados.</alternativa>
+     </questao>
+     
+    <!--ABERTA-->
+    <questao tipo="aberta">
+    <dificuldade>8</dificuldade> <!--dificuldade(1 a 10) -->
+        <materia>Literatura</materia> <!--Materia -->
+        <conteudo>Dom Casmurro</conteudo> <!--Conteudo -->
+    <enunciado>(FUVEST / GV) O meu fim evidente era atar as duas pontas da vida, e restaurar na velhice a adolescência. Pois, senhor, não *
+    consegui recompor o que foi nem o que fui.
+    É o que diz o narrador no segundo capítulo do romance Dom Casmurro. Afinal por que não teria ele alcançado o seu intento?
+    </enunciado>
+    </questao>
+</prova>

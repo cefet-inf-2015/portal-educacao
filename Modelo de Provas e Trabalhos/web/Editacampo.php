@@ -1,47 +1,13 @@
-<?php
- // Guardas os arquivos no bd
-	$banco = 'cabecalho';
-	//$link = mysqli_connect("localhost", "root", "", "modelos");
-  $link = new mysqli_connect("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "modelos");
-	   
-	   if(!$link) {
-	     die('Not connected : ' . mysql_error()); 
-	    }
-	 
-	   $db = mysqli_select_db($link, $banco); 
+<?php 
+  //$conexao = mysqli_connect('localhost', 'root', '', 'modelos');
+  $conexao = new mysqli_connect("cefet-inf-2015.ddns.net:43306", "root", "apenasinf-2015", "modelos");
+  session_start();
+  $titulo = $_SESSION['linha']; 
+  $query = sprintf("SELECT * FROM cabecalho WHERE titulo='$titulo'");
+  $dados = mysqli_query($conexao,$query);
+  $linha = mysqli_fetch_assoc($dados);
 
-		$valor = $_POST['valor'];
-		$titulo = $_POST['Titulo'];
-		$turno = $_POST['turno'];
-		$nQuest = $_POST['nquestao'];
-		$elab = $_POST['prof'];
-		$turma = $_POST['turmas'];
-		$escola = $_POST['instituicao'];
-		$duracao = $_POST['duracao'];
-		$dataEntrega = $_POST['dataEntrega'];
-		$dataRecebimento = $_POST['dataRecebimento'];
-		$matricula = $_POST['matricula'];
-		$modalidade = $_POST['quantAlunos'];
-		$dataAplica = $_POST['data'];
-	  $duracao = $_POST['duracao'];
-	
-
-		  if(isset($_FILES['logo'])){
-		    $fileName = $_FILES['logo']['name'];
-          }
-
-            if(isset($_FILES['brasao'])){
-		    $fileNameb = $_FILES['brasao']['name'];
-          }
-
-	    
-    		 $query = "INSERT INTO cabecalho (titulo, valor, modalidade, matricula, turma, nomeEscola, dataProva, dataRecebimento, numeroQuestoes, turno, dataEntrega, nomeLogotipo, nomeProfessor, nomeBrasao, duracao)  
-    		 VALUES ('".$titulo."', '".$valor."','".$modalidade."','".$matricula."','".$turma."','".$escola."','".$dataAplica."','".$dataRecebimento."','".$nQuest."','".$turno."','".$dataEntrega."','".$fileName."','".$elab."','".$fileNameb."','".$duracao."')";
-        
-         mysqli_query($link, $query) or die("Erro ao guardar Informaçoes ".  mysqli_error($link) );
-         mysqli_close($link);
-      
-         echo "<!DOCTYPE html>
+    echo "<!DOCTYPE html>
           <html>
           <head>
             <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
@@ -49,16 +15,16 @@
             <title>Portal Educação</title>
 
 
-             <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
+            <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
             <script src='../../template/js/materialize.js'></script>
             <script src='../../template/js/init.js'></script>
             <script src='script.js'></script>
+
             <!-- CSS  -->
             <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
             <link href='../../styles/css/materialize.css' type='text/css' rel='stylesheet' media='screen,projection'/>
             <link href='../../styles/css/style.css' type='text/css' rel='stylesheet' media='screen,projection'/>
             <link rel='icon' href='../../imgs/logo.png' >
-            <link rel='stylesheet' type='text/css' href='estilo.css'>
             <style type='text/css'>
               body {
                   display: flex;
@@ -145,27 +111,150 @@
               
             </div>
 
-                    
-
             <main>
-              <div class='section no-pad-bot' id='index-banner'>
-                <div class='container'>
-                  <br><br>
-                  <h1 class='header center blue-text text-darken-4'>Modelos de Provas e Trabalhos</h1>
-                  <div class='row center'>
-                    <h5 class='header col s12 light'>Informações Guardadas com Sucesso </h5>
-                  </div>
-                  <br><br><br><br>
+            <div class='section no-pad-bot' id='index-banner'>
+              <div class='container'>
+                <div class='row center'>
+                  <h5 class='header col s12 light'>Selecione o que Deseja Editar</h5>
                 </div>
-              </div>
-            </main>
-
-
               </div>
             </div>
+ 
+              <div>
+            <form action='Edita.php' method='POST'><br>   
+              <div id='divmatricula'>
+                <div class='container'>
+                  <label for='matricula'>Matrícula</label>
+                  <input type='text' name='matricula' id='matricula' value=".$linha['matricula']."></input> 
                 </div>
               </div>
-            </main>
+              
+                <div id='divValor'>
+                <div class='container'>
+                <label for='valor'> Valor</label><br>
+                <input type='number' name='valor' id='valor' min='0' value=".$linha['valor']." style='width: 50px; height: 20px'> pts
+                  </div>
+                  </div>
+
+                  <div id='divTitulo'>
+                  <div class='container'>
+                <label id='TituloP'> Titulo </label>
+                <input type='text' name='Titulo' id='Titulo' value=".$linha['titulo']."/>
+              </div>
+              </div>
+
+              <div id='divNquest'>
+              <div class='container'>
+                <label for='Nquestao' id='letraquestoes'> Nº Questões </label>
+                <input type='number' name='nquestao' value=".$linha['numeroQuestoes']." id='valor' min='0'
+                   style='width: 50px; height: 20px'>
+                </div>
+                </div>
+                
+              <div id='divTurno'>
+              <div class='container'>
+                <label>Turno: </label>  
+                <div class='input-field col s12'>
+                <select name='turno' id='turno' class='browser-default' value=".$linha['turno']."style='width: 100px; height: 35px'>
+                  <option value='manha'>Manhã</option>
+                  <option value='tarde'>Tarde</option>
+                  <option value='Noite'>Noite</option>
+                </select> 
+              </div>
+              </div>
+              </div>
+
+              <div id='divTurma'>
+              <div class='container'>
+                <label for='turmas'> Turmas: </label>
+                <input type='text' name='turmas' id='turmas' value=".$linha['turma']."></input> 
+              </div>
+              </div>
+
+              <div id='divProf'>
+              <div class='container'>
+                <label for='prof'> Elaborador: </label>
+                <input type='text' name='prof' id='prof' value=".$linha['nomeProfessor']."></input> 
+                </div>
+                </div>
+
+                <div id='divInsti'>
+                <div class='container'>
+                  <label for='instituicao'>Instituição: </label>
+                  <input type='text' name= 'instituicao' id='instituicao' value=".$linha['nomeEscola']."></input> 
+                  <label>Tipo de Instituição</label>
+                </div>
+                </div>
+
+                <div id='divTipoInst'>
+              <div class='container'>
+                  <input type='radio' id='Privada' name='tiopoInsti' value='privada' />
+                  <label for='Privada'>Privada</label>&emsp;
+                  
+                  <input type='radio' id='Publica' name='tiopoInsti' value='publica' />
+                  <label for='Publica'>Publica</label>
+                </div>
+                </div>
+
+                <div id='divBotao1'>
+                <div class='container'>
+                <label for='logo'>Logo</label>
+                <input type='file'  value=".$linha['nomeLogotipo']." name='logo' id='logo'/>
+              </div>
+                  </div>  
+                  <div id='divBotao2'>
+                <div class='container'>
+                <label for='brasao'>Brasao</label>
+                <input type='file' value=".$linha['nomeBrasao']." name='brasao' id='brasao'>
+                  </div>
+                  </div>
+
+                  <!--Formulário de Prova-->
+
+               <div id='divDuracao'>
+                <div class='container'>
+                <label for='duração' id='letraduracao'> Duração </label>
+                <input type='number' name='duracao' value=".$linha['duracao']."  id='duracao' min='0' style='width: 50px; height: 20px' > min.
+                  </div>
+                  </div>
+
+                  <div id='divDataApli'>
+                <div class='container'>
+                <label for='data' id='letradata'> Data: </label> 
+                <input type='date'  value=".$linha['dataProva']."  name='data' id='data'/>
+                  </div>
+                  </div>
+
+                <!--Formulário para Trabalho-->
+                <div id='divDataEntre'>
+                <div class='container'>
+                  <label for='dataEntrega'>Data de Entrega (Caso seja trabalho):</label>
+                  <input type='date' name='dataEntrega'  value=".$linha['dataEntrega']." id='dataEntrega'/>
+                </div>
+                </div>
+
+                <div id='divDataReceb'>
+                <div class='container'>
+                  <label for='dataRecebimento'>Data de Recebimento (Caso seja trabalho): </label>
+                  <input type='date' name='dataRecebimento'  value=".$linha['dataRecebimento']." id='dataRecebimento'/>
+                </div>
+                </div>
+
+                <div class='container'>
+                <div id='botao'>
+              <br><br>
+              <button type='submit' class='waves-effect waves-light blue darken-4 btn'><i class='material-icons left'>send</i>Enviar</button>
+              </div>
+              </div>
+
+              </div>
+               </div>
+            </form>
+          </div>
+          </main>
+                
+
+
             <footer class='page-footer blue'>
               <div class='container'>
                 <div class='row'>
@@ -200,7 +289,6 @@
               </div>
             </footer>
 
-
             <!--  Scripts-->
             <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
             <script src='../../template/js/materialize.js'></script>
@@ -209,4 +297,5 @@
 
             </body>
           </html>";
-      ?> 
+
+?>
