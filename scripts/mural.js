@@ -55,20 +55,6 @@ function loadBD(linha){
 	});
 }
 
-/*function curtir(){
-	console.log("OIa")
-	if(likeAux==false){
-		likeAux=true;
-		btn = document.querySelector("#like");
-		btn.className = "waves-effect waves-light btn light-blue darken-4"
-	}
-	else{
-		likeAux=false;
-		btn = document.querySelector("#like");
-		btn.className = "waves-effect waves-light btn grey lighten-1"
-	}	
-	
-}*/
 
 function posta(){ 
  	let dataPostagem = new Date(),
@@ -130,7 +116,7 @@ function criaPost(data){ //criação do Layout de uma postagem
 	divFoto.className = "col s6 m2 l2";
 	fotoPerf = cria('img');
 	fotoPerf.className = "square responsive-img";
-	fotoPerf.src = "https://yt3.ggpht.com/-ZtBlVYCvXOg/AAAAAAAAAAI/AAAAAAAAAAA/-5eDEfuCFlA/s900-c-k-no-rj-c0xffffff/photo.jpg"
+	fotoPerf.src = "http://elaele.com.br/img/anonimo.png";
 	divNome = cria('div');
 	divNome.className = "col s11";
 	nomePerf = cria('a');
