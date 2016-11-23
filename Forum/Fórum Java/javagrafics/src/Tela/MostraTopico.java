@@ -140,6 +140,7 @@ public class MostraTopico extends Exibicao{
                     Conteudo[i] = Formata(resultado.getString("Conteudo"));
                     resultadoUsuario = conec.enviarQueryResultados(comando);
                     carometro[i] = new ImageIcon("carometro/"+resultadoUsuario.getString("Matricula")+".png");
+                    //carometro[i] = new ImageIcon("C:\\xampp\\htdocs\\portal-educacao\\Forum\\Fórum Java\\javagrafics\\src\\Imagens\\foto.png");
                     Usuario[i] = formataUsuario(resultadoUsuario);
                     resultado.next();
                 }
