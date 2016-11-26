@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projeto;
+package UI;
 
-import java.awt.CardLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -38,6 +38,10 @@ public class FormInicial extends javax.swing.JFrame {
         */
         }
 
+    FormInicial(JPanel contentPane) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,10 +56,10 @@ public class FormInicial extends javax.swing.JFrame {
         Home = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        editarInicial = new javax.swing.JButton();
+        produzirInicial = new javax.swing.JButton();
+        inserirInicial = new javax.swing.JButton();
+        pesquisarInicial = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -83,51 +87,61 @@ public class FormInicial extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(1, 87, 155));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Banco de Questões");
+        jLabel5.setToolTipText("Banco de Questões");
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel5.setAlignmentX(0.5F);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setBackground(new java.awt.Color(33, 150, 243));
-        jButton3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("EDITAR QUESTÕES");
-        jButton3.setAlignmentX(0.5F);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        editarInicial.setBackground(new java.awt.Color(33, 150, 243));
+        editarInicial.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        editarInicial.setForeground(new java.awt.Color(255, 255, 255));
+        editarInicial.setText("EDITAR QUESTÕES");
+        editarInicial.setToolTipText("Ir para editar");
+        editarInicial.setAlignmentX(0.5F);
+        editarInicial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editarInicial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                editarInicialActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(33, 150, 243));
-        jButton4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("PRODUZIR PROVAS");
-        jButton4.setAlignmentX(0.5F);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        produzirInicial.setBackground(new java.awt.Color(33, 150, 243));
+        produzirInicial.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        produzirInicial.setForeground(new java.awt.Color(255, 255, 255));
+        produzirInicial.setText("PRODUZIR PROVAS");
+        produzirInicial.setToolTipText("Ir para produzi provas");
+        produzirInicial.setAlignmentX(0.5F);
+        produzirInicial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        produzirInicial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                produzirInicialActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(33, 150, 243));
-        jButton5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("INSERIR QUESTÕES");
-        jButton5.setAlignmentX(0.5F);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        inserirInicial.setBackground(new java.awt.Color(33, 150, 243));
+        inserirInicial.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        inserirInicial.setForeground(new java.awt.Color(255, 255, 255));
+        inserirInicial.setText("INSERIR QUESTÕES");
+        inserirInicial.setToolTipText("Ir para Inserir");
+        inserirInicial.setAlignmentX(0.5F);
+        inserirInicial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        inserirInicial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                inserirInicialActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(33, 150, 243));
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("PESQUISAR QUESTÕES");
+        pesquisarInicial.setBackground(new java.awt.Color(33, 150, 243));
+        pesquisarInicial.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        pesquisarInicial.setForeground(new java.awt.Color(255, 255, 255));
+        pesquisarInicial.setText("PESQUISAR QUESTÕES");
+        pesquisarInicial.setToolTipText("Ir para Pesqisar");
+        pesquisarInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarInicialActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,12 +151,12 @@ public class FormInicial extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inserirInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editarInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(produzirInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pesquisarInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(254, 254, 254))
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,18 +164,19 @@ public class FormInicial extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(produzirInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inserirInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pesquisarInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("A ferramenta que produz provas de maneira simples e funcional");
+        jLabel6.setToolTipText("Descrição");
 
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
         Home.setLayout(HomeLayout);
@@ -169,7 +184,7 @@ public class FormInicial extends javax.swing.JFrame {
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomeLayout.createSequentialGroup()
                 .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -206,21 +221,29 @@ public class FormInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       UI ui = UI.getInstance();
-       ui.abrirInserir();
-       this.setVisible(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void inserirInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirInicialActionPerformed
+        FormInserir  inserir = new FormInserir();
+        inserir.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_inserirInicialActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void editarInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarInicialActionPerformed
+        Tabela  tabela = new Tabela();
+        tabela.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_editarInicialActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       UI ui = UI.getInstance();
-       ui.abrirGerar();
-       this.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void produzirInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produzirInicialActionPerformed
+        Gerar gerar = new Gerar();
+        gerar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_produzirInicialActionPerformed
+
+    private void pesquisarInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarInicialActionPerformed
+        Pesquisar pesquisar = new Pesquisar();
+        pesquisar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_pesquisarInicialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,25 +274,27 @@ public class FormInicial extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormInicial().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FormInicial().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Home;
     private javax.swing.JPanel container;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton editarInicial;
+    private javax.swing.JButton inserirInicial;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton pesquisarInicial;
+    private javax.swing.JButton produzirInicial;
     // End of variables declaration//GEN-END:variables
 }

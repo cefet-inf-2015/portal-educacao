@@ -4,7 +4,6 @@ package bancodequestoes;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
@@ -21,21 +20,18 @@ import org.xml.sax.SAXException;
  * Esta classe prova herda de HashSet como um HashSet de questoes.
  * @author ThalesGSN
  */
-public abstract class Prova extends HashSet<Questao> {
-//variaveis de instancia   
-    // private Cabecario cabecario;//@TODO IMPLEMENTAR
+public abstract class Prova extends ArrayList<Questao> {
+//variaveis de instancia
    /** <i>String</i> que define a materia da prova.*/
    protected String materia;
     /** Array(nao permite duplicatas) que define o conteudo da prova */
    protected ArrayList<String> conteudos = new ArrayList();
-   /**Define a dificulade media da prova.*/
-   protected byte dificuldade;
-   /** Armazena o numero de questões faceis da prova */
-   protected int numFaceis;
-    /** Armazena o numero de questões medianas da prova */
-   protected int numMedianas;
-    /** Armazena o numero de questões faceis da prova */
-   protected int numDificeis;
+   /** informa se havera questões faceis na prova */
+   private boolean isFacil;
+    /** informa se havera  questões medianas na prova */
+   private boolean  isMediana;
+    /** informa se havera questões faceis na prova */
+   private boolean isDificil;
        
 //Constantes de tipo
     /** Tipo de <b>prova</b>,  com <b>questoes</b> que  admitem varias alternativas e a resposta correta é 
@@ -95,7 +91,53 @@ public abstract class Prova extends HashSet<Questao> {
       */
      static final public byte MISTA = 3;
 
-      
+     /**
+      * Verifica se esta prova é facil
+      * @return true so e somente a prova for facil
+      */
+     public boolean isFacil() {
+        return isFacil;
+    }
+
+     /**
+      * 
+      * @param isFacil 
+      */
+    public void setIsFacil(boolean isFacil) {
+        this.isFacil = isFacil;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public boolean isMediana() {
+        return isMediana;
+    }
+
+    /**
+     * 
+     * @param isMediana 
+     */
+    public void setIsMediana(boolean isMediana) {
+        this.isMediana = isMediana;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public boolean IsDificil() {
+        return isDificil;
+    }
+
+    /**
+     * 
+     * @param isDificil 
+     */
+    public void setIsDificil(boolean isDificil) {
+        this.isDificil = isDificil;
+    }
 
 //SETS e GETS 
     /**
@@ -131,73 +173,6 @@ public abstract class Prova extends HashSet<Questao> {
     }
   
 
-    /**
-     * Retorna o de dificuldade das questões da prova.
-     * @return <i>byte</i> que representa o nivel de difuculdade da prova.
-     */
-    public byte getDificuldade() {
-        return dificuldade;
-    }
-
-    /**
-     * Altera ou define o nivel de dificuldade da prova.
-     * @param dificuldade <i>byte</i> que representa o nivel de difuculdade da prova.
-     */
-    public void setDificuldade(byte dificuldade) {
-        this.dificuldade = dificuldade;
-    }
-       /**
-     * Get the value of numFaceis
-     *
-     * @return the value of numFaceis
-     */
-    public int getNumFaceis() {
-        return numFaceis;
-    }
-
-    /**
-     * Set the value of numFaceis
-     *
-     * @param numFaceis new value of numFaceis
-     */
-    public void setNumFaceis(int numFaceis) {
-        this.numFaceis = numFaceis;
-    }
-    /**
-     * Get the value of numMedianas
-     *
-     * @return the value of numMedianas
-     */
-    public int getNumMedianas() {
-        return numMedianas;
-    }
-
-    /**
-     * Set the value of numMedianas
-     *
-     * @param numMedianas new value of numMedianas
-     */
-    public void setNumMedianas(int numMedianas) {
-        this.numMedianas = numMedianas;
-    }
-
-    /**
-     * Get the value of numDificeis
-     *
-     * @return the value of numDificeis
-     */
-    public int getNumDificeis() {
-        return numDificeis;
-    }
-
-    /**
-     * Set the value of numDificeis
-     *
-     * @param numDificeis new value of numDificeis
-     */
-    public void setNumDificeis(int numDificeis) {
-        this.numDificeis = numDificeis;
-    }
 
     
  //Metodos uteis
@@ -265,5 +240,7 @@ public abstract class Prova extends HashSet<Questao> {
      */
     public abstract boolean gerar() throws SQLException,SAXException,
             IOException, ParserConfigurationException;
+
+
 
 }

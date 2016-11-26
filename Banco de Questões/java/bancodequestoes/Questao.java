@@ -11,7 +11,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-
+//@TODO Implementar IMAGENS ate 3
 
 /**
  * Classe que representa uma <i>questão</i> para a tarefa <b>banco de questões</b>, ela define a 
@@ -37,6 +37,8 @@ public abstract class Questao {
     protected byte tipo;
     /** <i>String</i> que representa o <i>enunciado</i> da <b>questão</b>.*/
     protected String enunciado;
+    /** <i>Imagem</i> que representa o <i>imagem</i> da <b>questão</b>.*/
+    protected Imagem imagem;
     
 //Constantes de tipo
     /** Tipo padrão da <b>questão</b>, admite varias alternativas e a resposta correta é apenas uma,
@@ -90,6 +92,20 @@ public abstract class Questao {
      *  Essa constante foi feita para ser agregado ao tipo da <b>questão</b>.
      */
      static final public byte ABERTA = 2;
+ 
+//constantes de dificuldade
+     /**
+      * Constante que define a dificuldade de uma questão, sendo esta do tipo Facil. 
+      */
+     static final public byte FACIL = 1;
+      /**
+      * Constante que define a dificuldade de uma questão, sendo esta do tipo Mediana. 
+      */
+     static final public byte MEDIANA = 2;
+      /**
+      * Constante que define a dificuldade de uma questão, sendo esta do tipo Dificil. 
+      */
+     static  final public byte DIFICIL = 3;
    
 //Sets e Gets
 
@@ -215,6 +231,14 @@ public abstract class Questao {
         this.tipo = tipo;
     }
 
+    public Imagem getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(Imagem imagem) {
+        this.imagem = imagem;
+    }
+
     
 //Metodos Uteis
     
@@ -240,7 +264,7 @@ public abstract class Questao {
               case "VF":
                 return new VOuF(XML);
                 
-                case "aberta":
+                case "ABERTA":
                     return new Aberta(XML);
           }
        throw new IOException("Erro no parsing do XML");
@@ -267,6 +291,13 @@ public abstract class Questao {
      * @return XML <i>String</i> Que representa o modelo xml da questão.
      */
     public abstract String toXML();
+    
+    /**
+     *  Retorna o modelo xml da questão, util para a equipe de correção.
+     * @param ID da questão se ela tiver imagem.
+     * @return XML <i>String</i> Que representa o modelo xml da questão.
+     */
+    public abstract String toXML(int ID);
 
     @Override
     public abstract String toString();  

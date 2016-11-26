@@ -1,7 +1,5 @@
 package bancodequestoes;
 
-
-
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -46,7 +44,7 @@ public class VOuF extends Questao{
      */
      public VOuF() {
         this.alternativas = new ArrayList();
-        super.setTipo(MULTIPLA_ESCOLHA);
+        this.tipo = Questao.MULTIPLA_ESCOLHA;
     }
 
       /**
@@ -115,7 +113,13 @@ public class VOuF extends Questao{
                    .getTextContent()); //pega o texto adquitido do elemento no xml e passa o texto para um numero
            this.materia =  eQuestao.getElementsByTagName("materia").item(0).getTextContent();
            this.conteudo =  eQuestao.getElementsByTagName("conteudo").item(0).getTextContent();
-           this.enunciado=  eQuestao.getElementsByTagName("enunciado").item(0).getTextContent();       
+           this.enunciado =  eQuestao.getElementsByTagName("enunciado").item(0).getTextContent(); 
+           
+           //adicionando imagem
+           if(eQuestao.getElementsByTagName("imagem").item(0) != null) {
+           String imgPath = eQuestao.getElementsByTagName("imagem").item(0).getTextContent();
+            this.imagem = new Imagem(imgPath,true);
+           }   else this.imagem = null;
            
          NodeList eAlternativas = eQuestao.getElementsByTagName("alternativa");
          
@@ -135,6 +139,24 @@ public class VOuF extends Questao{
     }
     
     //Metodos uteis
+    
+    
+    /**
+     * Retorna um ArrayList de Alternativas nessa questão.
+     * @return ArrayList de Alternativas nessa questão.
+     */
+    public ArrayList<Alternativa> getAlternativas() {
+        return alternativas;
+    }
+
+    /**
+     * Define ou Altera o ArrayList de alternativas da questão.
+     * @param alternativas ArrayList de alternativas da questão.
+     */
+    public void setAlternativas(ArrayList<Alternativa> alternativas) {
+        this.alternativas = alternativas;
+    }
+    
      /**
      * Retorna um <i>boolean</i>, que é o atributo que define se as alternativas irão ter ordem aleatorias
      * numa prova.
@@ -147,11 +169,11 @@ public class VOuF extends Questao{
     
     /**
      *  Define como <b>true</b> o atributo que define se as alternativas irão ter ordem aleatorias numa prova.
+     * @param aleatoria parametro que verifica se a questão é ou não aleatoria.
      */
-    public void asAleatoria(){
-        aleatorio = true;
+    public void setAleatoria(boolean aleatoria){
+        this.aleatorio = aleatoria;
     }
-    
     /**
      *  Define como <b>false</b> o atributo que define se as alternativas irão ter ordem aleatorias numa prova.
      */
@@ -175,12 +197,34 @@ public class VOuF extends Questao{
     }
 
     @Override
+    public String toXML(int ID) {
+       String XML = "<questao tipo=\"VF\">\n" +
+                    "<dificuldade>" + dificuldade + "</dificuldade>\n" +
+                    "<materia>" + materia+ "</materia>\n" +
+                    "<conteudo>" + conteudo + "</conteudo>\n" +
+                    "<enunciado>" + enunciado +  "</enunciado>\n" +
+                    "<imagem>" + ID + ".jpg</imagem>\n";
+
+        for(Alternativa alternativa: alternativas){
+            if(alternativa.IsCorreta()){
+                XML += "<alternativa correta=\"true\">" + alternativa + "</alternativa>\n";
+            } else{
+                XML += "<alternativa>" + alternativa + "</alternativa>\n";
+            }
+        }
+        
+        XML += "</questao>";
+        
+        return XML;
+    }
+    
+    @Override
     public String toXML() {
-       String XML = "<questao tipo=\"VF\" aleatorio=\"" + aleatorio + "\">\n" +
-                            "<dificuldade>" + dificuldade + "</dificuldade>\n" +
-                            "<materia>" + materia+ "</materia>\n" +
-                            "<conteudo>" + conteudo + "</conteudo>\n" +
-                            "<enunciado>" + enunciado +  "</enunciado>\n";
+       String XML = "<questao tipo=\"VF\">\n" +
+                    "<dificuldade>" + dificuldade + "</dificuldade>\n" +
+                    "<materia>" + materia+ "</materia>\n" +
+                    "<conteudo>" + conteudo + "</conteudo>\n" +
+                    "<enunciado>" + enunciado +  "</enunciado>\n";
 
         for(Alternativa alternativa: alternativas){
             if(alternativa.IsCorreta()){

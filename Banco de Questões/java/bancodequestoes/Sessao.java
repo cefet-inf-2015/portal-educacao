@@ -16,7 +16,7 @@ import BancoDeDados.Usuario;
  * @author Aluno
  */
 public class Sessao {
-    public static Usuario usuario = null;
+    public static Usuario usuario = new Aluno("joãozim", "Da Silva", "joãozim12", null, "322343243", "HOSP3B", "2ª");
     
     /**
      *
