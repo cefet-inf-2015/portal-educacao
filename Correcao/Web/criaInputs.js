@@ -21,9 +21,6 @@ document.getElementsByTagName('head')[0].appendChild(script);
 			if (questoes[i].getAttribute("tipo")=="ME"){
 				var iterador = questoes[i].getElementsByTagName("alternativa").length;
 				container.innerHTML = container.innerHTML + ("Questão "+(i+1)+": ");
-				var selectList = document.createElement("select");
-				selectList.id = "questao"+i;
-				container.appendChild(selectList);
 				for (var j=0; j<iterador; j++){
 					var alternativaAtual = questoes[i].getElementsByTagName("alternativa")[j].childNodes[0].nodeValue;
 					var input = document.createElement("input");
@@ -37,6 +34,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 					switch (j){
 						case 0:
 							label.appendChild(document.createTextNode("a)"));
+							input.required = true;
 							break;
 						case 1:
 							label.appendChild(document.createTextNode("b)"));

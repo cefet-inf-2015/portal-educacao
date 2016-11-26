@@ -68,7 +68,7 @@
     <div class="container">
       <br>
       <h6 class="header center blue-text text-darken-4"> Questões fechadas deverão ser escolhidas nos botões radio. Nas questões de verdadeiro ou falso, quando a resposta for verdadeira, marque a caixa de seleção. </h6>
-        
+       <h6 class="header center blue-text text-darken-4"> Para corrigir a prova, em questões fechadas, alguma alternativa deve ser escolhida. </h6> 
       </div>
   </div>
 
