@@ -126,23 +126,44 @@
                                         $conecta = @mysql_connect($dbhost, $dbuser, $dbpass);
                                         $seleciona = @mysql_select_db($dbname);
 
-                                        $matricula= $userData['numeroMatricula'];
-
-                                        $busca = mysql_query("select * from usuarios where matricula='$matricula' "); //informaçoes do autor
-                                        
-                                        while($infouser=mysql_fetch_array($busca)){
-                                            
-                                            $tipo = $infouser['Tipo'];
-                                            $criados = $infouser['Criados'];
-                                        }
-
+                                       
 
                                         if ( isset($_SESSION["usuario"]) ) {
+                                             
+                                            $userData = (array) $_SESSION["usuario"];
+                                            $nome = $userData['primeiroNome']; //." ".$userData['ultimoNome'];
+                                            $matricula = $userData['numeroMatricula'];
+                                            if (is_file("../../".$userData['foto'])) {
+                                                $foto = "../../".$userData['foto'];
+                                            }else{
+                                                $foto = "foto.png";
+                                            }
+
+                                             
+                                            
+                                            switch ($userData['permissao']) {
+                                                case '0':$hierarquia= "Aluno"; break;
+                                                case '1':$hierarquia= "Professor"; break;                                                
+                                                case '2':$hierarquia= "Coordenador";break;
+                                                case '3':$hierarquia= "Diretor";break;
+                                            }
+
+                                            $sqlinsereusuario= "INSERT INTO usuarios ( nome,tipo,foto,matricula) VALUES ('$nome','$hierarquia','$foto','$matricula')";
+                                            $insererusuario = @mysql_query($sqlinsereusuario, $conecta);
     
+                                             
+
+                                             $busca = mysql_query("select * from usuarios where matricula='$matricula' "); //informaçoes do autor
+                                        
+                                             while($infouser=mysql_fetch_array($busca)){
+                                            
+                                                $tipo = $infouser['Tipo'];
+                                                $criados = $infouser['Criados'];
+                                            }
 
                                         echo 
                                         "<div class=\"card-image\">
-                                        <img src=\"foto.png\">
+                                        <img src=\"".$foto."\">
                                     	</div>
                                     	<div class=\"card-stacked\">
                                         <div class=\"card-content\">
@@ -162,17 +183,13 @@
 											<h2 class=\"header\" style=\"color:#069\"> Bem Vindo ao Fórum!</h2>";
 										}
 
+                                        
+
                                         ?>
                                     </div>
                                 </div>
 
-                                <div class="collection">
-                                    <a href="#!" class="collection-item"><h6>Novos Posts</h6></a>
-                                    <a href="#!" class="collection-item"><div id="Topico1"></div></a>
-                                    <a href="#!" class="collection-item"><div id="Topico2"></div></a>
-                                    <a href="#!" class="collection-item"><div id="Topico3"></div></a>
-                                    <a href="#!" class="collection-item"><div id="Topico4"></div></a>
-                                </div>
+                                
 
                                 <div class="collection">
                                     <a href="#!" class="collection-item"><h6>Estatísticas do Fórum</h6></a>
@@ -185,14 +202,14 @@
 
                                         while($infouser=mysql_fetch_array($busca)){
                                             
-                                            $Posts = $Posts + $infouser['Criados'];
-                                            $Respostas = $infouser['Comentarios'];
+                                            $Posts = $Posts + $infouser['Criados'] + $infouser['Comentarios'];
+                                            $Respostas =$Respostas + $infouser['Criados'];
                                             $users++;
                                         }
 
                                     echo "
-                                    <a href=\"#!\" class=\"collection-item\"><div id=\"PostsTotal\">Respostas: ".$Respostas."</div></a>
-                                    <a href=\"#!\" class=\"collection-item\"><div id=\"TopicosTotal\">Tópicos: ".$Posts."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"PostsTotal\">Posts: ".$Posts."</div></a>
+                                    <a href=\"#!\" class=\"collection-item\"><div id=\"TopicosTotal\">Topicos: ".$Respostas."</div></a>
                                     <a href=\"#!\" class=\"collection-item\"><div >Usuários: ".$users."</div></a>
                                     "
 

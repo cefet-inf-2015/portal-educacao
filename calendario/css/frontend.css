@@ -1,0 +1,61 @@
+/*Corresponde ao título da página*/
+div.titulo {
+	font-size:40px;
+	font-weight: bold;
+	color:#e0e0e0;
+	text-shadow: 2px 2px #000000;	
+}
+
+/*Centraliza o div na página*/
+div.centro {
+	margin: 0 auto;
+	height: 70%; 
+	width: 70%;
+}
+
+/*Base para a aplicação do Flexbox*/
+.flex-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: stretch;
+	align-content: stretch;
+	flex: auto;
+}
+
+/*Alteração do Flexbox para funcionar na estrutura de colunas*/
+.coluna {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+	flex: auto;
+}
+
+/*Corresponde aos dias da semana no Calendário*/
+div.semana {
+  text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-collapse: collapse;
+	width: 9.92vw;
+}
+
+/*Corresponde aos dias do Calendário*/
+div.dia {
+	border-style:groove;
+	text-align: center;
+	min-width: 100%;
+  height: 17vh;
+  font-size: 1.5vmin;
+}
+
+/*Corresponde ao alinhamneto e espaçamento dos botões*/
+div.botao {
+	text-align:center; 
+	padding-bottom: 2%;	
+}
+

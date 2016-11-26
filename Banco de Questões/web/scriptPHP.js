@@ -131,7 +131,7 @@ for(let questao of questoes){
 				document.querySelector('#alternativas-alterar-'+questaoCounter).className = 'mostrar';
 				cBoxDiv.classList.add('checkboxesEdit-'+questaoCounter);
 				cBoxDiv.classList.add('esconder');
-				radioDiv.classList.add('rdiosEdit-'+questaoCounter);
+				radioDiv.classList.add('radioEdit-'+questaoCounter);
 				radioDiv.classList.add('mostrar');
 			}
 			else if(document.querySelector('#estilo-alterar-'+questaoCounter).value==1){
@@ -193,7 +193,8 @@ for(let questao of questoes){
 			alt.querySelector('.checkboxesEditar-'+questaoCounter).setAttribute('id', 'cBoxEdit-'+questaoCounter+'-'+nAlt);
 			alt.querySelector('.checkboxesEditar-'+questaoCounter).setAttribute('name', 'cBoxEdit-'+questaoCounter+'-'+nAlt);
 			alt.querySelector('.cBoxEditLabel').setAttribute('for', 'cBoxEdit-'+questaoCounter+'-'+nAlt);
-			alt.querySelector('.rdiosEdit-0').setAttribute('id', 'rdioEdit-'+questaoCounter+'-'+nAlt);
+			alt.querySelector('.rdiosEdit-'+questaoCounter).setAttribute('id', 'rdioEdit-'+questaoCounter+'-'+nAlt);
+			alt.querySelector('.rdiosEdit-'+questaoCounter).setAttribute('value', 'rdioEdit-'+questaoCounter+'-'+nAlt);
 			alt.querySelector('.radioEditLabel').setAttribute('for', 'rdioEdit-'+questaoCounter+'-'+nAlt);
 			alt.querySelector('.checkboxesExcluirEditar').setAttribute('id', 'cBoxExcluirEditar-'+questaoCounter+'-'+nAlt);
 			alt.querySelector('.checkboxesExcluirEditar').setAttribute('name', 'cBoxExcluirEditar-'+questaoCounter+'-'+nAlt);
@@ -202,12 +203,29 @@ for(let questao of questoes){
 			nAlt++;
 		}
 	}
+
+	function excluirFoto(){
+		let foto = questao.querySelector('#excluirFotoEditar-'+questaoCounter).parentNode.parentNode;
+		foto.removeChild(questao.querySelector('#excluirFotoEditar-'+questaoCounter).parentNode);
+		document.querySelector('#imagemTField-'+questaoCounter).value = '';
+		document.querySelector('#excluido-'+questaoCounter).value = true;
+	}
+	
+	function excluirQuestao(){
+		document.querySelector('#estilo-alterar-'+questaoCounter).required = false;
+		document.querySelector('#disciplina-alterar-'+questaoCounter).required = false;
+		document.querySelector('#nivel-alterar-'+questaoCounter).required = false;
+		document.querySelector('#cabecalho-alterar-'+questaoCounter).required = false;
+	}
 	
 	//Chama as funcoes.
 	questao.querySelector('#inserirAlternativa-alterar-'+questaoCounter).addEventListener('click', Inserir);
 	questao.querySelector('#limparAlternativa-alterar-'+questaoCounter).addEventListener('click', LimparAlternativas);
 	questao.querySelector('#excluirAlternativa-alterar-'+questaoCounter).addEventListener('click', ExcluirAlternativas);
 	questao.querySelector('#estilo-alterar-'+questaoCounter).addEventListener('mouseout', Alternativa);
+	questao.querySelector('#estilo-alterar-'+questaoCounter).addEventListener('blur', Alternativa);
+	questao.querySelector('#excluirFotoEditar-'+questaoCounter).addEventListener('click', excluirFoto);
+	questao.querySelector('#excluir-alterar-'+questaoCounter).addEventListener('click', excluirQuestao);
 	Alternativa();
 	
 	qC++;

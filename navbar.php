@@ -9,10 +9,10 @@
       </div>
     </li>
     <br>
-    <li><a class="waves-effect" href="index.php">Página Inicial</a></li>
-    <li><a class="waves-effect" href="http:///localhost/portal-educacao/Mural/web/index.php">Mural</a></li>
-    <li><a class="waves-effect" href="#!">Repositório de Fotos</a></li>
-    <li><a class="waves-effect" href="Upload/index.html">Download/Upload Aplicativos</a></li>
+    <li><a class="waves-effect" href="./index.php">Página Inicial</a></li>
+    <li><a class="waves-effect" href="./Mural/web/index.php">Mural</a></li>
+    <li><a class="waves-effect" href="./rep-fotos/web/repositorio.php">Repositório de Fotos</a></li>
+    <li><a class="waves-effect" href="./Upload/Inicio.php">Download/Upload Aplicativos</a></li>
     
     <?php
       if(isset($_SESSION['usuario']) ) {
@@ -21,19 +21,17 @@
           case 3:
           case 2:
           case 1:
-            echo '<li><a class="waves-effect" href="#!">Modelo de Provas/Trabalhos</a></li>
-            <li><a class="waves-effect" href="Correcao/LayoutCorrecaoProvas.html">Correção Provas e Trabalhos</a></li>';
+            echo '<li><a class="waves-effect" href="./provas-e-trabs/web/pagInicial.php">Modelo de Provas/Trabalhos</a></li>
+            <li><a class="waves-effect" href="./Correcao/Web/ProvaOffline.php">Correção Provas e Trabalhos</a></li>';
           case 0:
-            echo '<li><a class="waves-effect" href="#!">Calendário</a></li>
-            <li><a class="waves-effect" href="Chat/index.html">Chat</a></li>
-            <li><a class="waves-effect" href="Forum/Web/Fórum.html">Fórum</a></li>
-            <li><a class="waves-effect" href="#!">Banco de Questões</a></li>';
+            echo '<li><a class="waves-effect" href="./Calendario/index.php">Calendário</a></li>
+            <li><a class="waves-effect" href="./Chat/index.html">Chat</a></li>
+            <li><a class="waves-effect" href="./Forum/Web/Forum.php">Fórum</a></li>
+            <li><a class="waves-effect" href="./banco-questoes/web/BancoDeQuestoes.php">Banco de Questões</a></li>';
             break;
         }
       }
     ?>
-    <!--<li><div class="divider"></div></li>-->
-    <!--<li><a class="subheader">Subheader</a></li>-->
   </ul>
     <ul class="left ">
       <li>

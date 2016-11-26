@@ -1,3 +1,9 @@
+<?php 
+  session_start();
+  if (!isset($_SESSION['usuario'])) {
+    header('Location: ../../index.php');
+  }
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +31,7 @@
         flex: 1 0 auto;
       }
   </style>
-  <link rel="icon" href="imgs/logo.png" >
+  <link rel="icon" href="../../imgs/logo.png" >
 </head>
 <body>
 	<?php 
