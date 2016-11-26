@@ -12,7 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 /**
- *
+ *  Prova especifica é um tipo de prova que voce pode escolher o numero de multipla escolha v ou f e de abertas.
  * @author ThalesGSN
  */
 public class ProvaEspecifica extends Prova{
@@ -144,46 +144,123 @@ public class ProvaEspecifica extends Prova{
     }
 
 //Metodos herdados de Prova
-    //@TODO REFAZER GERAR PROVA
     @Override
     public boolean gerar() throws SQLException, ParserConfigurationException, SAXException, IOException {
-       ConexaoBD conn = new ConexaoBD("db4free.net", "agaleracomecou", "b1q0*U0kfKYmWee", "sabadona"
-               + "balada");
+       ConexaoBD conn = new ConexaoBD();
+        ResultSet questoes;
+         int rowCount = 0;
+         
+        if(super.isFacil() || super.isMediana() || super.IsDificil()) {//se tiver preferencia por dificuldade
+            if(numMultiplaEscolha > 0){//se existir necessidade de gerer multipla escolha
+                //Pega todas as questões que se encaxam no padrão
+                questoes = conn.getQuestoes(materia, conteudos, Questao.MULTIPLA_ESCOLHA, super.isFacil(), 
+                        super.isMediana(), super.IsDificil());
+                //verifica se ha questões suficiente  caso contrario joga uma exeção
+                if(questoes.last()){
+                    rowCount = questoes.getRow(); 
+                    questoes.beforeFirst();
+                }
         
-       ResultSet multiplaEscolhaBD = conn.getQuestoes(materia, conteudos,
-               Questao.MULTIPLA_ESCOLHA, dificuldade);
-       
-        if(numMultiplaEscolha > multiplaEscolhaBD.getFetchSize())
-            throw new SQLException("Não existe questoes sufucientes de multipla escolha"
-                    + " sufucientes no banco.");
-       
-       ResultSet vOuFBD = conn.getQuestoes(materia, conteudos, Questao.VERDADEIRO_FALSO, dificuldade);
-       
-       if(numVF > vOuFBD.getFetchSize())
-            throw new SQLException("Não existe questoes de V ou F"
-                    + " sufucientes no banco.");
-       
-       ResultSet abertaBD = conn.getQuestoes(materia, conteudos, Questao.ABERTA, dificuldade);
-       if(numVF > vOuFBD.getFetchSize())
-            throw new SQLException("Não existe questoes de abertas"
-                    + " sufucientes no banco.");
-       
-       for(int cont = 0; cont < numMultiplaEscolha; cont++){
-           super.add(new MultiplaEscolha(multiplaEscolhaBD.getString("XML")));
-           multiplaEscolhaBD.next();
-       }
-       
-       for(int cont = 0; cont < numVF; cont++){
-           super.add(new VOuF(vOuFBD.getString("XML")));
-           vOuFBD.next();
-       }
-       
-       for(int cont = 0; cont < numAbertas; cont++){
-           super.add(new Aberta(abertaBD.getString("XML")));
-           vOuFBD.next();
-       }
-       
+                if(numMultiplaEscolha > rowCount) throw new SQLException("Questões insuficientes no banco de dados.\n"
+                        + "Desculpe o inconviniente e nos ajude a melhorar adicionando novas questões no banco.");
+                
+                //adiciona as questões na prova
+                for(int cont = 0; cont < numMultiplaEscolha; cont++){
+                    //move o ponteiro pra proxima linha
+                    questoes.next();
+                    //pega a coluna de xml e monta um novo objeto e adiciona na prova
+                    super.add(new MultiplaEscolha(questoes.getString("XML")));
+                }
+            }
+            if(numVF > 0){
+                questoes = conn.getQuestoes(materia, conteudos, Questao.VERDADEIRO_FALSO, super.isFacil(), 
+                        super.isMediana(), super.IsDificil());
+                if(questoes.last()){
+                    rowCount = questoes.getRow(); 
+                    questoes.beforeFirst();
+                }
+        
+                if(numVF > rowCount) throw new SQLException("Questões insuficientes no banco de dados.\n"
+                        + "Desculpe o  inconviniente e nos ajude a melhorar adicionando novas questões no banco.");
+                for(int cont = 0; cont < numVF; cont++){
+                    questoes.next();
+                    super.add(new VOuF(questoes.getString("XML")));
+                }
+            }
+                if(numAbertas > 0){
+                questoes = conn.getQuestoes(materia, conteudos, Questao.ABERTA, super.isFacil(), 
+                        super.isMediana(), super.IsDificil());
+                
+                if(questoes.last()){
+                    rowCount = questoes.getRow(); 
+                    questoes.beforeFirst();
+                }
+        
+                if(numAbertas > rowCount) throw new SQLException("Questões insuficientes no banco de dados.\n"
+                        + "Desculpe o  inconviniente e nos ajude a melhorar adicionando novas questões no banco.");
+                for(int cont = 0; cont < numAbertas; cont++){
+                    questoes.next();
+                    super.add(new Aberta(questoes.getString("XML")));
+                }
+            }
+        } else{ // se o usuario não tiver preferencia por dificuldade
+            
+            if(numMultiplaEscolha > 0){//se existir questoes multipla escolha a ser gerado
+                //pega todas as questões da materia e conteudos de multipla escolha do banco
+                questoes = conn.getQuestoes(materia, conteudos, Questao.MULTIPLA_ESCOLHA);
+                //verifica se ha questões suficientes no banco caso contrario lança exceção
+               if(questoes.last()){
+                    rowCount = questoes.getRow(); 
+                    questoes.beforeFirst();
+                }
+        
+                if(numMultiplaEscolha > rowCount) throw new SQLException("Questões insuficientes no banco de dados.\n"
+                        + "Desculpe o  inconviniente e nos ajude a melhorar adicionando novas questões no banco.");
+                //adiciona as questões na prova
+                for(int cont = 0; cont < numMultiplaEscolha; cont++){
+                    //move o ponteiro pra proxima linha
+                    questoes.next();
+                    //pega a coluna de xml e monta um novo objeto e adiciona na prova
+                    super.add(new MultiplaEscolha(questoes.getString("XML")));
+                    
+                }
+            }
+            
+            if(numVF > 0){
+                questoes = conn.getQuestoes(materia, conteudos, Questao.VERDADEIRO_FALSO);
+                if(questoes.last()){
+                    rowCount = questoes.getRow(); 
+                    questoes.beforeFirst();
+                }
+        
+                if(numVF > rowCount) throw new SQLException("Questões insuficientes no banco de dados.\n"
+                        + "Desculpe o  inconviniente e nos ajude a melhorar adicionando novas questões no banco.");
+                for(int cont = 0; cont < numVF; cont++){
+                    questoes.next();
+                    super.add(new VOuF(questoes.getString("XML")));
+                }
+            }
+            
+             if(numAbertas > 0){
+                questoes = conn.getQuestoes(materia, conteudos, Questao.ABERTA);
+                
+                if(questoes.last()){
+                    rowCount = questoes.getRow(); 
+                    System.out.println(rowCount);
+                    questoes.beforeFirst();
+                }
+        
+                if(numAbertas > rowCount) throw new SQLException("Questões insuficientes no banco de dados.\n"
+                        + "Desculpe o  inconviniente e nos ajude a melhorar adicionando novas questões no banco.");
+                
+                for(int cont = 0; cont < numAbertas; cont++){
+                    questoes.next();
+                    super.add(new Aberta(questoes.getString("XML")));
+                }
+            }
+        }
+
        return true;
-    }
-    
-}
+  }
+}    
+

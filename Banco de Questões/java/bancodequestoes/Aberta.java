@@ -33,7 +33,9 @@ public class Aberta extends Questao{
 //construtores
     
     /** Construtor para ser construido com sets e gets.*/
-    public Aberta(){ }
+    public Aberta(){
+      this.tipo = Questao.ABERTA;
+    }
     
     /**
      * Constroi a questão completamente com todos os atributos necessarios.
@@ -47,14 +49,18 @@ public class Aberta extends Questao{
        this.conteudo = conteudo;
        this.dificuldade = dificuldade;
        this.enunciado = enunciado;
+       this.tipo = Questao.ABERTA;
     }
 
     /**
      * A partir de uma <i>String</i> XML do tipo questão aberta constroi o objeto.
      * @param XML <i>String</i> XML do tipo questão aberta.
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
      */
-    public Aberta(String XML){
-       try{
+    public Aberta(String XML) throws ParserConfigurationException, SAXException, IOException{
+       
             //MONTA O DOM
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -66,16 +72,17 @@ public class Aberta extends Questao{
            NodeList nList = doc.getElementsByTagName("questao");//Lista elementos questao
            Element eQuestao = (Element) nList.item(0); //Pega a questão como elemento
            
-           this.tipo = ABERTA;
+           this.tipo = Questao.ABERTA;
            this.dificuldade = Byte.parseByte(eQuestao.getElementsByTagName("dificuldade").item(0)
                    .getTextContent()); //pega o texto adquitido do elemento no xml e passa o texto para um numero
            this.materia =  eQuestao.getElementsByTagName("materia").item(0).getTextContent();
            this.conteudo =  eQuestao.getElementsByTagName("conteudo").item(0).getTextContent();
-           this.enunciado =  eQuestao.getElementsByTagName("enunciado").item(0).getTextContent();       
-       
-       }catch(ParserConfigurationException | SAXException | IOException e){
-           System.out.println(e.getMessage());
-       }
+           this.enunciado =  eQuestao.getElementsByTagName("enunciado").item(0).getTextContent();
+          //adicionando imagem
+           if(eQuestao.getElementsByTagName("imagem").item(0) != null) {
+           String imgPath = eQuestao.getElementsByTagName("imagem").item(0).getTextContent();
+            this.imagem = new Imagem(imgPath,true);
+           }   else this.imagem = null;
     }
 
 //Metodos sobrescritos e herdados de Questao
@@ -85,6 +92,17 @@ public class Aberta extends Questao{
        return !(conteudo.isEmpty() && enunciado.isEmpty() && materia.isEmpty()) && dificuldade!=0;
     }
 
+    @Override
+    public String toXML(int ID) {
+       return "<questao tipo=\"ABERTA\">\n" +
+                    "<dificuldade>" + dificuldade + "</dificuldade>\n" +
+                    "<materia>" + materia+ "</materia>\n" +
+                    "<conteudo>" + conteudo + "</conteudo>\n" +
+                    "<enunciado>" + enunciado +  "</enunciado>\n" +
+                     "<imagem>" + ID + ".jpg</imagem>\n" +
+                    "</questao>";
+    }
+    
     @Override
     public String toXML() {
        return "<questao tipo=\"ABERTA\">\n" +

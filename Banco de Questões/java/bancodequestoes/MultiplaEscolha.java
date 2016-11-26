@@ -40,7 +40,7 @@ public class MultiplaEscolha extends Questao {
      * Instancia o objeto para o mesmo ser construido com sets e gets.
      */
      public MultiplaEscolha() {
-        super.setTipo(MULTIPLA_ESCOLHA);
+        this.tipo = Questao.MULTIPLA_ESCOLHA;
     }
 
       /**
@@ -59,7 +59,7 @@ public class MultiplaEscolha extends Questao {
          this.dificuldade = dificuldade;
          this.enunciado = enunciado;
          this.alternativas = alternativas;
-         this.tipo = MULTIPLA_ESCOLHA;
+         this.tipo = Questao.MULTIPLA_ESCOLHA;
     }
     
     /**
@@ -80,7 +80,7 @@ public class MultiplaEscolha extends Questao {
          this.enunciado = enunciado;
          this.alternativas = alternativas;
          this.aleatorio = aleatorio;
-         this.tipo = MULTIPLA_ESCOLHA;
+         this.tipo = Questao.MULTIPLA_ESCOLHA;
     }
     
      /**
@@ -109,7 +109,13 @@ public class MultiplaEscolha extends Questao {
                    .getTextContent()); //pega o texto adquitido do elemento no xml e passa o texto para um numero
            this.materia =  eQuestao.getElementsByTagName("materia").item(0).getTextContent();
            this.conteudo =  eQuestao.getElementsByTagName("conteudo").item(0).getTextContent();
-           this.enunciado=  eQuestao.getElementsByTagName("enunciado").item(0).getTextContent();       
+           this.enunciado =  eQuestao.getElementsByTagName("enunciado").item(0).getTextContent();       
+           //adicionando imagem
+           if(eQuestao.getElementsByTagName("imagem").item(0) != null) {
+           String imgPath = eQuestao.getElementsByTagName("imagem").item(0).getTextContent();
+            this.imagem = new Imagem(imgPath,true);
+           }   else this.imagem = null;
+           
            
          NodeList eAlternativas = eQuestao.getElementsByTagName("alternativa");
          
@@ -141,17 +147,12 @@ public class MultiplaEscolha extends Questao {
     
     /**
      *  Define como <b>true</b> o atributo que define se as alternativas irão ter ordem aleatorias numa prova.
+     * @param aleatoria parametro que verifica se a questão é ou não aleatoria.
      */
-    public void setAleatoria(){
-        this.aleatorio = true;
+    public void setAleatoria(boolean aleatoria){
+        this.aleatorio = aleatoria;
     }
     
-    /**
-     *  Define como <b>false</b> o atributo que define se as alternativas irão ter ordem aleatorias numa prova.
-     */
-    public void setNaoAleatoria(){
-        this.aleatorio = false;
-    }
     
     /**
      * Adiciona uma alternativa em determinada <b>questao</b>.
@@ -163,6 +164,23 @@ public class MultiplaEscolha extends Questao {
     }
     
 //Metodos abstratos de questão
+     
+    /**
+     * Retorna um ArrayList de Alternativas nessa questão.
+     * @return ArrayList de Alternativas nessa questão.
+     */
+    public ArrayList<Alternativa> getAlternativas() {
+        return alternativas;
+    }
+
+    /**
+     * Define ou Altera o ArrayList de alternativas da questão.
+     * @param alternativas ArrayList de alternativas da questão.
+     */
+    public void setAlternativas(ArrayList<Alternativa> alternativas) {
+        this.alternativas = alternativas;
+    }
+    
     @Override
     public boolean isCompleta() {
        return !(alternativas.isEmpty() && conteudo.isEmpty() && enunciado.isEmpty() && materia.isEmpty()) && 
@@ -170,13 +188,13 @@ public class MultiplaEscolha extends Questao {
     }
 
     @Override
-    public String toXML() {
+    public String toXML(int ID) {
        String XML = "<questao tipo=\"ME\" aleatorio=\"" + aleatorio + "\">\n" +
                             "<dificuldade>" + dificuldade + "</dificuldade>\n" +
                             "<materia>" + materia+ "</materia>\n" +
                             "<conteudo>" + conteudo + "</conteudo>\n" +
                             "<enunciado>" + enunciado +  "</enunciado>\n";
-        
+
          for(Alternativa alternativa: alternativas){
             if(alternativa.IsCorreta()){
                 XML += "<alternativa correta=\"true\">" + alternativa + "</alternativa>\n";
@@ -190,6 +208,28 @@ public class MultiplaEscolha extends Questao {
         return XML;
     }
 
+    @Override
+    public String toXML() {
+       String XML = "<questao tipo=\"ME\" aleatorio=\"" + aleatorio + "\">\n" +
+                            "<dificuldade>" + dificuldade + "</dificuldade>\n" +
+                            "<materia>" + materia+ "</materia>\n" +
+                            "<conteudo>" + conteudo + "</conteudo>\n" +
+                            "<enunciado>" + enunciado +  "</enunciado>\n";
+
+         for(Alternativa alternativa: alternativas){
+            if(alternativa.IsCorreta()){
+                XML += "<alternativa correta=\"true\">" + alternativa + "</alternativa>\n";
+            } else{
+                XML += "<alternativa>" + alternativa + "</alternativa>\n";
+            }
+        }
+        
+        XML += "</questao>";
+        
+        return XML;
+    }
+
+    
     @Override
     public String toString() {      
         String questao;
