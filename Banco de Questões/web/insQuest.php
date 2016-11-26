@@ -1,4 +1,9 @@
 <?php
+	// ATENÇÃO GERENCIA!!
+	// LINHA 14!!
+	// LINHA 105!!
+
+	//inclui cabecalho que pode ser reaproveitado
 	include('cabecalho.html');
 
 	//Pega os dados via POST.
@@ -7,7 +12,9 @@
 	$disciplina = $_POST['disciplina-inserir'];
     $tema = $_POST['tema-inserir'];
     $cabecalho = $_POST['cabecalho-inserir'];
-    $criador = $_SERVER['SERVER_ADMIN'];
+    
+    //CRIADOR DEVE SER IGUAL AO USERNAME
+    $criador = $_SERVER['SERVER_ADMIN']; //USERNAME AQUI AO INVES DE SERVER ADMIN
     
     //Se o estilo da questao escolhida for ME.
     if($estilo==0){    	
@@ -72,16 +79,21 @@
     $conexao = new PDO('mysql:host=localhost; dbname=banco_de_questoes', 'phpmyadmin', 'o9rtjh88');    
     $sql = "INSERT INTO questoes VALUES ('', '".$disciplina."', '".$tema."', ".$nivel.", ".$estilo.", '', '".$criador."')";
 	
+	//Testa se conexão deu certo
 	if($conexao->exec($sql)){
 		$msg = "Questão inserida com sucesso!";
 	}
 	else{
 		$msg = "Questão não inserida!";
 	}
-		
+
+
+	//Realiza uma consulta para receber o ultimo ID gerado pelo BD para esse user		
 	$sql = "SELECT ID FROM questoes WHERE User='".$criador."' ORDER BY ID DESC LIMIT 1";
 	$consulta = $conexao->query($sql);
 	$consulta = $consulta->fetch(PDO::FETCH_ASSOC);
+	
+	//Usa este ID para salvar uma possivel imagem
   	if($consulta!=null){
 		if(isset($_FILES['userfile']['name'])&&$_FILES['userfile']['error']==0){
 			$arquivo_tmp = $_FILES['userfile']['tmp_name'];
@@ -90,6 +102,9 @@
 			$extensao = pathinfo($nome, PATHINFO_EXTENSION);
 			$entensao = strtolower($extensao);
 			if(strstr('.jpg;.jpeg;.gif;.png', $extensao)){
+				//A variavel destino é a pasta que estarão as fotos.
+				//A alteração ou não para uma nova pasta fica a criterio da
+				//gerencia.
 				$novoNome = $consulta['ID'].'.'.$extensao;
 				$destino = 'uploads/'.$novoNome;
 				
@@ -103,13 +118,16 @@
 		else $GLOBALS['xml'] .= "</questao>";
 	}
 	
+	//Atualiza XML para conter caminho da imagem no servidor
 	$sql = "UPDATE questoes SET XML='".$GLOBALS['xml']."' WHERE ID='".$consulta['ID']."'";
 	$conexao->exec($sql);
+	
+	//Exibe mensagem que comunica ao usuario o estado da operação
 	echo "<div class=\"row center\"><h5 class=\"header col s12 light\">".$msg."</h5><br><br>
 		    <a class=\"waves-effect waves-light btn light-blue darken-4\" href=\"BancoDeQuestoes.php\"
 			  id=\"inserir\">Voltar<i class=\"tiny material-icons white-text text-darken-1\">replay</i>
 			</a>
 			</div><br><br>";
-	
+	//Inclui rodapé que pode ser re-aproveitado
 	include('rodape.html')
 ?>

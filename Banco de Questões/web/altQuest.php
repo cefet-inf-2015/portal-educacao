@@ -1,6 +1,12 @@
 <?php
+	 //ATENCAO GERENCIA!!
+	 //LINHA 9!!
+	 
+	 
+	 
     //Estabelece a conexao com o banco de dados.
-    $conexao = new PDO('mysql:host=localhost; dbname=banco_de_questoes', 'phpmyadmin', 'o9rtjh88');  
+    $conexao = new PDO('mysql:host=localhost; dbname=banco_de_questoes', 'phpmyadmin', 'o9rtjh88'); 
+    //No lugar de $_SERVER['SERVER_ADMIN'] deve estar o username do usuario 
     $sql = "SELECT * FROM questoes WHERE User='".$_SERVER['SERVER_ADMIN']."'";
 	
     $qc = 0; //Variavel utilizada para contar o numero de questoes (questaoCounter).
@@ -8,7 +14,7 @@
   		$xml = simplexml_load_string($consulta['XML']);
   		
       //Mostra na tela as questoes inseridas no banco de dados. 
-      echo "<form class=\"form_alterar\" action=\"altera.php\" method=\"post\" id=\"".$consulta['ID']."\">
+      echo "<form class=\"form_alterar\" action=\"altera.php\" method=\"post\" id=\"".$consulta['ID']."\" enctype=\"multipart/form-data\">
   				  <input type=\"hidden\" name=\"formID\" value=\"".$consulta['ID']."\">
   				  <input type=\"hidden\" name=\"numQuestao\" value=\"".$qc."\">
   			    <br>
@@ -172,22 +178,23 @@
 		          </div>
 		        <div class=\"row\">
               <div class=\"col s12\">";
+              //Mostra possivel Imagem
               if(array_key_exists('imagem', $xml)){
               	echo  "<div class=\"row\">
               	     <img src=".$xml->imagem." width=150 height=150 name=\"imagemDivEditar\"/>
               	     <label id=\"excluirFotoEditar-".$qc."\" name=\"excluirFotoEditar-".$qc."\" class=\"material-icons\">close</label>
               	  </div>";
               }
-              echo  "<div id=\"uploadImg-Editar\" class=\"esconder\">
+              echo  "<div id=\"uploadImg-Editar\" class=\"mostrar\">
 					  <div class=\"file-field input-field\">
 					    <div class=\"blue darken-4 btn\">
 					      <span><i class=\"material-icons right\">attach_file</i>Anexar Imagem</span>
 					      <input type=\"hidden\" name=\"MAX_FILE_SIZE_EDITAR\" value=\"30000\">
-					      <input type=\"file\" name=\"userfile-Editar\">
+					      <input type=\"file\" name=\"alteraImagem\">
 					    </div>
 					    <div class=\"file-path-wrapper\">";
 					if(array_key_exists('imagem', $xml)){
-					echo  "<input type=\"hidden\" name=\"excluido-".$qc."\" id=\"excluido-".$qc."\" value=''><input class=\"file-path validate\" type=\"text\" value=".substr(substr($xml->imagem, 9), 0, -1)." name=\"imagemTFIeld-".$qc."\" id=\"imagemTField-".$qc."\">";
+					echo  "<input type=\"hidden\" name=\"excluido-".$qc."\" id=\"excluido-".$qc."\" value=\"false\"><input class=\"file-path validate\" type=\"text\" value=".substr(substr($xml->imagem, 9), 0, -1)." name=\"imagemTFIeld-".$qc."\" id=\"imagemTField-".$qc."\">";
 					}
 					else echo "<input class=\"file-path validate\" type=\"text\" value='' name=\"imagemTFIeld-".$qc."\" id=\"imagemTField-".$qc."\">";
 				  echo   "</div>

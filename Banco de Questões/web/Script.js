@@ -1,3 +1,4 @@
+//Setando funções aos listeners
 window.onload = function(){
 	document.querySelector('#inserir').addEventListener('click', function(e){ ExibirCamposEspecificos(e.target.id) });
 	document.querySelector('#editar').addEventListener('click', function(e){ ExibirCamposEspecificos(e.target.id) });
@@ -6,6 +7,8 @@ window.onload = function(){
 	document.querySelector('#excluirAlternativa-inserir').addEventListener('click', ExcluirAlternativas);
 	document.querySelector('#limparAlternativa-inserir').addEventListener('click', LimparAlternativas);
 	document.querySelector('#estilo-inserir').addEventListener('mouseout', Alternativa);
+	document.querySelector('#estilo-inserir').addEventListener('blur', Alternativa);
+	
 	Alternativa();
 }
 

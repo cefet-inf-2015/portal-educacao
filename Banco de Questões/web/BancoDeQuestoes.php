@@ -15,7 +15,7 @@
 <body>
   <nav class="light-blue darken-4" role="navigation">
     <div class="nav-wrapper container">
-      <!-- MENU SLIDE OUT STRUCTURE-->
+      <!-- MENU SLIDE OUT STRUCTURE - NECESSITA CORRIGIR LINKS DE ACORDO COM SERVIDOR-->
       <ul id="slide-out" class="side-nav">
 	   <br>
 	   <li>
@@ -67,7 +67,7 @@
   <div class="container">
     <div class="section" align="center">
       
-      <!-- Criação e posicionamento dos botões na página -->
+      <!-- Criação e posicionamento dos botões de funções na página -->
       
       <a class="waves-effect waves-light btn light-blue darken-4" id="inserir">Inserir Questões
         <i class="tiny material-icons white-text text-darken-1">add</i>
@@ -82,6 +82,8 @@
       </a>
       <br><br>
 
+
+		<!-- Barra de Pesquisas -->
 		<form class="col s12" action="pesquisa.php" method="get">
       	<div class="input-field row">
 				<div class="col s6 offset-s3">
