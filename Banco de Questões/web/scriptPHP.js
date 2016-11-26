@@ -209,7 +209,13 @@ for(let questao of questoes){
 		foto.removeChild(questao.querySelector('#excluirFotoEditar-'+questaoCounter).parentNode);
 		document.querySelector('#imagemTField-'+questaoCounter).value = '';
 		document.querySelector('#excluido-'+questaoCounter).value = true;
-		
+	}
+	
+	function excluirQuestao(){
+		document.querySelector('#estilo-alterar-'+questaoCounter).required = false;
+		document.querySelector('#disciplina-alterar-'+questaoCounter).required = false;
+		document.querySelector('#nivel-alterar-'+questaoCounter).required = false;
+		document.querySelector('#cabecalho-alterar-'+questaoCounter).required = false;
 	}
 	
 	//Chama as funcoes.
@@ -217,7 +223,9 @@ for(let questao of questoes){
 	questao.querySelector('#limparAlternativa-alterar-'+questaoCounter).addEventListener('click', LimparAlternativas);
 	questao.querySelector('#excluirAlternativa-alterar-'+questaoCounter).addEventListener('click', ExcluirAlternativas);
 	questao.querySelector('#estilo-alterar-'+questaoCounter).addEventListener('mouseout', Alternativa);
+	questao.querySelector('#estilo-alterar-'+questaoCounter).addEventListener('blur', Alternativa);
 	questao.querySelector('#excluirFotoEditar-'+questaoCounter).addEventListener('click', excluirFoto);
+	questao.querySelector('#excluir-alterar-'+questaoCounter).addEventListener('click', excluirQuestao);
 	Alternativa();
 	
 	qC++;

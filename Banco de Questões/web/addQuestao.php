@@ -1,4 +1,7 @@
 <?php
+/*Simples pagina com barra de pesquisa
+ * Destinada a adição de questões na prova
+ * */
 	include('cabecalho.html');
 	
 	echo "<h5 class=\"header col s12 light\" align=\"center\">Adicionar Questao:</h5>
