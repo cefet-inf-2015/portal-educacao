@@ -92,12 +92,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel6" alignment="0" pref="1028" max="32767" attributes="0"/>
                           <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -124,6 +124,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Banco de Quest&#xf5;es"/>
+                <Property name="toolTipText" type="java.lang.String" value="Banco de Quest&#xf5;es"/>
                 <Property name="verticalAlignment" type="int" value="3"/>
                 <Property name="alignmentX" type="float" value="0.5"/>
               </Properties>
@@ -139,16 +140,16 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <EmptySpace pref="248" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="homeInserir" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="jButton5" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="abertaInserir" min="-2" pref="170" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton3" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="multInserir" min="-2" pref="170" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton4" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="voufInserir" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jButton1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
                       </Group>
@@ -158,22 +159,22 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="homeInserir" min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton3" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton4" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="jButton5" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="multInserir" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="voufInserir" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="abertaInserir" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace pref="178" max="32767" attributes="0"/>
+                          <EmptySpace pref="224" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="homeInserir">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f3" green="96" red="21" type="rgb"/>
@@ -184,15 +185,16 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="EDITAR QUEST&#xd5;ES"/>
+                    <Property name="text" type="java.lang.String" value="HOME"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Ir para inicio"/>
                     <Property name="alignmentX" type="float" value="0.5"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeInserirActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton4">
+                <Component class="javax.swing.JButton" name="abertaInserir">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f3" green="96" red="21" type="rgb"/>
@@ -203,15 +205,16 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="PRODUZIR PROVAS"/>
+                    <Property name="text" type="java.lang.String" value="ABERTA"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Ir para Inserir quest&#xe3;o aberta"/>
                     <Property name="alignmentX" type="float" value="0.5"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abertaInserirActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton5">
+                <Component class="javax.swing.JButton" name="multInserir">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f3" green="96" red="21" type="rgb"/>
@@ -222,15 +225,16 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="INSERIR QUEST&#xd5;ES"/>
+                    <Property name="text" type="java.lang.String" value="M&#xda;LTIPLA ESCOLHA"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Ir para Inserir quest&#xe3;o multipla escolha"/>
                     <Property name="alignmentX" type="float" value="0.5"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="multInserirActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="voufInserir">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f3" green="96" red="21" type="rgb"/>
@@ -241,8 +245,14 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="PESQUISAR QUEST&#xd5;ES"/>
+                    <Property name="text" type="java.lang.String" value="V OU F"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Ir para Inserir quest&#xe3;o verdadeiro ou falso"/>
+                    <Property name="alignmentX" type="float" value="0.5"/>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="voufInserirActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -253,6 +263,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="A ferramenta que produz provas de maneira simples e funcional"/>
+                <Property name="toolTipText" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
               </Properties>
             </Component>
           </SubComponents>
